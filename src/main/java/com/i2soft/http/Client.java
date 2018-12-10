@@ -1,0 +1,174 @@
+package com.i2soft.http;
+
+import com.i2soft.common.Constants;
+import com.i2soft.common.I2softException;
+import com.i2soft.common.Configuration;
+import com.i2soft.util.StringMap;
+import okhttp3.*;
+
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * 定义HTTP请求管理相关方法
+ */
+public final class Client {
+    static final String JsonMime = "application/json";
+    private StringMap headers;
+    private final OkHttpClient httpClient;
+
+    /**
+     * 构建一个默认配置的 HTTP Client 类
+     */
+    public Client() {
+        this(null, false, null,
+                Constants.CONNECT_TIMEOUT, Constants.READ_TIMEOUT, Constants.WRITE_TIMEOUT,
+                Constants.DISPATCHER_MAX_REQUESTS, Constants.DISPATCHER_MAX_REQUESTS_PER_HOST,
+                Constants.CONNECTION_POOL_MAX_IDLE_COUNT, Constants.CONNECTION_POOL_MAX_IDLE_MINUTES);
+    }
+
+    /**
+     * 构建一个自定义配置的 HTTP Client 类
+     */
+    public Client(Configuration cfg) {
+        this(cfg.dns, cfg.useDnsHostFirst, cfg.proxy,
+                cfg.connectTimeout, cfg.readTimeout, cfg.writeTimeout,
+                cfg.dispatcherMaxRequests, cfg.dispatcherMaxRequestsPerHost,
+                cfg.connectionPoolMaxIdleCount, cfg.connectionPoolMaxIdleMinutes);
+    }
+
+    /**
+     * 构建一个自定义配置的 HTTP Client 类
+     */
+    public Client(final Dns dns, final boolean hostFirst, final ProxyConfiguration proxy,
+                  int connTimeout, int readTimeout, int writeTimeout, int dispatcherMaxRequests,
+                  int dispatcherMaxRequestsPerHost, int connectionPoolMaxIdleCount,
+                  int connectionPoolMaxIdleMinutes) {
+        Dispatcher dispatcher = new Dispatcher();
+        dispatcher.setMaxRequests(dispatcherMaxRequests);
+        dispatcher.setMaxRequestsPerHost(dispatcherMaxRequestsPerHost);
+        ConnectionPool connectionPool = new ConnectionPool(connectionPoolMaxIdleCount,
+                connectionPoolMaxIdleMinutes, TimeUnit.MINUTES);
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+
+        builder.dispatcher(dispatcher);
+        builder.connectionPool(connectionPool);
+        builder.addNetworkInterceptor(new Interceptor() {
+            @Override
+            public okhttp3.Response intercept(Chain chain) throws IOException {
+                Request request = chain.request();
+
+                okhttp3.Response response = chain.proceed(request);
+                IpTag tag = (IpTag) request.tag();
+                try {
+                    tag.ip = Objects.requireNonNull(chain.connection()).socket().getRemoteSocketAddress().toString();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    tag.ip = "";
+                }
+                return response;
+            }
+        });
+        if (dns != null) {
+            builder.dns(new okhttp3.Dns() {
+                @Override
+                public List<InetAddress> lookup(String hostname) throws UnknownHostException {
+                    try {
+                        return dns.lookup(hostname);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    return okhttp3.Dns.SYSTEM.lookup(hostname);
+                }
+            });
+        }
+        if (proxy != null) {
+            builder.proxy(proxy.proxy());
+            if (proxy.user != null && proxy.password != null) {
+                builder.proxyAuthenticator(proxy.authenticator());
+            }
+        }
+        builder.connectTimeout(connTimeout, TimeUnit.SECONDS);
+        builder.readTimeout(readTimeout, TimeUnit.SECONDS);
+        builder.writeTimeout(writeTimeout, TimeUnit.SECONDS);
+        httpClient = builder.build();
+    }
+
+    public void set_headers(StringMap headers) {
+        this.headers = headers;
+    }
+
+    public Response get(String url) throws I2softException {
+        return get(url, new StringMap());
+    }
+
+    public Response get(String url, StringMap query) throws I2softException {
+        Request.Builder requestBuilder = new Request.Builder().get().url(url);
+        return send(requestBuilder);
+    }
+
+    public Response delete(String url, StringMap body) throws I2softException {
+        Request.Builder requestBuilder = new Request.Builder().delete().url(url);
+        return send(requestBuilder);
+    }
+
+    public Response post(String url, StringMap body) throws I2softException {
+        final FormBody.Builder f = new FormBody.Builder();
+        body.forEach(new StringMap.Consumer() {
+            @Override
+            public void accept(String key, Object value) {
+                f.add(key, value.toString());
+            }
+        });
+        Request.Builder requestBuilder = new Request.Builder().url(url).post(f.build());
+        return send(requestBuilder);
+    }
+
+    private Response send(final Request.Builder requestBuilder) throws I2softException {
+
+        if (this.headers != null) {
+            this.headers.forEach(new StringMap.Consumer() {
+                @Override
+                public void accept(String key, Object value) {
+                    requestBuilder.header(key, value.toString());
+                }
+            });
+        }
+
+        requestBuilder.header("User-Agent", userAgent());
+        long start = System.currentTimeMillis();
+        okhttp3.Response res;
+        Response r;
+        double duration = (System.currentTimeMillis() - start) / 1000.0;
+        IpTag tag = new IpTag();
+        try {
+            res = httpClient.newCall(requestBuilder.tag(tag).build()).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new I2softException(e);
+        }
+        r = Response.create(res, tag.ip, duration);
+        // err
+        if (r.ret >= 300 || (r.ret == 200 && r.code != 0)) {
+            throw new I2softException(r);
+        }
+
+        return r;
+    }
+
+    private static String userAgent() {
+        String javaVersion = "Java/" + System.getProperty("java.version");
+        String os = System.getProperty("os.name") + " "
+                + System.getProperty("os.arch") + " " + System.getProperty("os.version");
+        String sdk = "Info2soft/" + Constants.VERSION;
+        return sdk + " (" + os + ") " + javaVersion;
+    }
+
+    private static class IpTag {
+        private String ip = null;
+    }
+}

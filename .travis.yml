@@ -1,0 +1,10 @@
+# using docker container
+sudo: false
+
+language: java
+
+jdk:
+- oraclejdk8
+
+before_script:
+- export I2SOFT_TEST_ENV="travis"
