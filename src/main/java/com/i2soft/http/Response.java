@@ -61,16 +61,18 @@ public final class Response {
         try {
             if (response.body() != null) {
                 body = response.body().bytes();
-                Error.HttpErr httpErr = Json.decode(new String(body), Error.HttpErr.class);
+                String bodyJsonStr = new String(body);
+                Error.HttpErr httpErr = Json.decode(bodyJsonStr, Error.HttpErr.class);
                 msg = httpErr.msg;
 
+                // 处理返回data结果
                 if (response.code() == 200 && httpErr.data != null) {
                     // i2 err code
                     code = httpErr.data.code;
                     message = httpErr.data.message;
 
                     // 过滤，如没http错，则仅将data放入body中
-                    Object data = Json.decode(new String(body), Error.HttpErrData.class).data; // 用obj类型取出data
+                    Object data = Json.decode(bodyJsonStr, Error.HttpErrData.class).data; // 用obj类型取出data
                     body = StringUtils.utf8Bytes(Json.encode(data)); // 重编码为 json bytes
                 }
             }

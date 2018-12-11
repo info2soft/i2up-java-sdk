@@ -10,14 +10,14 @@ import java.util.Objects;
 
 public final class Auth {
 
-    public String url_prefix;
+    public String cc_url;
     public String token;
     public Client client;
     public Configuration configuration;
 
-    private Auth(String url_prefix, String token, Client client, Configuration configuration) {
+    private Auth(String cc_url, String token, Client client, Configuration configuration) {
         client.set_headers(new StringMap().put("Authorization", token));
-        this.url_prefix = url_prefix;
+        this.cc_url = cc_url;
         this.token = token;
         this.client = client;
         this.configuration = configuration;
@@ -38,12 +38,11 @@ public final class Auth {
             throw new IllegalArgumentException("empty key");
         }
 
-        String url_prefix = String.format("http://%s:58080/api", ip); // 地址
-        String url = url_prefix + "/auth/token"; // 地址
-        Client client = new Client(configuration);
+        Client client = new Client(ip, configuration);
+        String url = String.format("%s/auth/token", client.cc_url); // 地址
         StringMap body = new StringMap().put("username", user).put("pwd", pwd); // 参数
         Response r = client.post(url, body);
         String token = Objects.requireNonNull(r.jsonToObject(I2Result.AuthRs.class)).token; // 响应
-        return new Auth(url_prefix, token, client, configuration);
+        return new Auth(client.cc_url, token, client, configuration);
     }
 }

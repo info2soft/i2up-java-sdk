@@ -20,12 +20,13 @@ public final class Client {
     static final String JsonMime = "application/json";
     private StringMap headers;
     private final OkHttpClient httpClient;
+    public final String cc_url;
 
     /**
      * 构建一个默认配置的 HTTP Client 类
      */
     public Client() {
-        this(null, false, null,
+        this(null, null, false, null,
                 Constants.CONNECT_TIMEOUT, Constants.READ_TIMEOUT, Constants.WRITE_TIMEOUT,
                 Constants.DISPATCHER_MAX_REQUESTS, Constants.DISPATCHER_MAX_REQUESTS_PER_HOST,
                 Constants.CONNECTION_POOL_MAX_IDLE_COUNT, Constants.CONNECTION_POOL_MAX_IDLE_MINUTES);
@@ -34,8 +35,8 @@ public final class Client {
     /**
      * 构建一个自定义配置的 HTTP Client 类
      */
-    public Client(Configuration cfg) {
-        this(cfg.dns, cfg.useDnsHostFirst, cfg.proxy,
+    public Client(String ip, Configuration cfg) {
+        this(ip, cfg.dns, cfg.useDnsHostFirst, cfg.proxy,
                 cfg.connectTimeout, cfg.readTimeout, cfg.writeTimeout,
                 cfg.dispatcherMaxRequests, cfg.dispatcherMaxRequestsPerHost,
                 cfg.connectionPoolMaxIdleCount, cfg.connectionPoolMaxIdleMinutes);
@@ -44,10 +45,13 @@ public final class Client {
     /**
      * 构建一个自定义配置的 HTTP Client 类
      */
-    public Client(final Dns dns, final boolean hostFirst, final ProxyConfiguration proxy,
+    public Client(final String ip, final Dns dns, final boolean hostFirst, final ProxyConfiguration proxy,
                   int connTimeout, int readTimeout, int writeTimeout, int dispatcherMaxRequests,
                   int dispatcherMaxRequestsPerHost, int connectionPoolMaxIdleCount,
                   int connectionPoolMaxIdleMinutes) {
+
+        this.cc_url = String.format("http://%s:58080/api", ip); // 控制机地址
+
         Dispatcher dispatcher = new Dispatcher();
         dispatcher.setMaxRequests(dispatcherMaxRequests);
         dispatcher.setMaxRequestsPerHost(dispatcherMaxRequestsPerHost);
@@ -107,24 +111,26 @@ public final class Client {
     }
 
     public Response get(String url, StringMap query) throws I2softException {
-        Request.Builder requestBuilder = new Request.Builder().get().url(url);
-        return send(requestBuilder);
-    }
-
-    public Response delete(String url, StringMap body) throws I2softException {
-        Request.Builder requestBuilder = new Request.Builder().delete().url(url);
+        if (query.size() != 0) {
+            url += query.formString();
+        }
+        System.out.println(url);
+        Request.Builder requestBuilder = new Request.Builder().url(url).get();
         return send(requestBuilder);
     }
 
     public Response post(String url, StringMap body) throws I2softException {
-        final FormBody.Builder f = new FormBody.Builder();
-        body.forEach(new StringMap.Consumer() {
-            @Override
-            public void accept(String key, Object value) {
-                f.add(key, value.toString());
-            }
-        });
-        Request.Builder requestBuilder = new Request.Builder().url(url).post(f.build());
+        Request.Builder requestBuilder = new Request.Builder().url(url).post(body.toJson());
+        return send(requestBuilder);
+    }
+
+    public Response put(String url, StringMap body) throws I2softException {
+        Request.Builder requestBuilder = new Request.Builder().url(url).put(body.toJson());
+        return send(requestBuilder);
+    }
+
+    public Response delete(String url, StringMap body) throws I2softException {
+        Request.Builder requestBuilder = new Request.Builder().url(url).delete(body.toJson());
         return send(requestBuilder);
     }
 

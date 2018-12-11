@@ -14,6 +14,7 @@ public class AuthTest {
 
         try {
             Auth auth = Auth.create(TestConfig.ip, TestConfig.user, TestConfig.pwd, cfg);
+            System.out.println(auth.token);
             Assert.assertNotNull(auth.token);
 
         } catch (I2softException e) {

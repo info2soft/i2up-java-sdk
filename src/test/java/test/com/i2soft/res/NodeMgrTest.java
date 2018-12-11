@@ -1,6 +1,7 @@
 package test.com.i2soft.res;
 
 import com.i2soft.common.Configuration;
+import com.i2soft.common.I2Req;
 import com.i2soft.common.I2softException;
 import com.i2soft.res.NodeMgr;
 import com.i2soft.res.ResResult;
@@ -12,15 +13,13 @@ import test.com.i2soft.util.TestConfig;
 
 public class NodeMgrTest {
 
-    private Configuration cfg;
     private Auth auth;
     private NodeMgr nodeMgr;
 
     @Before
     public void setUp() {
-        this.cfg = new Configuration();
         try {
-            this.auth = Auth.create(TestConfig.ip, TestConfig.user, TestConfig.pwd, this.cfg);
+            this.auth = Auth.create(TestConfig.ip, TestConfig.user, TestConfig.pwd, new Configuration());
         } catch (I2softException e) {
             e.printStackTrace();
         }
@@ -29,8 +28,11 @@ public class NodeMgrTest {
 
     @Test
     public void nodeList() {
+        I2Req.ListArgs args = new I2Req.ListArgs();
+        args.limit = 1;
+
         try {
-            ResResult.NodeList nodeList = nodeMgr.getList();
+            ResResult.NodeList nodeList = nodeMgr.getList(args);
             Assert.assertNotNull(nodeList);
         } catch (I2softException e) {
             e.printStackTrace();
