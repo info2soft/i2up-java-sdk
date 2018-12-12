@@ -38,15 +38,14 @@ public class I2Req {
 
         public StringMap toStringMap() {
             return new StringMap()
-                    .putNotEmpty("limit", limit)
-                    .putNotEmpty("page", page)
+                    .putNotNull("limit", limit)
+                    .putNotNull("page", page)
                     .putNotEmpty("order_by", order_by)
                     .putNotEmpty("direction", direction)
                     .putNotEmpty("search_value", search_value)
                     .putNotEmpty("search_field", search_field)
-                    .putNotEmpty("search_field", search_field)
-                    .putNotEmpty("type", type)
-                    .putNotEmpty("filter_by_biz_grp", filter_by_biz_grp)
+                    .putNotNull("type", type)
+                    .putNotNull("filter_by_biz_grp", filter_by_biz_grp)
                     .putNotNull("like_args", like_args)
                     .putNotNull("where_args", where_args);
         }

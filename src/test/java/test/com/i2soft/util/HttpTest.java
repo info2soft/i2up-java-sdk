@@ -43,13 +43,22 @@ public class HttpTest {
             StringMap query = new StringMap();
 
             query.put("foo", "bar"); // str -> str
-            query.put("hello", new String[]{"a", "b", "c"}); // str -> str[]
-            query.put("boom", new Integer[]{2, 5, 0}); // str -> int[]
-            query.put("world", new StringMap().put("name", "John").put("age", 6)); // str -> map
+            query.put("hallo", new String[]{"a", "b", "c"}); // str -> str[]
+            query.put("type", new Integer[]{2, 5, 0}); // str -> int[]
+            query.put("search", new StringMap().put("name", "John").put("age", 6)); // str -> map
 
             r = client.get(String.format("%s/test/get", client.cc_url), query);
-
             System.out.println(r.bodyString());
+
+            r = client.post(String.format("%s/test/post", client.cc_url), query);
+            System.out.println(r.bodyString());
+
+            r = client.put(String.format("%s/test/put", client.cc_url), query);
+            System.out.println(r.bodyString());
+
+            r = client.delete(String.format("%s/test/delete", client.cc_url), query);
+            System.out.println(r.bodyString());
+
             Assert.assertNotNull(r);
 
         } catch (I2softException e) {
