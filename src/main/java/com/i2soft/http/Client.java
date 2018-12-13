@@ -50,7 +50,7 @@ public final class Client {
                   int dispatcherMaxRequestsPerHost, int connectionPoolMaxIdleCount,
                   int connectionPoolMaxIdleMinutes) {
 
-        this.cc_url = String.format("http://%s:58080/api", ip); // 控制机地址
+        this.cc_url = String.format("%s/api", ip); // 控制机地址
 
         Dispatcher dispatcher = new Dispatcher();
         dispatcher.setMaxRequests(dispatcherMaxRequests);
