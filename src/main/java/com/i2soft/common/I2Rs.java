@@ -3,7 +3,13 @@ package com.i2soft.common;
 /**
  * 这里定义了请求相关回复的封装类
  */
-public class I2Result {
+public class I2Rs {
+
+    public class I2SmpRs {
+        public Integer code;
+        public String message;
+    }
+
     /**
      * auth/token
      */

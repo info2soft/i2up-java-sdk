@@ -136,5 +136,11 @@ public final class StringUtils {
     public static String utf8String(byte[] data) {
         return new String(data, Constants.UTF_8);
     }
+
+    public static void printLog(String s) {
+        if (Constants.LOG_HTTP) {
+            System.out.println(s);
+        }
+    }
 }
 

@@ -89,6 +89,7 @@ public final class Response {
             return null;
         }
         String b = bodyString();
+        StringUtils.printLog("RS: " + b + "\n");
         return Json.decode(b, classOfT);
     }
 

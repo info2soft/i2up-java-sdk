@@ -1,6 +1,6 @@
 package com.i2soft.util;
 
-import com.i2soft.common.I2Result;
+import com.i2soft.common.I2Rs;
 import com.i2soft.common.I2softException;
 import com.i2soft.http.Client;
 import com.i2soft.http.Response;
@@ -42,7 +42,7 @@ public final class Auth {
         String url = String.format("%s/auth/token", client.cc_url); // 地址
         StringMap body = new StringMap().put("username", user).put("pwd", pwd); // 参数
         Response r = client.post(url, body);
-        String token = Objects.requireNonNull(r.jsonToObject(I2Result.AuthRs.class)).token; // 响应
+        String token = Objects.requireNonNull(r.jsonToObject(I2Rs.AuthRs.class)).token; // 响应
         return new Auth(client.cc_url, token, client, configuration);
     }
 }

@@ -11,6 +11,10 @@ public final class Constants {
      */
     public static final String VERSION = "7.0.0";
     /**
+     * 打印 http log
+     */
+    public static final boolean LOG_HTTP = true;
+    /**
      * 所有都是UTF-8编码
      */
     public static final Charset UTF_8 = Charset.forName("UTF-8");

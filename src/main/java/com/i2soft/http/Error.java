@@ -1,5 +1,7 @@
 package com.i2soft.http;
 
+import com.i2soft.common.I2Rs;
+
 /**
  * 业务请求逻辑错误封装类，主要用来解析API请求返回如下的内容：
  * <pre>
@@ -18,15 +20,10 @@ public final class Error {
     public final class HttpErr {
         public Integer ret = null;
         public String msg = null;
-        I2Err data;
+        I2Rs.I2SmpRs data;
     }
 
     final class HttpErrData {
         Object data;
-    }
-
-    public final class I2Err {
-        Integer code;
-        String message;
     }
 }

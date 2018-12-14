@@ -3,6 +3,7 @@ package com.i2soft.http;
 import com.i2soft.common.Constants;
 import com.i2soft.common.I2softException;
 import com.i2soft.common.Configuration;
+import com.i2soft.util.Json;
 import com.i2soft.util.StringMap;
 import okhttp3.*;
 
@@ -111,27 +112,37 @@ public final class Client {
     }
 
     public Response get(String url, StringMap query) throws I2softException {
+        printLog(url, query);
         if (query.size() != 0) {
             url += query.formString();
         }
-        System.out.println(url);
         Request.Builder requestBuilder = new Request.Builder().url(url).get();
         return send(requestBuilder);
     }
 
     public Response post(String url, StringMap body) throws I2softException {
+        printLog(url, body);
         Request.Builder requestBuilder = new Request.Builder().url(url).post(body.toJson());
         return send(requestBuilder);
     }
 
     public Response put(String url, StringMap body) throws I2softException {
+        printLog(url, body);
         Request.Builder requestBuilder = new Request.Builder().url(url).put(body.toJson());
         return send(requestBuilder);
     }
 
     public Response delete(String url, StringMap body) throws I2softException {
+        printLog(url, body);
         Request.Builder requestBuilder = new Request.Builder().url(url).delete(body.toJson());
         return send(requestBuilder);
+    }
+
+    private void printLog(String url, StringMap body) {
+        if (Constants.LOG_HTTP) {
+            System.out.println("URL: " + url);
+            System.out.println("ARGS: " + Json.encode(body));
+        }
     }
 
     private Response send(final Request.Builder requestBuilder) throws I2softException {
