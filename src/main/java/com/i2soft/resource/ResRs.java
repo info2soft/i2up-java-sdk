@@ -1,9 +1,9 @@
-package com.i2soft.res;
+package com.i2soft.resource;
 
 /**
  * 这里定义了请求相关回复的封装类
  */
-public class ResResult {
+public class ResRs {
     /**
      * node
      */

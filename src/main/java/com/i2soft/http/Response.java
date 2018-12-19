@@ -1,6 +1,5 @@
 package com.i2soft.http;
 
-import com.i2soft.common.I2softException;
 import com.i2soft.util.Json;
 import com.i2soft.util.StringUtils;
 import okhttp3.MediaType;
@@ -89,7 +88,7 @@ public final class Response {
             return null;
         }
         String b = bodyString();
-        StringUtils.printLog("RS: " + b + "\n");
+        StringUtils.printLog("RS: " + b);
         return Json.decode(b, classOfT);
     }
 
@@ -102,7 +101,7 @@ public final class Response {
             return body;
         }
         try {
-            this.body = response.body().bytes();
+            this.body = response.body() != null ? response.body().bytes() : new byte[0];
         } catch (IOException e) {
             throw new I2softException(e);
         }
@@ -118,7 +117,7 @@ public final class Response {
     }
 
     private static String ctype(okhttp3.Response response) {
-        MediaType mediaType = response.body().contentType();
+        MediaType mediaType = response.body() != null ? response.body().contentType() : null;
         if (mediaType == null) {
             return "";
         }
@@ -129,15 +128,15 @@ public final class Response {
         String[] msg = new String[3];
         try {
             msg[0] = url();
-        } catch (Throwable t) {
+        } catch (Throwable ignored) {
         }
         try {
             msg[1] = toString();
-        } catch (Throwable t) {
+        } catch (Throwable ignored) {
         }
         try {
             msg[2] = bodyString();
-        } catch (Throwable t) {
+        } catch (Throwable ignored) {
         }
         return StringUtils.join(msg, "  \n");
     }

@@ -1,7 +1,4 @@
-package com.i2soft.common;
-
-import com.i2soft.http.Error;
-import com.i2soft.http.Response;
+package com.i2soft.http;
 
 import java.io.IOException;
 

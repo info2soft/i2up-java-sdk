@@ -1,4 +1,4 @@
-package com.i2soft.common;
+package com.i2soft.http;
 
 /**
  * 这里定义了请求相关回复的封装类

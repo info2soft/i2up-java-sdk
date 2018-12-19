@@ -1,8 +1,8 @@
 package test.com.i2soft.util;
 
-import com.i2soft.common.Configuration;
-import com.i2soft.common.Constants;
-import com.i2soft.common.I2softException;
+import com.i2soft.util.Configuration;
+import com.i2soft.util.Constants;
+import com.i2soft.http.I2softException;
 import com.i2soft.http.Client;
 import com.i2soft.http.ProxyConfiguration;
 import com.i2soft.http.Response;
@@ -109,7 +109,7 @@ public class HttpTest {
 
     @Test
     public void testPost5() {
-        Response r = null;
+        Response r;
         try {
             r = client.post("http://httpbin.org/status/298", new StringMap());
             if (r.ret != -1) {

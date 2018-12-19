@@ -1,4 +1,4 @@
-package com.i2soft.common;
+package com.i2soft.util;
 
 import com.i2soft.http.Dns;
 import com.i2soft.http.ProxyConfiguration;

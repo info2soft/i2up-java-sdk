@@ -1,4 +1,4 @@
-package com.i2soft.common;
+package com.i2soft.http;
 
 import com.i2soft.util.StringMap;
 

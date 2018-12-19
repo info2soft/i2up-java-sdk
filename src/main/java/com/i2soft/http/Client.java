@@ -1,10 +1,10 @@
 package com.i2soft.http;
 
-import com.i2soft.common.Constants;
-import com.i2soft.common.I2softException;
-import com.i2soft.common.Configuration;
+import com.i2soft.util.Constants;
+import com.i2soft.util.Configuration;
 import com.i2soft.util.Json;
 import com.i2soft.util.StringMap;
+import com.sun.istack.internal.Nullable;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -108,7 +108,9 @@ public final class Client {
     }
 
     public Response get(String url) throws I2softException {
-        return get(url, new StringMap());
+        printLog(url);
+        Request.Builder requestBuilder = new Request.Builder().url(url).get();
+        return send(requestBuilder);
     }
 
     public Response get(String url, StringMap query) throws I2softException {
@@ -138,10 +140,15 @@ public final class Client {
         return send(requestBuilder);
     }
 
-    private void printLog(String url, StringMap body) {
+    private void printLog(String url) {
         if (Constants.LOG_HTTP) {
-            System.out.println("URL: " + url);
-            System.out.println("ARGS: " + Json.encode(body));
+            System.out.println("\nURL: " + url);
+        }
+    }
+
+    private void printLog(String url, @Nullable StringMap args) {
+        if (Constants.LOG_HTTP) {
+            System.out.println("\nURL: " + url + "\nARGS: " + Json.encode(args));
         }
     }
 
