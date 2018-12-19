@@ -4,7 +4,6 @@ import okhttp3.Authenticator;
 import okhttp3.Credentials;
 import okhttp3.Route;
 
-import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 
@@ -24,7 +23,7 @@ public final class ProxyConfiguration {
      * @param port        端口
      * @param user        用户名，无则填null
      * @param password    用户密码，无则填null
-     * @param type
+     * @param type :
      */
     public ProxyConfiguration(String hostAddress, int port, String user, String password, Proxy.Type type) {
         this.hostAddress = hostAddress;
@@ -45,7 +44,7 @@ public final class ProxyConfiguration {
     Authenticator authenticator() {
         return new Authenticator() {
             @Override
-            public okhttp3.Request authenticate(Route route, okhttp3.Response response) throws IOException {
+            public okhttp3.Request authenticate(Route route, okhttp3.Response response) {
                 String credential = Credentials.basic(user, password);
                 return response.request().newBuilder().
                         header("Proxy-Authorization", credential).

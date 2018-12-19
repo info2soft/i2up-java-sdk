@@ -241,4 +241,11 @@ public final class StringMap {
         });
         return b.toString();
     }
+
+    public void fieldsRsa(String[] fields) {
+        final Rsa rsa = new Rsa();
+        for (String field : fields) {
+            map.put(field, rsa.encryptByPublicKey(map.get(field).toString()));
+        }
+    }
 }

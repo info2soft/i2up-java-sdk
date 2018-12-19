@@ -1,10 +1,5 @@
 package com.i2soft.util;
 
-import com.i2soft.common.Constants;
-
-import java.nio.charset.Charset;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
 
 /**
@@ -42,11 +37,11 @@ public final class StringUtils {
      * <p>
      * 例如有字符串数组array和连接符为逗号(,)
      * <code>
-     * String[] array = new String[] { "hello", "world", "i2soft", "cloud","res" };
+     * String[] array = new String[] { "hello", "world", "i2soft", "cloud","resource" };
      * </code>
      * 那么得到的结果是:
      * <code>
-     * hello,world,i2soft,cloud,res
+     * hello,world,i2soft,cloud,resource
      * </code>
      * </p>
      *
@@ -89,11 +84,11 @@ public final class StringUtils {
      * <p>
      * 例如有字符串数组array
      * <code>
-     * String[] array = new String[] { "hello", "world", "i2soft", "cloud","res" };
+     * String[] array = new String[] { "hello", "world", "i2soft", "cloud","resource" };
      * </code>
      * 那么得到的结果是:
      * <code>
-     * "hello","world","i2soft","cloud","res"
+     * "hello","world","i2soft","cloud","resource"
      * </code>
      * </p>
      *
