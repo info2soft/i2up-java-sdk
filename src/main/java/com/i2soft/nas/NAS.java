@@ -97,22 +97,37 @@ public final class NAS {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map deleteNAS(StringMap args) throws I2softException {
+    public I2Rs.I2SmpRs deleteNAS(StringMap args) throws I2softException {
         String url = String.format("%s/nas/sync", auth.cc_url);
         Response r = auth.client.delete(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 
     /**
-     * 操作：启停
+     * NAS - 操作：启动
      *
-     * @param args: 参数详见 API 手册
-     * @return 参数详见 API 手册
+     * @param uuids: uuid数组
+     * @return code, message
      * @throws I2softException:
      */
-    public Map tempFuncName(StringMap args) throws I2softException {
+    public I2Rs.I2SmpRs startNAS(String[] uuids) throws I2softException {
         String url = String.format("%s/nas/sync/operate", auth.cc_url);
-        Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        StringMap newArgs = new StringMap().putNotEmpty("nas_uuids", uuids).put("operate", "start");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * NAS - 操作：停止
+     *
+     * @param uuids: uuid数组
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs stopNAS(String[] uuids) throws I2softException {
+        String url = String.format("%s/nas/sync/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("nas_uuids", uuids).put("operate", "stop");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 }

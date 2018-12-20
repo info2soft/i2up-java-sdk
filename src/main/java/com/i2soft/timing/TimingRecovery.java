@@ -156,15 +156,30 @@ public final class TimingRecovery {
     }
 
     /**
-     * 3 恢复 列表-4 恢复 操作
+     * 定时备份恢复 - 操作：启动
      *
-     * @param args: 参数详见 API 手册
+     * @param uuids: uuid数组
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs tempFuncName(StringMap args) throws I2softException {
+    public I2Rs.I2SmpRs startTimingRecovery(String[] uuids) throws I2softException {
         String url = String.format("%s/timing/recovery/operate", auth.cc_url);
-        Response r = auth.client.post(url, args);
+        StringMap newArgs = new StringMap().putNotEmpty("task_uuids", uuids).put("operate", "start");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 定时备份恢复 - 操作：停止
+     *
+     * @param uuids: uuid数组
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs stopTimingRecovery(String[] uuids) throws I2softException {
+        String url = String.format("%s/timing/recovery/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("task_uuids", uuids).put("operate", "stop");
+        Response r = auth.client.post(url, newArgs);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 }

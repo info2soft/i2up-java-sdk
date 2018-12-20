@@ -160,7 +160,7 @@ public final class Node {
     }
 
     /**
-     * 节点操作：升级
+     * 节点 - 操作：升级
      *
      * @param uuids: 节点uuid数组
      * @return code, message
@@ -169,7 +169,7 @@ public final class Node {
     public I2Rs.I2SmpRs upgradeNode(String[] uuids) throws I2softException {
         String url = String.format("%s/operate", module_url);
         StringMap newArgs = new StringMap().putNotEmpty("node_uuids", uuids).put("operate", "upgrade");
-        Response r = auth.client.delete(url, newArgs);
+        Response r = auth.client.post(url, newArgs);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 

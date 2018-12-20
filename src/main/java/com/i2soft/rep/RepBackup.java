@@ -78,15 +78,30 @@ public final class RepBackup {
     }
 
     /**
-     * 规则操作
+     * 复制规则 - 操作：启动
      *
-     * @param args: 参数详见 API 手册
+     * @param uuids: uuid数组
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs startRepBackup(StringMap args) throws I2softException {
+    public I2Rs.I2SmpRs startRepBackup(String[] uuids) throws I2softException {
         String url = String.format("%s/rep/backup/operate", auth.cc_url);
-        Response r = auth.client.post(url, args);
+        StringMap newArgs = new StringMap().putNotEmpty("rc_uuids", uuids).put("operate", "start");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 复制规则 - 操作：停止
+     *
+     * @param uuids: uuid数组
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs stopRepBackup(String[] uuids) throws I2softException {
+        String url = String.format("%s/rep/backup/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("rc_uuids", uuids).put("operate", "stop");
+        Response r = auth.client.post(url, newArgs);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 
