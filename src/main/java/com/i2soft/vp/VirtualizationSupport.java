@@ -320,15 +320,30 @@ public final class VirtualizationSupport {
     }
 
     /**
-     * 操作 启停
+     * 虚机备份 - 操作：启动
      *
-     * @param args: 参数详见 API 手册
+     * @param uuids: uuid数组
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs tempFuncName1(StringMap args) throws I2softException {
+    public I2Rs.I2SmpRs startVpBackup(String[] uuids) throws I2softException {
         String url = String.format("%s/vp/backup/operate", auth.cc_url);
-        Response r = auth.client.post(url, args);
+        StringMap newArgs = new StringMap().putNotEmpty("rule_uuids", uuids).put("operate", "start");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 虚机备份 - 操作：停止
+     *
+     * @param uuids: uuid数组
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs stopVpBackup(String[] uuids) throws I2softException {
+        String url = String.format("%s/vp/backup/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("rule_uuids", uuids).put("operate", "stop");
+        Response r = auth.client.post(url, newArgs);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 
@@ -398,15 +413,44 @@ public final class VirtualizationSupport {
     }
 
     /**
-     * 操作 启停
+     * 虚机还原 - 操作：启动
      *
-     * @param args: 参数详见 API 手册
+     * @param uuids: uuid数组
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs tempFuncName2(StringMap args) throws I2softException {
+    public I2Rs.I2SmpRs startVpRecovery(String[] uuids) throws I2softException {
         String url = String.format("%s/vp/recovery/operate", auth.cc_url);
-        Response r = auth.client.post(url, args);
+        StringMap newArgs = new StringMap().putNotEmpty("rule_uuids", uuids).put("operate", "start");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 虚机还原 - 操作：停止
+     *
+     * @param uuids: uuid数组
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs stopVpRecovery(String[] uuids) throws I2softException {
+        String url = String.format("%s/vp/recovery/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("rule_uuids", uuids).put("operate", "stop");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 虚机还原 - 操作：清除已完成的任务
+     *
+     * @param rule_type: 恢复类型：0：普通；1：瞬时；
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs clearFinishVpRecovery(Integer rule_type) throws I2softException {
+        String url = String.format("%s/vp/recovery/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotNull("rule_type", rule_type).put("operate", "clear_finish");
+        Response r = auth.client.post(url, newArgs);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 
@@ -431,7 +475,20 @@ public final class VirtualizationSupport {
      * @throws I2softException:
      */
     public I2Rs.I2SmpRs createVpMove(StringMap args) throws I2softException {
-        String url = String.format("%s/vp/(move|rep)", auth.cc_url);
+        String url = String.format("%s/vp/move", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 新建
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs createVpRep(StringMap args) throws I2softException {
+        String url = String.format("%s/vp/rep", auth.cc_url);
         Response r = auth.client.post(url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
@@ -444,7 +501,20 @@ public final class VirtualizationSupport {
      * @throws I2softException:
      */
     public Map describeVpMove(String uuid) throws I2softException {
-        String url = String.format("%s/vp/(move|rep)/%s", auth.cc_url, uuid);
+        String url = String.format("%s/vp/move/%s", auth.cc_url, uuid);
+        Response r = auth.client.get(url, new StringMap());
+        return r.jsonToObject(Map.class);
+    }
+
+    /**
+     * 获取单个
+     *
+     * @param uuid: uuid
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map describeVpRep(String uuid) throws I2softException {
+        String url = String.format("%s/vp/rep/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
         return r.jsonToObject(Map.class);
     }
@@ -458,7 +528,21 @@ public final class VirtualizationSupport {
      * @throws I2softException:
      */
     public Map modifyVpMove(String uuid, StringMap args) throws I2softException {
-        String url = String.format("%s/vp/(move|rep)/%s", auth.cc_url, uuid);
+        String url = String.format("%s/vp/move/%s", auth.cc_url, uuid);
+        Response r = auth.client.put(url, args);
+        return r.jsonToObject(Map.class);
+    }
+
+    /**
+     * 修改（模板）
+     *
+     * @param uuid: uuid
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map modifyVpRep(String uuid, StringMap args) throws I2softException {
+        String url = String.format("%s/vp/rep/%s", auth.cc_url, uuid);
         Response r = auth.client.put(url, args);
         return r.jsonToObject(Map.class);
     }
@@ -470,7 +554,19 @@ public final class VirtualizationSupport {
      * @throws I2softException:
      */
     public Map listVpMove() throws I2softException {
-        String url = String.format("%s/vp/(move|rep)", auth.cc_url);
+        String url = String.format("%s/vp/move", auth.cc_url);
+        Response r = auth.client.get(url, new StringMap());
+        return r.jsonToObject(Map.class);
+    }
+
+    /**
+     * 获取列表
+     *
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listVpRep() throws I2softException {
+        String url = String.format("%s/vp/rep", auth.cc_url);
         Response r = auth.client.get(url, new StringMap());
         return r.jsonToObject(Map.class);
     }
@@ -483,22 +579,126 @@ public final class VirtualizationSupport {
      * @throws I2softException:
      */
     public Map listVpMoveStatus(StringMap args) throws I2softException {
-        String url = String.format("%s/vp/(move|rep)/status", auth.cc_url);
+        String url = String.format("%s/vp/move/status", auth.cc_url);
         Response r = auth.client.get(url, args);
         return r.jsonToObject(Map.class);
     }
 
     /**
-     * 操作
+     * 状态
      *
      * @param args: 参数详见 API 手册
-     * @return code, message
+     * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs tempFuncName3(StringMap args) throws I2softException {
-        String url = String.format("%s/vp/(move|rep)/operate", auth.cc_url);
-        Response r = auth.client.post(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    public Map listVpRepStatus(StringMap args) throws I2softException {
+        String url = String.format("%s/vp/rep/status", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToObject(Map.class);
+    }
+
+    /**
+     * 虚机迁移 - 操作：启动
+     *
+     * @param uuids: uuid数组
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map startVpMove(String[] uuids) throws I2softException {
+        String url = String.format("%s/vp/move/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("rule_uuids", uuids).put("operate", "start");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(Map.class);
+    }
+
+    /**
+     * 虚机复制 - 操作：启动
+     *
+     * @param uuids: uuid数组
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map startVpRep(String[] uuids) throws I2softException {
+        String url = String.format("%s/vp/rep/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("rule_uuids", uuids).put("operate", "start");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(Map.class);
+    }
+
+    /**
+     * 虚机迁移 - 操作：停止
+     *
+     * @param uuids: uuid数组
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map stopVpMove(String[] uuids) throws I2softException {
+        String url = String.format("%s/vp/move/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("rule_uuids", uuids).put("operate", "stop");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(Map.class);
+    }
+
+    /**
+     * 虚机复制 - 操作：停止
+     *
+     * @param uuids: uuid数组
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map stopVpRep(String[] uuids) throws I2softException {
+        String url = String.format("%s/vp/rep/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("rule_uuids", uuids).put("operate", "stop");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(Map.class);
+    }
+
+    /**
+     * 虚机迁移 - 操作：迁移
+     *
+     * @param uuids: uuid数组
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map moveVpMove(String[] uuids) throws I2softException {
+        String url = String.format("%s/vp/move/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("rule_uuids", uuids).put("operate", "move");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(Map.class);
+    }
+
+    /**
+     * 虚机复制 - 操作：切换
+     *
+     * @param uuids:      uuid数组
+     * @param snap_point: 切换专用参数：选择需要切换到的时间点
+     * @param op_code:    切换专用参数：0表示临时切换；1表示永久切换
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map failoverVpRep(String[] uuids, String snap_point, Integer op_code) throws I2softException {
+        String url = String.format("%s/vp/rep/operate", auth.cc_url);
+        StringMap newArgs = new StringMap()
+                .putNotEmpty("rule_uuids", uuids)
+                .putNotEmpty("snap_point", snap_point)
+                .putNotNull("op_code", op_code)
+                .put("operate", "failover");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(Map.class);
+    }
+
+    /**
+     * 虚机复制 - 操作：回切
+     *
+     * @param uuids: uuid数组
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map failbackVpRep(String[] uuids) throws I2softException {
+        String url = String.format("%s/vp/rep/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("rule_uuids", uuids).put("operate", "failback");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(Map.class);
     }
 
     /**
@@ -509,7 +709,20 @@ public final class VirtualizationSupport {
      * @throws I2softException:
      */
     public I2Rs.I2SmpRs deleteVpMove(StringMap args) throws I2softException {
-        String url = String.format("%s/vp/(move|rep)", auth.cc_url);
+        String url = String.format("%s/vp/move", auth.cc_url);
+        Response r = auth.client.delete(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 删除
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs deleteVpRep(StringMap args) throws I2softException {
+        String url = String.format("%s/vp/rep", auth.cc_url);
         Response r = auth.client.delete(url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }

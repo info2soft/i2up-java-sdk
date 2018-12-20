@@ -38,15 +38,44 @@ public final class AppHighAvailability {
     }
 
     /**
-     * 操作接口
+     * 高可用 - 操作：启动
      *
-     * @param args: 参数详见 API 手册
+     * @param uuids: uuid数组
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map startHA(StringMap args) throws I2softException {
+    public Map startHA(String[] uuids) throws I2softException {
         String url = String.format("%s/ha/operate", auth.cc_url);
-        Response r = auth.client.post(url, args);
+        StringMap newArgs = new StringMap().putNotEmpty("ha_uuid", uuids).put("operate", "start");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(Map.class);
+    }
+
+    /**
+     * 高可用 - 操作：停止
+     *
+     * @param uuids: uuid数组
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map stopHA(String[] uuids) throws I2softException {
+        String url = String.format("%s/ha/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("ha_uuid", uuids).put("operate", "stop");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(Map.class);
+    }
+
+    /**
+     * 高可用 - 操作：强制切换
+     *
+     * @param uuids: uuid数组
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map forceSwitchHA(String[] uuids) throws I2softException {
+        String url = String.format("%s/ha/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("ha_uuid", uuids).put("operate", "force_switch");
+        Response r = auth.client.post(url, newArgs);
         return r.jsonToObject(Map.class);
     }
 

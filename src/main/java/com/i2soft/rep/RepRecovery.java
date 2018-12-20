@@ -77,15 +77,44 @@ public final class RepRecovery {
     }
 
     /**
-     * 2 任务操作
+     * 复制规则恢复 - 操作：启动
      *
-     * @param args: 参数详见 API 手册
+     * @param uuids: uuid数组
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs startRepRecovery(StringMap args) throws I2softException {
+    public I2Rs.I2SmpRs startRepRecovery(String[] uuids) throws I2softException {
         String url = String.format("%s/rep/recovery/operate", auth.cc_url);
-        Response r = auth.client.post(url, args);
+        StringMap newArgs = new StringMap().putNotEmpty("rc_uuids", uuids).put("operate", "start");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 复制规则恢复 - 操作：停止
+     *
+     * @param uuids: uuid数组
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs stopRepRecovery(String[] uuids) throws I2softException {
+        String url = String.format("%s/rep/recovery/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("rc_uuids", uuids).put("operate", "stop");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 复制规则恢复 - 操作：清除已完成的任务
+     *
+     * @param rc_type: 清除的 rc_type： 0普通，1 CDP，2镜像
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs clearFinishRepRecovery(Integer rc_type) throws I2softException {
+        String url = String.format("%s/vp/recovery/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotNull("rc_type", rc_type).put("operate", "clear_finish");
+        Response r = auth.client.post(url, newArgs);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 

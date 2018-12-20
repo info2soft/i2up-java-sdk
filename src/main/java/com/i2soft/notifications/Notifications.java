@@ -63,15 +63,30 @@ public final class Notifications {
     }
 
     /**
-     * 消息 操作
+     * 消息 - 操作：删除
      *
-     * @param args: 参数详见 API 手册
+     * @param uuids: uuid数组
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs tempFuncName(StringMap args) throws I2softException {
+    public I2Rs.I2SmpRs deleteNotifications(String[] uuids) throws I2softException {
         String url = String.format("%s/notifications/operate", auth.cc_url);
-        Response r = auth.client.post(url, args);
+        StringMap newArgs = new StringMap().putNotEmpty("task_uuids", uuids).put("operate", "delete");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 消息 - 操作：标记已读
+     *
+     * @param type: 需要标记已读的类型
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs readNotifications(Integer type) throws I2softException {
+        String url = String.format("%s/notifications/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotNull("type", type).put("operate", "read");
+        Response r = auth.client.post(url, newArgs);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 

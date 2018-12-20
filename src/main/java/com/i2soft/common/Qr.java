@@ -51,15 +51,44 @@ public final class Qr {
     }
 
     /**
-     * 4.确认/取消登
+     * 二维码 - 操作：检查登陆状态
      *
-     * @param args: 参数详见 API 手册
+     * @param uuid: 二维码唯一ID
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs confirmLogin(StringMap args) throws I2softException {
+    public I2Rs.I2SmpRs checkQrValidity(String uuid) throws I2softException {
         String url = String.format("%s/qr/event", auth.cc_url);
-        Response r = auth.client.post(url, args);
+        StringMap newArgs = new StringMap().putNotEmpty("uuid", uuid).put("action", 0);
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 二维码 - 操作：确认登陆
+     *
+     * @param uuid: 二维码唯一ID
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs confirmLogin(String uuid) throws I2softException {
+        String url = String.format("%s/qr/event", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("uuid", uuid).put("action", 1);
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 二维码 - 操作：取消登陆
+     *
+     * @param uuid: 二维码唯一ID
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs cancelLogin(String uuid) throws I2softException {
+        String url = String.format("%s/qr/event", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("uuid", uuid).put("action", 2);
+        Response r = auth.client.post(url, newArgs);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 

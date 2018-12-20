@@ -89,15 +89,30 @@ public final class Compare {
     }
 
     /**
-     * 4 操作
+     * 比较与同步 - 操作：删除
      *
-     * @param args: 参数详见 API 手册
-     * @return 参数详见 API 手册
+     * @param uuids: uuid数组
+     * @return code, message
      * @throws I2softException:
      */
-    public Map tempFuncName(StringMap args) throws I2softException {
+    public I2Rs.I2SmpRs deleteCompare(String[] uuids) throws I2softException {
         String url = String.format("%s/compare/operate", auth.cc_url);
-        Response r = auth.client.post(url, args);
+        StringMap newArgs = new StringMap().putNotEmpty("task_uuids", uuids).put("operate", "delete");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 比较与同步 - 操作：下载
+     *
+     * @param uuids: uuid数组
+     * @return code, message
+     * @throws I2softException:
+     */
+    public Map downloadCompare(String[] uuids) throws I2softException {
+        String url = String.format("%s/compare/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("task_uuids", uuids).put("operate", "download");
+        Response r = auth.client.post(url, newArgs);
         return r.jsonToObject(Map.class);
     }
 

@@ -1,8 +1,8 @@
 package com.i2soft.dashboard;
 
-import com.i2soft.common.Auth;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
+import com.i2soft.common.Auth;
 import com.i2soft.util.StringMap;
 
 import java.util.Map;
@@ -23,6 +23,31 @@ public final class Dashboard {
     }
 
     /**
+     * 整体状态统计
+     *
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map overall() throws I2softException {
+        String url = String.format("%s/dashboard/overall", auth.cc_url);
+        Response r = auth.client.get(url, new StringMap());
+        return r.jsonToObject(Map.class);
+    }
+
+    /**
+     * 高可用列表
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map ha(StringMap args) throws I2softException {
+        String url = String.format("%s/dashboard/ha", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToObject(Map.class);
+    }
+
+    /**
      * 获取节点列表
      *
      * @param args: 参数详见 API 手册
@@ -36,14 +61,14 @@ public final class Dashboard {
     }
 
     /**
-     * 高可用列表
+     * 获取规则列表
      *
      * @param args: 参数详见 API 手册
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map ha(StringMap args) throws I2softException {
-        String url = String.format("%s/dashboard/ha", auth.cc_url);
+    public Map repBackup(StringMap args) throws I2softException {
+        String url = String.format("%s/dashboard/rep", auth.cc_url);
         Response r = auth.client.get(url, args);
         return r.jsonToObject(Map.class);
     }
