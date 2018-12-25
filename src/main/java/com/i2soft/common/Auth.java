@@ -51,7 +51,6 @@ public final class Auth {
         return new Auth(client.cc_url, authRs, client, configuration);
     }
 
-    // TODO: 补充入参、返回
     public Map describePhoneCode(StringMap args) throws I2softException {
         if (StringUtils.isNullOrEmpty(this.token)) {
             throw new IllegalArgumentException("empty key");
@@ -61,7 +60,6 @@ public final class Auth {
         return r.jsonToObject(Map.class);
     }
 
-    // TODO: 补充入参
     public I2Rs.I2SmpRs regAccount(StringMap args) throws I2softException {
         if (StringUtils.isNullOrEmpty(this.token)) {
             throw new IllegalArgumentException("empty key");
@@ -71,7 +69,6 @@ public final class Auth {
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 
-    // TODO: 补充入参
     public I2Rs.I2SmpRs resetPwd(StringMap args) throws I2softException {
         if (StringUtils.isNullOrEmpty(this.token)) {
             throw new IllegalArgumentException("empty key");

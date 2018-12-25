@@ -64,13 +64,13 @@ public final class GeneralInterface {
     /**
      * 统计详情
      *
-     * @param args: 参数详见 API 手册
+     * @param id: id
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map describeStatistics(StringMap args) throws I2softException {
-        String url = String.format("%s/statistics/:id([0-9] )", auth.cc_url);
-        Response r = auth.client.get(url, args);
+    public Map describeStatistics(Integer id) throws I2softException {
+        String url = String.format("%s/statistics/%s", auth.cc_url, id);
+        Response r = auth.client.get(url);
         return r.jsonToObject(Map.class);
     }
 

@@ -86,7 +86,7 @@ public final class RepBackup {
      */
     public I2Rs.I2SmpRs startRepBackup(String[] uuids) throws I2softException {
         String url = String.format("%s/rep/backup/operate", auth.cc_url);
-        StringMap newArgs = new StringMap().putNotEmpty("rc_uuids", uuids).put("operate", "start");
+        StringMap newArgs = new StringMap().putNotEmpty("rep_uuids", uuids).put("operate", "start");
         Response r = auth.client.post(url, newArgs);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
@@ -100,7 +100,7 @@ public final class RepBackup {
      */
     public I2Rs.I2SmpRs stopRepBackup(String[] uuids) throws I2softException {
         String url = String.format("%s/rep/backup/operate", auth.cc_url);
-        StringMap newArgs = new StringMap().putNotEmpty("rc_uuids", uuids).put("operate", "stop");
+        StringMap newArgs = new StringMap().putNotEmpty("rep_uuids", uuids).put("operate", "stop");
         Response r = auth.client.post(url, newArgs);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }

@@ -126,8 +126,11 @@ public final class StringMap {
     }
 
     // putAll
-    public StringMap putAll(Map<String, Object> map) {
-        this.map.putAll(map);
+    public StringMap putAll(Map map) {
+        for (Object o : map.entrySet()) {
+            Map.Entry entry = (Map.Entry) o;
+            this.map.put(entry.getKey().toString(), entry.getValue());
+        }
         return this;
     }
 
