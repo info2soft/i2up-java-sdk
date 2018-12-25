@@ -20,16 +20,16 @@ dependencies {
 
 task getHomeDir << {
     println gradle.gradleHomeDir
-}
+} as String
 
 apply plugin: 'checkstyle'
 
 
 def versionName() {
-    String config = 'src/main/java/com/i2soft/common/Constants.java'
+    String config = 'src/main/java/com/i2soft/util/Constants.java'
     String fileContents = new File(config).text
     Matcher myMatcher = fileContents =~ /VERSION = "(.+)";/
-    String version = myMatcher[0][1]
+    String version = myMatcher[0][1 as String]
     println(version)
     return version
 }
@@ -40,7 +40,7 @@ static def versionNameToCode(String version) {
 }
 
 String version = versionName()
-int code = versionNameToCode(version)
+int code = (int) versionNameToCode(version)
 
 setProperty('VERSION_NAME', version)
 setProperty('VERSION_CODE', code)

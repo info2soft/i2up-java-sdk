@@ -190,7 +190,7 @@ public final class FspBackup {
      * @throws I2softException:
      */
     public I2Rs.I2SmpRs stopFspBackup(String[] uuids) throws I2softException {
-        String url = String.format("%s/fsp/move/operate", auth.cc_url);
+        String url = String.format("%s/fsp/backup/operate", auth.cc_url);
         StringMap newArgs = new StringMap().putNotEmpty("fsp_uuids", uuids).put("operate", "stop");
         Response r = auth.client.post(url, newArgs);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
@@ -204,7 +204,7 @@ public final class FspBackup {
      * @throws I2softException:
      */
     public I2Rs.I2SmpRs finishFspBackup(String[] uuids) throws I2softException {
-        String url = String.format("%s/fsp/move/operate", auth.cc_url);
+        String url = String.format("%s/fsp/backup/operate", auth.cc_url);
         StringMap newArgs = new StringMap().putNotEmpty("fsp_uuids", uuids).put("operate", "finish");
         Response r = auth.client.post(url, newArgs);
         return r.jsonToObject(I2Rs.I2SmpRs.class);

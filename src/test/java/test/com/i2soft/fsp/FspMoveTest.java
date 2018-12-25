@@ -1,0 +1,221 @@
+package test.com.i2soft.fsp;
+
+import com.i2soft.common.Auth;
+import com.i2soft.http.I2Rs;
+import com.i2soft.http.I2softException;
+import com.i2soft.http.Response;
+import com.i2soft.fsp.FspMove;
+import com.i2soft.util.Configuration;
+import com.i2soft.util.StringMap;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runners.MethodSorters;
+import test.com.i2soft.util.TestConfig;
+
+import java.util.Map;
+import java.util.Objects;
+import java.util.UUID;
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class FspMoveTest {
+
+    private static Auth auth;
+    private static FspMove fspMove;
+
+    @BeforeClass
+    public static void setUp() {
+        if (fspMove != null) {
+            return;
+        }
+        try {
+            auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, new Configuration());
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+        fspMove = new FspMove(auth);
+    }
+
+    @Test
+    public void T1_listFspMoveNic() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "474")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            Map rs = fspMove.listFspMoveNic(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T2_listFspMoveDir() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "475")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            Map rs = fspMove.listFspMoveDir(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T3_verifyFspMoveLicense() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "476")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            I2Rs.I2SmpRs rs = fspMove.verifyFspMoveLicense(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T4_verifyFspMoveOldRule() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "477")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            I2Rs.I2SmpRs rs = fspMove.verifyFspMoveOldRule(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T5_verifyFspMoveVolumeSpace() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "478")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            Map rs = fspMove.verifyFspMoveVolumeSpace(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T6_verifyFspMoveOsVersion() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "479")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            Map rs = fspMove.verifyFspMoveOsVersion(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T7_createFspMove() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "467")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            I2Rs.I2SmpRs rs = fspMove.createFspMove(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T8_modifyFspMove() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "468")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            I2Rs.I2SmpRs rs = fspMove.modifyFspMove(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T9_describeFspMove() {
+        try {
+            Map rs = fspMove.describeFspMove(); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T10_deleteFspMove() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "470")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            I2Rs.I2SmpRs rs = fspMove.deleteFspMove(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T11_listFspMove() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "471")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            Map rs = fspMove.listFspMove(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T12_startFspMove() {
+        try {
+            I2Rs.I2SmpRs rs = fspMove.startFspMove(new String[]{}); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T12_stopFspMove() {
+        try {
+            I2Rs.I2SmpRs rs = fspMove.stopFspMove(new String[]{}); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T12_moveFspMove() {
+        try {
+            I2Rs.I2SmpRs rs = fspMove.moveFspMove(new String[]{}); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T12_rebootFspMove() {
+        try {
+            I2Rs.I2SmpRs rs = fspMove.rebootFspMove(new String[]{}); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T13_listFspMoveStatus() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "473")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            Map rs = fspMove.listFspMoveStatus(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+}

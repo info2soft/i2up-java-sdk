@@ -25,6 +25,18 @@ public final class Dir {
     }
 
     /**
+     * 创建目录
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs createDir(StringMap args) throws I2softException {
+        Response r = auth.client.post(module_url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
      * 检查路径
      *
      * @param args: 参数详见 API 手册
@@ -45,18 +57,7 @@ public final class Dir {
      * @throws I2softException:
      */
     public Map listDir(StringMap args) throws I2softException {
-        Response r = auth.client.get(module_url);
-        return r.jsonToObject(Map.class);
-    }
-
-    /**
-     * 获取控制台主机IP
-     *
-     * @return 参数详见 API 手册
-     * @throws I2softException:
-     */
-    public Map describeCCip() throws I2softException {
-        Response r = auth.client.get(String.format("%s/ips", module_url));
+        Response r = auth.client.get(module_url, args);
         return r.jsonToObject(Map.class);
     }
 }
