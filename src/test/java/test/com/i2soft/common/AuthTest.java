@@ -25,7 +25,7 @@ public class AuthTest {
             return;
         }
         try {
-            auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, new Configuration());
+            auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
         } catch (I2softException e) {
             e.printStackTrace();
         }
@@ -54,7 +54,7 @@ public class AuthTest {
     @Test
     public void T3_token() {
         try {
-            Auth auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, new Configuration());
+            Auth auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
             Assert.assertNotNull(auth); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

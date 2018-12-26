@@ -4,8 +4,10 @@ import com.i2soft.common.Auth;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
+import com.i2soft.util.IOHelper;
 import com.i2soft.util.StringMap;
 
+import java.io.File;
 import java.util.Map;
 
 public final class User {
@@ -132,6 +134,7 @@ public final class User {
      */
     public I2Rs.I2SmpRs logout() throws I2softException {
         Response r = auth.client.post(String.format("%s/logout", module_url), new StringMap());
+        IOHelper.deleteAllFilesOfDir(new File(auth.cachePath));
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 }

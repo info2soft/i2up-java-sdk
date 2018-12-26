@@ -13,8 +13,8 @@ public class AuthTest {
         Configuration cfg = new Configuration();
 
         try {
-            Auth auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, cfg);
-            System.out.println(auth.token);
+            Auth auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, cfg);
+            System.out.println("token: " + auth.token);
             Assert.assertNotNull(auth.token);
 
         } catch (I2softException e) {

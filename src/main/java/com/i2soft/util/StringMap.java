@@ -20,7 +20,11 @@ public final class StringMap {
     }
 
     public StringMap(Map<String, Object> map) {
-        this.map = map;
+        if (map != null && map.size() > 0) {
+            this.map = map;
+        } else {
+            this.map = new HashMap<>();
+        }
     }
 
     // put
@@ -35,6 +39,11 @@ public final class StringMap {
     }
 
     public StringMap put(String key, Long value) {
+        map.put(key, value);
+        return this;
+    }
+
+    public StringMap put(String key, Double value) {
         map.put(key, value);
         return this;
     }
@@ -150,7 +159,11 @@ public final class StringMap {
     }
 
     public int size() {
-        return map.size();
+        if (map != null) {
+            return map.size();
+        } else {
+            return 0;
+        }
     }
 
     public Map<String, Object> map() {

@@ -30,6 +30,7 @@ public final class Json {
         }.getType();
         // CHECKSTYLE:ON
         Map<String, Object> x = new Gson().fromJson(json, t);
+
         return new StringMap(x);
     }
 }
