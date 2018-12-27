@@ -63,7 +63,7 @@ public final class Auth {
         }
 
         // 没缓存，或缓存过期，就http获取最新的，并更新；有有效缓存，用缓存
-        if (cache.size() == 0 || (double) cache.get("time") < timeStamp - 3600 * 2 || cache.get("ip") != ip) {
+        if (cache.size() == 0 || (double) cache.get("time") < timeStamp - 3600 * 2 || !cache.get("ip").equals(ip)) {
             // http获取最新
             String url = String.format("%s/auth/token", client.cc_url); // 地址
             StringMap body = new StringMap().put("username", user).put("pwd", pwd); // 参数
