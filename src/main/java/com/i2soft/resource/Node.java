@@ -5,8 +5,11 @@ import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
 import com.i2soft.common.Auth;
+import com.i2soft.util.Rsa;
 import com.i2soft.util.StringMap;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public final class Node {
@@ -60,6 +63,7 @@ public final class Node {
      * @throws I2softException:
      */
     public Map authNode(StringMap args) throws I2softException {
+        args.fieldsRsa(new String[]{"os_pwd"});
         String url = String.format("%s/auth", module_url);
         Response r = auth.client.post(url, args);
         return r.jsonToObject(Map.class);
@@ -94,6 +98,13 @@ public final class Node {
      * @return code, message
      */
     public Map createBatchNode(StringMap args) throws I2softException {
+        final Rsa rsa = new Rsa();
+        if (args.get("base_info_list").getClass().equals(ArrayList.class)) {
+            for (Map<String, String> base_info : (List<Map<String, String>>) args.get("base_info_list")) {
+                base_info.put("os_pwd", rsa.encryptByPublicKey(base_info.get("os_pwd")));
+            }
+        }
+
         String url = String.format("%s/batch", module_url);
         Response r = auth.client.post(url, args);
         return r.jsonToObject(Map.class);

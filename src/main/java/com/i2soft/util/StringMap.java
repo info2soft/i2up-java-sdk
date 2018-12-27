@@ -5,8 +5,7 @@ import okhttp3.RequestBody;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 封装 http 请求参数，query/body 的参数转换（json/url args）
@@ -115,6 +114,17 @@ public final class StringMap {
     public StringMap putNotEmpty(String key, Long[] value) {
         if (value != null && value.length > 0) {
             map.put(key, value);
+        }
+        return this;
+    }
+
+    public StringMap putNotEmpty(String key, StringMap[] value) {
+        if (value != null && value.length > 0) {
+            List<Map> list = new ArrayList<>();
+            for (StringMap v : value) {
+                list.add(v.map());
+            }
+            map.put(key, list);
         }
         return this;
     }
@@ -262,6 +272,28 @@ public final class StringMap {
         final Rsa rsa = new Rsa();
         for (String field : fields) {
             map.put(field, rsa.encryptByPublicKey(map.get(field).toString()));
+        }
+    }
+
+    public void forEachAll(Consumer imp) {
+        forEachAll(map, imp);
+    }
+
+    private void forEachAll(Map m, Consumer imp) {
+        for (Object o : m.entrySet()) {
+            Map.Entry entry = (Map.Entry) o;
+
+            if (entry.getValue().getClass().equals(Map.class)) {
+                // 如果值为map，就递归下一层
+                forEachAll((Map) entry.getValue(), imp);
+            } else if (entry.getValue().getClass().equals(Map[].class)) {
+                // 如果值为map数组，就递归下一层
+                for (Map subMap : (Map[]) entry.getValue()) {
+                    forEachAll(subMap, imp);
+                }
+            } else {
+                imp.accept(entry.getKey().toString(), entry.getValue());
+            }
         }
     }
 }

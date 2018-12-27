@@ -31,6 +31,7 @@ public final class Cluster {
      * @throws I2softException:
      */
     public Map authCls(StringMap args) throws I2softException {
+        args.fieldsRsa(new String[]{"os_pwd"});
         String url = String.format("%s/cls/auth", auth.cc_url);
         Response r = auth.client.post(url, args);
         return r.jsonToObject(Map.class);

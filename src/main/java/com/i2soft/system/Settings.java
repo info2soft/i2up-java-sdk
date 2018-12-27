@@ -33,7 +33,7 @@ public final class Settings {
      * @throws I2softException:
      */
     public I2Rs.I2SmpRs updateSetting(StringMap args) throws I2softException {
-        args.fieldsRsa(new String[]{"email_pwd"});
+        args.fieldsRsa(new String[]{"email_pwd", "sms_password"});
         Response r = auth.client.post(module_url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
