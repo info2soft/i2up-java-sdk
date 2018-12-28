@@ -1,6 +1,5 @@
 package com.i2soft.tools;
 
-import com.i2soft.http.I2Req;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
