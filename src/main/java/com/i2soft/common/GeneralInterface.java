@@ -33,7 +33,7 @@ public final class GeneralInterface {
     public Map describeVersion() throws I2softException {
         String url = String.format("%s/version", auth.cc_url);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -58,7 +58,7 @@ public final class GeneralInterface {
     public Map listStatistics(StringMap args) throws I2softException {
         String url = String.format("%s/statistics", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -71,7 +71,7 @@ public final class GeneralInterface {
     public Map describeStatistics(Integer id) throws I2softException {
         String url = String.format("%s/statistics/%s", auth.cc_url, id);
         Response r = auth.client.get(url);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -84,6 +84,6 @@ public final class GeneralInterface {
     public Map readStatistics(StringMap args) throws I2softException {
         String url = String.format("%s/statistics", auth.cc_url);
         Response r = auth.client.put(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

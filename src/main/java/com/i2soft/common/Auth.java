@@ -53,7 +53,7 @@ public final class Auth {
         String token;
         String ssoToken;
         StringMap cache = new StringMap();
-        double timeStamp = (double) System.currentTimeMillis() / 1000;
+        long timeStamp = System.currentTimeMillis() / 1000;
         File cacheFile = new File(cachePath + "i2up-java-sdk-cache.json");
 
         try {
@@ -63,7 +63,7 @@ public final class Auth {
         }
 
         // 没缓存，或缓存过期，就http获取最新的，并更新（创建）这个文件；有有效缓存，用缓存
-        if (cache.size() == 0 || (double) cache.get("time") < timeStamp - 3600 * 2 || !cache.get("ip").equals(ip)) {
+        if (cache.size() == 0 || (long) cache.get("time") < timeStamp - 3600 * 2 || !cache.get("ip").equals(ip)) {
             // http获取最新
             String url = String.format("%s/auth/token", client.cc_url); // 地址
             StringMap body = new StringMap().put("username", user).put("pwd", pwd); // 参数
@@ -94,7 +94,7 @@ public final class Auth {
         }
         String url = String.format("%s/auth/getPhoneCode", this.cc_url);
         Response r = this.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     public I2Rs.I2SmpRs regAccount(StringMap args) throws I2softException {

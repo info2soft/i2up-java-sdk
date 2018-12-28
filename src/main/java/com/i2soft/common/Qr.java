@@ -34,7 +34,7 @@ public final class Qr {
     public Map describeTimeStamp(StringMap args) throws I2softException {
         String url = String.format("%s/qr/t", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -47,7 +47,7 @@ public final class Qr {
     public Map createQrPic(StringMap args) throws I2softException {
         String url = String.format("%s/qr", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -102,7 +102,7 @@ public final class Qr {
     public Map obtainQrContent(StringMap args) throws I2softException {
         String url = String.format("%s/qr/generate", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -115,6 +115,6 @@ public final class Qr {
     public Map checkQrStatus(StringMap args) throws I2softException {
         String url = String.format("%s/qr/status", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

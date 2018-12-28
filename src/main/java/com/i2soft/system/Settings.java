@@ -46,7 +46,7 @@ public final class Settings {
      */
     public Map listSysSetting() throws I2softException {
         Response r = auth.client.get(module_url);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -57,6 +57,6 @@ public final class Settings {
      */
     public Map describeCCip() throws I2softException {
         Response r = auth.client.get(String.format("%s/ips", module_url));
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

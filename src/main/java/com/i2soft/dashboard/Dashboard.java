@@ -31,7 +31,7 @@ public final class Dashboard {
     public Map overall() throws I2softException {
         String url = String.format("%s/dashboard/overall", auth.cc_url);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -44,7 +44,7 @@ public final class Dashboard {
     public Map ha(StringMap args) throws I2softException {
         String url = String.format("%s/dashboard/ha", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -57,7 +57,7 @@ public final class Dashboard {
     public Map node(StringMap args) throws I2softException {
         String url = String.format("%s/dashboard/node", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -70,7 +70,7 @@ public final class Dashboard {
     public Map repBackup(StringMap args) throws I2softException {
         String url = String.format("%s/dashboard/rep", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -83,7 +83,7 @@ public final class Dashboard {
     public Map describeVpRuleRate(StringMap args) throws I2softException {
         String url = String.format("%s/dashboard/vp_rule", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -96,6 +96,6 @@ public final class Dashboard {
     public Map describeVmProtectRate(StringMap args) throws I2softException {
         String url = String.format("%s/dashboard/vp_vm", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

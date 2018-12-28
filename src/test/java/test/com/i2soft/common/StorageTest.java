@@ -33,19 +33,21 @@ public class StorageTest {
             auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
         storage = new Storage(auth);
     }
 
     @Test
-    public void T1_listStorageInfo() {
+    public void T01_listStorageInfo() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "210")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = storage.listStorageInfo(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 }

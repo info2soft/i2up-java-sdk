@@ -60,7 +60,7 @@ public final class Diagnose {
     public Map listDiagnose(StringMap args) throws I2softException {
         String url = String.format("%s/diagnose", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -73,6 +73,6 @@ public final class Diagnose {
     public Map downloadDiagnoseResult(StringMap args) throws I2softException {
         String url = String.format("%s/diagnose/download_res", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

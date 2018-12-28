@@ -33,116 +33,126 @@ public class FspRecoveryTest {
             auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
         fspRecovery = new FspRecovery(auth);
     }
 
     @Test
-    public void T1_listFspRecoveryDir() {
+    public void T01_listFspRecoveryDir() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "505")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = fspRecovery.listFspRecoveryDir(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T2_listFspRecoveryNic() {
+    public void T02_listFspRecoveryNic() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "493")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = fspRecovery.listFspRecoveryNic(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T3_listFspRecoveryPoint() {
+    public void T03_listFspRecoveryPoint() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "494")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = fspRecovery.listFspRecoveryPoint(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T4_verifyFspRecoveryVolumeSpace() {
+    public void T04_verifyFspRecoveryVolumeSpace() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "496")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = fspRecovery.verifyFspRecoveryVolumeSpace(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T5_verifyFspRecoveryOldRule() {
+    public void T05_verifyFspRecoveryOldRule() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "495")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = fspRecovery.verifyFspRecoveryOldRule(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T6_verifyFspRecoveryLicense() {
+    public void T06_verifyFspRecoveryLicense() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "506")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = fspRecovery.verifyFspRecoveryLicense(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T7_verifyFspRecoveryOsVersion() {
+    public void T07_verifyFspRecoveryOsVersion() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "497")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = fspRecovery.verifyFspRecoveryOsVersion(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T8_createFspRecovery() {
+    public void T08_createFspRecovery() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "499")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = fspRecovery.createFspRecovery(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T9_modifyFspRecovery() {
+    public void T09_modifyFspRecovery() {
         try {
             String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "498")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = fspRecovery.modifyFspRecovery(uuid, args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -154,6 +164,7 @@ public class FspRecoveryTest {
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -161,11 +172,12 @@ public class FspRecoveryTest {
     public void T11_deleteFspRecovery() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "501")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = fspRecovery.deleteFspRecovery(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -173,11 +185,12 @@ public class FspRecoveryTest {
     public void T12_listFspRecovery() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "502")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = fspRecovery.listFspRecovery(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -188,6 +201,7 @@ public class FspRecoveryTest {
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -198,6 +212,7 @@ public class FspRecoveryTest {
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -208,6 +223,7 @@ public class FspRecoveryTest {
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -218,6 +234,7 @@ public class FspRecoveryTest {
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -225,11 +242,12 @@ public class FspRecoveryTest {
     public void T14_listFspRecoveryStatus() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "504")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = fspRecovery.listFspRecoveryStatus(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 }

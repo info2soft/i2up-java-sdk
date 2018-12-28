@@ -33,125 +33,136 @@ public class RepBackupTest {
             auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
         repBackup = new RepBackup(auth);
     }
 
     @Test
-    public void T1_createRepBackup() {
+    public void T01_createRepBackup() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "458")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = repBackup.createRepBackup(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T2_describeRepBackup() {
+    public void T02_describeRepBackup() {
         try {
             String uuid = UUID.randomUUID().toString();
             Map rs = repBackup.describeRepBackup(uuid); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T3_modifyRepBackup() {
+    public void T03_modifyRepBackup() {
         try {
             String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "456")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = repBackup.modifyRepBackup(uuid, args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T4_deleteRepBackup() {
+    public void T04_deleteRepBackup() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "452")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = repBackup.deleteRepBackup(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T5_startRepBackup() {
+    public void T05_startRepBackup() {
         try {
             I2Rs.I2SmpRs rs = repBackup.startRepBackup(new String[]{}); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T5_stopRepBackup() {
+    public void T05_stopRepBackup() {
         try {
             I2Rs.I2SmpRs rs = repBackup.stopRepBackup(new String[]{}); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T6_listRepBackupStatus() {
+    public void T06_listRepBackupStatus() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "454")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = repBackup.listRepBackupStatus(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T7_listRepBackup() {
+    public void T07_listRepBackup() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "455")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = repBackup.listRepBackup(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T8_listRepBackupBaseLine() {
+    public void T08_listRepBackupBaseLine() {
         try {
             String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "460")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = repBackup.listRepBackupBaseLine(uuid, args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T9_deleteRepBackupBaseline() {
+    public void T09_deleteRepBackupBaseline() {
         try {
             String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "459")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = repBackup.deleteRepBackupBaseline(uuid, args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -160,11 +171,12 @@ public class RepBackupTest {
         try {
             String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "462")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = repBackup.listRepBackupOrphan(uuid, args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -173,11 +185,12 @@ public class RepBackupTest {
         try {
             String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "461")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = repBackup.deleteRepBackupOrphan(uuid, args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -186,11 +199,12 @@ public class RepBackupTest {
         try {
             String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "463")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = repBackup.downloadRepBackupOrphan(uuid, args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -199,11 +213,12 @@ public class RepBackupTest {
         try {
             String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "516")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = repBackup.listRepBackupSnapshot(uuid, args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -215,6 +230,7 @@ public class RepBackupTest {
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -223,11 +239,12 @@ public class RepBackupTest {
         try {
             String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "773")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = repBackup.deleteRepBackupSnapshot(uuid, args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 }

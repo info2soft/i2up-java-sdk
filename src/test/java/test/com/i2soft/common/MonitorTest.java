@@ -33,66 +33,72 @@ public class MonitorTest {
             auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
         monitor = new Monitor(auth);
     }
 
     @Test
-    public void T1_listDriversInfo() {
+    public void T01_listDriversInfo() {
         try {
             String uuid = UUID.randomUUID().toString();
             Map rs = monitor.listDriversInfo(uuid); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T2_listPhyInfo() {
+    public void T02_listPhyInfo() {
         try {
             String uuid = UUID.randomUUID().toString();
             Map rs = monitor.listPhyInfo(uuid); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T3_listChartConfig() {
+    public void T03_listChartConfig() {
         try {
             String uuid = UUID.randomUUID().toString();
             Map rs = monitor.listChartConfig(uuid); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T4_setChartConfig() {
+    public void T04_setChartConfig() {
         try {
             String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "777")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = monitor.setChartConfig(uuid, args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T5_listChartData() {
+    public void T05_listChartData() {
         try {
             String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "778")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = monitor.listChartData(uuid, args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 }

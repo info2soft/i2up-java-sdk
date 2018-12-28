@@ -61,7 +61,7 @@ public final class BizGroup {
     public Map describeBizGroup(String uuid) throws I2softException {
         String url = String.format("%s/biz_grp/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -87,7 +87,7 @@ public final class BizGroup {
     public Map listBizGroup(StringMap args) throws I2softException {
         String url = String.format("%s/biz_grp", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -114,7 +114,7 @@ public final class BizGroup {
     public Map listBizGroupBind(String uuid) throws I2softException {
         String url = String.format("%s/biz_grp/%s/bind", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -127,6 +127,6 @@ public final class BizGroup {
     public Map listBizGroupResource(StringMap args) throws I2softException {
         String url = String.format("%s/biz_grp/res", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

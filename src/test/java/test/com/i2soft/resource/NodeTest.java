@@ -46,7 +46,7 @@ public class NodeTest {
     public void T01_authNode() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "450")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = node.authNode(args); // 发送请求
             os_type = Double.parseDouble(rs.get("os_type").toString());
             System.out.println("\nos_type: " + os_type);
@@ -61,7 +61,7 @@ public class NodeTest {
     public void T02_checkCapacity() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "451")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = node.checkCapacity(args);
             Assert.assertNotNull(rs);
         } catch (I2softException e) {
@@ -77,7 +77,7 @@ public class NodeTest {
         }
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "742")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = node.listVg(args);
             Assert.assertNotNull(rs);
         } catch (I2softException e) {
@@ -90,7 +90,7 @@ public class NodeTest {
     public void T04_checkNodeOnline() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "449")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = node.checkNodeOnline(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
@@ -103,7 +103,7 @@ public class NodeTest {
     public void T05_createNode() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "441")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = node.createNode(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
@@ -199,7 +199,7 @@ public class NodeTest {
     public void T13_createBatchNode() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "443")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = node.createBatchNode(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {

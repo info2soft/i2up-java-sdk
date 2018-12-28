@@ -46,7 +46,7 @@ public final class Dir {
     public Map checkDir(StringMap args) throws I2softException {
         String url = String.format("%s/check", module_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -58,6 +58,6 @@ public final class Dir {
      */
     public Map listDir(StringMap args) throws I2softException {
         Response r = auth.client.get(module_url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

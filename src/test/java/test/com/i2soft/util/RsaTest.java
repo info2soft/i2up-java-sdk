@@ -59,10 +59,11 @@ public class RsaTest {
 
         try {
             Response r = client.post(String.format("%s/test/rsa", client.cc_url), query);
-            Map rs = r.jsonToObject(Map.class);
+            Map rs = r.jsonToMap();
             Assert.assertEquals(raw_str, Objects.requireNonNull(rs).get("decrypted").toString());
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 }

@@ -34,7 +34,7 @@ public final class TimingBackup {
     public Map describeTimingBackupMssqlSource(StringMap args) throws I2softException {
         String url = String.format("%s/timing/backup/mssql_source", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -47,7 +47,7 @@ public final class TimingBackup {
     public Map verifyTimingBackupOracleInfo(StringMap args) throws I2softException {
         String url = String.format("%s/timing/backup/verify_oracle_info", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -60,7 +60,7 @@ public final class TimingBackup {
     public Map describeTimingBackupOracleContent(StringMap args) throws I2softException {
         String url = String.format("%s/timing/backup/oracle_content", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -73,7 +73,7 @@ public final class TimingBackup {
     public Map descibeTimingBackupOracleSriptPath(StringMap args) throws I2softException {
         String url = String.format("%s/timing/backup/oracle_script_path", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -86,7 +86,7 @@ public final class TimingBackup {
     public Map listTimingBackupMssqlDbList(StringMap args) throws I2softException {
         String url = String.format("%s/timing/backup/mssql_db_list", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -112,7 +112,7 @@ public final class TimingBackup {
     public Map describeTimingBackup(String uuid) throws I2softException {
         String url = String.format("%s/timing/backup/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -139,7 +139,7 @@ public final class TimingBackup {
     public Map listTimingBackup(StringMap args) throws I2softException {
         String url = String.format("%s/timing/backup", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -152,7 +152,7 @@ public final class TimingBackup {
     public Map listTimingBackupStatus(StringMap args) throws I2softException {
         String url = String.format("%s/timing/backup/status", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**

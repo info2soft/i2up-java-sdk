@@ -33,120 +33,131 @@ public class RepRecoveryTest {
             auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
         repRecovery = new RepRecovery(auth);
     }
 
     @Test
-    public void T1_createRepRecovery() {
+    public void T01_createRepRecovery() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "508")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = repRecovery.createRepRecovery(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T2_describeRepRecovery() {
+    public void T02_describeRepRecovery() {
         try {
             String uuid = UUID.randomUUID().toString();
             Map rs = repRecovery.describeRepRecovery(uuid); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T3_deleteRepRecovery() {
+    public void T03_deleteRepRecovery() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "510")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = repRecovery.deleteRepRecovery(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T4_listRepRecovery() {
+    public void T04_listRepRecovery() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "511")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = repRecovery.listRepRecovery(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T5_startRepRecovery() {
+    public void T05_startRepRecovery() {
         try {
             I2Rs.I2SmpRs rs = repRecovery.startRepRecovery(new String[]{}); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T5_stopRepRecovery() {
+    public void T05_stopRepRecovery() {
         try {
             I2Rs.I2SmpRs rs = repRecovery.stopRepRecovery(new String[]{}); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T5_clearFinishRepRecovery() {
+    public void T05_clearFinishRepRecovery() {
         try {
             I2Rs.I2SmpRs rs = repRecovery.clearFinishRepRecovery(1); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T6_listRepRecoveryStatus() {
+    public void T06_listRepRecoveryStatus() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "513")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = repRecovery.listRepRecoveryStatus(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T7_listRepRecoveryCdpRange() {
+    public void T07_listRepRecoveryCdpRange() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "514")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = repRecovery.listRepRecoveryCdpRange(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T8_listRepRecoveryCdpLog() {
+    public void T08_listRepRecoveryCdpLog() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "515")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = repRecovery.listRepRecoveryCdpLog(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 }

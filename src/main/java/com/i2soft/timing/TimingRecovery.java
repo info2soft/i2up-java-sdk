@@ -34,7 +34,7 @@ public final class TimingRecovery {
     public Map listTimingRecoveryMssqlTime(StringMap args) throws I2softException {
         String url = String.format("%s/timing/recovery/rc_mssql_time", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -47,7 +47,7 @@ public final class TimingRecovery {
     public Map describeTimingRecoveryMssqlInitInfo(StringMap args) throws I2softException {
         String url = String.format("%s/timing/recovery/rc_mssql_init_info", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -60,7 +60,7 @@ public final class TimingRecovery {
     public Map listTimingRecoveryPathList(StringMap args) throws I2softException {
         String url = String.format("%s/timing/recovery/rc_path_list", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -113,7 +113,7 @@ public final class TimingRecovery {
     public Map describeTimingRecovery(String uuid) throws I2softException {
         String url = String.format("%s/timing/recovery/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -126,7 +126,7 @@ public final class TimingRecovery {
     public Map listTimingRecovery(StringMap args) throws I2softException {
         String url = String.format("%s/timing/recovery", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -139,7 +139,7 @@ public final class TimingRecovery {
     public Map listTimingRecoveryStatus(StringMap args) throws I2softException {
         String url = String.format("%s/timing/recovery/status", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**

@@ -49,7 +49,7 @@ public final class User {
      */
     public Map listUser(StringMap args) throws I2softException {
         Response r = auth.client.get(module_url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -61,7 +61,7 @@ public final class User {
      */
     public Map describeUser(Integer id) throws I2softException {
         Response r = auth.client.get(String.format("%s/%s", module_url, id));
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -111,7 +111,7 @@ public final class User {
      */
     public Map listProfile() throws I2softException {
         Response r = auth.client.get(String.format("%s/profile", module_url));
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**

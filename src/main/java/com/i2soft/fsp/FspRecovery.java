@@ -34,7 +34,7 @@ public final class FspRecovery {
     public Map listFspRecoveryDir(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/recovery/dir_list", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -47,7 +47,7 @@ public final class FspRecovery {
     public Map listFspRecoveryNic(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/recovery/nic_list", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -60,7 +60,7 @@ public final class FspRecovery {
     public Map listFspRecoveryPoint(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/recovery/point_list", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -73,7 +73,7 @@ public final class FspRecovery {
     public Map verifyFspRecoveryVolumeSpace(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/recovery/verify_volume_space", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -112,7 +112,7 @@ public final class FspRecovery {
     public Map verifyFspRecoveryOsVersion(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/recovery/verify_os_version", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -152,7 +152,7 @@ public final class FspRecovery {
     public Map desribeFspRecovery(String uuid) throws I2softException {
         String url = String.format("%s/fsp/recovery/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -178,7 +178,7 @@ public final class FspRecovery {
     public Map listFspRecovery(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/recovery", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -247,6 +247,6 @@ public final class FspRecovery {
     public Map listFspRecoveryStatus(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/recovery/status", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

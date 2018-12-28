@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import test.com.i2soft.util.TestConfig;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
@@ -23,6 +24,9 @@ public class BizGroupTest {
 
     private static Auth auth;
     private static BizGroup bizGroup;
+    private static String grpUuid = UUID.randomUUID().toString();
+    private static String resUuid = UUID.randomUUID().toString();
+    private static Map bizGrpObj;
 
     @BeforeClass
     public static void setUp() {
@@ -33,103 +37,106 @@ public class BizGroupTest {
             auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
         bizGroup = new BizGroup(auth);
     }
 
     @Test
-    public void T1_createBizGroup() {
+    public void T01_createBizGroup() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "578")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = bizGroup.createBizGroup(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T2_modifyBizGroup() {
+    public void T02_listBizGroup() {
         try {
-            String uuid = UUID.randomUUID().toString();
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "579")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
-            I2Rs.I2SmpRs rs = bizGroup.modifyBizGroup(uuid, args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void T3_describeBizGroup() {
-        try {
-            String uuid = UUID.randomUUID().toString();
-            Map rs = bizGroup.describeBizGroup(uuid); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void T4_deleteBizGroup() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "582")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
-            I2Rs.I2SmpRs rs = bizGroup.deleteBizGroup(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void T5_listBizGroup() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "581")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().put("limit", 1).put("direction", "DESC"); // 填充请求数据
             Map rs = bizGroup.listBizGroup(args); // 发送请求
+            grpUuid = ((ArrayList<Map>) rs.get("info_list")).get(0).get("grp_uuid").toString();
+            System.out.println("\ngrp_uuid: " + grpUuid);
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T6_updateBizGroupBind() {
+    public void T03_describeBizGroup() {
         try {
-            String uuid = UUID.randomUUID().toString();
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "583")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
-            I2Rs.I2SmpRs rs = bizGroup.updateBizGroupBind(uuid, args); // 发送请求
+            Map rs = bizGroup.describeBizGroup(grpUuid); // 发送请求
+            bizGrpObj = rs;
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T7_listBizGroupBind() {
+    public void T04_modifyBizGroup() {
         try {
-            String uuid = UUID.randomUUID().toString();
-            Map rs = bizGroup.listBizGroupBind(uuid); // 发送请求
+            I2Rs.I2SmpRs rs = bizGroup.modifyBizGroup(grpUuid, new StringMap(bizGrpObj)); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T8_listBizGroupResource() {
+    public void T05_listBizGroupResource() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "586")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = bizGroup.listBizGroupResource(args); // 发送请求
+            resUuid = ((ArrayList<Map>) rs.get("info_list")).get(0).get("uuid").toString();
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T06_listBizGroupBind() {
+        try {
+            Map rs = bizGroup.listBizGroupBind(grpUuid); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T07_updateBizGroupBind() {
+        try {
+            StringMap args = new StringMap().put("uuids", new String[]{resUuid}); // 填充请求数据
+            I2Rs.I2SmpRs rs = bizGroup.updateBizGroupBind(grpUuid, args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T08_deleteBizGroup() {
+        try {
+            I2Rs.I2SmpRs rs = bizGroup.deleteBizGroup(new StringMap().put("grp_uuids", new String[]{grpUuid})); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
         }
     }
 }

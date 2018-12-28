@@ -34,7 +34,7 @@ public final class Lic {
     public Map describeActivateInfo(StringMap args) throws I2softException {
         String url = String.format("%s/lic/activate", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -47,7 +47,7 @@ public final class Lic {
     public Map downloadLicInfo(String uuid) throws I2softException {
         String url = String.format("%s/lic/%s/download_lic_info", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -59,7 +59,7 @@ public final class Lic {
     public Map describeLicCcHwCode() throws I2softException {
         String url = String.format("%s/lic/cc_hw_code", auth.cc_url);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -72,7 +72,7 @@ public final class Lic {
     public Map describeLicObjHwCode(StringMap args) throws I2softException {
         String url = String.format("%s/lic/obj_hw_code", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -84,7 +84,7 @@ public final class Lic {
     public Map activateLicAll() throws I2softException {
         String url = String.format("%s/lic/activate", auth.cc_url);
         Response r = auth.client.put(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -137,7 +137,7 @@ public final class Lic {
     public Map describeLic(String uuid) throws I2softException {
         String url = String.format("%s/lic/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -150,7 +150,7 @@ public final class Lic {
     public Map listLic(StringMap args) throws I2softException {
         String url = String.format("%s/lic", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -176,7 +176,7 @@ public final class Lic {
     public Map listLicObjBind(StringMap args) throws I2softException {
         String url = String.format("%s/lic/obj_bind", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -189,7 +189,7 @@ public final class Lic {
     public Map listLicBind(StringMap args) throws I2softException {
         String url = String.format("%s/lic/lic_bind", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -202,7 +202,7 @@ public final class Lic {
     public Map updateLicBind(StringMap args) throws I2softException {
         String url = String.format("%s/lic/lic_bind", auth.cc_url);
         Response r = auth.client.put(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -215,6 +215,6 @@ public final class Lic {
     public Map listLicObj(StringMap args) throws I2softException {
         String url = String.format("%s/lic/obj", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }
