@@ -22,7 +22,8 @@ public class IOHelper {
     }
 
     public static void saveFile(File file, String content) throws IOException {
-        if (file == null || !file.canRead()) {
+        if (file == null) {
+            System.out.println("Waring: Cache file save failed");
             return;
         }
         File fileParent = file.getParentFile();

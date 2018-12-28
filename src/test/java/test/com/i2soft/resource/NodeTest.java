@@ -25,6 +25,9 @@ public class NodeTest {
 
     private static Auth auth;
     private static Node node;
+    private static Double os_type;
+    private static String uuid = UUID.randomUUID().toString();
+    private static Map nodeObj;
 
     @BeforeClass
     public static void setUp() {
@@ -40,46 +43,51 @@ public class NodeTest {
     }
 
     @Test
-    public void T1_checkCapacity() {
-        StringMap args = new StringMap()
-                .put("config_addr", "192.168.72.76")
-                .put("config_port", "26821")
-                .put("cache_path", "C:\\Program Files (x86)\\info2soft-i2node\\cache\\");
-        try {
-            Map rs = node.checkCapacity(args);
-            Assert.assertNotNull(rs);
-        } catch (I2softException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void T2_listVg() {
-        try {
-            Map rs = node.listVg(new StringMap()
-                    .put("config_addr", "192.168.72.76")
-                    .put("config_port", "26821"));
-
-            Assert.assertNotNull(rs);
-        } catch (I2softException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void T3_authNode() {
+    public void T01_authNode() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "450")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
             Map rs = node.authNode(args); // 发送请求
+            os_type = Double.parseDouble(rs.get("os_type").toString());
+            System.out.println("\nos_type: " + os_type);
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T4_checkNodeOnline() {
+    public void T02_checkCapacity() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "451")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            Map rs = node.checkCapacity(args);
+            Assert.assertNotNull(rs);
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T03_listVg() {
+        if (os_type.equals(1.0)) {
+            return;
+        }
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "742")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            Map rs = node.listVg(args);
+            Assert.assertNotNull(rs);
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T04_checkNodeOnline() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "449")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
@@ -87,11 +95,12 @@ public class NodeTest {
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T5_createNode() {
+    public void T05_createNode() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "441")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
@@ -99,95 +108,130 @@ public class NodeTest {
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T6_modifyNode() {
+    public void T06_listNode() {
         try {
-            String uuid = UUID.randomUUID().toString();
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "440")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
-            I2Rs.I2SmpRs rs = node.modifyNode(uuid, args); // 发送请求
+            I2Req.ListArgs args = new I2Req.ListArgs();
+            args.limit = 1;
+            args.direction = "DESC";
+            ResRs.NodeList nodeList = node.listNode(args);
+            uuid = nodeList.info_list[0].node_uuid;
+            System.out.println("\nuuid: " + uuid);
+            Assert.assertNotNull(uuid);
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T07_upgradeNode() {
+        try {
+            I2Rs.I2SmpRs rs = node.upgradeNode(new String[]{uuid}); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T7_describeNode() {
+    public void T08_listNodeStatus() {
         try {
-            String uuid = UUID.randomUUID().toString();
+            Map rs = node.listNodeStatus(new String[]{uuid}); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T09_describeNode() {
+        try {
             Map rs = node.describeNode(uuid); // 发送请求
+            nodeObj = rs;
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T8_createBatchNode() {
+    public void T10_describeDeviceInfo() {
+        try {
+            Map rs = node.describeDeviceInfo(uuid); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T11_modifyNode() {
+        try {
+            I2Rs.I2SmpRs rs = node.modifyNode(uuid, new StringMap(nodeObj)); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T12_deleteNode() {
+        try {
+            I2Rs.I2SmpRs rs = node.deleteNode(new String[]{uuid}); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T13_createBatchNode() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "443")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
             Map rs = node.createBatchNode(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
+            Assert.fail();
             e.printStackTrace();
         }
     }
 
     @Test
-    public void T9_describeDeviceInfo() {
-        try {
-            String uuid = UUID.randomUUID().toString();
-            Map rs = node.describeDeviceInfo(uuid); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void T10_listNode() {
+    public void T14_listNode() {
         try {
             I2Req.ListArgs args = new I2Req.ListArgs();
             args.limit = 1;
+            args.direction = "DESC";
             ResRs.NodeList nodeList = node.listNode(args);
-            Assert.assertNotNull(nodeList);
+            uuid = nodeList.info_list[0].node_uuid;
+            System.out.println("\nuuid: " + uuid);
+            Assert.assertNotNull(uuid);
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T11_upgradeNode() {
+    public void T15_deleteNode() {
         try {
-            I2Rs.I2SmpRs rs = node.upgradeNode(new String[]{}); // 发送请求
+            I2Rs.I2SmpRs rs = node.deleteNode(new String[]{uuid}); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void T12_listNodeStatus() {
-        try {
-            Map rs = node.listNodeStatus(new String[]{}); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void T13_deleteNode() {
-        try {
-            I2Rs.I2SmpRs rs = node.deleteNode(new String[]{}); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
+            Assert.fail();
         }
     }
 }

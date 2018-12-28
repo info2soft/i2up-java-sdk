@@ -114,7 +114,7 @@ public final class Client {
     }
 
     public Response get(String url, StringMap query) throws I2softException {
-        printLog(url, query);
+        printLog(url, "GET", query);
         if (query.size() != 0) {
             url += query.formString();
         }
@@ -123,32 +123,32 @@ public final class Client {
     }
 
     public Response post(String url, StringMap body) throws I2softException {
-        printLog(url, body);
+        printLog(url, "POST", body);
         Request.Builder requestBuilder = new Request.Builder().url(url).post(body.toJson());
         return send(requestBuilder);
     }
 
     public Response put(String url, StringMap body) throws I2softException {
-        printLog(url, body);
+        printLog(url, "PUT", body);
         Request.Builder requestBuilder = new Request.Builder().url(url).put(body.toJson());
         return send(requestBuilder);
     }
 
     public Response delete(String url, StringMap body) throws I2softException {
-        printLog(url, body);
+        printLog(url, "DELETE", body);
         Request.Builder requestBuilder = new Request.Builder().url(url).delete(body.toJson());
         return send(requestBuilder);
     }
 
     private void printLog(String url) {
         if (Constants.LOG_HTTP) {
-            System.out.println("\nURL: " + url);
+            System.out.println("\nURL: [GET] " + url);
         }
     }
 
-    private void printLog(String url, @Nullable StringMap args) {
+    private void printLog(String url, String method, @Nullable StringMap args) {
         if (Constants.LOG_HTTP) {
-            System.out.println("\nURL: " + url + "\nARGS: " + Json.encode(args));
+            System.out.println("\nURL: [" + method + "] " + url + "\nARGS: " + Json.encode(args));
         }
     }
 
