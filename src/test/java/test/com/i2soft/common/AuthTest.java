@@ -28,56 +28,62 @@ public class AuthTest {
             auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T1_describePhoneCode() {
+    public void T01_describePhoneCode() {
         try {
             Map rs = auth.describePhoneCode(new StringMap()); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T2_regAccount() {
+    public void T02_regAccount() {
         try {
             I2Rs.I2SmpRs rs = auth.regAccount(new StringMap()); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T3_token() {
+    public void T03_token() {
         try {
             Auth auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
             Assert.assertNotNull(auth); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T4_resetPwd() {
+    public void T04_resetPwd() {
         try {
             I2Rs.I2SmpRs rs = auth.resetPwd(new StringMap()); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T5_checkLoginStatus() {
+    public void T05_checkLoginStatus() {
         try {
             String rs = auth.checkLoginStatus(); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 }

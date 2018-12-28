@@ -34,7 +34,7 @@ public final class Logs {
     public Map listTaskLog(StringMap args) throws I2softException {
         String url = String.format("%s/logs", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -47,7 +47,7 @@ public final class Logs {
     public Map listHALog(StringMap args) throws I2softException {
         String url = String.format("%s/logs/ha", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -60,7 +60,7 @@ public final class Logs {
     public Map listNodeLog(StringMap args) throws I2softException {
         String url = String.format("%s/logs/node", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -85,7 +85,7 @@ public final class Logs {
     public Map listTrafficLog(StringMap args) throws I2softException {
         String url = String.format("%s/logs/traffic", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -98,7 +98,7 @@ public final class Logs {
     public Map listOpLog(StringMap args) throws I2softException {
         String url = String.format("%s/op_log", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -111,6 +111,6 @@ public final class Logs {
     public Map deleteOpLog(StringMap args) throws I2softException {
         String url = String.format("%s/op_log", auth.cc_url);
         Response r = auth.client.delete(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

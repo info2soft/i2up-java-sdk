@@ -33,57 +33,63 @@ public class DataBaseBackupTest {
             auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
         dataBaseBackup = new DataBaseBackup(auth);
     }
 
     @Test
-    public void T1_importConfig() {
+    public void T01_importConfig() {
         try {
             I2Rs.I2SmpRs rs = dataBaseBackup.importConfig(); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T2_exportConfig() {
+    public void T02_exportConfig() {
         try {
             I2Rs.I2SmpRs rs = dataBaseBackup.exportConfig(); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T3_listBackupHistory() {
+    public void T03_listBackupHistory() {
         try {
             I2Rs.I2SmpRs rs = dataBaseBackup.listBackupHistory(); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T4_backupConfig() {
+    public void T04_backupConfig() {
         try {
             I2Rs.I2SmpRs rs = dataBaseBackup.backupConfig(); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T5_describeBackupConfig() {
+    public void T05_describeBackupConfig() {
         try {
             I2Rs.I2SmpRs rs = dataBaseBackup.describeBackupConfig(); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 }

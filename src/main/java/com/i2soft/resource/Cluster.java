@@ -34,7 +34,7 @@ public final class Cluster {
         args.fieldsRsa(new String[]{"os_pwd"});
         String url = String.format("%s/cls/auth", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -47,7 +47,7 @@ public final class Cluster {
     public Map verifyClsNode(StringMap args) throws I2softException {
         String url = String.format("%s/cls/node_verify", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -73,7 +73,7 @@ public final class Cluster {
     public Map describeCls(String uuid) throws I2softException {
         String url = String.format("%s/cls/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -100,7 +100,7 @@ public final class Cluster {
     public Map listCls(StringMap args) throws I2softException {
         String url = String.format("%s/cls", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -113,7 +113,7 @@ public final class Cluster {
     public Map listClsStatus(StringMap args) throws I2softException {
         String url = String.format("%s/cls/status", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -140,6 +140,6 @@ public final class Cluster {
         String url = String.format("%s/cls/operate", auth.cc_url);
         StringMap newArgs = new StringMap().putNotEmpty("node_uuid", uuid).put("operate", "detail");
         Response r = auth.client.post(url, newArgs);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

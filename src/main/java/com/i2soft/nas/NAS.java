@@ -48,7 +48,7 @@ public final class NAS {
     public Map describeNASGroup(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/nas/sync/%s/group", auth.cc_url, uuid);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -74,7 +74,7 @@ public final class NAS {
     public Map listNAS() throws I2softException {
         String url = String.format("%s/nas/sync", auth.cc_url);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -87,7 +87,7 @@ public final class NAS {
     public Map listNASStatus(StringMap args) throws I2softException {
         String url = String.format("%s/nas/sync/status", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**

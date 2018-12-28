@@ -47,7 +47,7 @@ public final class Compare {
     public Map describeCompare(String uuid) throws I2softException {
         String url = String.format("%s/compare/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -72,7 +72,7 @@ public final class Compare {
     public Map listCompare(StringMap args) throws I2softException {
         String url = String.format("%s/compare", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -85,7 +85,7 @@ public final class Compare {
     public Map listCompareStatus(StringMap args) throws I2softException {
         String url = String.format("%s/compare/status", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -113,7 +113,7 @@ public final class Compare {
         String url = String.format("%s/compare/operate", auth.cc_url);
         StringMap newArgs = new StringMap().putNotEmpty("task_uuids", uuids).put("operate", "download");
         Response r = auth.client.post(url, newArgs);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -140,6 +140,6 @@ public final class Compare {
     public Map listCircleCompareResult(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/compare/%s/result_list", auth.cc_url, uuid);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

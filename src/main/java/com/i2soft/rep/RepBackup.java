@@ -47,7 +47,7 @@ public final class RepBackup {
     public Map describeRepBackup(String uuid) throws I2softException {
         String url = String.format("%s/rep/backup/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -61,7 +61,7 @@ public final class RepBackup {
     public Map modifyRepBackup(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/rep/backup/%s", auth.cc_url, uuid);
         Response r = auth.client.put(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -115,7 +115,7 @@ public final class RepBackup {
     public Map listRepBackupStatus(StringMap args) throws I2softException {
         String url = String.format("%s/rep/backup/status", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -128,7 +128,7 @@ public final class RepBackup {
     public Map listRepBackup(StringMap args) throws I2softException {
         String url = String.format("%s/rep/backup", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -142,7 +142,7 @@ public final class RepBackup {
     public Map listRepBackupBaseLine(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/rep/backup/%s/cdp_bl_list", auth.cc_url, uuid);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -156,7 +156,7 @@ public final class RepBackup {
     public Map deleteRepBackupBaseline(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/rep/backup/%s/cdp_bl_list", auth.cc_url, uuid);
         Response r = auth.client.delete(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -170,7 +170,7 @@ public final class RepBackup {
     public Map listRepBackupOrphan(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/rep/backup/%s/orphan_list", auth.cc_url, uuid);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -184,7 +184,7 @@ public final class RepBackup {
     public Map deleteRepBackupOrphan(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/rep/backup/%s/orphan_list", auth.cc_url, uuid);
         Response r = auth.client.delete(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -212,7 +212,7 @@ public final class RepBackup {
     public Map listRepBackupSnapshot(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/rep/backup/%s/snapshot_list", auth.cc_url, uuid);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -225,7 +225,7 @@ public final class RepBackup {
     public Map createRepBackupSnapshot(String uuid) throws I2softException {
         String url = String.format("%s/rep/backup/%s/snapshot_list", auth.cc_url, uuid);
         Response r = auth.client.post(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -239,6 +239,6 @@ public final class RepBackup {
     public Map deleteRepBackupSnapshot(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/rep/backup/%s/snapshot_list", auth.cc_url, uuid);
         Response r = auth.client.delete(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

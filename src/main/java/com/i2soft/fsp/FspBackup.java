@@ -34,7 +34,7 @@ public final class FspBackup {
     public Map listFspBackupNic(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/backup/nic_list", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -47,7 +47,7 @@ public final class FspBackup {
     public Map listFspBackupDir(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/backup/dir_list", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -60,7 +60,7 @@ public final class FspBackup {
     public Map verifyFspBackupCoopySpace(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/backup/verify_coopy_space", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -99,7 +99,7 @@ public final class FspBackup {
     public Map verifyFspBackupOsVersion(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/backup/verify_os_version", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -139,7 +139,7 @@ public final class FspBackup {
     public Map describeFspBackup(String uuid) throws I2softException {
         String url = String.format("%s/fsp/backup/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -165,7 +165,7 @@ public final class FspBackup {
     public Map listFspBackup(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/backup", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -220,6 +220,6 @@ public final class FspBackup {
     public Map listFspBackupStatus(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/backup/status", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

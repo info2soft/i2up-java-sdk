@@ -33,62 +33,68 @@ public class GeneralInterfaceTest {
             auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
         generalInterface = new GeneralInterface(auth);
     }
 
     @Test
-    public void T1_describeVersion() {
+    public void T01_describeVersion() {
         try {
             Map rs = generalInterface.describeVersion(); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T2_updateDatabase() {
+    public void T02_updateDatabase() {
         try {
             I2Rs.I2SmpRs rs = generalInterface.updateDatabase(); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T3_listStatistics() {
+    public void T03_listStatistics() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "208")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = generalInterface.listStatistics(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T4_describeStatistics() {
+    public void T04_describeStatistics() {
         try {
             Integer id = 1;
             Map rs = generalInterface.describeStatistics(id); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
     @Test
-    public void T5_readStatistics() {
+    public void T05_readStatistics() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "785")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = generalInterface.readStatistics(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 }

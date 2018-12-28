@@ -34,7 +34,7 @@ public final class VirtualizationSupport {
     public Map createVp(StringMap args) throws I2softException {
         String url = String.format("%s/vp/platform", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -47,7 +47,7 @@ public final class VirtualizationSupport {
     public Map describeVp(String uuid) throws I2softException {
         String url = String.format("%s/vp/platform/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -61,7 +61,7 @@ public final class VirtualizationSupport {
     public Map modifyVp(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/vp/platform/%s", auth.cc_url, uuid);
         Response r = auth.client.put(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -74,7 +74,7 @@ public final class VirtualizationSupport {
     public Map listVp(StringMap args) throws I2softException {
         String url = String.format("%s/vp/platform", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -87,7 +87,7 @@ public final class VirtualizationSupport {
     public Map listVpStatus(StringMap args) throws I2softException {
         String url = String.format("%s/vp/platform/status", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -114,7 +114,7 @@ public final class VirtualizationSupport {
     public Map listVM(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/vp/platform/%s/vm", auth.cc_url, uuid);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -127,7 +127,7 @@ public final class VirtualizationSupport {
     public Map describeVpAttribute(String uuid) throws I2softException {
         String url = String.format("%s/vp/platform/%s/info", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -141,7 +141,7 @@ public final class VirtualizationSupport {
     public Map listBakVer(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/vp/platform/%s/bak_ver", auth.cc_url, uuid);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -155,7 +155,7 @@ public final class VirtualizationSupport {
     public Map listBakVerInfo(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/vp/platform/%s/bak_ver_info", auth.cc_url, uuid);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -169,7 +169,7 @@ public final class VirtualizationSupport {
     public Map listDatastoreFile(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/vp/platform/%s/datastore_file", auth.cc_url, uuid);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -182,7 +182,7 @@ public final class VirtualizationSupport {
     public Map listDatacenter(String uuid) throws I2softException {
         String url = String.format("%s/vp/platform/%s/datacenter", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -196,7 +196,7 @@ public final class VirtualizationSupport {
     public Map listDatacenterHost(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/vp/platform/%s/datacenter_host", auth.cc_url, uuid);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -210,7 +210,7 @@ public final class VirtualizationSupport {
     public Map listDatastore(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/vp/platform/%s/datastore", auth.cc_url, uuid);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -224,7 +224,7 @@ public final class VirtualizationSupport {
     public Map listDatastoreInfo(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/vp/platform/%s/datastore_info", auth.cc_url, uuid);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -237,7 +237,7 @@ public final class VirtualizationSupport {
     public Map createVpBackup(StringMap args) throws I2softException {
         String url = String.format("%s/vp/backup", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -264,7 +264,7 @@ public final class VirtualizationSupport {
     public Map describeVpBackup(String uuid) throws I2softException {
         String url = String.format("%s/vp/backup/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -277,7 +277,7 @@ public final class VirtualizationSupport {
     public Map describeVpBackupGroup(String uuid) throws I2softException {
         String url = String.format("%s/vp/backup/%s/group", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -290,7 +290,7 @@ public final class VirtualizationSupport {
     public Map listVpBackup(StringMap args) throws I2softException {
         String url = String.format("%s/vp/backup", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -303,7 +303,7 @@ public final class VirtualizationSupport {
     public Map listVpBackupGroup(StringMap args) throws I2softException {
         String url = String.format("%s/vp/backup/group", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -316,7 +316,7 @@ public final class VirtualizationSupport {
     public Map listVpBackupStatus(StringMap args) throws I2softException {
         String url = String.format("%s/vp/backup/status", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -383,7 +383,7 @@ public final class VirtualizationSupport {
     public Map describeVpRecoveryGroup(String uuid) throws I2softException {
         String url = String.format("%s/vp/recovery/%s/group", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -396,7 +396,7 @@ public final class VirtualizationSupport {
     public Map listVpRecovery(StringMap args) throws I2softException {
         String url = String.format("%s/vp/recovery", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -409,7 +409,7 @@ public final class VirtualizationSupport {
     public Map listVpRecoveryStatus(StringMap args) throws I2softException {
         String url = String.format("%s/vp/recovery/status", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -503,7 +503,7 @@ public final class VirtualizationSupport {
     public Map describeVpMove(String uuid) throws I2softException {
         String url = String.format("%s/vp/move/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -516,7 +516,7 @@ public final class VirtualizationSupport {
     public Map describeVpRep(String uuid) throws I2softException {
         String url = String.format("%s/vp/rep/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -530,7 +530,7 @@ public final class VirtualizationSupport {
     public Map modifyVpMove(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/vp/move/%s", auth.cc_url, uuid);
         Response r = auth.client.put(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -544,7 +544,7 @@ public final class VirtualizationSupport {
     public Map modifyVpRep(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/vp/rep/%s", auth.cc_url, uuid);
         Response r = auth.client.put(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -556,7 +556,7 @@ public final class VirtualizationSupport {
     public Map listVpMove() throws I2softException {
         String url = String.format("%s/vp/move", auth.cc_url);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -568,7 +568,7 @@ public final class VirtualizationSupport {
     public Map listVpRep() throws I2softException {
         String url = String.format("%s/vp/rep", auth.cc_url);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -581,7 +581,7 @@ public final class VirtualizationSupport {
     public Map listVpMoveStatus(StringMap args) throws I2softException {
         String url = String.format("%s/vp/move/status", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -594,7 +594,7 @@ public final class VirtualizationSupport {
     public Map listVpRepStatus(StringMap args) throws I2softException {
         String url = String.format("%s/vp/rep/status", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -608,7 +608,7 @@ public final class VirtualizationSupport {
         String url = String.format("%s/vp/move/operate", auth.cc_url);
         StringMap newArgs = new StringMap().putNotEmpty("rule_uuids", uuids).put("operate", "start");
         Response r = auth.client.post(url, newArgs);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -622,7 +622,7 @@ public final class VirtualizationSupport {
         String url = String.format("%s/vp/rep/operate", auth.cc_url);
         StringMap newArgs = new StringMap().putNotEmpty("rule_uuids", uuids).put("operate", "start");
         Response r = auth.client.post(url, newArgs);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -636,7 +636,7 @@ public final class VirtualizationSupport {
         String url = String.format("%s/vp/move/operate", auth.cc_url);
         StringMap newArgs = new StringMap().putNotEmpty("rule_uuids", uuids).put("operate", "stop");
         Response r = auth.client.post(url, newArgs);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -650,7 +650,7 @@ public final class VirtualizationSupport {
         String url = String.format("%s/vp/rep/operate", auth.cc_url);
         StringMap newArgs = new StringMap().putNotEmpty("rule_uuids", uuids).put("operate", "stop");
         Response r = auth.client.post(url, newArgs);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -664,7 +664,7 @@ public final class VirtualizationSupport {
         String url = String.format("%s/vp/move/operate", auth.cc_url);
         StringMap newArgs = new StringMap().putNotEmpty("rule_uuids", uuids).put("operate", "move");
         Response r = auth.client.post(url, newArgs);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -684,7 +684,7 @@ public final class VirtualizationSupport {
                 .putNotNull("op_code", op_code)
                 .put("operate", "failover");
         Response r = auth.client.post(url, newArgs);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -698,7 +698,7 @@ public final class VirtualizationSupport {
         String url = String.format("%s/vp/rep/operate", auth.cc_url);
         StringMap newArgs = new StringMap().putNotEmpty("rule_uuids", uuids).put("operate", "failback");
         Response r = auth.client.post(url, newArgs);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -737,6 +737,6 @@ public final class VirtualizationSupport {
     public Map listVpRepPointList(String uuid) throws I2softException {
         String url = String.format("%s/vp/rep/%s/point_list", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

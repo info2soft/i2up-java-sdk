@@ -1,12 +1,10 @@
 package com.i2soft.util;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.Map;
-
 
 public final class Json {
     private Json() {
@@ -21,7 +19,7 @@ public final class Json {
     }
 
     public static <T> T decode(String json, Class<T> classOfT) {
-        return new Gson().fromJson(json, classOfT);
+        return getIntGson().fromJson(json, classOfT);
     }
 
     public static StringMap decode(String json) {
@@ -29,8 +27,18 @@ public final class Json {
         Type t = new TypeToken<Map<String, Object>>() {
         }.getType();
         // CHECKSTYLE:ON
-        Map<String, Object> x = new Gson().fromJson(json, t);
+        Map<String, Object> x = getIntGson().fromJson(json, t);
 
         return new StringMap(x);
+    }
+
+    /**
+     * 解决gson默认将int转换为double
+     */
+    private static Gson getIntGson() {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(new TypeToken<Map<String, Object>>() {
+        }.getType(), new GsonMapDeserializerFix());
+        return gsonBuilder.create();
     }
 }

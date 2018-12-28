@@ -30,6 +30,7 @@ public class HttpTest {
             client.get(String.format("%s/test/dummy_get", client.cc_url));
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -63,6 +64,7 @@ public class HttpTest {
 
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -74,6 +76,7 @@ public class HttpTest {
             Assert.assertNotNull(r);
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -88,6 +91,7 @@ public class HttpTest {
                 Assert.assertEquals(500, e.ret());
             } else {
                 e.printStackTrace();
+                Assert.fail();
             }
         }
     }
@@ -103,6 +107,7 @@ public class HttpTest {
                 Assert.assertEquals(418, e.ret());
             } else {
                 e.printStackTrace();
+                Assert.fail();
             }
         }
     }

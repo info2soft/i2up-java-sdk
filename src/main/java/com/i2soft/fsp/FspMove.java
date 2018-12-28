@@ -34,7 +34,7 @@ public final class FspMove {
     public Map listFspMoveNic(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/move/nic_list", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -47,7 +47,7 @@ public final class FspMove {
     public Map listFspMoveDir(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/move/dir_list", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -86,7 +86,7 @@ public final class FspMove {
     public Map verifyFspMoveVolumeSpace(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/move/verify_volume_space", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -99,7 +99,7 @@ public final class FspMove {
     public Map verifyFspMoveOsVersion(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/move/verify_os_version", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -137,7 +137,7 @@ public final class FspMove {
     public Map describeFspMove() throws I2softException {
         String url = String.format("%s/reg:/fsp/move/[a-f0-9-] ", auth.cc_url);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -163,7 +163,7 @@ public final class FspMove {
     public Map listFspMove(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/move", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -232,6 +232,6 @@ public final class FspMove {
     public Map listFspMoveStatus(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/move/status", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

@@ -5,6 +5,7 @@ import com.i2soft.util.StringUtils;
 import okhttp3.MediaType;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * 定义HTTP请求的日志信息和常规方法
@@ -81,6 +82,15 @@ public final class Response {
             }
         }
         return new Response(response, ret, address, duration, msg, body, code, message);
+    }
+
+    public Map jsonToMap() throws I2softException {
+        if (isNotJson()) {
+            return null;
+        }
+        String b = bodyString();
+        StringUtils.printLog("RS: " + b);
+        return Json.decode(b).map();
     }
 
     public <T> T jsonToObject(Class<T> classOfT) throws I2softException {

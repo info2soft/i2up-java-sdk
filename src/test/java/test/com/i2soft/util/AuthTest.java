@@ -19,6 +19,7 @@ public class AuthTest {
 
         } catch (I2softException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 }

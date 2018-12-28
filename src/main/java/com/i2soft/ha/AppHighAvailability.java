@@ -34,7 +34,7 @@ public final class AppHighAvailability {
     public Map listHA(StringMap args) throws I2softException {
         String url = String.format("%s/ha", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -48,7 +48,7 @@ public final class AppHighAvailability {
         String url = String.format("%s/ha/operate", auth.cc_url);
         StringMap newArgs = new StringMap().putNotEmpty("ha_uuid", uuids).put("operate", "start");
         Response r = auth.client.post(url, newArgs);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -62,7 +62,7 @@ public final class AppHighAvailability {
         String url = String.format("%s/ha/operate", auth.cc_url);
         StringMap newArgs = new StringMap().putNotEmpty("ha_uuid", uuids).put("operate", "stop");
         Response r = auth.client.post(url, newArgs);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -76,7 +76,7 @@ public final class AppHighAvailability {
         String url = String.format("%s/ha/operate", auth.cc_url);
         StringMap newArgs = new StringMap().putNotEmpty("ha_uuid", uuids).put("operate", "force_switch");
         Response r = auth.client.post(url, newArgs);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -102,7 +102,7 @@ public final class AppHighAvailability {
     public Map listHAStatus(StringMap args) throws I2softException {
         String url = String.format("%s/ha/status", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -115,7 +115,7 @@ public final class AppHighAvailability {
     public Map describeHAScriptPath(StringMap args) throws I2softException {
         String url = String.format("%s/ha/script_path", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -154,7 +154,7 @@ public final class AppHighAvailability {
     public Map listNicInfo(StringMap args) throws I2softException {
         String url = String.format("%s/ha/netif", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -166,6 +166,6 @@ public final class AppHighAvailability {
     public Map describeHA() throws I2softException {
         String url = String.format("%s/ha/:uuid([a-f-0-9] )", auth.cc_url);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

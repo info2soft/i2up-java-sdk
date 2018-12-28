@@ -18,6 +18,7 @@ public class IOHelperTest {
 
         } catch (IOException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -30,6 +31,7 @@ public class IOHelperTest {
 
         } catch (IOException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -47,6 +49,7 @@ public class IOHelperTest {
 
         } catch (IOException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
@@ -59,6 +62,7 @@ public class IOHelperTest {
 
         } catch (IOException e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 }

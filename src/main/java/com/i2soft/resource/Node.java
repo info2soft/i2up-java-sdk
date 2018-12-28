@@ -39,7 +39,7 @@ public final class Node {
     public Map checkCapacity(StringMap args) throws I2softException {
         String url = String.format("%s/check_capacity", module_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -52,7 +52,7 @@ public final class Node {
     public Map listVg(StringMap args) throws I2softException {
         String url = String.format("%s/vg", module_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -66,7 +66,7 @@ public final class Node {
         args.fieldsRsa(new String[]{"os_pwd"});
         String url = String.format("%s/auth", module_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -79,7 +79,7 @@ public final class Node {
     public Map checkNodeOnline(StringMap args) throws I2softException {
         String url = String.format("%s/hello", module_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -107,7 +107,7 @@ public final class Node {
 
         String url = String.format("%s/batch", module_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -128,7 +128,7 @@ public final class Node {
     public Map listNodeStatus(String[] uuids) throws I2softException {
         String url = String.format("%s/status", module_url);
         Response r = auth.client.get(url, new StringMap().putNotEmpty("node_uuids", uuids));
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -140,7 +140,7 @@ public final class Node {
      */
     public Map describeNode(String uuid) throws I2softException {
         Response r = auth.client.get(String.format("%s/%s", module_url, uuid));
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -153,7 +153,7 @@ public final class Node {
     public Map describeDeviceInfo(String uuid) throws I2softException {
         String url = String.format("%s/%s/device_info", module_url, uuid);
         Response r = auth.client.get(url);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
