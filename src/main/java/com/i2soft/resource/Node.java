@@ -88,7 +88,7 @@ public final class Node {
      * @return code, message
      */
     public I2Rs.I2SmpRs createNode(StringMap args) throws I2softException {
-        Response r = auth.client.post(module_url, new StringMap().putNotNull("node", args));
+        Response r = auth.client.post(module_url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 
@@ -166,7 +166,7 @@ public final class Node {
      */
     public I2Rs.I2SmpRs modifyNode(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/%s", module_url, uuid);
-        Response r = auth.client.put(url, new StringMap().putNotNull("node", args));
+        Response r = auth.client.put(url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 

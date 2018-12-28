@@ -57,12 +57,12 @@ public final class Auth {
         File cacheFile = new File(cachePath + "i2up-java-sdk-cache.json");
 
         try {
-            cache = IOHelper.readJsonFile(cacheFile);
+            cache = IOHelper.readJsonFile(cacheFile); // 读取token缓存文件
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // 没缓存，或缓存过期，就http获取最新的，并更新；有有效缓存，用缓存
+        // 没缓存，或缓存过期，就http获取最新的，并更新（创建）这个文件；有有效缓存，用缓存
         if (cache.size() == 0 || (double) cache.get("time") < timeStamp - 3600 * 2 || !cache.get("ip").equals(ip)) {
             // http获取最新
             String url = String.format("%s/auth/token", client.cc_url); // 地址
