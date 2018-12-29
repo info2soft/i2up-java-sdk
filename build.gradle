@@ -20,7 +20,7 @@ dependencies {
 
 task getHomeDir << {
     println gradle.gradleHomeDir
-} as String
+}
 
 apply plugin: 'checkstyle'
 
@@ -29,7 +29,7 @@ def versionName() {
     String config = 'src/main/java/com/i2soft/util/Constants.java'
     String fileContents = new File(config).text
     Matcher myMatcher = fileContents =~ /VERSION = "(.+)";/
-    String version = myMatcher[0][1 as String]
+    String version = myMatcher[0][1]
     println(version)
     return version
 }
