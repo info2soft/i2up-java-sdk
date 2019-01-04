@@ -25,7 +25,7 @@ public class NodeTest {
 
     private static Auth auth;
     private static Node node;
-    private static Double os_type;
+    private static Integer os_type;
     private static String uuid = UUID.randomUUID().toString();
     private static Map nodeObj;
 
@@ -48,7 +48,7 @@ public class NodeTest {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "450")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = node.authNode(args); // 发送请求
-            os_type = Double.parseDouble(rs.get("os_type").toString());
+            os_type = Integer.parseInt(rs.get("os_type").toString());
             System.out.println("\nos_type: " + os_type);
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
@@ -72,7 +72,7 @@ public class NodeTest {
 
     @Test
     public void T03_listVg() {
-        if (os_type.equals(1.0)) {
+        if (os_type.equals(1)) {
             return;
         }
         try {
