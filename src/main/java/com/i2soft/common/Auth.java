@@ -4,10 +4,7 @@ import com.i2soft.http.Client;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
-import com.i2soft.util.Configuration;
-import com.i2soft.util.IOHelper;
-import com.i2soft.util.StringMap;
-import com.i2soft.util.StringUtils;
+import com.i2soft.util.*;
 
 import java.io.*;
 import java.util.Map;
@@ -83,11 +80,15 @@ public final class Auth {
         } else {
             token = (String) cache.get("token");
             ssoToken = (String) cache.get("sso_token");
+            if (Constants.LOG_HTTP) {
+                StringUtils.printLog("Cache token: " + token + ", sso_token: " + ssoToken);
+            }
         }
 
         return new Auth(client.cc_url, token, ssoToken, cachePath, client, configuration);
     }
 
+    // TODO: 后端没这个接口 2019.1.7
     public Map describePhoneCode(StringMap args) throws I2softException {
         if (StringUtils.isNullOrEmpty(this.token)) {
             throw new IllegalArgumentException("empty key");
@@ -97,6 +98,7 @@ public final class Auth {
         return r.jsonToMap();
     }
 
+    // TODO: 后端没这个接口 2019.1.7
     public I2Rs.I2SmpRs regAccount(StringMap args) throws I2softException {
         if (StringUtils.isNullOrEmpty(this.token)) {
             throw new IllegalArgumentException("empty key");
@@ -106,13 +108,13 @@ public final class Auth {
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 
+    // TODO: 后端没这个接口 2019.1.7
     public I2Rs.I2SmpRs resetPwd(StringMap args) throws I2softException {
         if (StringUtils.isNullOrEmpty(this.token)) {
             throw new IllegalArgumentException("empty key");
         }
         String url = String.format("%s/auth/reset/password", this.cc_url);
-        Response r = this.client.post(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return this.client.post(url, args).jsonToObject(I2Rs.I2SmpRs.class);
     }
 
     /**
@@ -125,8 +127,8 @@ public final class Auth {
         if (StringUtils.isNullOrEmpty(this.token)) {
             throw new IllegalArgumentException("empty key");
         }
-        String url = String.format("%s/auth/reset/password", this.cc_url);
-        Response r = this.client.get(url, new StringMap().put("assess_token", this.sso_token));
-        return Objects.requireNonNull(r.jsonToObject(StringMap.class)).get("username").toString();
+        String url = String.format("%s/auth/token", this.cc_url);
+        Response r = this.client.get(url, new StringMap().put("access_token", this.sso_token));
+        return Objects.requireNonNull(r.jsonToObject(Map.class)).get("username").toString();
     }
 }

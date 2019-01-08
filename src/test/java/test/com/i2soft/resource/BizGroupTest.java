@@ -17,16 +17,15 @@ import test.com.i2soft.util.TestConfig;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BizGroupTest {
 
     private static Auth auth;
+    private static String grpUuid = TestConfig.testUuid;
+    private static String resUuid = TestConfig.testUuid;
+    private static Map obj;
     private static BizGroup bizGroup;
-    private static String grpUuid = UUID.randomUUID().toString();
-    private static String resUuid = UUID.randomUUID().toString();
-    private static Map bizGrpObj;
 
     @BeforeClass
     public static void setUp() {
@@ -73,7 +72,7 @@ public class BizGroupTest {
     public void T03_describeBizGroup() {
         try {
             Map rs = bizGroup.describeBizGroup(grpUuid); // 发送请求
-            bizGrpObj = rs;
+            obj = rs;
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -84,7 +83,7 @@ public class BizGroupTest {
     @Test
     public void T04_modifyBizGroup() {
         try {
-            I2Rs.I2SmpRs rs = bizGroup.modifyBizGroup(grpUuid, new StringMap(bizGrpObj)); // 发送请求
+            I2Rs.I2SmpRs rs = bizGroup.modifyBizGroup(grpUuid, new StringMap(obj)); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

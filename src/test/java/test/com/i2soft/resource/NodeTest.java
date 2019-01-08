@@ -18,16 +18,15 @@ import test.com.i2soft.util.TestConfig;
 
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class NodeTest {
 
     private static Auth auth;
+    private static String uuid = TestConfig.testUuid;
+    private static Map obj;
     private static Node node;
     private static Integer os_type;
-    private static String uuid = UUID.randomUUID().toString();
-    private static Map nodeObj;
 
     @BeforeClass
     public static void setUp() {
@@ -154,7 +153,7 @@ public class NodeTest {
     public void T09_describeNode() {
         try {
             Map rs = node.describeNode(uuid); // 发送请求
-            nodeObj = rs;
+            obj = rs;
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -176,7 +175,7 @@ public class NodeTest {
     @Test
     public void T11_modifyNode() {
         try {
-            I2Rs.I2SmpRs rs = node.modifyNode(uuid, new StringMap(nodeObj)); // 发送请求
+            I2Rs.I2SmpRs rs = node.modifyNode(uuid, new StringMap(obj)); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

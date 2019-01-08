@@ -18,9 +18,9 @@ public final class StringMap {
         this(new HashMap<String, Object>());
     }
 
-    public StringMap(Map<String, Object> map) {
+    public StringMap(Map map) {
         if (map != null && map.size() > 0) {
-            this.map = map;
+            this.map = (Map<String, Object>) map;
         } else {
             this.map = new HashMap<>();
         }
@@ -210,27 +210,31 @@ public final class StringMap {
                     if (valueType == String[].class) { // String -> String[]
 
                         for (String val : (String[]) value) {
-                            b.append(notStart ? "&" : "?");
-                            b.append(URLEncoder.encode(key, "UTF-8")).append("[]").append('=');
-                            b.append(URLEncoder.encode(val, "UTF-8"));
+                            b.append(notStart ? "&" : "?").append(URLEncoder.encode(key, "UTF-8")).append("[]=")
+                                    .append(URLEncoder.encode(val, "UTF-8"));
                             notStart = true;
                         }
 
+                    } else if (valueType == ArrayList.class) { // String -> ArrayList
+
+                        for (Object o : (List) value) {
+                            b.append(notStart ? "&" : "?").append(URLEncoder.encode(key, "UTF-8")).append("[]=")
+                                    .append(URLEncoder.encode(o.toString(), "UTF-8"));
+                            notStart = true;
+                        }
                     } else if (valueType == Integer[].class) { // String -> Integer[]
 
                         for (Integer val : (Integer[]) value) {
-                            b.append(notStart ? "&" : "?");
-                            b.append(URLEncoder.encode(key, "UTF-8")).append("[]").append('=');
-                            b.append(URLEncoder.encode(val.toString(), "UTF-8"));
+                            b.append(notStart ? "&" : "?").append(URLEncoder.encode(key, "UTF-8")).append("[]=")
+                                    .append(URLEncoder.encode(val.toString(), "UTF-8"));
                             notStart = true;
                         }
 
                     } else if (valueType == Long[].class) { // String -> Long[]
 
                         for (Long val : (Long[]) value) {
-                            b.append(notStart ? "&" : "?");
-                            b.append(URLEncoder.encode(key, "UTF-8")).append("[]").append('=');
-                            b.append(URLEncoder.encode(val.toString(), "UTF-8"));
+                            b.append(notStart ? "&" : "?").append(URLEncoder.encode(key, "UTF-8")).append("[]=")
+                                    .append(URLEncoder.encode(val.toString(), "UTF-8"));
                             notStart = true;
                         }
 

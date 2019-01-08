@@ -1,5 +1,6 @@
 package com.i2soft.http;
 
+import com.i2soft.util.Constants;
 import com.i2soft.util.Json;
 import com.i2soft.util.StringUtils;
 import okhttp3.MediaType;
@@ -89,7 +90,9 @@ public final class Response {
             return null;
         }
         String b = bodyString();
-        StringUtils.printLog("RS: " + b);
+        if (Constants.LOG_HTTP) {
+            StringUtils.printLog("RS: " + b);
+        }
         return Json.decode(b).map();
     }
 
@@ -98,7 +101,9 @@ public final class Response {
             return null;
         }
         String b = bodyString();
-        StringUtils.printLog("RS: " + b);
+        if (Constants.LOG_HTTP) {
+            StringUtils.printLog("RS: " + b);
+        }
         return Json.decode(b, classOfT);
     }
 
