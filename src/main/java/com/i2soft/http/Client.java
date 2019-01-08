@@ -1,9 +1,6 @@
 package com.i2soft.http;
 
-import com.i2soft.util.Constants;
-import com.i2soft.util.Configuration;
-import com.i2soft.util.Json;
-import com.i2soft.util.StringMap;
+import com.i2soft.util.*;
 import com.sun.istack.internal.Nullable;
 import okhttp3.*;
 
@@ -177,7 +174,13 @@ public final class Client {
         }
         r = Response.create(res, tag.ip, duration);
         // err
-        if (r.ret >= 300 || (r.ret == 200 && r.code != 0)) {
+        if (r.ret >= 300) {
+            if (Constants.LOG_HTTP) {
+                StringUtils.printLog("Http error code : " + r.ret + ", msg: " + r.msg);
+            }
+            throw new I2softException(r);
+        }
+        if (r.ret == 200 && r.code != 0) {
             throw new I2softException(r);
         }
 

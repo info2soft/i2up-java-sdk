@@ -117,12 +117,13 @@ public final class FspMove {
     /**
      * 修改规则
      *
+     * @param uuid: uuid
      * @param args: 参数详见 API 手册
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs modifyFspMove(StringMap args) throws I2softException {
-        String url = String.format("%s/reg:/fsp/move/[a-f0-9-] ", auth.cc_url);
+    public I2Rs.I2SmpRs modifyFspMove(String uuid, StringMap args) throws I2softException {
+        String url = String.format("%s/fsp/move/%s", auth.cc_url, uuid);
         Response r = auth.client.put(url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
@@ -130,11 +131,12 @@ public final class FspMove {
     /**
      * 获取单个规则
      *
+     * @param uuid: uuid
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map describeFspMove() throws I2softException {
-        String url = String.format("%s/reg:/fsp/move/[a-f0-9-] ", auth.cc_url);
+    public Map describeFspMove(String uuid) throws I2softException {
+        String url = String.format("%s/fsp/move/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
         return r.jsonToMap();
     }

@@ -50,6 +50,20 @@ public final class RepRecovery {
     }
 
     /**
+     * 1 修改单个任务
+     *
+     * @param uuid: uuid
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs modifyRepRecovery(String uuid, StringMap args) throws I2softException {
+        String url = String.format("%s/rep/recovery/%s", auth.cc_url, uuid);
+        Response r = auth.client.put(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
      * 2 删除任务
      *
      * @param args: 参数详见 API 手册
@@ -111,7 +125,7 @@ public final class RepRecovery {
      * @throws I2softException:
      */
     public I2Rs.I2SmpRs clearFinishRepRecovery(Integer rc_type) throws I2softException {
-        String url = String.format("%s/vp/recovery/operate", auth.cc_url);
+        String url = String.format("%s/rep/recovery/operate", auth.cc_url);
         StringMap newArgs = new StringMap().putNotNull("rc_type", rc_type).put("operate", "clear_finish");
         Response r = auth.client.post(url, newArgs);
         return r.jsonToObject(I2Rs.I2SmpRs.class);

@@ -56,13 +56,7 @@ public class AuthTest {
 
     @Test
     public void T03_token() {
-        try {
-            Auth auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
-            Assert.assertNotNull(auth); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
+        Assert.assertNotNull(auth); // 检查结果
     }
 
     @Test
