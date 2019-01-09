@@ -118,24 +118,24 @@ public final class Notifications {
      * 邮件测试
      *
      * @param args: 参数详见 API 手册
-     * @return 参数详见 API 手册
+     * @return code, message
      * @throws I2softException:
      */
-    public Map testNotificationsEmail(StringMap args) throws I2softException {
+    public I2Rs.I2SmpRs testNotificationsEmail(StringMap args) throws I2softException {
         String url = String.format("%s/notifications/email_test", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToMap();
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 
     /**
      * 重置通知次数
      *
-     * @return 参数详见 API 手册
+     * @return code, message
      * @throws I2softException:
      */
-    public Map resetNotificationsTimes() throws I2softException {
+    public I2Rs.I2SmpRs resetNotificationsTimes() throws I2softException {
         String url = String.format("%s/notifications/reset_notify_times", auth.cc_url);
         Response r = auth.client.get(url);
-        return r.jsonToMap();
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 }

@@ -16,12 +16,12 @@ import test.com.i2soft.util.TestConfig;
 
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class NotificationsTest {
 
     private static Auth auth;
+    private static String uuid = TestConfig.testUuid;
     private static Notifications notifications;
 
     @BeforeClass
@@ -54,7 +54,6 @@ public class NotificationsTest {
     @Test
     public void T02_describeNotifications() {
         try {
-            String uuid = UUID.randomUUID().toString();
             Map rs = notifications.describeNotifications(uuid); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
@@ -77,7 +76,7 @@ public class NotificationsTest {
     @Test
     public void T04_deleteNotifications() {
         try {
-            I2Rs.I2SmpRs rs = notifications.deleteNotifications(new String[]{}); // 发送请求
+            I2Rs.I2SmpRs rs = notifications.deleteNotifications(new String[]{uuid}); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -125,7 +124,7 @@ public class NotificationsTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "744")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = notifications.testNotificationsEmail(args); // 发送请求
+            I2Rs.I2SmpRs rs = notifications.testNotificationsEmail(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -136,7 +135,7 @@ public class NotificationsTest {
     @Test
     public void T08_resetNotificationsTimes() {
         try {
-            Map rs = notifications.resetNotificationsTimes(); // 发送请求
+            I2Rs.I2SmpRs rs = notifications.resetNotificationsTimes(); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

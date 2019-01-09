@@ -21,6 +21,7 @@ import java.util.Objects;
 public class UserTest {
 
     private static Auth auth;
+    private static int id = 8;
     private static User user;
 
     @BeforeClass
@@ -66,19 +67,7 @@ public class UserTest {
     @Test
     public void T03_describeUser() {
         try {
-            Integer id = 1;
             Map rs = user.describeUser(id); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
-    public void T04_deleteUser() {
-        try {
-            I2Rs.I2SmpRs rs = user.deleteUser(new String[]{}); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -89,7 +78,6 @@ public class UserTest {
     @Test
     public void T05_modifyUser() {
         try {
-            Integer id = 1;
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "187")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = user.modifyUser(id, args); // 发送请求
@@ -138,7 +126,18 @@ public class UserTest {
     }
 
     @Test
-    public void T09_logout() {
+    public void T09_deleteUser() {
+        try {
+            I2Rs.I2SmpRs rs = user.deleteUser(new Integer[]{id}); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T10_logout() {
         try {
             I2Rs.I2SmpRs rs = user.logout(); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
