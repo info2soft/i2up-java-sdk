@@ -16,12 +16,13 @@ import test.com.i2soft.util.TestConfig;
 
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class NASTest {
 
     private static Auth auth;
+    private static String uuid = TestConfig.testUuid;
+    private static Map obj;
     private static NAS nas;
 
     @BeforeClass
@@ -54,10 +55,10 @@ public class NASTest {
     @Test
     public void T02_describeNASGroup() {
         try {
-            String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "761")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = nas.describeNASGroup(uuid, args); // 发送请求
+            obj = rs;
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -68,9 +69,8 @@ public class NASTest {
     @Test
     public void T03_modifyNAS() {
         try {
-            String uuid = UUID.randomUUID().toString();
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "641")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "636")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())).put("random_str", uuid); // 填充请求数据
             I2Rs.I2SmpRs rs = nas.modifyNAS(uuid, args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
@@ -82,7 +82,7 @@ public class NASTest {
     @Test
     public void T04_listNAS() {
         try {
-            Map rs = nas.listNAS(); // 发送请求
+            Map rs = nas.listNAS(new StringMap()); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -104,11 +104,9 @@ public class NASTest {
     }
 
     @Test
-    public void T06_deleteNAS() {
+    public void T06_stopNAS() {
         try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "639")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = nas.deleteNAS(args); // 发送请求
+            I2Rs.I2SmpRs rs = nas.stopNAS(new String[]{uuid}); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -119,7 +117,7 @@ public class NASTest {
     @Test
     public void T07_startNAS() {
         try {
-            I2Rs.I2SmpRs rs = nas.startNAS(new String[]{}); // 发送请求
+            I2Rs.I2SmpRs rs = nas.startNAS(new String[]{uuid}); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -128,9 +126,11 @@ public class NASTest {
     }
 
     @Test
-    public void T07_stopNAS() {
+    public void T08_deleteNAS() {
         try {
-            I2Rs.I2SmpRs rs = nas.stopNAS(new String[]{}); // 发送请求
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "639")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            I2Rs.I2SmpRs rs = nas.deleteNAS(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

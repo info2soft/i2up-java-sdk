@@ -7,6 +7,7 @@ import okhttp3.MediaType;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * 定义HTTP请求的日志信息和常规方法
@@ -59,9 +60,13 @@ public final class Response {
         int code = 0;
         String message = null;
 
+        if (response.body() == null) {
+            return new Response(response, ret, address, duration, msg, body, code, message);
+        }
         try {
-            if (response.body() != null) {
-                body = response.body().bytes();
+            body = response.body().bytes();
+            String s = response.header("Content-Type");
+            if (Objects.requireNonNull(response.header("Content-Type")).startsWith("application/json")) {
                 String bodyJsonStr = new String(body);
                 Error.HttpErr httpErr = Json.decode(bodyJsonStr, Error.HttpErr.class);
                 msg = httpErr.msg;

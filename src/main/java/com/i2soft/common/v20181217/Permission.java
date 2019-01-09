@@ -24,13 +24,12 @@ public final class Permission {
     /**
      * categories
      *
-     * @param args: 参数详见 API 手册
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs listCategory(StringMap args) throws I2softException {
+    public I2Rs.I2SmpRs listCategory() throws I2softException {
         String url = String.format("%s/permission/category", auth.cc_url);
-        Response r = auth.client.get(url, args);
+        Response r = auth.client.get(url);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 }

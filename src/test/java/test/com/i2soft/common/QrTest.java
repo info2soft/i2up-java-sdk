@@ -16,12 +16,12 @@ import test.com.i2soft.util.TestConfig;
 
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class QrTest {
 
     private static Auth auth;
+    private static String uuid = TestConfig.testUuid;
     private static Qr qr;
 
     @BeforeClass
@@ -52,7 +52,54 @@ public class QrTest {
     }
 
     @Test
-    public void T02_createQrPic() {
+    public void T02_obtainQrContent() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "230")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = qr.obtainQrContent(args); // 发送请求
+            uuid = ((Map) rs.get("content")).get("uuid").toString();
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T03_checkQrValidity() {
+        try {
+            I2Rs.I2SmpRs rs = qr.checkQrValidity(uuid); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T04_confirmLogin() {
+        try {
+            I2Rs.I2SmpRs rs = qr.confirmLogin(uuid); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T05_cancelLogin() {
+        try {
+            I2Rs.I2SmpRs rs = qr.cancelLogin(uuid); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T06_createQrPic() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "228")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -65,56 +112,7 @@ public class QrTest {
     }
 
     @Test
-    public void T03_checkQrValidity() {
-        try {
-            String uuid = UUID.randomUUID().toString();
-            I2Rs.I2SmpRs rs = qr.checkQrValidity(uuid); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
-    public void T03_confirmLogin() {
-        try {
-            String uuid = UUID.randomUUID().toString();
-            I2Rs.I2SmpRs rs = qr.confirmLogin(uuid); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
-    public void T03_cancelLogin() {
-        try {
-            String uuid = UUID.randomUUID().toString();
-            I2Rs.I2SmpRs rs = qr.cancelLogin(uuid); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
-    public void T04_obtainQrContent() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "230")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = qr.obtainQrContent(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
-    public void T05_checkQrStatus() {
+    public void T07_checkQrStatus() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "231")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
