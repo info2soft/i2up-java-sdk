@@ -85,7 +85,7 @@ public final class User {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs deleteUser(String[] args) throws I2softException {
+    public I2Rs.I2SmpRs deleteUser(Integer[] args) throws I2softException {
         Response r = auth.client.delete(module_url, new StringMap().putNotEmpty("ids", args));
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
