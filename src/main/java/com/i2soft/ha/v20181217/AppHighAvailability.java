@@ -164,7 +164,7 @@ public final class AppHighAvailability {
      */
     public Map describeHA() throws I2softException {
         String url = String.format("%s/ha/:uuid([a-f-0-9] )", auth.cc_url);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 }

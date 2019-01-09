@@ -110,7 +110,7 @@ public final class TimingBackup {
      */
     public Map describeTimingBackup(String uuid) throws I2softException {
         String url = String.format("%s/timing/backup/%s", auth.cc_url, uuid);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 

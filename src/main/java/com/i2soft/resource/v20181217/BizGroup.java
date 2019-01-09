@@ -59,7 +59,7 @@ public final class BizGroup {
      */
     public Map describeBizGroup(String uuid) throws I2softException {
         String url = String.format("%s/biz_grp/%s", auth.cc_url, uuid);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 
@@ -112,7 +112,7 @@ public final class BizGroup {
      */
     public Map listBizGroupBind(String uuid) throws I2softException {
         String url = String.format("%s/biz_grp/%s/bind", auth.cc_url, uuid);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 

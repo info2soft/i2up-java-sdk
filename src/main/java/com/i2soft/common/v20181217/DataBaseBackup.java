@@ -41,7 +41,7 @@ public final class DataBaseBackup {
      */
     public I2Rs.I2SmpRs exportConfig() throws I2softException {
         String url = String.format("%s/cc/export", auth.cc_url);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 
@@ -53,7 +53,7 @@ public final class DataBaseBackup {
      */
     public I2Rs.I2SmpRs listBackupHistory() throws I2softException {
         String url = String.format("%s/cc/backup_history", auth.cc_url);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 
@@ -77,7 +77,7 @@ public final class DataBaseBackup {
      */
     public I2Rs.I2SmpRs describeBackupConfig() throws I2softException {
         String url = String.format("%s/cc/backup", auth.cc_url);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 }

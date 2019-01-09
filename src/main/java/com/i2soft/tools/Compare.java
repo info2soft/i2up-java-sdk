@@ -45,7 +45,7 @@ public final class Compare {
      */
     public Map describeCompare(String uuid) throws I2softException {
         String url = String.format("%s/compare/%s", auth.cc_url, uuid);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 
@@ -57,7 +57,7 @@ public final class Compare {
      */
     public I2Rs.I2SmpRs describeCompareResults() throws I2softException {
         String url = String.format("%s/logs", auth.cc_url);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 
