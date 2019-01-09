@@ -1,7 +1,6 @@
 package com.i2soft.common.v20181217;
 
 import com.i2soft.common.Auth;
-import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
 import com.i2soft.util.StringMap;
@@ -65,13 +64,13 @@ public final class Logs {
     /**
      * 任务日志
      *
-     * @return code, message
+     * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs listNpsvrLog() throws I2softException {
+    public Map listNpsvrLog() throws I2softException {
         String url = String.format("%s/logs/npsvr", auth.cc_url);
         Response r = auth.client.get(url);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToMap();
     }
 
     /**

@@ -79,7 +79,7 @@ public class LogsTest {
     @Test
     public void T04_listNpsvrLog() {
         try {
-            I2Rs.I2SmpRs rs = logs.listNpsvrLog(); // 发送请求
+            Map rs = logs.listNpsvrLog(); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

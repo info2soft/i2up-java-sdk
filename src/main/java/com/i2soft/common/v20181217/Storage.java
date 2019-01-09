@@ -1,10 +1,11 @@
 package com.i2soft.common.v20181217;
 
 import com.i2soft.common.Auth;
-import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
 import com.i2soft.util.StringMap;
+
+import java.util.Map;
 
 public final class Storage {
     /**
@@ -28,9 +29,9 @@ public final class Storage {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs listStorageInfo(StringMap args) throws I2softException {
+    public Map listStorageInfo(StringMap args) throws I2softException {
         String url = String.format("%s/storage", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToMap();
     }
 }
