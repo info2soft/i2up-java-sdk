@@ -549,24 +549,26 @@ public final class VirtualizationSupport {
     /**
      * 获取列表
      *
+     * @param args: 参数详见 API 手册
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map listVpMove() throws I2softException {
+    public Map listVpMove(StringMap args) throws I2softException {
         String url = String.format("%s/vp/move", auth.cc_url);
-        Response r = auth.client.get(url);
+        Response r = auth.client.get(url, args);
         return r.jsonToMap();
     }
 
     /**
      * 获取列表
      *
+     * @param args: 参数详见 API 手册
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map listVpRep() throws I2softException {
+    public Map listVpRep(StringMap args) throws I2softException {
         String url = String.format("%s/vp/rep", auth.cc_url);
-        Response r = auth.client.get(url);
+        Response r = auth.client.get(url, args);
         return r.jsonToMap();
     }
 

@@ -67,12 +67,13 @@ public final class NAS {
     /**
      * 获取 列表
      *
+     * @param args: 参数详见 API 手册
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map listNAS() throws I2softException {
+    public Map listNAS(StringMap args) throws I2softException {
         String url = String.format("%s/nas/sync", auth.cc_url);
-        Response r = auth.client.get(url);
+        Response r = auth.client.get(url, args);
         return r.jsonToMap();
     }
 

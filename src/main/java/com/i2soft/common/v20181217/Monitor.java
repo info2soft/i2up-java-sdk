@@ -85,7 +85,7 @@ public final class Monitor {
      * @throws I2softException:
      */
     public Map listChartData(String uuid, StringMap args) throws I2softException {
-        String url = String.format("%s/monitor/chart_data/%s ", auth.cc_url, uuid);
+        String url = String.format("%s/monitor/chart_data/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, args);
         return r.jsonToMap();
     }

@@ -37,6 +37,19 @@ public final class Qr {
     }
 
     /**
+     * 2.获取二维码内容
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map obtainQrContent(StringMap args) throws I2softException {
+        String url = String.format("%s/qr/generate", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
      * 3.生成二维码图片
      *
      * @param args: 参数详见 API 手册
@@ -45,7 +58,7 @@ public final class Qr {
      */
     public Map createQrPic(StringMap args) throws I2softException {
         String url = String.format("%s/qr", auth.cc_url);
-        Response r = auth.client.get(url, args);
+        Response r = auth.client.get(url, args.put("format", "base64"));
         return r.jsonToMap();
     }
 
@@ -89,19 +102,6 @@ public final class Qr {
         StringMap newArgs = new StringMap().putNotEmpty("uuid", uuid).put("action", 2);
         Response r = auth.client.post(url, newArgs);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
-    }
-
-    /**
-     * 2.获取二维码内容
-     *
-     * @param args: 参数详见 API 手册
-     * @return 参数详见 API 手册
-     * @throws I2softException:
-     */
-    public Map obtainQrContent(StringMap args) throws I2softException {
-        String url = String.format("%s/qr/generate", auth.cc_url);
-        Response r = auth.client.post(url, args);
-        return r.jsonToMap();
     }
 
     /**

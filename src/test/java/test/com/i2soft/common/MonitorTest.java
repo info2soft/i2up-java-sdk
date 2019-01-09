@@ -16,12 +16,12 @@ import test.com.i2soft.util.TestConfig;
 
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MonitorTest {
 
     private static Auth auth;
+    private static String uuid = TestConfig.testUuid;
     private static Monitor monitor;
 
     @BeforeClass
@@ -41,7 +41,6 @@ public class MonitorTest {
     @Test
     public void T01_listDriversInfo() {
         try {
-            String uuid = UUID.randomUUID().toString();
             Map rs = monitor.listDriversInfo(uuid); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
@@ -53,7 +52,6 @@ public class MonitorTest {
     @Test
     public void T02_listPhyInfo() {
         try {
-            String uuid = UUID.randomUUID().toString();
             Map rs = monitor.listPhyInfo(uuid); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
@@ -65,7 +63,6 @@ public class MonitorTest {
     @Test
     public void T03_listChartConfig() {
         try {
-            String uuid = UUID.randomUUID().toString();
             Map rs = monitor.listChartConfig(uuid); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
@@ -77,7 +74,6 @@ public class MonitorTest {
     @Test
     public void T04_setChartConfig() {
         try {
-            String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "777")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = monitor.setChartConfig(uuid, args); // 发送请求
@@ -91,7 +87,6 @@ public class MonitorTest {
     @Test
     public void T05_listChartData() {
         try {
-            String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "778")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = monitor.listChartData(uuid, args); // 发送请求

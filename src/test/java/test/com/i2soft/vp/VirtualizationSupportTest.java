@@ -499,7 +499,7 @@ public class VirtualizationSupportTest {
     @Test
     public void T37_listVpMove() {
         try {
-            Map rs = virtualizationSupport.listVpMove(); // 发送请求
+            Map rs = virtualizationSupport.listVpMove(new StringMap()); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -609,7 +609,7 @@ public class VirtualizationSupportTest {
     @Test
     public void T58_listVpRep() {
         try {
-            Map rs = virtualizationSupport.listVpRep(); // 发送请求
+            Map rs = virtualizationSupport.listVpRep(new StringMap()); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
