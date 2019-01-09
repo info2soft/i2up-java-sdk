@@ -150,7 +150,7 @@ public final class FspRecovery {
      */
     public Map desribeFspRecovery(String uuid) throws I2softException {
         String url = String.format("%s/fsp/recovery/%s", auth.cc_url, uuid);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 

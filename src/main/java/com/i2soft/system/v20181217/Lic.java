@@ -45,7 +45,7 @@ public final class Lic {
      */
     public Map downloadLicInfo(String uuid) throws I2softException {
         String url = String.format("%s/lic/%s/download_lic_info", auth.cc_url, uuid);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 
@@ -57,7 +57,7 @@ public final class Lic {
      */
     public Map describeLicCcHwCode() throws I2softException {
         String url = String.format("%s/lic/cc_hw_code", auth.cc_url);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 
@@ -135,7 +135,7 @@ public final class Lic {
      */
     public Map describeLic(String uuid) throws I2softException {
         String url = String.format("%s/lic/%s", auth.cc_url, uuid);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 

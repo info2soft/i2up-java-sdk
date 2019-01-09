@@ -70,7 +70,7 @@ public final class Logs {
      */
     public I2Rs.I2SmpRs listNpsvrLog() throws I2softException {
         String url = String.format("%s/logs/npsvr", auth.cc_url);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 

@@ -72,7 +72,7 @@ public final class NAS {
      */
     public Map listNAS() throws I2softException {
         String url = String.format("%s/nas/sync", auth.cc_url);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 

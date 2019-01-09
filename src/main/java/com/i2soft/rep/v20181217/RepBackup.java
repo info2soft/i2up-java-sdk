@@ -45,7 +45,7 @@ public final class RepBackup {
      */
     public Map describeRepBackup(String uuid) throws I2softException {
         String url = String.format("%s/rep/backup/%s", auth.cc_url, uuid);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 

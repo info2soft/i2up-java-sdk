@@ -45,7 +45,7 @@ public final class Notifications {
      */
     public Map describeNotifications(String uuid) throws I2softException {
         String url = String.format("%s/notifications/%s", auth.cc_url, uuid);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 
@@ -57,7 +57,7 @@ public final class Notifications {
      */
     public Map describeNotificationsCount() throws I2softException {
         String url = String.format("%s/notifications/count", auth.cc_url);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 
@@ -97,7 +97,7 @@ public final class Notifications {
      */
     public Map describeNotificationsConfig() throws I2softException {
         String url = String.format("%s/notifications/config", auth.cc_url);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 
@@ -135,7 +135,7 @@ public final class Notifications {
      */
     public Map resetNotificationsTimes() throws I2softException {
         String url = String.format("%s/notifications/reset_notify_times", auth.cc_url);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 }

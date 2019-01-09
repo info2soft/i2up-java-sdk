@@ -31,7 +31,7 @@ public final class GeneralInterface {
      */
     public Map describeVersion() throws I2softException {
         String url = String.format("%s/version", auth.cc_url);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 
@@ -43,7 +43,7 @@ public final class GeneralInterface {
      */
     public I2Rs.I2SmpRs updateDatabase() throws I2softException {
         String url = String.format("%s/migrate", auth.cc_url);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 

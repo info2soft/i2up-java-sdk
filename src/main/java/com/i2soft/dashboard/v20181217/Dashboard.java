@@ -30,7 +30,7 @@ public final class Dashboard {
      */
     public Map overall() throws I2softException {
         String url = String.format("%s/dashboard/overall", auth.cc_url);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 
