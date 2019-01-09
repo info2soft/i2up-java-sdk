@@ -1,7 +1,6 @@
 package test.com.i2soft.common;
 
 import com.i2soft.common.Auth;
-import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
 import com.i2soft.common.v20181217.Storage;
@@ -14,6 +13,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import test.com.i2soft.util.TestConfig;
 
+import java.util.Map;
 import java.util.Objects;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -41,7 +41,7 @@ public class StorageTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "210")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = storage.listStorageInfo(args); // 发送请求
+            Map rs = storage.listStorageInfo(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

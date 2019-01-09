@@ -6,6 +6,8 @@ import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
 import com.i2soft.util.StringMap;
 
+import java.util.Map;
+
 public final class DataBaseBackup {
     /**
      * Auth 对象
@@ -48,13 +50,13 @@ public final class DataBaseBackup {
     /**
      * 备份历史
      *
-     * @return code, message
+     * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs listBackupHistory() throws I2softException {
+    public Map listBackupHistory() throws I2softException {
         String url = String.format("%s/cc/backup_history", auth.cc_url);
         Response r = auth.client.get(url);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToMap();
     }
 
     /**

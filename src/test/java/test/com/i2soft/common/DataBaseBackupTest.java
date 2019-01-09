@@ -12,6 +12,8 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import test.com.i2soft.util.TestConfig;
 
+import java.util.Map;
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DataBaseBackupTest {
 
@@ -57,7 +59,7 @@ public class DataBaseBackupTest {
     @Test
     public void T03_listBackupHistory() {
         try {
-            I2Rs.I2SmpRs rs = dataBaseBackup.listBackupHistory(); // 发送请求
+            Map rs = dataBaseBackup.listBackupHistory(); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

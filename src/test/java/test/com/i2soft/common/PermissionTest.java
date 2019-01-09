@@ -14,7 +14,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import test.com.i2soft.util.TestConfig;
 
-import java.util.Objects;
+import java.util.Map;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PermissionTest {
@@ -39,7 +39,7 @@ public class PermissionTest {
     @Test
     public void T01_listCategory() {
         try {
-            I2Rs.I2SmpRs rs = permission.listCategory(); // 发送请求
+            Map rs = permission.listCategory(); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
