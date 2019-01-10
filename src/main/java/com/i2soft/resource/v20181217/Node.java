@@ -121,6 +121,18 @@ public final class Node {
     }
 
     /**
+     * 获取节点列表
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listNode(StringMap args) throws I2softException {
+        Response r = auth.client.get(module_url, args);
+        return r.jsonToMap();
+    }
+
+    /**
      * 获取节点状态
      *
      * @return 节点列表

@@ -51,20 +51,7 @@ public class DiagnoseTest {
     }
 
     @Test
-    public void T02_deleteDiagnose() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "652")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = diagnose.deleteDiagnose(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
-    public void T03_listDiagnose() {
+    public void T02_listDiagnose() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "654")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -77,11 +64,24 @@ public class DiagnoseTest {
     }
 
     @Test
-    public void T04_downloadDiagnoseResult() {
+    public void T03_downloadDiagnoseResult() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "771")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = diagnose.downloadDiagnoseResult(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T04_deleteDiagnose() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "652")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            I2Rs.I2SmpRs rs = diagnose.deleteDiagnose(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

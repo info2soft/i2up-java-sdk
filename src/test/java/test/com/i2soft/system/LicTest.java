@@ -16,12 +16,12 @@ import test.com.i2soft.util.TestConfig;
 
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class LicTest {
 
     private static Auth auth;
+    private static String uuid = TestConfig.testUuid;
     private static Lic lic;
 
     @BeforeClass
@@ -36,31 +36,6 @@ public class LicTest {
             Assert.fail();
         }
         lic = new Lic(auth);
-    }
-
-    @Test
-    public void T01_describeActivateInfo() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "574")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = lic.describeActivateInfo(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
-    public void T02_downloadLicInfo() {
-        try {
-            String uuid = UUID.randomUUID().toString();
-            Map rs = lic.downloadLicInfo(uuid); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
     }
 
     @Test
@@ -112,20 +87,6 @@ public class LicTest {
     }
 
     @Test
-    public void T07_updateLic() {
-        try {
-            String uuid = UUID.randomUUID().toString();
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "567")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = lic.updateLic(uuid, args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
     public void T08_updateBatchLic() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "569")); // 获取请求数据
@@ -141,7 +102,6 @@ public class LicTest {
     @Test
     public void T09_describeLic() {
         try {
-            String uuid = UUID.randomUUID().toString();
             Map rs = lic.describeLic(uuid); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
@@ -151,11 +111,11 @@ public class LicTest {
     }
 
     @Test
-    public void T10_listLic() {
+    public void T10_describeActivateInfo() {
         try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "565")); // 获取请求数据
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "574")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = lic.listLic(args); // 发送请求
+            Map rs = lic.describeActivateInfo(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -164,11 +124,9 @@ public class LicTest {
     }
 
     @Test
-    public void T11_deleteLic() {
+    public void T11_downloadLicInfo() {
         try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "564")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = lic.deleteLic(args); // 发送请求
+            Map rs = lic.downloadLicInfo(uuid); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -177,7 +135,18 @@ public class LicTest {
     }
 
     @Test
-    public void T12_listLicObjBind() {
+    public void T12_listLic() {
+        try {
+            Map rs = lic.listLic(new StringMap()); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T13_listLicObjBind() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "787")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -190,7 +159,7 @@ public class LicTest {
     }
 
     @Test
-    public void T13_listLicBind() {
+    public void T14_listLicBind() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "570")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -203,7 +172,7 @@ public class LicTest {
     }
 
     @Test
-    public void T14_updateLicBind() {
+    public void T15_updateLicBind() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "786")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -216,11 +185,24 @@ public class LicTest {
     }
 
     @Test
-    public void T15_listLicObj() {
+    public void T16_listLicObj() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "577")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = lic.listLicObj(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T17_deleteLic() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "564")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            I2Rs.I2SmpRs rs = lic.deleteLic(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

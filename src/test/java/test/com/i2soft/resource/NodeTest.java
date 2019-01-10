@@ -34,7 +34,7 @@ public class NodeTest {
             return;
         }
         try {
-            auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
+            auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath);
         } catch (I2softException e) {
             e.printStackTrace();
         }
@@ -71,7 +71,7 @@ public class NodeTest {
 
     @Test
     public void T03_listVg() {
-        if (os_type.equals(1)) {
+        if (os_type != null && os_type.equals(1)) {
             return;
         }
         try {
@@ -114,13 +114,9 @@ public class NodeTest {
     @Test
     public void T06_listNode() {
         try {
-            I2Req.ListArgs args = new I2Req.ListArgs();
-            args.limit = 1;
-            args.direction = "DESC";
-            ResRs.NodeList nodeList = node.listNode(args);
-            uuid = nodeList.info_list[0].node_uuid;
-            System.out.println("\nuuid: " + uuid);
-            Assert.assertNotNull(uuid);
+            StringMap args = new StringMap().put("limit", 1).put("direction", "DESC"); // 填充请求数据
+            Map rs = node.listNode(args);
+            Assert.assertNotNull(rs);
         } catch (I2softException e) {
             e.printStackTrace();
             Assert.fail();
