@@ -50,18 +50,6 @@ public final class Compare {
     }
 
     /**
-     * 2 获取比较结果详情
-     *
-     * @return code, message
-     * @throws I2softException:
-     */
-    public I2Rs.I2SmpRs describeCompareResults() throws I2softException {
-        String url = String.format("%s/logs", auth.cc_url);
-        Response r = auth.client.get(url);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
-    }
-
-    /**
      * 1 获取列表
      *
      * @param args: 参数详见 API 手册

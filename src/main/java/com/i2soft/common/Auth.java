@@ -93,6 +93,10 @@ public final class Auth {
         return new Auth(client.cc_url, token, ssoToken, cachePath, client, configuration);
     }
 
+    public static Auth token(String ip, String user, String pwd, String cachePath) throws I2softException {
+        return token(ip, user, pwd, cachePath, new Configuration());
+    }
+
     // TODO: 后端没这个接口 2019.1.7
     public Map describePhoneCode(StringMap args) throws I2softException {
         if (StringUtils.isNullOrEmpty(this.token)) {

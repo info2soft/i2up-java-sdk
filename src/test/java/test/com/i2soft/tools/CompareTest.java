@@ -16,12 +16,12 @@ import test.com.i2soft.util.TestConfig;
 
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CompareTest {
 
     private static Auth auth;
+    private static String uuid = TestConfig.testUuid;
     private static Compare compare;
 
     @BeforeClass
@@ -54,7 +54,6 @@ public class CompareTest {
     @Test
     public void T02_describeCompare() {
         try {
-            String uuid = UUID.randomUUID().toString();
             Map rs = compare.describeCompare(uuid); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
@@ -64,9 +63,9 @@ public class CompareTest {
     }
 
     @Test
-    public void T03_describeCompareResults() {
+    public void T03_listCompare() {
         try {
-            I2Rs.I2SmpRs rs = compare.describeCompareResults(); // 发送请求
+            Map rs = compare.listCompare(new StringMap()); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -75,20 +74,7 @@ public class CompareTest {
     }
 
     @Test
-    public void T04_listCompare() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "558")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = compare.listCompare(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
-    public void T05_listCompareStatus() {
+    public void T04_listCompareStatus() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "559")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -101,9 +87,9 @@ public class CompareTest {
     }
 
     @Test
-    public void T06_deleteCompare() {
+    public void T05_downloadCompare() {
         try {
-            I2Rs.I2SmpRs rs = compare.deleteCompare(new String[]{}); // 发送请求
+            Map rs = compare.downloadCompare(new String[]{uuid}); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -112,9 +98,9 @@ public class CompareTest {
     }
 
     @Test
-    public void T07_downloadCompare() {
+    public void T06_listCircleCompareResult() {
         try {
-            Map rs = compare.downloadCompare(new String[]{}); // 发送请求
+            Map rs = compare.listCircleCompareResult(uuid, new StringMap()); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -123,12 +109,9 @@ public class CompareTest {
     }
 
     @Test
-    public void T08_listCircleCompareResult() {
+    public void T07_deleteCompare() {
         try {
-            String uuid = UUID.randomUUID().toString();
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "561")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = compare.listCircleCompareResult(uuid, args); // 发送请求
+            I2Rs.I2SmpRs rs = compare.deleteCompare(new String[]{uuid}); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

@@ -16,12 +16,13 @@ import test.com.i2soft.util.TestConfig;
 
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ClusterTest {
 
     private static Auth auth;
+    private static String uuid = TestConfig.testUuid;
+    private static Map obj;
     private static Cluster cluster;
 
     @BeforeClass
@@ -80,8 +81,8 @@ public class ClusterTest {
     @Test
     public void T04_describeCls() {
         try {
-            String uuid = UUID.randomUUID().toString();
             Map rs = cluster.describeCls(uuid); // 发送请求
+            obj = rs;
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -92,7 +93,6 @@ public class ClusterTest {
     @Test
     public void T05_modifyCls() {
         try {
-            String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "523")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = cluster.modifyCls(uuid, args); // 发送请求
@@ -130,11 +130,9 @@ public class ClusterTest {
     }
 
     @Test
-    public void T08_deleteCls() {
+    public void T09_clsDetail() {
         try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "519")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = cluster.deleteCls(args); // 发送请求
+            Map rs = cluster.clsDetail(uuid); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -143,10 +141,11 @@ public class ClusterTest {
     }
 
     @Test
-    public void T09_clsDetail() {
+    public void T10_deleteCls() {
         try {
-            String uuid = UUID.randomUUID().toString();
-            Map rs = cluster.clsDetail(uuid); // 发送请求
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "519")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            I2Rs.I2SmpRs rs = cluster.deleteCls(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
