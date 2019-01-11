@@ -159,11 +159,12 @@ public final class AppHighAvailability {
     /**
      * 查看HA详细信息
      *
+     * @param uuid: uuid
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map describeHA() throws I2softException {
-        String url = String.format("%s/ha/:uuid([a-f-0-9] )", auth.cc_url);
+    public Map describeHA(String uuid) throws I2softException {
+        String url = String.format("%s/ha/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url);
         return r.jsonToMap();
     }
