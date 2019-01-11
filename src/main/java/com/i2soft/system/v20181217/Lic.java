@@ -100,20 +100,6 @@ public final class Lic {
     }
 
     /**
-     * 2 更新 lic
-     *
-     * @param uuid: uuid
-     * @param args: 参数详见 API 手册
-     * @return code, message
-     * @throws I2softException:
-     */
-    public I2Rs.I2SmpRs updateLic(String uuid, StringMap args) throws I2softException {
-        String url = String.format("%s/lic/%s", auth.cc_url, uuid);
-        Response r = auth.client.put(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
-    }
-
-    /**
      * 2 更新 lic（批量，离线）
      *
      * @param args: 参数详见 API 手册

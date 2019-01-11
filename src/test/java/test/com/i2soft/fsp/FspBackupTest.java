@@ -16,12 +16,12 @@ import test.com.i2soft.util.TestConfig;
 
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FspBackupTest {
 
     private static Auth auth;
+    private static String uuid = TestConfig.testUuid;
     private static FspBackup fspBackup;
 
     @BeforeClass
@@ -130,10 +130,20 @@ public class FspBackupTest {
     }
 
     @Test
-    public void T08_modifyFspBackup() {
+    public void T08_describeFspBackup() {
         try {
-            String uuid = UUID.randomUUID().toString();
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "489")); // 获取请求数据
+            Map rs = fspBackup.describeFspBackup(uuid); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T09_modifyFspBackup() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "490")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = fspBackup.modifyFspBackup(uuid, args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
@@ -144,10 +154,9 @@ public class FspBackupTest {
     }
 
     @Test
-    public void T09_describeFspBackup() {
+    public void T10_listFspBackup() {
         try {
-            String uuid = UUID.randomUUID().toString();
-            Map rs = fspBackup.describeFspBackup(uuid); // 发送请求
+            Map rs = fspBackup.listFspBackup(new StringMap()); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -156,35 +165,11 @@ public class FspBackupTest {
     }
 
     @Test
-    public void T10_deleteFspBackup() {
+    public void T11_listFspBackupStatus() {
         try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "485")); // 获取请求数据
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "488")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = fspBackup.deleteFspBackup(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
-    public void T11_listFspBackup() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "486")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = fspBackup.listFspBackup(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
-    public void T12_startFspBackup() {
-        try {
-            I2Rs.I2SmpRs rs = fspBackup.startFspBackup(new String[]{}); // 发送请求
+            Map rs = fspBackup.listFspBackupStatus(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -195,7 +180,7 @@ public class FspBackupTest {
     @Test
     public void T12_stopFspBackup() {
         try {
-            I2Rs.I2SmpRs rs = fspBackup.stopFspBackup(new String[]{}); // 发送请求
+            I2Rs.I2SmpRs rs = fspBackup.stopFspBackup(new String[]{uuid}); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -204,9 +189,9 @@ public class FspBackupTest {
     }
 
     @Test
-    public void T12_finishFspBackup() {
+    public void T13_startFspBackup() {
         try {
-            I2Rs.I2SmpRs rs = fspBackup.finishFspBackup(new String[]{}); // 发送请求
+            I2Rs.I2SmpRs rs = fspBackup.startFspBackup(new String[]{uuid}); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -215,11 +200,22 @@ public class FspBackupTest {
     }
 
     @Test
-    public void T13_listFspBackupStatus() {
+    public void T14_finishFspBackup() {
         try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "488")); // 获取请求数据
+            I2Rs.I2SmpRs rs = fspBackup.finishFspBackup(new String[]{uuid}); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T15_deleteFspBackup() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "485")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = fspBackup.listFspBackupStatus(args); // 发送请求
+            I2Rs.I2SmpRs rs = fspBackup.deleteFspBackup(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
