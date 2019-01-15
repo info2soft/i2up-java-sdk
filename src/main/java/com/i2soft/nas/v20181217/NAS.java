@@ -40,13 +40,12 @@ public final class NAS {
      * 组 获取单个
      *
      * @param uuid: uuid
-     * @param args: 参数详见 API 手册
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map describeNASGroup(String uuid, StringMap args) throws I2softException {
+    public Map describeNASGroup(String uuid) throws I2softException {
         String url = String.format("%s/nas/sync/%s/group", auth.cc_url, uuid);
-        Response r = auth.client.get(url, args);
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 
