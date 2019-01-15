@@ -61,17 +61,4 @@ public final class Diagnose {
         Response r = auth.client.get(url, args);
         return r.jsonToMap();
     }
-
-    /**
-     * 下载结果
-     *
-     * @param args: 参数详见 API 手册
-     * @return 参数详见 API 手册
-     * @throws I2softException:
-     */
-    public Map downloadDiagnoseResult(StringMap args) throws I2softException {
-        String url = String.format("%s/diagnose/download_res", auth.cc_url);
-        Response r = auth.client.get(url, args);
-        return r.jsonToMap();
-    }
 }
