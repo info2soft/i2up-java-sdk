@@ -1,0 +1,35 @@
+﻿URL: [POST] /user
+ARGS: {"password":"4RQ3AbYHnqd6VnDOx4W30W2Iquv4HNVlkBtML+NKJH4OJkht0DniiNSOryUBR6hz2nGTksVB9o7cGx3c/PiXH+ATHcIMSlsMR9OU4ljDQs7B9bX29zokoCh/OyQnRGWWvn6ELTNMvZhPUQomXbkyTh4QTV2eYK2UNdK2l21VijmPoYf4KHZd3i1j9SMalAgoJG+lGA4WeHtIC4GqNjFaZGvxGVnUb1mqvLTVG/igU/zdhR9B3s+GIVe22uEVZYLLo/D+4IhayMZulk7X2zdfhYAijiYVlgB09VaV8dr6aeUCrSQiVN6PA2s6bzQVr26CyYLayzglV/+QGsFErlSy/w\u003d\u003d","roles":["3"],"mobile":"12366666666","active":"1","comment":"","email":"11@info2soft.com","username":"test2"}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [GET] /user
+ARGS: {"limit":10,"page":1}
+RS: {"code":0,"message":"","users":[{"id":"2","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","username":"admin","email":"test@info2soft.com","mobile":"15354254585","active":"1","first_name":"Admin","last_name":"default","address":"test","comment":"","company":"info2soft","create_time":"1546409131","builtin":"1","roles":[{"id":"3","user_id":"2","role_id":"3","name":"admin","is_system":"1","allow_new_user":"1","display_name":"Business Administrator","description":"Admin User","dynamic_perms":"0"}]},{"id":"3","user_uuid":"1EE80198-20FB-33F9-7C24-F835A34C7440","username":"auditor","email":null,"mobile":null,"active":"1","first_name":"auditor","last_name":"default","address":null,"comment":null,"company":"","create_time":"1546409131","builtin":"1","roles":[{"id":"4","user_id":"3","role_id":"4","name":"auditor","is_system":"1","allow_new_user":"0","display_name":"Auditor","description":"Business auditor","dynamic_perms":"0"}]},{"id":"4","user_uuid":"EFB53F11-7BA2-2001-3418-85865EA58E47","username":"operator","email":null,"mobile":null,"active":"1","first_name":"operator","last_name":"default","address":null,"comment":null,"company":"","create_time":"1546409131","builtin":"1","roles":[{"id":"5","user_id":"4","role_id":"5","name":"operator","is_system":"1","allow_new_user":"1","display_name":"Operator","description":"Operation Clerk","dynamic_perms":"1"}]},{"id":"1","user_uuid":"93AF0C9F-14C8-41A2-31CB-AAA0F65193FA","username":"system","email":"lis@info2soft.com","mobile":"12332145248","active":"1","first_name":"System","last_name":"default","address":null,"comment":"","company":"","create_time":"1546409131","builtin":"1","roles":[{"id":"3","user_id":"1","role_id":"3","name":"admin","is_system":"1","allow_new_user":"1","display_name":"Business Administrator","description":"Admin User","dynamic_perms":"0"}]},{"id":"5","user_uuid":"2BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DD","username":"sysadmin","email":null,"mobile":null,"active":"1","first_name":"System Admin","last_name":"default","address":null,"comment":null,"company":"","create_time":"1546409132","builtin":"1","roles":[{"id":"2","user_id":"5","role_id":"2","name":"sysadmin","is_system":"1","allow_new_user":"0","display_name":"Administrator","description":"Super User","dynamic_perms":"0"}]},{"id":"8","user_uuid":"11111111-1111-1111-1111-111111111111","username":"test2","email":"123@info2soft.com","mobile":"12332145248","active":"1","first_name":null,"last_name":null,"address":null,"comment":"","company":null,"create_time":"1547033972","builtin":"0","roles":[{"id":"3","user_id":"8","role_id":"3","name":"admin","is_system":"1","allow_new_user":"1","display_name":"Business Administrator","description":"Admin User","dynamic_perms":"0"}]}],"total":6}
+
+URL: [GET] /user/8
+RS: {"code":0,"message":"","id":"8","user_uuid":"11111111-1111-1111-1111-111111111111","username":"test2","email":"123@info2soft.com","mobile":"12332145248","active":"1","first_name":null,"last_name":null,"address":null,"comment":"","company":null,"create_time":"1547033972","builtin":"0"}
+
+URL: [PUT] /user/8
+ARGS: {"password":"1NXZPPN/L6B90jBZTlWkvYj1kbgWPt9h2ZuiKTjseC0ShjIFijkVb+7ozReq4qgQsQvwVBZzeXUMCu2jQWrtyRuGcKeT2CF7ReDRN3lI+5YT3ZOo7IOv3xzDNI/m79YDa58ocayhVaWBND+8hN3jCLzjowzyOugVPLpSi+MX29//lET6FdUtAImGULuxxfgQC7A/8KMtOPdNCrSSx1Z5sUCbN+69kDw0llL+AUoQVRaL0lEcMBBF9RMZMcphk2pFm7L2KqVC5YMNMNhXY9egbR/jmVCQ/VUR3DDaB1VGCVXTnGgePv84EFAiXVXiLIughyxQnes8N2d7MYu3NhXDqQ\u003d\u003d","roles":["3"],"mobile":"12332145248","active":"1","last_name":"","comment":"","first_name":"","email":"123@info2soft.com","username":"test"}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [POST] /user/password
+ARGS: {"old_password":"2aUYOJPUF/FAj25uh22pn9cPlvIJJRyNERTs/meHfNfEKrGV3v7Xzir4YbYf/fhdy5MpkCUacctLuYqn+tUAWnerN2If+pniJuVOpl0QW/Nw9zSwvrI6GoTJFcdabSVmhAMDBxGOm9AYYos9G0KUeCmCThULxWm1tR8Je737ZQX3bAwaS5Ce2Riyt4OiLeV6n9IzEKwTfRcrF616i7X7m1hJHZS8KoYm+o8JiNF8TFf71TqekFRZFYjZdcdc8pgJvVLJaSytaN0VrV3QSXsOHnEIDMw3QjRGXzitsdSnF1h+FdD8prZZVRAqAO8WkYBNviXYctmTL8IAEv73PSSOEQ\u003d\u003d","password":"oZSpzp1Vq57n/Zzpgznl4KrGiQS83UccDzB1T6Up/XGUFFiK/nz5RzuwW75JKnZgvfQmrK0HyTee1Cfzg1/432L/33ElpaAPBFdoIPQsq/jwYeTEMkDNjOMdSwYzD2oyq5B43YTB96/JWZSixJgL6POfR5yg0wdiLsrHQoRetq4FrWKBAK4MRtFjs+MLnfX09wgxHYBf65uKvFB5IrJRIRsgX+z6OGfz6ZTUwquWNmj8d69IS00dZm2U52RjxuAXla7PjgNduNnxZ04pRm/TNmpyiLSVAobibbnURI4s26BTzB3zAFq/pufUcNUphLdNy0vKBkzVJJHUZjHfMNg7ng\u003d\u003d"}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [GET] /user/profile
+RS: {"code":0,"message":"","profile":{"user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","username":"admin","mobile":"15354254585","email":"test@info2soft.com","nickname":"test","company":"info2soft","address":"test","comment":"","pwd_change_time":"1547034113"}}
+
+URL: [PUT] /user/profile
+ARGS: {"address":"test","mobile":"15354254585","nickname":"test","company":"info2soft","comment":"","email":"test@info2soft.com"}
+RS: {"code":0,"message":""}
+
+URL: [POST] /user/logout
+ARGS: {}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [DELETE] /user
+ARGS: {"ids":["8"]}
+RS: {"code":0,"message":"[0] success"}
+
+Process finished with exit code 0

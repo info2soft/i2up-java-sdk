@@ -1,0 +1,18 @@
+﻿URL: [GET] /version
+RS: {"code":0,"message":"[0] success","prod_type":"STD","version":"7.0.0.80","api_version":"2.0.0","bundle_version":"2e44b27","build_date":"20181018","migration_version":20190107170000}
+
+URL: [GET] /migrate
+RS: {"code":0,"message":"success update to latest version"}
+
+URL: [GET] /statistics
+ARGS: {"limit":2}
+RS: {"code":0,"message":"","list":[{"id":"2","name":"testRC","uuid":"D35717B8-0D09-8788-2893-03144698F656","detail":"{\"uuid\":\"D35717B8-0D09-8788-2893-03144698F656\",\"name\":\"testRC\",\"type\":\"I2VP_BK\",\"stage\":\"1\",\"policy\":\"1\",\"sync_obj_num\":\"1\",\"file_skiped_num\":\"0\",\"start_time\":\"2019-01-07 13:08:35\",\"end_time\":\"2019-01-07 13:08:35\",\"trans_data_num\":\"\",\"data_writed_num\":\"\",\"src_type\":\"5\",\"src_size\":\"\",\"create_time\":\"2019-01-07 13:08:35\",\"project_failed_num\":\"\",\"dir_failed_num\":\"\",\"dup_rate\":\"0%\",\"space_occu\":\"\",\"bkup_window\":\"\",\"result\":\"error\",\"tran_rate\":\"\",\"used_time\":\"\",\"data_size\":\"0\"}","result":"0","start_time":"2019-01-07 13:08:35","end_time":"2019-01-07 13:08:35","type":"I2VP_BK","status":"0","create_time":"1546837716"},{"id":"6","name":"testRC1-测试5","uuid":"2DE30043-FC8E-5F80-78B8-C7C226EA07E2","detail":"{\"bkup_window\":\"\",\"create_time\":\"2019-01-07 13:16:09\",\"data_writed_num\":\"2147483648\",\"dir_failed_num\":\"\",\"dup_rate\":\"0%\",\"end_time\":\"2019-01-07 13:16:09\",\"file_skiped_num\":0,\"name\":\"testRC1-\\u6d4b\\u8bd55\",\"policy\":1,\"project_failed_num\":\"\",\"result\":\"SUCCEED\",\"space_occu\":\"2147483648\",\"src_size\":\"2147483648\",\"src_type\":5,\"stage\":0,\"start_time\":\"2019-01-07 13:10:46\",\"sync_obj_num\":1,\"tran_rate\":\"6648556.00\",\"trans_data_num\":\"2147483648\",\"type\":\"I2VP_BK\",\"used_time\":\"323\",\"uuid\":\"2DE30043-FC8E-5F80-78B8-C7C226EA07E2\"}","result":"0","start_time":"2019-01-07 13:10:46","end_time":"2019-01-07 13:16:09","type":"I2VP_BK","status":"0","create_time":"1546838172"}],"total":52}
+
+URL: [GET] /statistics/1
+RS: {"code":0,"message":"","detail":{"uuid":"D35717B8-0D09-8788-2893-03144698F656","name":"testRC","type":"I2VP_BK","stage":"1","policy":"1","sync_obj_num":"1","file_skiped_num":"0","start_time":"2019-01-07 13:08:34","end_time":"2019-01-07 13:08:34","trans_data_num":"","data_writed_num":"","src_type":"5","src_size":"","create_time":"2019-01-07 13:08:34","project_failed_num":"","dir_failed_num":"","dup_rate":"0%","space_occu":"","bkup_window":"","result":"-6073","tran_rate":"","used_time":"","data_size":"0"}}
+
+URL: [PUT] /statistics
+ARGS: {"type":"I2VP_BK"}
+RS: {"code":0,"message":""}
+
+Process finished with exit code 0

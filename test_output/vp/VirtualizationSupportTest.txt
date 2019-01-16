@@ -1,0 +1,211 @@
+URL: [POST] /vp/platform
+ARGS: {"vp_addr":"192.168.88.107","vp_type":0,"bind_lic_list":[],"os_usr":"root","config_port":58083,"os_pwd":"12345678","comment":"","biz_grp_list":[],"config_addr":"192.168.72.75","vp_name":"test"}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [GET] /vp/platform/11111111-1111-1111-1111-111111111111
+ARGS: {}
+RS: {"code":0,"message":"[0] success","vp_platform":{"username":"admin","vp_uuid":"11111111-1111-1111-1111-111111111111","vp_name":"test","random_str":"11111111-1111-1111-1111-111111111111","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","vp_addr":"192.168.88.107","os_usr":"root","os_pwd":"12345678","config_addr":"192.168.72.75","config_port":58083,"comment":"","create_time":1546933346,"vp_type":0,"npsvr_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","biz_grp_list":[],"biz_grp_name":[],"bind_lic_list":[]}}
+
+URL: [PUT] /vp/platform/11111111-1111-1111-1111-111111111111
+ARGS: {"vp_addr":"192.168.88.107","vp_type":0,"bind_lic_list":[],"os_usr":"root","config_port":58083,"os_pwd":"12345678","comment":"","biz_grp_list":[],"config_addr":"192.168.72.75","vp_name":"test1","random_str":"11111111-1111-1111-1111-111111111111"}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [GET] /vp/platform
+ARGS: {"limit":10,"page":1}
+RS: {"code":0,"message":"[0] success","info_list":[{"username":"admin","vp_uuid":"11111111-1111-1111-1111-111111111111","vp_name":"test1","random_str":"11111111-1111-1111-1111-111111111111","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","vp_addr":"192.168.88.107","os_usr":"root","os_pwd":"12345678","config_addr":"192.168.72.75","config_port":58083,"comment":"","create_time":1546933346,"vp_type":0,"npsvr_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F"},{"username":"admin","vp_uuid":"7F16E670-1A61-D565-6905-9C68B9520907","vp_name":"88.22","random_str":"11111111-1111-1111-1111-111111111111","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","vp_addr":"192.168.88.22","os_usr":"administrator","os_pwd":"2","config_addr":"192.168.72.75","config_port":58083,"comment":"","create_time":1546841760,"vp_type":0,"npsvr_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F"},{"username":"admin","vp_uuid":"928B88A6-CDBA-6F55-ADCB-15A8A935C9C2","vp_name":"85.139","random_str":"6BA1FEC9-7B83-74FB-FDF5-647E90F3F801","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","vp_addr":"192.168.85.139","os_usr":"root","os_pwd":"123qwe-\u003d","config_addr":"192.168.72.75","config_port":58083,"comment":"","create_time":1546833086,"vp_type":0,"npsvr_uuid":null},{"username":"admin","vp_uuid":"C6335F62-2565-1957-4BB9-587F2FF46B00","vp_name":"85.137","random_str":"D178FFE2-E512-BFA5-1550-AA7E6088897A","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","vp_addr":"192.168.85.137","os_usr":"administrator","os_pwd":"123qwe-\u003d","config_addr":"192.168.72.75","config_port":58083,"comment":"","create_time":1546831306,"vp_type":0,"npsvr_uuid":null}],"total":4}
+
+URL: [GET] /vp/platform/status
+ARGS: {"vp_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","status":[{"vp_uuid":"11111111-1111-1111-1111-111111111111","status":"ONLINE"}]}
+
+URL: [GET] /vp/platform/11111111-1111-1111-1111-111111111111/vm
+ARGS: {"path":"/","force_rpc":0}
+RS: {"code":0,"message":"[0] success","vm_list":[{"morval":"ha-datacenter","powerState":"0","ExistRuletype":"0","size":"","name":"ha-datacenter","time":"","supportCbt":"1","host_ip":"192.168.88.107","is_dir":"1","tmp_type":"2"}],"create_time":1546933362}
+
+URL: [GET] /vp/platform/11111111-1111-1111-1111-111111111111/info
+ARGS: {}
+RS: {"code":0,"message":"[0] success","api_type":"HostAgent","api_version":"5.5","ip":"192.168.88.107"}
+
+URL: [GET] /vp/platform/11111111-1111-1111-1111-111111111111/bak_ver
+ARGS: {"bk_path":"H:\\vp_bk5\\test2_BAK_vm-11880_192.168.88.22\\","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F"}
+RS: {"code":0,"message":"[0] success","list":[{"last":{"isroot":"","time":""},"size":"2097152","time":"2018-12-27_10-40-45","backup_rule_uuid":"6277F526-6D3D-4A44-B323-B2D96AF85CEC","is_root":49}]}
+
+URL: [GET] /vp/platform/11111111-1111-1111-1111-111111111111/bak_ver_info
+ARGS: {"bk_path":"H:\\vp_bk5\\testRC1_BAK_99_192.168.85.139","ver_sig":"A59DB76E-E33D-4E22-BB08-59723B1FC539","group_uuid":"","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","time":"2019-01-07_13-10-45"}
+RS: {"code":0,"message":"[0] success","list":[{"anno":"","bk_path":"H:\\vp_bk5\\testRC1_BAK_99_192.168.85.139\\","cdrom":"","controller":"1,1000,100,3,0,3,noSharing,0","core_per_sock":"1","cpu":"1","dc":"ha-datacenter","disk":"2,[datastore1] 测试5/proxy gateway1.vmdk,persistent,1,2048,2000,1000,0,52 19 10 74 e2 c2 b3 63-de 7a 2e d2 9d 40 91 bf/107,0,1","disk_count":"1","ds":"datastore1","floppy":"","guest_os_id":"rhel6_64Guest","hostname":"localhost.localdomain","nic":"3,00:50:56:90:ff:ad,1,4000,100,7,1,VM Network;3,00:50:56:90:7b:51,1,4001,100,8,1,VM Network","nic_count":"2","storeMem":"0","valid_data":4194304,"vp_uuid":"928B88A6-CDBA-6F55-ADCB-15A8A935C9C2","alt_name":"","chg_id":"52 19 10 74 e2 c2 b3 63-de 7a 2e d2 9d 40 91 bf/107","vm_ref":"99","vm_version":"vmx-08","mem_mb":"1024","vm_name":"测试5","disk_list":["proxy gateway1.vmdk"],"ver_sig":"A59DB76E-E33D-4E22-BB08-59723B1FC539","time":"2019-01-07_13-10-45"}]}
+
+URL: [GET] /vp/platform/11111111-1111-1111-1111-111111111111/datastore_file
+ARGS: {"ds_name":"datastore107（1）","dc_name":"ha-datacenter","dir_file":"/"}
+RS: {"code":0,"message":"[0] success","list":[{"path":"/ISO/","name":"ISO"},{"path":"/NexentaFusion 1.0.2.8/","name":"NexentaFusion 1.0.2.8"},{"path":"/centos6.8_64bit/","name":"centos6.8_64bit"},{"path":"/chenky_test/","name":"chenky_test"},{"path":"/chenky_test_ha/","name":"chenky_test_ha"},{"path":"/chenky_test_ha_1/","name":"chenky_test_ha_1"},{"path":"/chenky_vp_test/","name":"chenky_vp_test"},{"path":"/chenky_vp_test_ha_copy/","name":"chenky_vp_test_ha_copy"},{"path":"/chenky_vp_test_move/","name":"chenky_vp_test_move"},{"path":"/clean_win2012_standard/","name":"clean_win2012_standard"},{"path":"/customer-i2share/","name":"customer-i2share"},{"path":"/ericom/","name":"ericom"},{"path":"/ericom_move/","name":"ericom_move"},{"path":"/i2yun.com local/","name":"i2yun.com local"},{"path":"/install-i2share/","name":"install-i2share"},{"path":"/ls_vp_test(�ػ�״̬)/","name":"ls_vp_test(�ػ�״̬)"},{"path":"/ls_vp_test(����״̬)_move/","name":"ls_vp_test(����״̬)_move"},{"path":"/ls_vp_test_move/","name":"ls_vp_test_move"},{"path":"/lvam_win2003 r2 32bit/","name":"lvam_win2003 r2 32bit"},{"path":"/lvam_win2003 r2 32bit_138_ha/","name":"lvam_win2003 r2 32bit_138_ha"},{"path":"/lvam_win2003 r2_32bit/","name":"lvam_win2003 r2_32bit"},{"path":"/win2012/","name":"win2012"},{"path":"/win2012_ctrl_ha/","name":"win2012_ctrl_ha"},{"path":"/win2012_node1_ganl/","name":"win2012_node1_ganl"},{"path":"/win2012_node2_ganl/","name":"win2012_node2_ganl"}]}
+
+URL: [GET] /vp/platform/11111111-1111-1111-1111-111111111111/datacenter
+ARGS: {}
+RS: {"code":0,"message":"[0] success","list":[{"dc_mor":"ha-datacenter","dc_name":"ha-datacenter"}]}
+
+URL: [GET] /vp/platform/11111111-1111-1111-1111-111111111111/datacenter_host
+ARGS: {"dc_mor":"ha-datacenter","dc_name":"ha-datacenter"}
+RS: {"code":0,"message":"[0] success","list":["dev-esxi.6.6.6"]}
+
+URL: [GET] /vp/platform/11111111-1111-1111-1111-111111111111/datastore
+ARGS: {"host_name":"dev-esxi.6.6.6"}
+RS: {"code":0,"message":"[0] success","list":["datastore107（1）"]}
+
+URL: [GET] /vp/platform/11111111-1111-1111-1111-111111111111/datastore_info
+ARGS: {"ds_name":"datastore107（1）"}
+RS: {"code":0,"message":"[0] success","store_type":"VMFS","total":"924.00","free":"1.00"}
+
+URL: [DELETE] /vp/platform
+ARGS: {"vp_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success"}
+
+"C:\Program Files\Java\jdk1.8.0_151\bin\java.exe" -ea -Didea.test.cyclic.buffer.size=1048576 "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.2\lib\idea_rt.jar=2536:C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.2\bin" -Dfile.encoding=UTF-8 -classpath "C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.2\lib\idea_rt.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.2\plugins\junit\lib\junit-rt.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.2\plugins\junit\lib\junit5-rt.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\rt.jar;C:\Code\i2up-java-sdk\out\test\classes;C:\Code\i2up-java-sdk\out\production\classes;C:\Users\yourf\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.9.1\84b4b7d1c4a238e7899972b7446c250691e65f1f\okhttp-3.9.1.jar;C:\Users\yourf\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.8.2\3edcfe49d2c6053a70a2a47e4e1c2f94998a49cf\gson-2.8.2.jar;C:\Users\yourf\.gradle\caches\modules-2\files-2.1\junit\junit\4.12\2973d150c0dc1fefe998f834810d68f278ea58ec\junit-4.12.jar;C:\Users\yourf\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.13.0\a9283170b7305c8d92d25aff02a6ab7e45d06cbe\okio-1.13.0.jar;C:\Users\yourf\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar" com.intellij.rt.execution.junit.JUnitStarter -ideVersion5 -junit4 test.com.i2soft.vp.VirtualizationSupportTest
+Cache token: 24e7ca1cf2c8daaa13dfbee1f9ea030f25c1e9a2, sso_token: 02237d2caf0a5773cp69spd9HstDvShfCLOdgNM8aVHMzqwpDEjCQ7XD-GLhPo1cqwpWlMfCNBZU8yq1kKnH0W_8ANiPgAnDyTlCl263y4VINcj55_aoFKy0Um-RKxx_8DDkr_jYTWWR9M5a7Cc8Vhrj2Krhl43OzDuB4g
+
+URL: [POST] /vp/backup
+ARGS: {"del_bkup_data":0,"rule_name":"vp_bk cky","compress":0,"lan_free":23,"bkup_schedule":[{"limit":3,"sched_day":[1,2,3],"sched_time":["00:00"],"sched_every":0,"bkup_type":0}],"vm_list":[{"vm_name":"测试5","vm_ref":"vm-10811"}],"band_width":"-1","bkup_policy":0,"quick_back":1,"bkup_one_time":1546831899,"vp_uuid":"C6335F62-2565-1957-4BB9-587F2FF46B00","quiet_snap":0,"mem_snap":0,"bk_path":"E:\\vp_bk5\\","rule_type":0,"bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","biz_grp_list":[]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","rule_uuid":"11111111-1111-1111-1111-111111111111","vm_name":"测试5"}]}
+
+URL: [PUT] /vp/backup/11111111-1111-1111-1111-111111111111
+ARGS: {"del_bkup_data":0,"rule_name":"vp_bk cky","compress":0,"lan_free":23,"bkup_schedule":[{"limit":3,"sched_day":[1,2,3],"sched_time":["00:00"],"sched_every":0,"bkup_type":0}],"vm_list":[{"vm_name":"测试5","vm_ref":"vm-10811"}],"band_width":"-1","bkup_policy":0,"quick_back":1,"bkup_one_time":1546831899,"vp_uuid":"C6335F62-2565-1957-4BB9-587F2FF46B00","quiet_snap":0,"mem_snap":0,"bk_path":"E:\\vp_bk5\\","rule_type":10,"bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","biz_grp_list":[]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","rule_uuid":"11111111-1111-1111-1111-111111111111","vm_name":"测试5"}]}
+
+URL: [GET] /vp/backup/11111111-1111-1111-1111-111111111111
+ARGS: {}
+RS: {"code":0,"message":"[0] success","vp_backup":{"username":"admin","group_uuid":"11111111-1111-1111-1111-111111111111","rule_name":"vp_bk cky","rule_uuid":"11111111-1111-1111-1111-111111111111","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","vp_uuid":"C6335F62-2565-1957-4BB9-587F2FF46B00","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","vm_name":"测试5","bk_path":"E:\\vp_bk5\\","quick_back":1,"bkup_policy":0,"del_bkup_data":0,"bkup_one_time":1546831899,"lan_free":23,"bkup_schedule":[{"limit":3,"sched_day":[1,2,3],"sched_time":["00:00"],"sched_every":0,"bkup_type":0}],"vm_ref":"vm-10811","quiet_snap":0,"create_time":1546935965,"random_str":"11111111-1111-1111-1111-111111111111","rule_type":0,"mem_snap":0,"band_width":"-1","status":null,"compress":0,"biz_grp_list":[],"biz_grp_name":[]}}
+
+URL: [GET] /vp/backup/11111111-1111-1111-1111-111111111111/group
+ARGS: {}
+RS: {"code":0,"message":"[0] success","vp_backup":{"vp_name":"85.137","bk_node_name":"N3_72.75","group_uuid":"11111111-1111-1111-1111-111111111111","rule_name":"vp_bk cky","rule_uuid":"11111111-1111-1111-1111-111111111111","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","vp_uuid":"C6335F62-2565-1957-4BB9-587F2FF46B00","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","bk_path":"E:\\vp_bk5\\","quick_back":1,"bkup_policy":0,"del_bkup_data":0,"bkup_one_time":1546831899,"lan_free":23,"bkup_schedule":[{"limit":3,"sched_day":[1,2,3],"sched_time":["00:00"],"sched_every":0,"bkup_type":0}],"quiet_snap":0,"create_time":1546935965,"random_str":"11111111-1111-1111-1111-111111111111","rule_type":0,"mem_snap":0,"band_width":"-1","status":null,"compress":0,"vm_list":[{"vm_name":"测试5","vm_ref":"vm-10811","rule_uuid":"11111111-1111-1111-1111-111111111111"}]}}
+
+URL: [GET] /vp/backup
+ARGS: {"limit":10,"page":1,"type":0}
+RS: {"code":0,"message":"[0] success","info_list":[{"vp_name":"85.137","bk_node_name":"N3_72.75","username":"admin","rule_name":"vp_bk cky","vm_name":"测试5","vp_uuid":"C6335F62-2565-1957-4BB9-587F2FF46B00","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","group_uuid":"11111111-1111-1111-1111-111111111111","rule_uuid":"11111111-1111-1111-1111-111111111111","rule_type":0},{"vp_name":"85.139","bk_node_name":"N3_72.75","username":"admin","rule_name":"testRC1","vm_name":"测试5","vp_uuid":"928B88A6-CDBA-6F55-ADCB-15A8A935C9C2","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","group_uuid":"A020C838-10F4-4A65-30E1-779C57E6E1C6","rule_uuid":"2DE30043-FC8E-5F80-78B8-C7C226EA07E2","rule_type":0},{"vp_name":"85.137","bk_node_name":"move B 72.82","username":"admin","rule_name":"testRC","vm_name":"����1","vp_uuid":"C6335F62-2565-1957-4BB9-587F2FF46B00","bk_uuid":"B8566905-411E-B2CD-A742-77B1346D8E84","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","group_uuid":"7B588C65-985E-6C2F-129F-1D61C387C1E9","rule_uuid":"3ABD383B-A9BE-0D23-D0FF-A9CBAF1F9C38","rule_type":0},{"vp_name":"85.137","bk_node_name":"N3_72.75","username":"admin","rule_name":"vp_bk","vm_name":"测试5","vp_uuid":"C6335F62-2565-1957-4BB9-587F2FF46B00","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","group_uuid":"D3D8883C-12DD-F1C5-BE78-934E08135463","rule_uuid":"EC5A3225-C388-F935-6BC2-15AAA4EB5B23","rule_type":0}],"total":4}
+
+URL: [GET] /vp/backup/group
+ARGS: {"where_args[bk_path]":"H:\\vp_bk5\\","limit":10,"page":1,"type":0}
+RS: {"code":0,"message":"[0] success","info_list":[{"vp_name":"85.139","bk_node_name":"N3_72.75","username":"admin","group_uuid":"A020C838-10F4-4A65-30E1-779C57E6E1C6","rule_name":"testRC1","rule_uuid":"2DE30043-FC8E-5F80-78B8-C7C226EA07E2","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","vp_uuid":"928B88A6-CDBA-6F55-ADCB-15A8A935C9C2","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","bk_path":"H:\\vp_bk5\\","quick_back":1,"bkup_policy":0,"del_bkup_data":0,"bkup_one_time":1546837760,"lan_free":23,"bkup_schedule":[],"quiet_snap":0,"create_time":1546837842,"random_str":"F4522086-77ED-FAAE-1422-0F439F8BEB3B","rule_type":0,"mem_snap":0,"band_width":"-1","status":null,"compress":0,"vm_list":[{"vm_name":"测试5","vm_ref":"99","rule_uuid":"2DE30043-FC8E-5F80-78B8-C7C226EA07E2"}]}]}
+
+URL: [GET] /vp/backup/status
+ARGS: {"rule_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","status":[{"rule_uuid":"11111111-1111-1111-1111-111111111111","status":"IDLE","progress":0}]}
+
+URL: [POST] /vp/backup/operate
+ARGS: {"operate":"stop","rule_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","rule_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+URL: [POST] /vp/backup/operate
+ARGS: {"operate":"start","rule_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","rule_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+URL: [DELETE] /vp/backup
+ARGS: {"rule_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","rule_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+URL: [POST] /vp/recovery
+ARGS: {"new_dc":"ha-datacenter","lan_free":23,"new_hostname":"localhost.localdomain","new_vp_uuid":"928B88A6-CDBA-6F55-ADCB-15A8A935C9C2","mac":"3,00:50:56:90:ff:ad,1,4000,100,7,1,VM Network;3,00:50:56:90:7b:51,1,4001,100,8,1,VM Network","vp_uuid":"928B88A6-CDBA-6F55-ADCB-15A8A935C9C2","new_ds_path":"/","rule_type":0,"group_recovery":0,"api_type":"HostAgent","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","new_vm_name":"测试5","new_dc_mor":"ha-datacenter","rule_name":"testRC cky","cpu":1,"vm_list":[{"vm_cfg":{"alt_name":"","anno":"","bk_path":"H:\\vp_bk5\\testRC1_BAK_99_192.168.85.139\\","cdrom":"","chg_id":"52 19 10 74 e2 c2 b3 63-de 7a 2e d2 9d 40 91 bf/107","controller":"1,1000,100,3,0,3,noSharing,0","core_per_sock":"1","cpu":"1","dc":"ha-datacenter","disk":"2,[datastore1] 测试5/proxy gateway1.vmdk,persistent,1,2048,2000,1000,0,52 19 10 74 e2 c2 b3 63-de 7a 2e d2 9d 40 91 bf/107,0,1","disk_count":"1","disk_list":["proxy gateway1.vmdk"],"ds":"datastore1","floppy":"","guest_os_id":"rhel6_64Guest","hostname":"localhost.localdomain","mem_mb":"1024","nic":"3,00:50:56:90:ff:ad,1,4000,100,7,1,VM Network;3,00:50:56:90:7b:51,1,4001,100,8,1,VM Network","nic_count":"2","storeMem":"0","time":"2019-01-07_13-10-45","valid_data":4194304,"ver_sig":"A59DB76E-E33D-4E22-BB08-59723B1FC539","vm_name":"测试5","vm_ref":"99","vm_version":"vmx-08","vp_uuid":"928B88A6-CDBA-6F55-ADCB-15A8A935C9C2"},"ver_sig":"A59DB76E-E33D-4E22-BB08-59723B1FC539","vm_ref":"99","vm_name":"测试5","disk_list":[{"disk_name":"proxy gateway1.vmdk","disk_path":"/","is_same":1,"new_ds":"datastore1"}]}],"band_width":"-1","bk_path":"H:\\vp_bk5\\testRC1_BAK_99_192.168.85.139","new_ds":"datastore1","automate":0,"biz_grp_list":[],"core_per_sock":1,"mem_mb":1024,"is_create":0,"backup_rule_name":"testRC1"}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","rule_uuid":"11111111-1111-1111-1111-111111111111","vm_name":"测试5"}]}
+
+URL: [GET] /vp/recovery/11111111-1111-1111-1111-111111111111/group
+ARGS: {}
+RS: {"code":0,"message":"[0] success","vp_recovery":{"vp_name":"85.139","new_vp_name":"85.139","bk_node_name":"N3_72.75","group_uuid":"11111111-1111-1111-1111-111111111111","rule_type":0,"rule_uuid":"11111111-1111-1111-1111-111111111111","rule_name":"testRC cky","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","vp_uuid":"928B88A6-CDBA-6F55-ADCB-15A8A935C9C2","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","new_vp_uuid":"928B88A6-CDBA-6F55-ADCB-15A8A935C9C2","new_dc":"ha-datacenter","new_ds":"datastore1","new_dc_mor":"ha-datacenter","bk_path":"H:\\vp_bk5\\testRC1_BAK_99_192.168.85.139","new_ds_path":"/","new_hostname":"localhost.localdomain","new_vm_name":"测试5","cpu":1,"core_per_sock":1,"mem_mb":1024,"mac":"3,00:50:56:90:ff:ad,1,4000,100,7,1,VM Network;3,00:50:56:90:7b:51,1,4001,100,8,1,VM Network","automate":0,"api_type":"HostAgent","group_recovery":0,"is_create":0,"lan_free":23,"create_time":1546938213,"random_str":"11111111-1111-1111-1111-111111111111","status":null,"backup_rule_name":"testRC1","band_width":"-1","vm_list":[{"vm_name":"测试5","vm_ref":"99","ver_sig":"A59DB76E-E33D-4E22-BB08-59723B1FC539","vm_cfg":{"alt_name":"","anno":"","bk_path":"H:\\vp_bk5\\testRC1_BAK_99_192.168.85.139\\","cdrom":"","chg_id":"52 19 10 74 e2 c2 b3 63-de 7a 2e d2 9d 40 91 bf/107","controller":"1,1000,100,3,0,3,noSharing,0","core_per_sock":"1","cpu":"1","dc":"ha-datacenter","disk":"2,[datastore1] 测试5/proxy gateway1.vmdk,persistent,1,2048,2000,1000,0,52 19 10 74 e2 c2 b3 63-de 7a 2e d2 9d 40 91 bf/107,0,1","disk_count":"1","disk_list":["proxy gateway1.vmdk"],"ds":"datastore1","floppy":"","guest_os_id":"rhel6_64Guest","hostname":"localhost.localdomain","mem_mb":"1024","nic":"3,00:50:56:90:ff:ad,1,4000,100,7,1,VM Network;3,00:50:56:90:7b:51,1,4001,100,8,1,VM Network","nic_count":"2","storeMem":"0","time":"2019-01-07_13-10-45","valid_data":4194304,"ver_sig":"A59DB76E-E33D-4E22-BB08-59723B1FC539","vm_name":"测试5","vm_ref":"99","vm_version":"vmx-08","vp_uuid":"928B88A6-CDBA-6F55-ADCB-15A8A935C9C2"},"disk_list":[{"disk_name":"proxy gateway1.vmdk","disk_path":"/","is_same":1,"new_ds":"datastore1"}],"rule_uuid":"11111111-1111-1111-1111-111111111111"}]}}
+
+URL: [GET] /vp/recovery
+ARGS: {"limit":10,"page":1,"type":0}
+RS: {"code":0,"message":"[0] success","info_list":[{"vp_name":"85.139","new_vp_name":"85.139","bk_node_name":"N3_72.75","username":"admin","create_time":1546938213,"backup_rule_name":"testRC1","rule_name":"testRC cky","rule_type":0,"ver_sig":"A59DB76E-E33D-4E22-BB08-59723B1FC539","vp_uuid":"928B88A6-CDBA-6F55-ADCB-15A8A935C9C2","new_vp_uuid":"928B88A6-CDBA-6F55-ADCB-15A8A935C9C2","vm_name":"测试5","group_uuid":"11111111-1111-1111-1111-111111111111","rule_uuid":"11111111-1111-1111-1111-111111111111"},{"vp_name":"85.139","new_vp_name":"85.139","bk_node_name":"N3_72.75","username":"admin","create_time":1546841417,"backup_rule_name":"testRC1","rule_name":"testRC1","rule_type":0,"ver_sig":"A59DB76E-E33D-4E22-BB08-59723B1FC539","vp_uuid":"928B88A6-CDBA-6F55-ADCB-15A8A935C9C2","new_vp_uuid":"928B88A6-CDBA-6F55-ADCB-15A8A935C9C2","vm_name":"测试5","group_uuid":"641A27BB-B4D1-F482-1FB8-E856898626DA","rule_uuid":"2E92D816-AFF0-A807-D90F-87991F789976"}],"total":2}
+
+URL: [GET] /vp/recovery/status
+ARGS: {"rule_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","status":[{"rule_uuid":"11111111-1111-1111-1111-111111111111","status":"VP_QSTK","progress":0}]}
+
+URL: [POST] /vp/recovery/operate
+ARGS: {"operate":"stop","rule_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","rule_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+URL: [POST] /vp/recovery/operate
+ARGS: {"rule_type":1,"operate":"clear_finish"}
+RS: {"code":0,"message":"[0] success","list":[]}
+
+URL: [POST] /vp/recovery/operate
+ARGS: {"operate":"start","rule_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","rule_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+URL: [DELETE] /vp/recovery
+ARGS: {"rule_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","rule_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+"C:\Program Files\Java\jdk1.8.0_151\bin\java.exe" -ea -Didea.test.cyclic.buffer.size=1048576 "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.2\lib\idea_rt.jar=8214:C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.2\bin" -Dfile.encoding=UTF-8 -classpath "C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.2\lib\idea_rt.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.2\plugins\junit\lib\junit-rt.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.2\plugins\junit\lib\junit5-rt.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\rt.jar;C:\Code\i2up-java-sdk\out\test\classes;C:\Code\i2up-java-sdk\out\production\classes;C:\Users\yourf\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.9.1\84b4b7d1c4a238e7899972b7446c250691e65f1f\okhttp-3.9.1.jar;C:\Users\yourf\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.8.2\3edcfe49d2c6053a70a2a47e4e1c2f94998a49cf\gson-2.8.2.jar;C:\Users\yourf\.gradle\caches\modules-2\files-2.1\junit\junit\4.12\2973d150c0dc1fefe998f834810d68f278ea58ec\junit-4.12.jar;C:\Users\yourf\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.13.0\a9283170b7305c8d92d25aff02a6ab7e45d06cbe\okio-1.13.0.jar;C:\Users\yourf\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar" com.intellij.rt.execution.junit.JUnitStarter -ideVersion5 -junit4 test.com.i2soft.vp.VirtualizationSupportTest
+Cache token: 59d29cf4cefe33a76cded8e6f4bd0149d1575760, sso_token: d31942d70bd4e635DdGQaP1MAcaqXWYxnlcqlsk_3IVNPtT9L56JvbQeRFOsLs7tay92TxOhdNWyRXQ5qL8Vabn036IvDdRsQrZifuXS_MGrjNV0ovlcwluXYoYvLo8eYK0WxQDD-LVgipI1tcB65rXH5lU8ldIWVZO5Ng
+
+URL: [POST] /vp/move
+ARGS: {"rule_type":1,"del_bkup_swap":0,"new_dc_mor":"datacenter-2","del_bkup_data":0,"rule_name":"testMove1 cky","new_dc":"i2test","support_cbt":1,"backup_type":"i","bkup_schedule":{"sched_time_start":"0","limit":0,"sched_day":30,"sched_every":0,"sched_time":[],"sched_gap_min":0},"lan_free":23,"vm_list":[{"vm_name":"新建虚拟机1","vm_ref":"vm-11877","shd_name":"新建虚拟机1_move","overwrite":0}],"band_width":"-1","bkup_policy":0,"quick_back":1,"quiet_snap":1,"bk_path":"H:\\vp_rep\\","new_host":"192.168.88.103","time_window":"","new_ds":"103-数据盘","tgt_uuid":"7F16E670-1A61-D565-6905-9C68B9520907","src_uuid":"7F16E670-1A61-D565-6905-9C68B9520907","automate":0,"bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F"}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","rule_uuid":"11111111-1111-1111-1111-111111111111","vm_name":"新建虚拟机1"}]}
+
+URL: [GET] /vp/move/11111111-1111-1111-1111-111111111111
+ARGS: {}
+RS: {"code":0,"message":"[0] success","vp_move":{"username":"admin","group_uuid":"11111111-1111-1111-1111-111111111111","rule_name":"testMove1 cky","automate":0,"backup_type":"i","rule_uuid":"11111111-1111-1111-1111-111111111111","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","quick_back":1,"lan_free":23,"new_dc":"i2test","new_dc_mor":"datacenter-2","new_ds":"103-数据盘","new_host":"192.168.88.103","overwrite":0,"del_bkup_data":0,"del_bkup_swap":0,"bkup_schedule":{"sched_time_start":"0","limit":0,"sched_day":30,"sched_every":0,"sched_time":[],"sched_gap_min":0},"src_uuid":"7F16E670-1A61-D565-6905-9C68B9520907","tgt_uuid":"7F16E670-1A61-D565-6905-9C68B9520907","shd_name":"新建虚拟机1_move","vm_ref":"vm-11877","vm_name":"新建虚拟机1","create_time":1546938649,"bk_path":"H:\\vp_rep\\","quiet_snap":1,"status":null,"rule_type":1,"random_str":"11111111-1111-1111-1111-111111111111","bkup_policy":0,"time_window":"","mem_snap":0,"band_width":"-1","biz_grp_list":[],"biz_grp_name":[]}}
+
+URL: [PUT] /vp/move/11111111-1111-1111-1111-111111111111
+ARGS: {"rule_type":1,"del_bkup_swap":0,"new_dc_mor":"datacenter-2","del_bkup_data":0,"rule_name":"testMove1 cky","new_dc":"i2test","support_cbt":1,"backup_type":"i","bkup_schedule":{"sched_time_start":"0","limit":0,"sched_day":27,"sched_every":0,"sched_time":[],"sched_gap_min":0},"lan_free":23,"vm_list":[{"vm_name":"新建虚拟机1","vm_ref":"vm-11877","shd_name":"新建虚拟机1_move","overwrite":0}],"band_width":"-1","bkup_policy":0,"quick_back":1,"quiet_snap":1,"bk_path":"H:\\vp_rep\\","new_host":"192.168.88.103","time_window":"","new_ds":"103-数据盘","tgt_uuid":"7F16E670-1A61-D565-6905-9C68B9520907","src_uuid":"7F16E670-1A61-D565-6905-9C68B9520907","automate":0,"bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F"}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","rule_uuid":"11111111-1111-1111-1111-111111111111","vm_name":"新建虚拟机1"}]}
+
+URL: [GET] /vp/move
+ARGS: {}
+RS: {"code":0,"message":"[0] success","info_list":[{"src_name":"88.22","tgt_name":"88.22","bk_node_name":"N3_72.75","username":"admin","rule_name":"testMove","vm_name":"新建虚拟机1","src_uuid":"7F16E670-1A61-D565-6905-9C68B9520907","tgt_uuid":"7F16E670-1A61-D565-6905-9C68B9520907","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","group_uuid":"1C89A121-6B03-24B2-9273-D4B93C0687AD","rule_uuid":"16C1C399-6146-AD56-6D5D-7DBCC14804D9","rule_type":1,"bkup_policy":0}],"total":1}
+
+URL: [GET] /vp/move/status
+ARGS: {"rule_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","status":[{"rule_uuid":"11111111-1111-1111-1111-111111111111","status":"VP_START","progress":0}]}
+
+URL: [POST] /vp/move/operate
+ARGS: {"operate":"move","rule_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","rule_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+URL: [POST] /vp/move/operate
+ARGS: {"operate":"start","rule_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","rule_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+URL: [POST] /vp/move/operate
+ARGS: {"operate":"stop","rule_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","rule_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+URL: [DELETE] /vp/move
+ARGS: {"rule_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [POST] /vp/rep
+ARGS: {"del_bkup_swap":0,"new_dc_mor":"datacenter-2","del_bkup_data":0,"rule_name":"testMove1 cky","new_dc":"i2test","support_cbt":1,"backup_type":"i","bkup_schedule":{"sched_time_start":"0","limit":0,"sched_day":30,"sched_every":0,"sched_time":[],"sched_gap_min":0},"lan_free":23,"vm_list":[{"vm_name":"新建虚拟机1","vm_ref":"vm-11877","shd_name":"新建虚拟机1_move","overwrite":0}],"band_width":"-1","bkup_policy":0,"quick_back":1,"quiet_snap":1,"bk_path":"H:\\vp_rep\\","rule_type":1,"new_host":"192.168.88.103","time_window":"","new_ds":"103-数据盘","tgt_uuid":"7F16E670-1A61-D565-6905-9C68B9520907","src_uuid":"7F16E670-1A61-D565-6905-9C68B9520907","automate":0,"bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F"}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","rule_uuid":"11111111-1111-1111-1111-111111111111","vm_name":"新建虚拟机1"}]}
+
+URL: [GET] /vp/rep/11111111-1111-1111-1111-111111111111
+ARGS: {}
+RS: {"code":0,"message":"[0] success","vp_rep":{"username":"admin","group_uuid":"11111111-1111-1111-1111-111111111111","rule_name":"testMove1 cky","automate":0,"backup_type":"i","rule_uuid":"11111111-1111-1111-1111-111111111111","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","quick_back":1,"lan_free":23,"new_dc":"i2test","new_dc_mor":"datacenter-2","new_ds":"103-数据盘","new_host":"192.168.88.103","overwrite":0,"del_bkup_data":0,"del_bkup_swap":0,"bkup_schedule":{"sched_time_start":"0","limit":0,"sched_day":30,"sched_every":0,"sched_time":[],"sched_gap_min":0},"src_uuid":"7F16E670-1A61-D565-6905-9C68B9520907","tgt_uuid":"7F16E670-1A61-D565-6905-9C68B9520907","shd_name":"新建虚拟机1_move","vm_ref":"vm-11877","vm_name":"新建虚拟机1","create_time":1546939592,"bk_path":"H:\\vp_rep\\","quiet_snap":1,"status":null,"rule_type":1,"random_str":"11111111-1111-1111-1111-111111111111","bkup_policy":0,"time_window":"","mem_snap":0,"band_width":"-1","biz_grp_list":[],"biz_grp_name":[]}}
+
+URL: [PUT] /vp/rep/11111111-1111-1111-1111-111111111111
+ARGS: {"del_bkup_swap":0,"new_dc_mor":"datacenter-2","del_bkup_data":0,"rule_name":"testMove1 cky","new_dc":"i2test","support_cbt":1,"backup_type":"i","bkup_schedule":{"sched_time_start":"0","limit":0,"sched_day":29,"sched_every":0,"sched_time":[],"sched_gap_min":0},"lan_free":23,"vm_list":[{"vm_name":"新建虚拟机1","vm_ref":"vm-11877","shd_name":"新建虚拟机1_move","overwrite":0}],"band_width":"-1","bkup_policy":0,"quick_back":1,"quiet_snap":1,"bk_path":"H:\\vp_rep\\","rule_type":10,"new_host":"192.168.88.103","time_window":"","new_ds":"103-数据盘","tgt_uuid":"7F16E670-1A61-D565-6905-9C68B9520907","src_uuid":"7F16E670-1A61-D565-6905-9C68B9520907","automate":0,"bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F"}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","rule_uuid":"11111111-1111-1111-1111-111111111111","vm_name":"新建虚拟机1"}]}
+
+URL: [GET] /vp/rep
+ARGS: {}
+RS: {"code":0,"message":"[0] success","info_list":[{"src_name":"88.22","tgt_name":"88.22","bk_node_name":"N3_72.75","username":"admin","rule_name":"testRep","vm_name":"新建虚拟机1","src_uuid":"7F16E670-1A61-D565-6905-9C68B9520907","tgt_uuid":"7F16E670-1A61-D565-6905-9C68B9520907","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","group_uuid":"ABB1E43A-4A14-35FB-A270-20A35B13B9D6","rule_uuid":"F64AA5FC-48F0-B593-907A-958E5E95AD13","rule_type":0,"bkup_policy":0}],"total":1}
+
+URL: [GET] /vp/rep/status
+ARGS: {"rule_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","status":[{"rule_uuid":"11111111-1111-1111-1111-111111111111","status":"VP_START","progress":0}]}
+
+URL: [POST] /vp/rep/operate
+ARGS: {"operate":"stop","rule_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","rule_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+URL: [POST] /vp/rep/operate
+ARGS: {"operate":"start","rule_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","rule_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+URL: [GET] /vp/rep/11111111-1111-1111-1111-111111111111/point_list
+ARGS: {}
+RS: {"code":0,"message":"[0] success","list":[]}
+
+URL: [DELETE] /vp/rep
+ARGS: {"rule_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","rule_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+Process finished with exit code 0

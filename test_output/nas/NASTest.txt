@@ -1,0 +1,29 @@
+URL: [POST] /nas/sync
+ARGS: {"wk_list":[{"wk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","wk_path":"E:\\nas\\"}],"nas_name":"test2","compress":"","sync_uuid":"","band_width":"","cmp_schedule":[{"sched_every":1,"sched_time":["06:24"],"sched_day":[31]}],"cmp_file_check":0,"secret_key":"","sync_path":"","bk_path":"E:\\t\\","cmp_switch":0,"nas_type":"0","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","encrypt_switch":"0"}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","nas_uuid":"11111111-1111-1111-1111-111111111111","wk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F"}]}
+
+URL: [PUT] /nas/sync/11111111-1111-1111-1111-111111111111/group
+ARGS: {"wk_list":[{"wk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","wk_path":"E:\\nas\\"}],"nas_name":"test2","compress":"","sync_uuid":"","band_width":"","cmp_schedule":[{"sched_every":1,"sched_time":["07:04"],"sched_day":[29]}],"cmp_file_check":0,"secret_key":"","sync_path":"","bk_path":"E:\\t\\","cmp_switch":0,"nas_type":"0","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","encrypt_switch":"0","random_str":"11111111-1111-1111-1111-111111111111"}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","nas_uuid":"11111111-1111-1111-1111-111111111111","wk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F"}]}
+
+URL: [GET] /nas/sync
+ARGS: {}
+RS: {"code":0,"message":"[0] success","info_list":[{"band_width":"","encrypt_switch":"0","random_str":"11111111-1111-1111-1111-111111111111","sync_node_name":null,"wk_node_name":"N3_72.75","bk_node_name":"N3_72.75","username":"admin","bk_path":"E:\\t\\","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","group_uuid":"11111111-1111-1111-1111-111111111111","nas_name":"test2","nas_type":0,"nas_uuid":"11111111-1111-1111-1111-111111111111","sync_path":"","sync_uuid":"","wk_path":"E:\\nas\\","wk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F"}],"total":1}
+
+URL: [GET] /nas/sync/status
+ARGS: {"nas_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","status":[{"nas_uuid":"11111111-1111-1111-1111-111111111111","status":"STOP","sync_status":""}]}
+
+URL: [POST] /nas/sync/operate
+ARGS: {"nas_uuids":["11111111-1111-1111-1111-111111111111"],"operate":"stop"}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","nas_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+URL: [POST] /nas/sync/operate
+ARGS: {"nas_uuids":["11111111-1111-1111-1111-111111111111"],"operate":"start"}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","nas_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+URL: [DELETE] /nas/sync
+ARGS: {"nas_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","nas_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+Process finished with exit code 0

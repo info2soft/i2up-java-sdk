@@ -1,0 +1,60 @@
+﻿URL: [GET] /fsp/backup/nic_list
+ARGS: {"wk_uuid":"F85DFEC0-149E-373D-0B9E-3DA9A5C43940","bk_uuid":"42614852-BB62-1EF7-FED0-D2354BF3149D"}
+RS: {"code":0,"message":"[0] success","wk_nic_list":[{"name":"eth2","type":"0","ip":"192.168.71.78/255.255.240.0","gw":"192.168.64.1","dns":"0.0.0.0"},{"name":"virbr0","type":"0","ip":"192.168.122.1/255.255.255.0","gw":"0.0.0.0","dns":"0.0.0.0"},{"name":"virbr0-nic","type":"0","ip":"0.0.0.0/0.0.0.0","gw":"0.0.0.0","dns":"0.0.0.0"}],"bk_nic_list":[{"name":"eth2","type":"0","ip":"192.168.71.77/255.255.240.0","gw":"192.168.64.1","dns":"210.22.84.3"},{"name":"virbr0","type":"0","ip":"192.168.122.1/255.255.255.0","gw":"0.0.0.0","dns":"210.22.84.3"},{"name":"virbr0-nic","type":"0","ip":"0.0.0.0/0.0.0.0","gw":"0.0.0.0","dns":"210.22.84.3"}]}
+
+URL: [GET] /fsp/backup/dir_list
+ARGS: {"fsp_uuid":"","wk_uuid":"F85DFEC0-149E-373D-0B9E-3DA9A5C43940"}
+RS: {"code":0,"message":"[0] success","hd_list":[{"label":"/","is_system":1}],"dir_list":[{"wk_path":"/","type":"1"},{"wk_path":"/boot/","type":"1"},{"wk_path":"/cgroup/","type":"2"},{"wk_path":"/dev/","type":"2"},{"wk_path":"/etc/X11/xorg.conf/","type":"2"},{"wk_path":"/etc/init.d/i2node/","type":"2"},{"wk_path":"/etc/rc.d/init.d/i2node/","type":"2"},{"wk_path":"/etc/sdata/","type":"2"},{"wk_path":"/lost+found/","type":"2"},{"wk_path":"/media/","type":"2"},{"wk_path":"/mnt/","type":"2"},{"wk_path":"/proc/","type":"2"},{"wk_path":"/run/","type":"2"},{"wk_path":"/selinux/","type":"2"},{"wk_path":"/sys/","type":"2"},{"wk_path":"/tmp/","type":"2"},{"wk_path":"/usr/local/sdata/","type":"2"},{"wk_path":"/var/i2/","type":"2"},{"wk_path":"/var/i2data/","type":"2"},{"wk_path":"/var/lock/","type":"2"},{"wk_path":"/var/run/vmblock-fuse/","type":"2"}],"os_type":null}
+
+URL: [POST] /fsp/backup/verify_coopy_space
+ARGS: {"bk_path":["fsp_bk"],"excl_path":["/cgroup/","/dev/","/etc/X11/xorg.conf/","/etc/init.d/i2node/","/etc/rc.d/init.d/i2node/","/etc/sdata/","/lost+found/","/media/","/mnt/","/proc/","/run/","/selinux/","/sys/","/tmp/","/usr/local/sdata/","/var/i2/","/var/i2data/","/var/lock/","/var/run/vmblock-fuse/"],"bk_uuid":"F85DFEC0-149E-373D-0B9E-3DA9A5C43940","wk_uuid":"42614852-BB62-1EF7-FED0-D2354BF3149D","wk_path":["/"]}
+RS: {"code":0,"message":"[0] success","bk_disk_need":0,"bk_disk_free":0}
+
+URL: [POST] /fsp/backup/verify_license
+ARGS: {"wk_uuid":"42614852-BB62-1EF7-FED0-D2354BF3149D"}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [POST] /fsp/backup/verify_old_rule
+ARGS: {"bk_path":["/fsp_bk/"],"bk_uuid":"F85DFEC0-149E-373D-0B9E-3DA9A5C43940","wk_uuid":"42614852-BB62-1EF7-FED0-D2354BF3149D"}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [POST] /fsp/backup/verify_os_version
+ARGS: {"bk_uuid":"F85DFEC0-149E-373D-0B9E-3DA9A5C43940","wk_uuid":"42614852-BB62-1EF7-FED0-D2354BF3149D"}
+RS: {"code":0,"message":"[0] success","wk_os_ver":"Red Hat 6.5 x86_64","bk_os_ver":"Red Hat 6.5 x86_64"}
+
+URL: [POST] /fsp/backup
+ARGS: {"fsp_backup":{"secret_key":"","band_width":"","mirr_open_type":"0","service_uuid":"","mirr_sync_flag":"0","excl_path":["/cgroup/","/dev/","/etc/X11/xorg.conf/","/etc/init.d/i2node/","/etc/rc.d/init.d/i2node/","/etc/sdata/","/lost+found/","/media/","/mnt/","/proc/","/run/","/selinux/","/sys/","/tmp/","/usr/local/sdata/","/var/i2/","/var/i2data/","/var/lock/","/var/run/vmblock-fuse/"],"bkup_one_time":0,"encrypt_switch":"0","mirr_sync_attr":"1","bk_uuid":"F85DFEC0-149E-373D-0B9E-3DA9A5C43940","wk_data_type":1,"bk_path":["/fsp_bk/"],"sync_item":"/","bkup_policy":2,"snapshot_policy":"","mirr_file_check":"0","snapshot_interval":"","compress":"0","monitor_type":0,"failover":"0","wk_path":["/"],"snapshot_limit":"","snapshot_switch":0,"fsp_name":"test","wk_uuid":"42614852-BB62-1EF7-FED0-D2354BF3149D","backup_type":0,"fsp_wk_shut_flag":"2","bk_data_type":1,"bkup_schedule":[{"sched_time_end":"16:25","sched_day":25,"sched_gap_min":35,"sched_time":"20:48","sched_time_start":"11:57","sched_every":2,"limit":15}],"fsp_type":3,"random_str":"11111111-1111-1111-1111-111111111111"}}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [GET] /fsp/backup/11111111-1111-1111-1111-111111111111
+RS: {"code":0,"message":"[0] success","fsp_backup":{"id":"13","auto_start":"1","band_width":"","bkup_one_time":0,"bkup_policy":2,"bkup_schedule":[{"sched_time_end":"16:25","sched_day":25,"sched_gap_min":35,"sched_time":"20:48","sched_time_start":"11:57","sched_every":2,"limit":15}],"compress":"0","cmp_file_check":"0","cmp_schedule":null,"cmp_switch":"0","create_time":"1547191657","encrypt_switch":"0","mirr_file_check":"0","mirr_open_type":"0","mirr_sync_attr":"1","mirr_sync_flag":"0","mirr_skip":"0","random_str":"11111111-1111-1111-1111-111111111111","secret_key":"","snapshot_interval":"24","snapshot_limit":"2","snapshot_policy":"0","snapshot_start":null,"snapshot_switch":"0","bk_path_policy":"1","uuid":"11111111-1111-1111-1111-111111111111","wk_node_name":"71.77","bk_node_name":"71.78","wk_ip":"192.168.71.77","wk_port":"26821","bk_ip":"192.168.71.78","bk_port":"26821","username":"admin","backup_type":"0","boot_time":null,"excl_path":["/cgroup/","/dev/","/etc/X11/xorg.conf/","/etc/init.d/i2node/","/etc/rc.d/init.d/i2node/","/etc/sdata/","/lost+found/","/media/","/mnt/","/proc/","/run/","/selinux/","/sys/","/tmp/","/usr/local/sdata/","/var/i2/","/var/i2data/","/var/lock/","/var/run/vmblock-fuse/"],"failover":"0","fsp_name":"test","fsp_type":3,"fsp_uuid":"11111111-1111-1111-1111-111111111111","fsp_wk_shut_flag":"2","wk_path":["/"],"wk_data_type":1,"heartbeat":"10","max_fail_times":"6","monitor_ips":"","monitor_type":0,"move_type":null,"net_mapping":[],"net_mapping_type":"0","post_over_script":"","pre_over_script":"","recovery_data_path":null,"restore_point":null,"running_service":["sshd"],"snapshot":"0","wk_uuid":"42614852-BB62-1EF7-FED0-D2354BF3149D","status":null,"sync_item":"/","bk_path":["/fsp_bk/"],"bk_uuid":"F85DFEC0-149E-373D-0B9E-3DA9A5C43940","bk_data_type":1,"user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","biz_grp_list":[],"biz_grp_name":[]}}
+
+URL: [PUT] /fsp/backup/11111111-1111-1111-1111-111111111111
+ARGS: {"fsp_backup":{"secret_key":"","band_width":"","mirr_open_type":"0","service_uuid":"","mirr_sync_flag":"0","excl_path":["/cgroup/","/dev/","/etc/X11/xorg.conf/","/etc/init.d/i2node/","/etc/rc.d/init.d/i2node/","/etc/sdata/","/lost+found/","/media/","/mnt/","/proc/","/run/","/selinux/","/sys/","/tmp/","/usr/local/sdata/","/var/i2/","/var/i2data/","/var/lock/","/var/run/vmblock-fuse/"],"bkup_one_time":0,"encrypt_switch":"0","mirr_sync_attr":"1","bk_uuid":"F85DFEC0-149E-373D-0B9E-3DA9A5C43940","wk_data_type":1,"bk_path":["/fsp_bk/"],"sync_item":"/","bkup_policy":2,"snapshot_policy":"","mirr_file_check":"0","snapshot_interval":"","compress":"0","monitor_type":0,"failover":"0","wk_path":["/"],"snapshot_limit":"","snapshot_switch":0,"fsp_name":"test","wk_uuid":"42614852-BB62-1EF7-FED0-D2354BF3149D","backup_type":0,"fsp_wk_shut_flag":"2","bk_data_type":1,"bkup_schedule":[{"sched_time_end":"12:39","sched_day":2,"sched_gap_min":45,"sched_time":"19:59","sched_time_start":"04:11","sched_every":2,"limit":7}],"fsp_type":3,"random_str":"11111111-1111-1111-1111-111111111111"}}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [GET] /fsp/backup
+ARGS: {}
+RS: {"code":0,"message":"[0] success","info_list":[{"band_width":"","bk_path_policy":"1","random_str":"11111111-1111-1111-1111-111111111111","wk_node_name":"71.77","bk_node_name":"71.78","username":"admin","bk_uuid":"F85DFEC0-149E-373D-0B9E-3DA9A5C43940","fsp_name":"test","fsp_type":3,"fsp_uuid":"11111111-1111-1111-1111-111111111111","wk_uuid":"42614852-BB62-1EF7-FED0-D2354BF3149D"}],"total":1}
+
+URL: [GET] /fsp/backup/status
+ARGS: {"fsp_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","status":[{"fsp_uuid":"11111111-1111-1111-1111-111111111111","status":"MIRROR","progress":2}]}
+
+URL: [POST] /fsp/backup/operate
+ARGS: {"operate":"stop","fsp_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","fsp_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+URL: [POST] /fsp/backup/operate
+ARGS: {"operate":"start","fsp_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","fsp_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+URL: [POST] /fsp/backup/operate
+ARGS: {"operate":"finish","fsp_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","fsp_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+URL: [DELETE] /fsp/backup
+ARGS: {"fsp_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success"}
+
+Process finished with exit code 0

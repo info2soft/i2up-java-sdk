@@ -1,0 +1,18 @@
+URL: [GET] /monitor/drivers_info/11111111-1111-1111-1111-111111111111
+RS: {"code":0,"message":"","rpc":"1","sdatad":"0","srepd":"1","log":"1","ha":"1","ha_detector":"1","drivers":[{"name":"C:","total":"63012589568","free":"40135884800"},{"name":"E:","total":"4280283136","free":"1591988224"},{"name":"F:","total":"107371032576","free":"41551073280"}]}
+
+URL: [GET] /monitor/phy_info/11111111-1111-1111-1111-111111111111
+RS: {"ret":200,"msg":"","data":{"code":"node.monitor_not_set","message":"[node.monitor_not_set] undefined message"}}
+
+URL: [GET] /monitor/chart_config/11111111-1111-1111-1111-111111111111
+RS: {"code":0,"message":"","switch":0,"configs":{"storage_io":1,"nic_io":0,"per_core":1,"per_disk":0,"net_in":0,"net_out":0}}
+
+URL: [POST] /monitor/chart_config/11111111-1111-1111-1111-111111111111
+ARGS: {"storage_io":1,"per_disk":0,"nic_io":0,"net_out":0,"per_core":1,"net_in":0}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [GET] /monitor/chart_data/11111111-1111-1111-1111-111111111111
+ARGS: {"start_time":154172680,"last_time":164172680}
+RS: {"code":0,"message":"","cpu":[],"mem":[],"nic":[],"disk":[]}
+
+Process finished with exit code 0

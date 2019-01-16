@@ -16,12 +16,12 @@ import test.com.i2soft.util.TestConfig;
 
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TimingBackupTest {
 
     private static Auth auth;
+    private static String uuid = TestConfig.testUuid;
     private static TimingBackup timingBackup;
 
     @BeforeClass
@@ -119,7 +119,6 @@ public class TimingBackupTest {
     @Test
     public void T07_describeTimingBackup() {
         try {
-            String uuid = UUID.randomUUID().toString();
             Map rs = timingBackup.describeTimingBackup(uuid); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
@@ -131,8 +130,7 @@ public class TimingBackupTest {
     @Test
     public void T08_modifyTimingBackup() {
         try {
-            String uuid = UUID.randomUUID().toString();
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "531")); // 获取请求数据
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "533")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = timingBackup.modifyTimingBackup(uuid, args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
@@ -145,9 +143,7 @@ public class TimingBackupTest {
     @Test
     public void T09_listTimingBackup() {
         try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "537")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = timingBackup.listTimingBackup(args); // 发送请求
+            Map rs = timingBackup.listTimingBackup(new StringMap()); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -169,22 +165,9 @@ public class TimingBackupTest {
     }
 
     @Test
-    public void T11_deleteTimingBackup() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "534")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = timingBackup.deleteTimingBackup(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
     public void T12_startTimingBackup() {
         try {
-            I2Rs.I2SmpRs rs = timingBackup.startTimingBackup(new String[]{}); // 发送请求
+            I2Rs.I2SmpRs rs = timingBackup.startTimingBackup(new String[]{uuid}); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -195,7 +178,20 @@ public class TimingBackupTest {
     @Test
     public void T12_stopTimingBackup() {
         try {
-            I2Rs.I2SmpRs rs = timingBackup.stopTimingBackup(new String[]{}); // 发送请求
+            I2Rs.I2SmpRs rs = timingBackup.stopTimingBackup(new String[]{uuid}); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void T13_deleteTimingBackup() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "534")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            I2Rs.I2SmpRs rs = timingBackup.deleteTimingBackup(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

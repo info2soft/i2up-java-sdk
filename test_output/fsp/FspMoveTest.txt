@@ -1,0 +1,64 @@
+﻿URL: [GET] /fsp/move/nic_list
+ARGS: {"bk_uuid":"F85DFEC0-149E-373D-0B9E-3DA9A5C43940","wk_uuid":"42614852-BB62-1EF7-FED0-D2354BF3149D"}
+RS: {"code":0,"message":"[0] success","wk_nic_list":[{"name":"eth2","type":"0","ip":"192.168.71.77/255.255.240.0","gw":"192.168.64.1","dns":"210.22.84.3"},{"name":"virbr0","type":"0","ip":"192.168.122.1/255.255.255.0","gw":"0.0.0.0","dns":"210.22.84.3"},{"name":"virbr0-nic","type":"0","ip":"0.0.0.0/0.0.0.0","gw":"0.0.0.0","dns":"210.22.84.3"}],"bk_nic_list":[{"name":"eth2","type":"0","ip":"192.168.71.78/255.255.240.0","gw":"192.168.64.1","dns":"0.0.0.0"},{"name":"virbr0","type":"0","ip":"192.168.122.1/255.255.255.0","gw":"0.0.0.0","dns":"0.0.0.0"},{"name":"virbr0-nic","type":"0","ip":"0.0.0.0/0.0.0.0","gw":"0.0.0.0","dns":"0.0.0.0"}]}
+
+URL: [GET] /fsp/move/dir_list
+ARGS: {"fsp_uuid":"","wk_uuid":"42614852-BB62-1EF7-FED0-D2354BF3149D"}
+RS: {"code":0,"message":"[0] success","hd_list":[{"label":"/","is_system":1}],"dir_list":[{"wk_path":"/","type":"1"},{"wk_path":"/bin/","type":"0"},{"wk_path":"/boot/","type":"0"},{"wk_path":"/cgroup/","type":"2"},{"wk_path":"/dev/","type":"2"},{"wk_path":"/etc/","type":"0"},{"wk_path":"/etc/X11/xorg.conf/","type":"2"},{"wk_path":"/etc/init.d/i2node/","type":"2"},{"wk_path":"/etc/rc.d/init.d/i2node/","type":"2"},{"wk_path":"/etc/sdata/","type":"2"},{"wk_path":"/lib/","type":"0"},{"wk_path":"/lib64/","type":"0"},{"wk_path":"/lost+found/","type":"2"},{"wk_path":"/media/","type":"2"},{"wk_path":"/mnt/","type":"2"},{"wk_path":"/proc/","type":"2"},{"wk_path":"/root/","type":"0"},{"wk_path":"/run/","type":"2"},{"wk_path":"/sbin/","type":"0"},{"wk_path":"/selinux/","type":"2"},{"wk_path":"/sys/","type":"2"},{"wk_path":"/tmp/","type":"2"},{"wk_path":"/usr/bin/","type":"0"},{"wk_path":"/usr/lib/","type":"0"},{"wk_path":"/usr/lib64/","type":"0"},{"wk_path":"/usr/libexec/","type":"0"},{"wk_path":"/usr/local/","type":"0"},{"wk_path":"/usr/local/sdata/","type":"2"},{"wk_path":"/usr/sbin/","type":"0"},{"wk_path":"/var/i2/","type":"2"},{"wk_path":"/var/i2data/","type":"2"},{"wk_path":"/var/lib/nfs/","type":"0"},{"wk_path":"/var/lock/","type":"2"},{"wk_path":"/var/run/vmblock-fuse/","type":"2"}],"os_type":null}
+
+URL: [POST] /fsp/move/verify_license
+ARGS: {"wk_uuid":"42614852-BB62-1EF7-FED0-D2354BF3149D","bk_uuid":"F85DFEC0-149E-373D-0B9E-3DA9A5C43940"}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [POST] /fsp/move/verify_old_rule
+ARGS: {"wk_uuid":"42614852-BB62-1EF7-FED0-D2354BF3149D","bk_uuid":"F85DFEC0-149E-373D-0B9E-3DA9A5C43940"}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [POST] /fsp/move/verify_volume_space
+ARGS: {"sync_item":"/","wk_uuid":"42614852-BB62-1EF7-FED0-D2354BF3149D","bk_uuid":"F85DFEC0-149E-373D-0B9E-3DA9A5C43940"}
+RS: {"code":0,"message":"[0] success","wk_vol_list":[{"label":"/","is_system":1,"size":2,"free":1}],"bk_vol_list":[{"label":"/","is_system":1,"size":3,"free":2}]}
+
+URL: [POST] /fsp/move/verify_os_version
+ARGS: {"bk_uuid":"F85DFEC0-149E-373D-0B9E-3DA9A5C43940","wk_uuid":"42614852-BB62-1EF7-FED0-D2354BF3149D"}
+RS: {"code":0,"message":"[0] success","wk_os_ver":"Red Hat 6.5 x86_64","bk_os_ver":"Red Hat 6.5 x86_64"}
+
+URL: [POST] /fsp/move
+ARGS: {"fsp_move":{"fsp_name":"testMove","service_uuid":"","monitor_type":0,"bk_path":["/I2FFO/bin/","/I2FFO/boot/","/I2FFO/etc/","/I2FFO/lib/","/I2FFO/lib64/","/I2FFO/root/","/I2FFO/sbin/","/I2FFO/usr/bin/","/I2FFO/usr/lib/","/I2FFO/usr/lib64/","/I2FFO/usr/libexec/","/I2FFO/usr/local/","/I2FFO/usr/sbin/","/I2FFO/var/lib/nfs/"],"compress":"0","net_mapping":[{"bk_nic":{"name":"Ethernet0","type":"0","ip":"192.168.72.74/255.255.240.0"},"wk_nic":{"name":"Ethernet0","type":"0","ip":"192.168.72.73/255.255.240.0"}}],"bk_uuid":"F85DFEC0-149E-373D-0B9E-3DA9A5C43940","encrypt_switch":"0","mirr_open_type":"0","sync_item":"/","mirr_sync_flag":"0","net_mapping_type":"2","mirr_sync_attr":"1","band_width":"","excl_path":["/etc/X11/xorg.conf/","/etc/init.d/i2node/","/etc/rc.d/init.d/i2node/","/etc/sdata/"],"fsp_wk_shut_flag":"2","secret_key":"","wk_path":["/bin/","/boot/","/etc/","/lib/","/lib64/","/root/","/sbin/","/usr/bin/","/usr/lib/","/usr/lib64/","/usr/libexec/","/usr/local/","/usr/sbin/","/var/lib/nfs/"],"mirr_file_check":"0","wk_uuid":"42614852-BB62-1EF7-FED0-D2354BF3149D","failover":"2","random_str":"11111111-1111-1111-1111-111111111111"}}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [GET] /fsp/move/11111111-1111-1111-1111-111111111111
+RS: {"code":0,"message":"[0] success","fsp_move":{"id":"15","auto_start":"1","band_width":"","bkup_one_time":null,"bkup_policy":2,"bkup_schedule":null,"compress":"0","cmp_file_check":"0","cmp_schedule":null,"cmp_switch":"0","create_time":"1547192761","encrypt_switch":"0","mirr_file_check":"0","mirr_open_type":"0","mirr_sync_attr":"1","mirr_sync_flag":"0","mirr_skip":"0","random_str":"11111111-1111-1111-1111-111111111111","secret_key":"","snapshot_interval":"24","snapshot_limit":"2","snapshot_policy":"0","snapshot_start":null,"snapshot_switch":"0","bk_path_policy":"0","uuid":"11111111-1111-1111-1111-111111111111","wk_node_name":"71.77","bk_node_name":"71.78","wk_ip":"192.168.71.77","wk_port":"26821","bk_ip":"192.168.71.78","bk_port":"26821","username":"admin","backup_type":"0","boot_time":null,"excl_path":["/etc/X11/xorg.conf/","/etc/init.d/i2node/","/etc/rc.d/init.d/i2node/","/etc/sdata/"],"failover":"2","fsp_name":"testMove","fsp_type":1,"fsp_uuid":"11111111-1111-1111-1111-111111111111","fsp_wk_shut_flag":"2","wk_path":["/bin/","/boot/","/etc/","/lib/","/lib64/","/root/","/sbin/","/usr/bin/","/usr/lib/","/usr/lib64/","/usr/libexec/","/usr/local/","/usr/sbin/","/var/lib/nfs/"],"wk_data_type":1,"heartbeat":"10","max_fail_times":"6","monitor_ips":"","monitor_type":0,"move_type":null,"net_mapping":[{"bk_nic":{"name":"Ethernet0","type":"0","ip":"192.168.72.74/255.255.240.0"},"wk_nic":{"name":"Ethernet0","type":"0","ip":"192.168.72.73/255.255.240.0"}}],"net_mapping_type":"2","post_over_script":"","pre_over_script":"","recovery_data_path":null,"restore_point":null,"running_service":["sshd"],"snapshot":"0","wk_uuid":"42614852-BB62-1EF7-FED0-D2354BF3149D","status":null,"sync_item":"/","bk_path":["/I2FFO/bin/","/I2FFO/boot/","/I2FFO/etc/","/I2FFO/lib/","/I2FFO/lib64/","/I2FFO/root/","/I2FFO/sbin/","/I2FFO/usr/bin/","/I2FFO/usr/lib/","/I2FFO/usr/lib64/","/I2FFO/usr/libexec/","/I2FFO/usr/local/","/I2FFO/usr/sbin/","/I2FFO/var/lib/nfs/"],"bk_uuid":"F85DFEC0-149E-373D-0B9E-3DA9A5C43940","bk_data_type":1,"user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","biz_grp_list":[],"biz_grp_name":[]}}
+
+URL: [PUT] /fsp/move/11111111-1111-1111-1111-111111111111
+ARGS: {"fsp_move":{"fsp_name":"testMove","service_uuid":"","monitor_type":0,"bk_path":["/I2FFO/bin/","/I2FFO/boot/","/I2FFO/etc/","/I2FFO/lib/","/I2FFO/lib64/","/I2FFO/root/","/I2FFO/sbin/","/I2FFO/usr/bin/","/I2FFO/usr/lib/","/I2FFO/usr/lib64/","/I2FFO/usr/libexec/","/I2FFO/usr/local/","/I2FFO/usr/sbin/","/I2FFO/var/lib/nfs/"],"compress":"0","net_mapping":[{"bk_nic":{"name":"Ethernet0","type":"0","ip":"192.168.72.74/255.255.240.0"},"wk_nic":{"name":"Ethernet0","type":"0","ip":"192.168.72.73/255.255.240.0"}}],"bk_uuid":"F85DFEC0-149E-373D-0B9E-3DA9A5C43940","encrypt_switch":"0","mirr_open_type":"0","sync_item":"/","mirr_sync_flag":"0","net_mapping_type":"2","mirr_sync_attr":"1","band_width":"","excl_path":["/etc/X11/xorg.conf/","/etc/init.d/i2node/","/etc/rc.d/init.d/i2node/","/etc/sdata/"],"fsp_wk_shut_flag":"2","secret_key":"","wk_path":["/bin/","/boot/","/etc/","/lib/","/lib64/","/root/","/sbin/","/usr/bin/","/usr/lib/","/usr/lib64/","/usr/libexec/","/usr/local/","/usr/sbin/","/var/lib/nfs/"],"mirr_file_check":"0","wk_uuid":"42614852-BB62-1EF7-FED0-D2354BF3149D","failover":"2","random_str":"11111111-1111-1111-1111-111111111111"}}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [GET] /fsp/move
+ARGS: {"search_value":"","limit":10,"page":1,"search_field":""}
+RS: {"code":0,"message":"[0] success","info_list":[{"band_width":"","bk_path_policy":"0","random_str":"11111111-1111-1111-1111-111111111111","wk_node_name":"71.77","bk_node_name":"71.78","username":"admin","bk_uuid":"F85DFEC0-149E-373D-0B9E-3DA9A5C43940","fsp_name":"testMove","fsp_type":1,"fsp_uuid":"11111111-1111-1111-1111-111111111111","wk_uuid":"42614852-BB62-1EF7-FED0-D2354BF3149D"}],"total":1}
+
+URL: [POST] /fsp/move/operate
+ARGS: {"operate":"stop","fsp_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","fsp_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+URL: [POST] /fsp/move/operate
+ARGS: {"operate":"start","fsp_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","fsp_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+URL: [POST] /fsp/move/operate
+ARGS: {"operate":"move","fsp_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","fsp_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+URL: [POST] /fsp/move/operate
+ARGS: {"operate":"reboot","fsp_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","fsp_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+URL: [GET] /fsp/move/status
+ARGS: {"fsp_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","status":[{"fsp_uuid":"11111111-1111-1111-1111-111111111111","status":"MIRROR","progress":14}]}
+
+URL: [DELETE] /fsp/move
+ARGS: {"fsp_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success"}
+
+Process finished with exit code 0

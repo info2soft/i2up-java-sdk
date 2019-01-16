@@ -1,0 +1,17 @@
+URL: [GET] /dir
+ARGS: {"path":"","dev":0,"rep_uuid":"","show_file":1,"bs_time":"2018-10-23_13-23-08","node_uuid":"B8566905-411E-B2CD-A742-77B1346D8E84"}
+RS: {"code":0,"message":"","dir_list":[{"name":"C:","time":"","size":"","is_dir":true},{"name":"E:","time":"","size":"","is_dir":true}]}
+
+URL: [POST] /dir
+ARGS: {"path":"E:\\test2\\","node_uuid":"B8566905-411E-B2CD-A742-77B1346D8E84"}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [POST] /dir/check
+ARGS: {"path":"E:\\test2\\","node_uuid":"B8566905-411E-B2CD-A742-77B1346D8E84"}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [GET] /dir
+ARGS: {"path":"/","password":"123qwe","i2id":"","port":"26821","ip":"192.168.72.76","show_file":1,"account":"chenky"}
+RS: {"code":0,"message":"","dir_list":[{"name":"C:","time":"","size":"","is_dir":true},{"name":"E:","time":"","size":"","is_dir":true},{"name":"F:","time":"","size":"","is_dir":true}]}
+
+Process finished with exit code 0
