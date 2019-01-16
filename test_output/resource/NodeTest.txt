@@ -1,0 +1,61 @@
+URL: [POST] /node/auth
+ARGS: {"auth_type":0,"os_user":"chenky","i2id":"","config_port":26821,"os_pwd":"5YuSIfmri9jSRt0GRMQFSx+GLAZwi2dKAKlO3hrHBQQbhKmXRCdVX4Y2UyD5C01VlL4cBqiHTRKutQwzt/dHA3jXxoeOALXg+/HLX3y4vDJLpqrNotNBEXp1nP0hG1/G/bUpT6aP5D/Y/+j6Mj/zV1Z7A1tyhSyShd8yV1ztRoIp537NapdsSveK/ayg5YiPLPiFdsbYw92NKtflnr9FQmGn1FxQS5LzCKAj/UnLnPNTXgKL6Di+uwmET/dGibWaViIzZ+lIbO6ZKaYVA872h58KvI3DAQLuQ2bNHUWwBm/PhhECkB0+kpbNDHTpn87m2Uw5tK+Fnor6gymNaqpGJg\u003d\u003d","config_addr":"192.168.72.76","node_uuid":""}
+RS: {"code":0.0,"message":"[0] success","os_type":1.0,"root":"C:\\Program Files (x86)\\info2soft\\node\\","log_path":"C:\\Program Files (x86)\\info2soft\\node\\log\\","cache_path":"C:\\Program Files (x86)\\info2soft\\node\\cache\\"}
+
+os_type: 1
+
+URL: [GET] /node/check_capacity
+ARGS: {"config_port":"26821","cache_path":"C:\\Program Files (x86)\\info2soft\\node\\cache\\","config_addr":"192.168.72.76"}
+RS: {"code":0.0,"message":"[0] success","mem_total":"4095","mem_free":"2123","hd_total":"60093","hd_free":"39258"}
+
+URL: [GET] /node/hello
+ARGS: {"port":"26821","ip":"192.168.72.76"}
+RS: {"code":0.0,"message":"[0] success","ip":"192.168.72.76"}
+
+URL: [POST] /node
+ARGS: {"node":{"bak_client_max":"100","cloud_type":"0","bak_root":"","monitor_switch":0,"node_role":"3","mem_limit":"819","config_port":"26821","mon_save_day":"5","vg":"","os_type":1,"os_pwd":"","log_path":"C:\\Program Files (x86)\\info2soft\\node\\log\\","mon_data_path":"C:\\Program Files (x86)\\info2soft\\node\\log\\","comment":"","rep_path":[],"bak_user_max":"100","cache_path":"C:\\Program Files (x86)\\info2soft\\node\\cache\\","db_save_day":"3","proxy_switch":0,"data_addr":"192.168.72.76","node_name":"N4_72.76","config_addr":"192.168.72.76","mon_send_interval":"10","disk_limit":"10240","reboot_sys":"0","bind_lic_list":[],"security_check":0,"os_user":"Kyran","bak_service_type":"","en_snap_switch":0,"rep_excl_path":[],"biz_grp_list":[],"i2id":""}}
+RS: {"code":0.0,"message":"[0] success"}
+
+URL: [GET] /node
+ARGS: {"limit":1,"direction":"DESC"}
+RS: {"code":0.0,"message":"[0] success","info_list":[{"username":"admin","cache_path":"C:\\Program Files (x86)\\info2soft\\node\\cache\\","config_addr":"192.168.72.76","data_addr":"192.168.72.76","disk_limit":"10240","log_path":"C:\\Program Files (x86)\\info2soft\\node\\log\\","mem_limit":"819","node_name":"N4_72.76","node_role":"3","node_uuid":"9ECB7908-5BD2-B66C-2CCE-F6D80040C89C","os_type":1.0,"os_version":"Microsoft Windows 10/x64 Edition"}],"total":2.0}
+
+uuid: 9ECB7908-5BD2-B66C-2CCE-F6D80040C89C
+
+URL: [POST] /node/operate
+ARGS: {"node_uuids":["9ECB7908-5BD2-B66C-2CCE-F6D80040C89C"],"operate":"upgrade"}
+RS: {"code":0.0,"message":"[0] success","success_list":[{"code":0.0,"message":"[0] success","node_uuid":"9ECB7908-5BD2-B66C-2CCE-F6D80040C89C"}]}
+
+URL: [GET] /node/status
+ARGS: {"node_uuids":["9ECB7908-5BD2-B66C-2CCE-F6D80040C89C"]}
+RS: {"code":0.0,"message":"[0] success","status":[{"node_uuid":"9ECB7908-5BD2-B66C-2CCE-F6D80040C89C","status":"ONLINE","version":"7.0-26998"}]}
+
+URL: [GET] /node/9ECB7908-5BD2-B66C-2CCE-F6D80040C89C
+RS: {"code":0.0,"message":"[0] success","node":{"monitor_switch":0.0,"mon_send_interval":"10","mon_data_path":null,"mon_save_day":"5","db_save_day":"3","chart_config":"0","info":null,"created_at":"1546589854","updated_at":null,"username":"admin","id":"8","bak_client_max":"100","bak_root":"","bak_service_type":"","bak_user_max":"100","bind_lic_list":[],"cache_path":"C:\\Program Files (x86)\\info2soft\\node\\cache\\","cls_disk":null,"cls_node":null,"cls_is_local":null,"comment":"","config_addr":"192.168.72.76","config_port":"26821","create_time":"1546589853","data_addr":"192.168.72.76","data_port":"26831","disk_limit":"10240","en_snap_switch":0.0,"log_path":"C:\\Program Files (x86)\\info2soft\\node\\log\\","mem_limit":"819","node_name":"N4_72.76","node_role":"3","node_type":0.0,"node_uuid":"9ECB7908-5BD2-B66C-2CCE-F6D80040C89C","os_version":"Microsoft Windows 10/x64 Edition","os_type":1.0,"os_user":"Kyran","phy_type":2.0,"proxy_switch":0.0,"random_str":"933C3A3C-E807-360B-C10C-73164C532064","rep_excl_path":[],"rep_path":["/"],"security_check":0.0,"status":null,"tc_uuid":null,"user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","vg":"","i2id":"","hardware_code":null,"biz_grp_list":[],"biz_grp_name":[],"allow_modify_cache_path":1.0}}
+
+URL: [GET] /node/9ECB7908-5BD2-B66C-2CCE-F6D80040C89C/device_info
+RS: {"code":0.0,"message":"[0] success","node_uuid":"9ECB7908-5BD2-B66C-2CCE-F6D80040C89C","device_info":[{"devEnbcompress":"N","devEnbdewight":"N","devFree":"1.487GB","devMount":"","devName":"E:\\","devSaverate":"0%","devTotal":"3.986GB","devType":"block","devUsedSz":"2.5GB","nodeName":"TjRfNzIuNzY\u003d","nodeType":"3"},{"devEnbcompress":"N","devEnbdewight":"N","devFree":"38.7GB","devMount":"","devName":"F:\\","devSaverate":"0%","devTotal":"100GB","devType":"block","devUsedSz":"61.3GB","nodeName":"TjRfNzIuNzY\u003d","nodeType":"3"},{"devEnbcompress":"N","devEnbdewight":"N","devFree":"38.34GB","devMount":"","devName":"C:\\","devSaverate":"0%","devTotal":"58.69GB","devType":"block","devUsedSz":"20.35GB","nodeName":"TjRfNzIuNzY\u003d","nodeType":"3"}]}
+
+URL: [PUT] /node/9ECB7908-5BD2-B66C-2CCE-F6D80040C89C
+ARGS: {"code":0,"message":"[0] success","node":{"monitor_switch":0,"mon_send_interval":"10","mon_save_day":"5","db_save_day":"3","chart_config":"0","created_at":"1546589854","username":"admin","id":"8","bak_client_max":"100","bak_root":"","bak_service_type":"","bak_user_max":"100","bind_lic_list":[],"cache_path":"C:\\Program Files (x86)\\info2soft\\node\\cache\\","comment":"","config_addr":"192.168.72.76","config_port":"26821","create_time":"1546589853","data_addr":"192.168.72.76","data_port":"26831","disk_limit":"10240","en_snap_switch":0,"log_path":"C:\\Program Files (x86)\\info2soft\\node\\log\\","mem_limit":"819","node_name":"N4_72.76","node_role":"3","node_type":0,"node_uuid":"9ECB7908-5BD2-B66C-2CCE-F6D80040C89C","os_version":"Microsoft Windows 10/x64 Edition","os_type":1,"os_user":"Kyran","phy_type":2,"proxy_switch":0,"random_str":"933C3A3C-E807-360B-C10C-73164C532064","rep_excl_path":[],"rep_path":["/"],"security_check":0,"user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","vg":"","i2id":"","biz_grp_list":[],"biz_grp_name":[],"allow_modify_cache_path":1}}
+RS: {"code":0.0,"message":"[0] success"}
+
+URL: [DELETE] /node
+ARGS: {"node_uuids":["9ECB7908-5BD2-B66C-2CCE-F6D80040C89C"]}
+RS: {"code":0.0,"message":"[0] success"}
+
+URL: [POST] /node/batch
+ARGS: {"node":{"mem_limit":"819","bind_lic_list":[],"disk_limit":"10240","monitor_interval":"10","node_role":"3","monitor_switch":0,"moni_log_keep_node":"5","moni_log_keep_server":"3","security_check":0,"biz_grp_list":[]},"base_info_list":[{"os_pwd":"aTv1+XDSOalLVh7nDK/S+1vWnM9ZJfW+JI1y8oBsFnKtIoDnFIaiBKMP3PUmslMzBMZw9ljz9ZZ4YJS3SSFdrISOzWcsJjcYSBlv5AAOU2T411jSpWwaeC0mOSJ3AVQqd96ruol6AtLZY/iOC2BCPYT7I03CJyr8fSv8/T93rQ04AqQhnMxjVU+/DXWH+uolb+3ZMwVTvJI6KtjI8ucLcJjz8kEcwkUAXDcWw3kQ75SutA5VUT+zKuSrg67RJ5nog+SNoTm6xFxJ0DP3RBXuxjeyYvZ//kh02tocbc6jCwHRlkLMu+B/W5gaIMaCEK+AkEnPX4jfSsSp76uyFTsEEQ\u003d\u003d","os_user":"chenky","config_port":"26821","config_addr":"192.168.72.76","node_name":"N4_72.76"}]}
+RS: {"code":0.0,"message":"[0] success","success_list":[{"code":0.0,"message":"[0] success","node_name":"N4_72.76","config_addr":"192.168.72.76"}]}
+
+URL: [GET] /node
+ARGS: {"limit":1,"direction":"DESC"}
+RS: {"code":0.0,"message":"[0] success","info_list":[{"username":"admin","cache_path":null,"config_addr":"192.168.72.76","data_addr":"192.168.72.76","disk_limit":"10240","log_path":null,"mem_limit":"819","node_name":"N4_72.76","node_role":"3","node_uuid":"8A64BC39-64CB-FFC2-5867-3C82B4B23488","os_type":0.0,"os_version":null}],"total":2.0}
+
+uuid: 8A64BC39-64CB-FFC2-5867-3C82B4B23488
+
+URL: [DELETE] /node
+ARGS: {"node_uuids":["8A64BC39-64CB-FFC2-5867-3C82B4B23488"]}
+RS: {"code":0.0,"message":"[0] success"}
+
+Process finished with exit code 0

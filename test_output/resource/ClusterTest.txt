@@ -1,0 +1,36 @@
+URL: [POST] /cls/auth
+ARGS: {"cls_is_local":1,"os_user":"i2test2018.com\\administrator","config_port":26821,"os_pwd":"XgjIFKsMgZ39xmALr3JdR0x03UfElrAEmnVQKTDvoVTN1rY04QatICe7l1H8bFtzUxrohobn49wJyLL0eA5OrEsLEOhK1dj3UosEJSTIlhv5YugiWEoyVBfANCnPpD6/yNMFoqPYj/v8rOBsLfv2QX9M+5RmiRmXHZzP84oxQJwCJBB3i5l869CI0G2HFsz+jxIHwkZj/TftZq8adjG9qzgUh8BrpNr44R5pZf/grfiHhlv6hsPdNWju4re8D6ci/NShOqyT/O4ar+Kufnn9L6rGxtGBb5pxdNAtixo43SBAL0rLdQ876eZrR+uWHbx50vUx3cf316YO6zPYDxsPBA\u003d\u003d","config_addr":"192.168.87.14"}
+RS: {"code":0,"message":"[0] success","cls_name":"cluster-2018","hd_list":["C:","E:","F:","G:"],"cls_node_list":[{"cls_node_name":"cluster-node1","cls_node_status":0},{"cls_node_name":"cluster-node2","cls_node_status":0}],"work_node_list":[{"node_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","node_name":"N3_72.75"},{"node_uuid":"04ED35A8-F05F-21BA-33FC-4236019589FB","node_name":"192.168.25.22"},{"node_uuid":"5FB4B19E-957F-820C-887A-8D1593093C9B","node_name":"192.168.25.21"},{"node_uuid":"C11FE572-5207-3359-DB85-001E95F5F185","node_name":"192.168.25.12"},{"node_uuid":"B8566905-411E-B2CD-A742-77B1346D8E84","node_name":"move B 72.82"},{"node_uuid":"CE77F3D6-A6E3-A385-CE66-712313B7DDE8","node_name":"192.168.25.11"},{"node_uuid":"790502A5-F563-4E22-8E64-692713FDE812","node_name":"87.12"},{"node_uuid":"BD7D3EF7-2F75-E2BB-A2CB-CFE936CF1F6C","node_name":"87.11"}]}
+
+URL: [POST] /cls/node_verify
+ARGS: {"cls_name":"cluster-2018","cls_node_name":"cluster-node1","node_uuid":"BD7D3EF7-2F75-E2BB-A2CB-CFE936CF1F6C"}
+RS: {"code":0,"message":"[0] success","node_name":"87.11","node_uuid":"BD7D3EF7-2F75-E2BB-A2CB-CFE936CF1F6C","config_addr":"192.168.87.11","version":"6.2-21501"}
+
+URL: [POST] /cls
+ARGS: {"cls":{"comment":"","cls_disk":["E:\\"],"config_port":"26821","cls_node":["BD7D3EF7-2F75-E2BB-A2CB-CFE936CF1F6C"],"node_type":1,"cls_is_local":1,"os_user":"i2test2018.com\\administrator","config_addr":"192.168.74.25","node_name":"cls"}}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [GET] /cls/11111111-1111-1111-1111-111111111111
+RS: {"code":0,"message":"[0] success","cls":{"monitor_switch":0,"mon_send_interval":"10","mon_data_path":null,"mon_save_day":"5","db_save_day":"3","chart_config":"0","info":null,"created_at":"1547112581","updated_at":null,"username":"admin","id":"25","bak_client_max":"100","bak_root":null,"bak_service_type":null,"bak_user_max":"100","bind_lic_list":null,"cache_path":null,"cls_disk":["E:\\"],"cls_node":["BD7D3EF7-2F75-E2BB-A2CB-CFE936CF1F6C"],"cls_is_local":1,"comment":null,"config_addr":"192.168.74.25","config_port":"26821","create_time":"1547112581","data_addr":"192.168.74.25","data_port":"26831","disk_limit":"100","en_snap_switch":1,"log_path":null,"mem_limit":"100","node_name":"cls","node_role":"1","node_type":1,"node_uuid":"11111111-1111-1111-1111-111111111111","os_pwd":null,"os_version":null,"os_type":1,"os_user":"i2test2018.com\\administrator","phy_type":null,"proxy_switch":0,"random_str":"11111111-1111-1111-1111-111111111111","rep_excl_path":null,"rep_path":[],"security_check":0,"status":null,"tc_uuid":null,"user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","vg":null,"i2id":null,"hardware_code":null,"biz_grp_list":[],"biz_grp_name":[]}}
+
+URL: [PUT] /cls/11111111-1111-1111-1111-111111111111
+ARGS: {"code":0,"message":"[0] success","cls":{"monitor_switch":0,"mon_send_interval":"10","mon_save_day":"5","db_save_day":"3","chart_config":"0","created_at":"1547112581","username":"admin","id":"25","bak_client_max":"100","bak_user_max":"100","cls_disk":["E:\\"],"cls_node":["BD7D3EF7-2F75-E2BB-A2CB-CFE936CF1F6C"],"cls_is_local":1,"config_addr":"192.168.74.25","config_port":"26821","create_time":"1547112581","data_addr":"192.168.74.25","data_port":"26831","disk_limit":"100","en_snap_switch":1,"mem_limit":"100","node_name":"cls","node_role":"1","node_type":1,"node_uuid":"11111111-1111-1111-1111-111111111111","os_type":1,"os_user":"i2test2018.com\\administrator","proxy_switch":0,"random_str":"11111111-1111-1111-1111-111111111111","rep_path":[],"security_check":0,"user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","biz_grp_list":[],"biz_grp_name":[]}}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [GET] /cls
+ARGS: {"search_value":"","limit":1,"page":1,"search_field":""}
+RS: {"code":0,"message":"[0] success","info_list":[{"username":"admin","config_addr":"192.168.74.25","node_name":"cls","node_type":1,"node_uuid":"11111111-1111-1111-1111-111111111111"}],"total":1}
+
+URL: [GET] /cls/status
+ARGS: {"node_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","status":[{"node_uuid":"11111111-1111-1111-1111-111111111111","status":"OFFLINE","code":11111001,"message":"[11111001] call failed. Can\u0027t connect to a node or platform"}]}
+
+URL: [POST] /cls/operate
+ARGS: {"operate":"detail","node_uuid":"11111111-1111-1111-1111-111111111111"}
+RS: {"ret":200,"msg":""}
+
+URL: [DELETE] /cls
+ARGS: {"node_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success"}
+
+Process finished with exit code 0

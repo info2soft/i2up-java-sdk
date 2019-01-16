@@ -1,0 +1,39 @@
+URL: [POST] /auth/token
+ARGS: {"pwd":"Info1234","username":"admin"}
+RS: {"code":0.0,"message":"","token":"e2726aa285479c5ffd56dda9791b7c82e103c7de","sso_token":"cf494acac68cc1aclf870JuxmvWc97nmli4HnOdxsOlojvja9KiSFeVOhKYviRGLOVaLOH6jCsI8pGe68o9AmkfGAMPpGZAa4l0AeW5G9X_4zq61dnmUntT3OqRhiws70YxKrJ0kaq0r9mtvlX5ljOr_A4LqOduEGYu_qA"}
+
+URL: [POST] /biz_grp
+ARGS: {"biz_grp":{"subtype":0,"comment":"123","grp_name":"grp_name","type":1}}
+RS: {"code":0.0,"message":"[0] success"}
+
+URL: [GET] /biz_grp
+ARGS: {"limit":1,"direction":"DESC"}
+RS: {"code":0.0,"message":"[0] success","info_list":[{"username":"admin","id":"1","grp_uuid":"E3D3D52A-0B22-1F2F-717E-2AD3B37851AE","grp_name":"grp_name","type":1.0,"subtype":0.0,"user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","comment":"123","create_time":1.546832319E9}],"total":1.0}
+
+grp_uuid: E3D3D52A-0B22-1F2F-717E-2AD3B37851AE
+
+URL: [GET] /biz_grp/E3D3D52A-0B22-1F2F-717E-2AD3B37851AE
+ARGS: {}
+RS: {"code":0.0,"message":"[0] success","biz_grp":{"username":"admin","id":"1","grp_uuid":"E3D3D52A-0B22-1F2F-717E-2AD3B37851AE","grp_name":"grp_name","type":1.0,"subtype":0.0,"user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","comment":"123","create_time":1.546832319E9}}
+
+URL: [PUT] /biz_grp/E3D3D52A-0B22-1F2F-717E-2AD3B37851AE
+ARGS: {"code":0,"message":"[0] success","biz_grp":{"username":"admin","id":"1","grp_uuid":"E3D3D52A-0B22-1F2F-717E-2AD3B37851AE","grp_name":"grp_name","type":1,"subtype":0,"user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","comment":"123","create_time":1546832319}}
+RS: {"code":0.0,"message":"[0] success"}
+
+URL: [GET] /biz_grp/res
+ARGS: {"subtype":0,"type":1}
+RS: {"code":0.0,"message":"[0] success","info_list":[{"uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","name":"N3_72.75","wk_uuid":null,"bk_uuid":null,"other":null,"type":1.0,"subtype":0.0,"create_time":1.546416702E9}]}
+
+URL: [GET] /biz_grp/E3D3D52A-0B22-1F2F-717E-2AD3B37851AE/bind
+ARGS: {}
+RS: {"code":0.0,"message":"[0] success","info_list":[{"uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","name":"N3_72.75","wk_uuid":null,"bk_uuid":null,"other":null,"type":1.0,"subtype":0.0,"create_time":1.546416702E9,"is_bound":0.0}]}
+
+URL: [PUT] /biz_grp/E3D3D52A-0B22-1F2F-717E-2AD3B37851AE/bind
+ARGS: {"uuids":["67E33CDB-D75B-15B3-367D-50C764F5A26F"]}
+RS: {"code":0.0,"message":"[0] success"}
+
+URL: [DELETE] /biz_grp
+ARGS: {"grp_uuids":["E3D3D52A-0B22-1F2F-717E-2AD3B37851AE"]}
+RS: {"code":0.0,"message":"[0] success"}
+
+Process finished with exit code 0

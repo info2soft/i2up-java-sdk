@@ -1,0 +1,28 @@
+﻿URL: [POST] /compare
+ARGS: {"compare":{"excl_path":[],"bkup_one_time":0,"bkup_schedule":{"sched_gap_min":60,"sched_time":["00:00:00"],"sched_day":["1"],"sched_time_end":"23:59","limit":5,"sched_time_start":"00:00","sched_every":0},"mirr_file_check":"1","task_name":"testCompare1","wk_path":["E:\\test\\"],"bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","cmp_type":0,"bk_path":["E:\\test\\"],"bkup_policy":2,"compress":0,"wk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F"}}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [GET] /compare/11111111-1111-1111-1111-111111111111
+RS: {"code":0,"message":"[0] success","compare":{"username":"admin","id":"7","bkup_one_time":0,"bkup_policy":2,"bkup_schedule":{"sched_gap_min":60,"sched_time":["00:00:00"],"sched_day":["1"],"sched_time_end":"23:59","limit":5,"sched_time_start":"00:00","sched_every":0},"cmp_type":0,"compress":0,"create_time":1547100378,"end_time":null,"excl_path":[],"mirr_file_check":1,"random_str":"11111111-1111-1111-1111-111111111111","raw_uuid":null,"result_sum":null,"wk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","wk_path":["E:\\test\\"],"start_time":1547100378,"status":"COMPARING","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","bk_path":["E:\\test\\"],"task_name":"testCompare1","task_type":0,"task_uuid":"11111111-1111-1111-1111-111111111111","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","ct_name_type":0,"ct_name_str1":null,"ct_name_str2":null,"ct_name_str3":null,"ct_name_str4":null,"biz_grp_list":[],"biz_grp_name":[]}}
+
+URL: [GET] /compare
+ARGS: {}
+RS: {"code":0,"message":"[0] success","info_list":[{"wk_node_name":"N3_72.75","bk_node_name":"N3_72.75","username":"admin","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","bkup_policy":2,"create_time":1547100378,"end_time":null,"result_sum":null,"start_time":1547100378,"status":"COMPARING","task_name":"testCompare1","task_uuid":"11111111-1111-1111-1111-111111111111","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","wk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F"}],"total":1}
+
+URL: [GET] /compare/status
+ARGS: {"task_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","status":[{"task_uuid":"11111111-1111-1111-1111-111111111111","status":"PENDING","result_sum":null,"start_time":1547100378,"progress":0}]}
+
+URL: [POST] /compare/operate
+ARGS: {"operate":"download","task_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","file_name":"CPR_20190110140619.zip","download_url":"/download/CPR_20190110140619.zip"}
+
+URL: [GET] /compare/11111111-1111-1111-1111-111111111111/result_list
+ARGS: {}
+RS: {"code":0,"message":"[0] success","info_list":[],"total":0}
+
+URL: [POST] /compare/operate
+ARGS: {"operate":"delete","task_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","task_uuid":"11111111-1111-1111-1111-111111111111"}]}
+
+Process finished with exit code 0

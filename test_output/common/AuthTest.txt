@@ -1,0 +1,9 @@
+URL: [POST] /auth/token
+ARGS: {"pwd":"Info1234","username":"admin"}
+RS: {"code":0,"message":"","token":"79556fc58e7dcd587abe30cd155ea0ff91518459","sso_token":"bfd9ffa3ec1ed4addrNMBGcQd9rRS2OExmYvDuFXI2WEZzO4PpFnswcFRz4kLxvBmeUsnJnVnAXgTV9DnD-y0MIGeeGzfPcIwdBCc1QbbG5s87CsAyqmYe_1dV-7CqPTr2aAdQEmWyKFN6LSbFegaqgbY1f7TOf9LMVmdg"}
+
+URL: [GET] /auth/token
+ARGS: {"access_token":"bfd9ffa3ec1ed4addrNMBGcQd9rRS2OExmYvDuFXI2WEZzO4PpFnswcFRz4kLxvBmeUsnJnVnAXgTV9DnD-y0MIGeeGzfPcIwdBCc1QbbG5s87CsAyqmYe_1dV-7CqPTr2aAdQEmWyKFN6LSbFegaqgbY1f7TOf9LMVmdg"}
+RS: {"code":0,"message":"[0] success","username":"admin"}
+
+Process finished with exit code 0

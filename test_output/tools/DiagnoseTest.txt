@@ -1,0 +1,17 @@
+﻿URL: [POST] /diagnose
+ARGS: {"rep_uuid":"","check_type":1,"wk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","task_uuid":""}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [GET] /diagnose
+ARGS: {"limit":10,"page":1}
+RS: {"code":0,"message":"[0] success","info_list":[{"item_name":null,"wk_node_name":"N3_72.75","bk_node_name":"N3_72.75","username":"admin","id":"5","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","item_uuid":null,"wk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","check_uuid":"11111111-1111-1111-1111-111111111111","check_type":1,"status":"DIAGNOSE","result":null,"download_url":null,"create_time":1547091723},{"item_name":null,"wk_node_name":"N3_72.75","bk_node_name":"N3_72.75","username":"admin","id":"4","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","item_uuid":null,"wk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","check_uuid":"11111111-1111-1111-1111-111111111111","check_type":1,"status":"FINISH","result":true,"download_url":"/download/DIAGNOSE_20190110114153_11111111-1111-1111-1111-111111111111.zip","create_time":1547091640}],"total":2}
+
+URL: [GET] /diagnose/download_res
+ARGS: {"check_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","info_list":[{"item_name":null,"wk_node_name":"N3_72.75","bk_node_name":"N3_72.75","username":"admin","id":"5","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","item_uuid":null,"wk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","check_uuid":"11111111-1111-1111-1111-111111111111","check_type":1,"status":"DIAGNOSE","result":null,"download_url":null,"create_time":1547091723},{"item_name":null,"wk_node_name":"N3_72.75","bk_node_name":"N3_72.75","username":"admin","id":"4","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","bk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","item_uuid":null,"wk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","check_uuid":"11111111-1111-1111-1111-111111111111","check_type":1,"status":"FINISH","result":true,"download_url":"/download/DIAGNOSE_20190110114153_11111111-1111-1111-1111-111111111111.zip","create_time":1547091640}],"total":2}
+
+URL: [DELETE] /diagnose
+ARGS: {"check_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success"}
+
+Process finished with exit code 0

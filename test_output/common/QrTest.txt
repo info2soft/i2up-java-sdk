@@ -1,0 +1,29 @@
+URL: [GET] /qr/t
+ARGS: {"timestamp":1546847673}
+RS: {"code":0,"message":"","t":"154702594290983925"}
+
+URL: [POST] /qr/generate
+ARGS: {"app_name":"enterpriseApp"}
+RS: {"code":0,"message":"[0] success","content":{"uuid":"d2ab198fbba747c3ab7c580f14bdb2d95f01f4c3","t":"154702594307156751"}}
+
+URL: [POST] /qr/event
+ARGS: {"action":0,"uuid":"d2ab198fbba747c3ab7c580f14bdb2d95f01f4c3"}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [POST] /qr/event
+ARGS: {"action":1,"uuid":"562e50c077675430a259518a38c951109c2478d3"}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [POST] /qr/event
+ARGS: {"action":2,"uuid":"d2ab198fbba747c3ab7c580f14bdb2d95f01f4c3"}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [GET] /qr
+ARGS: {"format":"base64","point_size":1,"text":"test"}
+RS: {"code":0,"message":"[0] success","png":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK8AAACvAQMAAACxXBw2AAAABlBMVEX///8AAABVwtN+AAAA4UlEQVRIie2WsRWDMAxExaNw6REYJaOZ0RglI6RMwUOcpNgOoaTIFVyB8XcjWz7JIreualTTJgnf2f915sJvCxP4NS0YoAcbzojUsK1iF09ObOe7UOO2yocj85IxP18IAhzeQdzAJ0sR4Kr0M6fBo8I0RVd4ByfqMzKME5UyqBr2q0mGoamau0h4nAtHysNC0uPmwaai6inv5ibDnyqpuko+Wuj/uFYfv5pmIXRqLhz1O+KGhY4NhgLHG8IbzPAVNxtOEXDqRYkMu7bWZ5hwZD7Kjldz4cLtDeH12wYufOuadlskf1MzQYwZAAAAAElFTkSuQmCC"}
+
+URL: [POST] /qr/status
+ARGS: {"uuid":"0d6e290f9c8414bac0bb105b97232771ec3e5178"}
+RS: {"code":0,"message":"[10001301] Invalid QR code","status":9}
+
+Process finished with exit code 0

@@ -1,0 +1,4 @@
+URL: [GET] /permission/category
+RS: {"code":0,"message":"","categories":["system","resource","template","rules","ha","nasSync","fsp","virtualSupport","timing","statistics","tools","notification"]}
+
+Process finished with exit code 0

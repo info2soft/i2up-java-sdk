@@ -1,0 +1,5 @@
+URL: [GET] /storage
+ARGS: {"byte_format":1,"rep_uuid":"F97B3FD5-4D5D-41EE-22A9-740A74E1E13C","node_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F"}
+RS: {"code":0,"message":"","driver_list":{"G:":{"name":"G:","total":"4.0 GB","free":"3.8 GB"}},"total_cdp_size":"0 Bytes","rep_list":{"F97B3FD5-4D5D-41EE-22A9-740A74E1E13C":{"rep_uuid":"F97B3FD5-4D5D-41EE-22A9-740A74E1E13C","repsize":"6 Bytes","cdpsize":"0 Bytes","snapsize":"0 Bytes"}}}
+
+Process finished with exit code 0

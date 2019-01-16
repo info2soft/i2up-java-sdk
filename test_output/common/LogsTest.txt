@@ -1,0 +1,28 @@
+URL: [POST] /auth/token
+ARGS: {"pwd":"Info1234","username":"admin"}
+RS: {"code":0,"message":"","token":"3084f67c14ae28b3cb52a2bd188355b8bf3777ac","sso_token":"33c2cb58ea85e445NPAFWqsl65dOPbSbgSKJoqcCHWCAvu_7dceXoijj6zBWR0EOT88rntMtA1Kxe_IGWBv2HJ9RtReH-ehFXSJdJPGl3vlFUUZ8FMkvX2xfXPPX4RL_QIlHJzTCkt5ZMdQ45jL3FCC6YVGEToJ-g8R_DA"}
+
+URL: [GET] /op_log
+ARGS: {"start_time":1,"end_time":1,"limit":10,"page":1}
+RS: {"code":0,"message":"[0] success","logs":[{"id":"1","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","user_name":"admin","op_time":"1546416705","start_time":"1546416702","end_time":"1546416705","address":"192.168.71.212","description":"创建节点 [ 名称 : \"N3_72.75\" ]","result":"0","failure_reason":"[0] 操作成功。","type":"0"},{"id":"2","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","user_name":"admin","op_time":"1546416796","start_time":"1546416796","end_time":"1546416796","address":"192.168.71.212","description":"添加许可","result":"0","failure_reason":"[0] 操作成功。","type":"0"},{"id":"3","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","user_name":"admin","op_time":"1546416801","start_time":"1546416801","end_time":"1546416801","address":"192.168.71.212","description":"更新许可绑定 [ 数量 : \"1\" ]","result":"0","failure_reason":"[0] 操作成功。","type":"0"},{"id":"4","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","user_name":"admin","op_time":"1546416806","start_time":"1546416806","end_time":"1546416806","address":"192.168.71.212","description":"更新许可绑定 [ 数量 : \"1\" ]","result":"0","failure_reason":"[0] 操作成功。","type":"0"},{"id":"5","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","user_name":"admin","op_time":"1546416986","start_time":"1546416984","end_time":"1546416986","address":"192.168.71.212","description":"创建复制规则 [ 名称 : \"testNormal\" ]","result":"0","failure_reason":"[0] 操作成功。","type":"0"},{"id":"6","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","user_name":"admin","op_time":"1546417035","start_time":"1546417034","end_time":"1546417035","address":"192.168.71.212","description":"创建还原任务 [ 名称 : \"\" ]","result":"0","failure_reason":"[0] 操作成功。","type":"0"},{"id":"7","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","user_name":"admin","op_time":"1546417165","start_time":"1546417164","end_time":"1546417165","address":"192.168.71.212","description":"update_rep_recovery [ 名称 : \"\" ]","result":"0","failure_reason":"[0] 操作成功。","type":"0"},{"id":"8","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","user_name":"admin","op_time":"1546417196","start_time":"1546417196","end_time":"1546417196","address":"192.168.71.212","description":"update_rep_recovery [ 名称 : \"\" ]","result":"0","failure_reason":"[0] 操作成功。","type":"0"},{"id":"9","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","user_name":"admin","op_time":"1546417337","start_time":"1546417337","end_time":"1546417337","address":"192.168.71.212","description":"update_rep_recovery [ 名称 : \"\" ]","result":"10001009","failure_reason":"[10001009] 名称重复","type":"0"},{"id":"10","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","user_name":"admin","op_time":"1546417343","start_time":"1546417342","end_time":"1546417343","address":"192.168.71.212","description":"update_rep_recovery [ 名称 : \"\" ]","result":"0","failure_reason":"[0] 操作成功。","type":"0"}],"total":383}
+
+URL: [GET] /logs
+ARGS: {"level":1,"start":1,"limit":10,"end":1,"page":1,"uuid":"F97B3FD5-4D5D-41EE-22A9-740A74E1E13C"}
+RS: {"code":0,"message":"","logs":[],"total":0}
+
+URL: [GET] /logs/ha
+ARGS: {"level":1,"start":1,"limit":1,"end":1,"page":1,"node_uuid":"","uuid":""}
+RS: {"code":0,"message":"","logs":[],"total":0}
+
+URL: [GET] /logs/node
+ARGS: {"level":1,"limit":10,"start":1,"end":1,"page":1,"uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F"}
+RS: {"code":0,"message":"","logs":[],"total":0}
+
+URL: [GET] /logs/npsvr
+RS: {"code":0,"message":"","logs":[],"total":0}
+
+URL: [GET] /logs/traffic
+ARGS: {"start_stamp":1545637314,"type":"month","uuid":"F97B3FD5-4D5D-41EE-22A9-740A74E1E13C"}
+RS: {"code":0,"message":"","traffics":[{"start_time":1544520874,"traffic":0,"speed":0},{"start_time":1544607274,"traffic":0,"speed":0},{"start_time":1544693674,"traffic":0,"speed":0},{"start_time":1544780074,"traffic":0,"speed":0},{"start_time":1544866474,"traffic":0,"speed":0},{"start_time":1544952874,"traffic":0,"speed":0},{"start_time":1545039274,"traffic":0,"speed":0},{"start_time":1545125674,"traffic":0,"speed":0},{"start_time":1545212074,"traffic":0,"speed":0},{"start_time":1545298474,"traffic":0,"speed":0},{"start_time":1545384874,"traffic":0,"speed":0},{"start_time":1545471274,"traffic":0,"speed":0},{"start_time":1545557674,"traffic":0,"speed":0},{"start_time":1545644074,"traffic":0,"speed":0},{"start_time":1545730474,"traffic":0,"speed":0},{"start_time":1545816874,"traffic":0,"speed":0},{"start_time":1545903274,"traffic":0,"speed":0},{"start_time":1545989674,"traffic":0,"speed":0},{"start_time":1546076074,"traffic":0,"speed":0},{"start_time":1546162474,"traffic":0,"speed":0},{"start_time":1546248874,"traffic":0,"speed":0},{"start_time":1546335274,"traffic":0,"speed":0},{"start_time":1546421674,"traffic":0,"speed":0},{"start_time":1546508074,"traffic":0,"speed":0},{"start_time":1546594474,"traffic":0,"speed":0},{"start_time":1546680874,"traffic":0,"speed":0},{"start_time":1546767274,"traffic":0,"speed":0},{"start_time":1546853674,"traffic":0,"speed":0},{"start_time":1546940074,"traffic":0,"speed":0},{"start_time":1547026474,"traffic":0,"speed":0},{"start_time":1547112874,"traffic":0,"speed":0}]}
+
+Process finished with exit code 0
