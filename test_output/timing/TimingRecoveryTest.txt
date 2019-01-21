@@ -1,188 +1,35 @@
-package test.com.i2soft.timing;
+URL: [GET] /timing/recovery/rc_mssql_time
+ARGS: {"bk_uuid":"B8566905-411E-B2CD-A742-77B1346D8E84","rc_data_path":"E:\\\\mssqlBK\\\\ts-11111111-1111-1111-1111-111111111111\\\\"}
+RS: {"code":0,"message":"[0] success","mssql_time_list":[]}
 
-import com.i2soft.common.Auth;
-import com.i2soft.http.I2Rs;
-import com.i2soft.http.I2softException;
-import com.i2soft.http.Response;
-import com.i2soft.timing.v20181217.TimingRecovery;
-import com.i2soft.util.Configuration;
-import com.i2soft.util.StringMap;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runners.MethodSorters;
-import test.com.i2soft.util.TestConfig;
+URL: [POST] /timing/recovery
+ARGS: {"timing_recovery":{"bk_path":["E:\\t\\2019-01-15_15-49-00\\E\\test\\"],"bk_data_type":1,"wk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","backup_type":0,"backup_task_uuid":"","wk_data_type":1,"oracle_settings":{"ora_rst_limit_scn":0,"ora_rc_point_scn":0,"ora_rst_limit_thread":1,"ora_rc_point_log_seq":"","ora_rst_limit_date":"2017-12-21 13:26:00","ora_rst_limit_type":0,"ora_home_path":"","ora_rc_point_type":0,"ora_passwd":"Info1234","ora_port":1,"ora_rc_point_date":"2017-12-21 13:26:00","ora_do_restore":0,"ora_rst_limit_log_seq":"","ora_content_type":0,"ora_rc_point_thread":1,"ora_sid_name":"","ora_do_recovery":0,"ora_rc_type":0,"ora_rst_type":0},"task_name":"task","rc_data_path":"E:\\\\t\\\\","mssql_settings":{"db_file_save_path":"","ldf_name":"","ldf_path":"","pass_word":"","mdf_path":"","mdf_name":"","instance_name":"","src_db_name":"","db_size":"","win_verify":0,"new_db_name":"","user_id":"","time_out":"","check_out":"","rt_time":"","tab_num":"","tab_info":"","ln_num":""},"bk_uuid":"B8566905-411E-B2CD-A742-77B1346D8E84","rc_style":1,"wk_path":["E:\\test\\"],"rc_point_in_time":"2019-01-15_15-49-00","random_str":"11111111-1111-1111-1111-111111111111"}}
+RS: {"code":0,"message":"[10031018] Note: The production server software version the backup server software are inconsistent! 7.0.1.28553 , 7.0-26764"}
 
-import java.util.Map;
-import java.util.Objects;
+URL: [PUT] /timing/recovery/11111111-1111-1111-1111-111111111111
+ARGS: {"timing_recovery":{"bk_path":["E:\\t\\2019-01-15_15-49-00\\E\\test\\"],"bk_data_type":1,"wk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","backup_type":0,"backup_task_uuid":"","wk_data_type":1,"oracle_settings":{"ora_rst_limit_scn":0,"ora_rc_point_scn":0,"ora_rst_limit_thread":1,"ora_rc_point_log_seq":"","ora_rst_limit_date":"2017-12-21 13:26:00","ora_rst_limit_type":0,"ora_home_path":"","ora_rc_point_type":0,"ora_passwd":"Info1234","ora_port":1,"ora_rc_point_date":"2017-12-21 13:26:00","ora_do_restore":0,"ora_rst_limit_log_seq":"","ora_content_type":0,"ora_rc_point_thread":1,"ora_sid_name":"","ora_do_recovery":0,"ora_rc_type":0,"ora_rst_type":0},"task_name":"task","rc_data_path":"E:\\\\t\\\\","mssql_settings":{"db_file_save_path":"","ldf_name":"","ldf_path":"","pass_word":"","mdf_path":"","mdf_name":"","instance_name":"","src_db_name":"","db_size":"","win_verify":0,"new_db_name":"","user_id":"","time_out":"","check_out":"","rt_time":"","tab_num":"","tab_info":"","ln_num":""},"bk_uuid":"B8566905-411E-B2CD-A742-77B1346D8E84","rc_style":1,"wk_path":["E:\\test\\"],"rc_point_in_time":"2019-01-15_15-49-00","random_str":"11111111-1111-1111-1111-111111111111"}}
+RS: {"code":0,"message":"[10031018] Note: The production server software version the backup server software are inconsistent! 7.0.1.28553 , 7.0-26764"}
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TimingRecoveryTest {
+URL: [GET] /timing/recovery/11111111-1111-1111-1111-111111111111
+RS: {"code":0,"message":"[0] success","timing_recovery":{"username":"admin","id":"31","auto_start":0,"backup_task_uuid":"","backup_type":0,"blk_direct_copy":0,"compress":0,"create_time":1548041504,"del_policy":0,"encrypt_switch":0,"excl_path":null,"file_check_dir":null,"file_check_switch":"0","full_copy":0,"mirr_blk_size":"32768","mirr_open_type":0,"mirr_sync_attr":1,"mirr_sync_flag":0,"mssql_settings":{"db_file_save_path":"","ldf_name":"","ldf_path":"","pass_word":"","mdf_path":"","mdf_name":"","instance_name":"","src_db_name":"","db_size":"","win_verify":0,"new_db_name":"","user_id":"","time_out":"","check_out":"","rt_time":"","tab_num":"","tab_info":"","ln_num":""},"oracle_rman_settings":null,"oracle_settings":{"ora_rst_limit_scn":0,"ora_rc_point_scn":0,"ora_rst_limit_thread":1,"ora_rc_point_log_seq":"","ora_rst_limit_date":"2017-12-21 13:26:00","ora_rst_limit_type":0,"ora_home_path":"","ora_rc_point_type":0,"ora_passwd":"Info1234","ora_port":1,"ora_rc_point_date":"2017-12-21 13:26:00","ora_do_restore":0,"ora_rst_limit_log_seq":"","ora_content_type":0,"ora_rc_point_thread":1,"ora_sid_name":"","ora_do_recovery":0,"ora_rc_type":0,"ora_rst_type":0},"random_str":"11111111-1111-1111-1111-111111111111","rc_data_path":"E:\\\\t\\\\","rc_point_in_time":"2019-01-15_15-49-00","rc_style":1,"secret_key":null,"snap_type":0,"wk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F","wk_path":["E:\\test\\"],"wk_data_type":1,"status":null,"bk_uuid":"B8566905-411E-B2CD-A742-77B1346D8E84","bk_path":["E:\\t\\2019-01-15_15-49-00\\E\\test\\"],"bk_path_policy":0,"bk_data_type":1,"task_name":"task","task_type":1,"task_uuid":"11111111-1111-1111-1111-111111111111","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","bkup_one_time":0,"bkup_policy":0,"bkup_schedule":null,"bkup_window":null,"biz_grp_list":[],"biz_grp_name":[]}}
 
-    private static Auth auth;
-    private static String uuid = TestConfig.testUuid;
-    private static TimingRecovery timingRecovery;
+URL: [GET] /timing/recovery
+RS: {"code":0,"message":"[0] success","info_list":[{"wk_node_name":"N3_72.75","bk_node_name":"move B 72.82","username":"admin","bk_uuid":"B8566905-411E-B2CD-A742-77B1346D8E84","task_name":"task","task_type":1,"task_uuid":"11111111-1111-1111-1111-111111111111","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","wk_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F"}],"total":1}
 
-    @BeforeClass
-    public static void setUp() {
-        if (timingRecovery != null) {
-            return;
-        }
-        try {
-            auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-        timingRecovery = new TimingRecovery(auth);
-    }
+URL: [GET] /timing/recovery/status
+ARGS: {"task_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","status":[{"task_uuid":"11111111-1111-1111-1111-111111111111","status":"STOP"}]}
 
-    @Test
-    public void T01_listTimingRecoveryMssqlTime() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "541")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = timingRecovery.listTimingRecoveryMssqlTime(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
+URL: [POST] /timing/recovery/operate
+ARGS: {"operate":"start","task_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","task_uuid":"11111111-1111-1111-1111-111111111111"}]}
 
-    @Test
-    public void T02_describeTimingRecoveryMssqlInitInfo() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "542")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = timingRecovery.describeTimingRecoveryMssqlInitInfo(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
+URL: [POST] /timing/recovery/operate
+ARGS: {"operate":"stop","task_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success","task_uuid":"11111111-1111-1111-1111-111111111111"}]}
 
-    @Test
-    public void T03_listTimingRecoveryPathList() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "543")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = timingRecovery.listTimingRecoveryPathList(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
+URL: [DELETE] /timing/recovery
+ARGS: {"task_uuids":["11111111-1111-1111-1111-111111111111"]}
+RS: {"code":0,"message":"[0] success"}
 
-    @Test
-    public void T04_verifyTimingRecoveryMssqlInfo() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "544")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = timingRecovery.verifyTimingRecoveryMssqlInfo(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
-    public void T05_createTimingRecovery() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "538")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = timingRecovery.createTimingRecovery(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
-    public void T06_modifyTimingRecovery() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "538")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = timingRecovery.modifyTimingRecovery(uuid, args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
-    public void T07_describeTimingRecovery() {
-        try {
-            Map rs = timingRecovery.describeTimingRecovery(uuid); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
-    public void T08_listTimingRecovery() {
-        try {
-            Map rs = timingRecovery.listTimingRecovery(new StringMap()); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
-    public void T09_listTimingRecoveryStatus() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "546")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = timingRecovery.listTimingRecoveryStatus(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
-    public void T11_startTimingRecovery() {
-        try {
-            I2Rs.I2SmpRs rs = timingRecovery.startTimingRecovery(new String[]{uuid}); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
-    public void T11_stopTimingRecovery() {
-        try {
-            I2Rs.I2SmpRs rs = timingRecovery.stopTimingRecovery(new String[]{uuid}); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
-    public void T12_deleteTimingRecovery() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "547")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = timingRecovery.deleteTimingRecovery(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-}
+Process finished with exit code 0
