@@ -11,9 +11,7 @@ I2UP Java SDK 属于英方服务端SDK之一，主要用于管理您英方平台
 开源
 ==
 
-*   [Java SDK 项目地址](https://github.com/info2soft/JAVA)
-*   [Java SDK 发布地址](https://github.com/info2soft/JAVA)
-*   [Java SDK 历史文档](https://i2up-api-doc.info2soft.com/sdkspec/)
+*   [Java SDK 发布地址](https://github.com/info2soft/i2up-java-sdk)
 
 安装
 ==
@@ -74,7 +72,7 @@ Java SDK依赖的第三方库及其版本如下：
 
  | 库名称 | 库项目地址 | 库下载地址 | 
  | ----- | --------- | --------- | 
- | i2up-java-sdk |  [链接🔗](https://github.com/i2soft/java-sdk)  | [链接🔗](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22i2up-java-sdk%22) | 
+ | i2up-java-sdk |  [链接🔗](https://github.com/info2soft/i2up-java-sdk)  | [链接🔗](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22i2up-java-sdk%22) | 
  | okhttp3 | [链接🔗](https://github.com/square/okhttp) | [链接🔗](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.squareup.okhttp3%22) | 
  | okio | [链接🔗](https://github.com/square/okio) | [链接🔗](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.squareup.okio%22) | 
  | gson | [链接🔗](https://github.com/google/gson) | [链接🔗](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.google.code.gson%22) | 
@@ -140,18 +138,17 @@ API 参考
 ====
 
 *   I2softException 保留了请求响应的信息，失败情况下会抛出此异常，可以提交给我们排查问题。
-*   API 的使用，demo 可以参考[单元测试](https://code.info2soft.com/web/sdk/java-sdk/tree/develop/src/test/java/test/com/i2soft)。
+*   API 的使用，demo 可以参考[单元测试](https://github.com/info2soft/i2up-java-sdk/tree/develop/src/test/java/test/com/i2soft)。
 
 相关资源
 ====
 
 如果您有任何关于我们文档或产品的建议和想法，欢迎您通过以下方式与我们互动讨论：
 
-*   [英方服务支持](http://www.info2soft.com/support) \- 在这里您可以获得直接的一对一支持。
-*   [提交工单](https://support.i2soft.com/tickets/new) \- 如果您的问题不适合在论坛讨论或希望及时解决，您也可以提交一个工单，我们的技术支持人员会第一时间回复您。
-*   [博客](http://blog.i2soft.com) \- 这里会持续更新发布市场活动和技术分享文章。
-*   [微博](http://weibo.com/i2softtek)
-*   [常见问题](https://support.i2soft.com/question)
+*   [服务与支持](https://www.info2soft.com/support) \- 在这里您可以获得直接的一对一支持。
+*   [提交工单](http://support.info2soft.com/welcome/) \- 如果您的问题不适合在论坛讨论或希望及时解决，您也可以提交一个工单，我们的技术支持人员会第一时间回复您。
+*   [微博](https://weibo.com/info2soft)
+*   [常见问题FAQ](http://support.info2soft.com/service/public.pl)
 
 贡献代码
 ====
@@ -166,12 +163,3 @@ API 参考
     
 5.  然后到 github 网站的该 git 远程仓库的 my-new-feature 分支下发起 Pull Request
     
-
-许可证
-===
-
-Copyright (c) 2014 i2soft.com
-
-基于 MIT 协议发布:
-
-*   [www.opensource.org/licenses/MIT](http://www.opensource.org/licenses/MIT)
