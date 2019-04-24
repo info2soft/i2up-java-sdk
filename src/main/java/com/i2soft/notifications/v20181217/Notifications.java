@@ -70,7 +70,7 @@ public final class Notifications {
      */
     public I2Rs.I2SmpRs deleteNotifications(String[] uuids) throws I2softException {
         String url = String.format("%s/notifications/operate", auth.cc_url);
-        StringMap newArgs = new StringMap().putNotEmpty("task_uuids", uuids).put("operate", "delete");
+        StringMap newArgs = new StringMap().putNotEmpty("uuids", uuids).put("operate", "delete");
         Response r = auth.client.post(url, newArgs);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
