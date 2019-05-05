@@ -215,9 +215,6 @@ public final class Client {
             }
             throw new I2softException(r);
         }
-        if (r.ret == 200 && r.code != 0) {
-            throw new I2softException(r);
-        }
 
         return r;
     }

@@ -47,6 +47,10 @@ public class NodeTest {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "450")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = node.authNode(args); // 发送请求
+            if (Integer.parseInt(rs.get("code").toString()) != 0) {
+                System.out.println("\nFail: " + Integer.parseInt(rs.get("code").toString()));
+                return;
+            }
             os_type = Integer.parseInt(rs.get("os_type").toString());
             System.out.println("\nos_type: " + os_type);
             Assert.assertNotNull(rs); // 检查结果
