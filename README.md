@@ -22,17 +22,16 @@ I2UP Java SDK 属于英方服务端SDK之一，主要用于管理您英方平台
 
 ### Gradle
 
-    compile 'com.i2soft:i2up-java-sdk:7.1.+'
-    
+    compile 'org.info2soft:i2up-java-sdk:7.1.+'
+
 
 ### Maven
 
     <dependency>
-      <groupId>com.i2soft</groupId>
+      <groupId>org.info2soft</groupId>
       <artifactId>i2up-java-sdk</artifactId>
-      <version>[7.1.0, 7.1.9]</version>
+      <version>[7.0.0, 7.1.0]</version>
     </dependency>
-    
 
 这里的`version`指定了一个版本范围，每次更新`pom.xml`的时候会尝试去下载`7.1.x`版本中的最新版本，你可以手动指定一个固定的版本。
 
