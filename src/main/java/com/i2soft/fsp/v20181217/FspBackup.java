@@ -108,10 +108,10 @@ public final class FspBackup {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs createFspBackup(StringMap args) throws I2softException {
+    public Map createFspBackup(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/backup", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToMap();
     }
 
     /**

@@ -121,10 +121,10 @@ public final class FspRecovery {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs createFspRecovery(StringMap args) throws I2softException {
+    public Map createFspRecovery(StringMap args) throws I2softException {
         String url = String.format("%s/fsp/recovery", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToMap();
     }
 
     /**

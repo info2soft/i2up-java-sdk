@@ -87,9 +87,9 @@ public final class Node {
      *
      * @return code, message
      */
-    public I2Rs.I2SmpRs createNode(StringMap args) throws I2softException {
+    public Map createNode(StringMap args) throws I2softException {
         Response r = auth.client.post(module_url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToMap();
     }
 
     /**
