@@ -17,12 +17,12 @@ import javax.crypto.Cipher;
  */
 public class Rsa {
 
-    private String priKey;
-    private String pubKey;
+    private String priKey = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDl9TjTh8beXEGxPnHNj0MqPvVIpHz1PT+9cyBdpU3FTM5lYyPuOT3uCqByX4qCFY2zRa0MtJV9JlOkhQRkN3yUDAw1QneuAtJ5gQXGJjIDULaPO3WkbEVAu4+3IytG2TPVP9aZWO+DGfGu6lih+HRuUkitxB2fzpQwKXFwPv60+SVM5GN3bhZU2sK3/HfONHWhfrxFiGETW4FxVwXGMLQBcOMKIyic3fUL3zX72WbGvmxdGoWCunRKZVRGOgacAirTR+qx3dVLlTpJl81vOP2S+M6zJkMxNK6x3fcnuzPsKWtmz/athVbgUitM60A+qdssFuyBkHaXR8DMLLNI6VNrAgMBAAECggEANrL2+nIQnvHo+mU1IsVSH6lsJQRjaN5R3BmXeE8KycS0T6+ea1sYXRgQBESvqLPBygPn3t7RtDw6pyaw3bnJG1omSUDvQOgQ8q/7FKAfQ2SemEF3gU3zxysWS2TFNYwS5UXTIRTjnBa+w3Gg9Z4o69kMyrCcr1evLimdfyqs4ZTymbHNHdNtLIfyK7sIEufPh/07jV1h94FiYpuUw2rMRLfDyn074jYhCABYBRB1LZ7NCDtGfaUUyXGNWXo6nioIjGBacpc45C1pNIudm9aBrgrOJeAd+8CiOT3GSm8VHKWdZFbBp7FQJ2RNPHgULTpyZinsu2u+j5rB90eQ+VNUwQKBgQDzOiVOscLVPtBJEgE68e9t/fHW4xZEJSAi4SKBv0yymjNZmenCkBVdNta364oHBvU0+hxP+JxnJSlfw49F5F19j0azLgzpPRBdiKeNFnlZmy79PvCBI34AGn5lTi8PwCqzObfki3S3SvMPGCh3HeFTS27iXf7Sk0GBmJPBTJk0SwKBgQDyCLCNCQ4lg7hrkFFS/4NHIQRfVvfMOBdwsXGIfmIUwZOLzIfr9nMdC0B9lK262zHDcq/uSVccMhZBBO6Sy6JmHpjw6xkz/oTnwcucmNuIXsc0OFkZoiP0CpKRNLcf7EyXVU8EtYRiJ3xMQplsxEChOQzBpbRCGl6JqFTfYaWpYQKBgA3tsX89LMQbccANeOaQPj7VQQkmPfsvCRUWQWyesNy1eeVSrBFJQP/yiP9FTMU0P8yF2iM2QHajqSfjwgullTkAgHL4WyLsLUi976JjvBVGjr1P4mPyzV9iJQTWIlnLjmZvErnSxp9MenjN0Ftp6aJkengaG+KhLiomu6dhJJDbAoGBAKlm55tvERW0wemXUzRSXmH0fAj25+1p/Q4FRD+Spbd9XXXlq+S91AgqDfNXktlL/eKcbQLNFklHzUeo2gqouHvdQpKtGjDIHeHQRGDQpCconyivn71PPPbcR4WWbe3MCDeLoAjdu1Cv7lG584SrP8kYExOelTIHHtAen3jR8Y9BAoGAT9GRD6UchKGc38D2RIbPDX4uJVYbSuBBbrnKRL7wb5Qhb6ssedvqTj4TMG7TpYlTSu43sZ77o2E5yjOLGlhrHCwzEJ0pX6bS9dg5j6WLQPbf1eJ8M4PLBEW1qK+S1/NzFr+ikHI4RwodjTSTiuFgH7klOlCQGJ2bqpVmRwrxxQ4=";
+    private String pubKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5fU404fG3lxBsT5xzY9DKj71SKR89T0/vXMgXaVNxUzOZWMj7jk97gqgcl+KghWNs0WtDLSVfSZTpIUEZDd8lAwMNUJ3rgLSeYEFxiYyA1C2jzt1pGxFQLuPtyMrRtkz1T/WmVjvgxnxrupYofh0blJIrcQdn86UMClxcD7+tPklTORjd24WVNrCt/x3zjR1oX68RYhhE1uBcVcFxjC0AXDjCiMonN31C981+9lmxr5sXRqFgrp0SmVURjoGnAIq00fqsd3VS5U6SZfNbzj9kvjOsyZDMTSusd33J7sz7ClrZs/2rYVW4FIrTOtAPqnbLBbsgZB2l0fAzCyzSOlTawIDAQAB";
 
     public Rsa() {
-        priKey = readStringFromFile("src/private_key.pem");
-        pubKey = readStringFromFile("src/public_key.pem");
+        // priKey = readStringFromFile("src/private_key.pem"); // PKCS8 格式
+        // pubKey = readStringFromFile("src/public_key.pem"); // PKCS8 格式
     }
 
     /**
@@ -50,7 +50,7 @@ public class Rsa {
      * 使用私钥解密
      */
     public String decryptByPrivateKey(String data) {
-        // 加密
+        // 解密
         String str = "";
         try {
             byte[] pribyte = base64decode(priKey.trim());
