@@ -5,9 +5,8 @@ import com.i2soft.http.I2Req;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
-import com.i2soft.resource.v20181217.Node;
-import com.i2soft.resource.v20181217.ResRs;
-import com.i2soft.util.Configuration;
+import com.i2soft.resource.v20190805.Node;
+import com.i2soft.resource.v20190805.ResRs;
 import com.i2soft.util.StringMap;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -34,7 +33,7 @@ public class NodeTest {
             return;
         }
         try {
-            auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath);
+            auth = Auth.access(TestConfig.ip, TestConfig.ak, TestConfig.sk);
         } catch (I2softException e) {
             e.printStackTrace();
         }

@@ -21,7 +21,7 @@ public final class Constants {
     /**
      * 连接超时时间 单位秒(默认10s)
      */
-    public static final int CONNECT_TIMEOUT = 10;
+    public static final int CONNECT_TIMEOUT = 120;
     /**
      * 写超时时间 单位秒(默认 0 , 不超时)
      */

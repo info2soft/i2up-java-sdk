@@ -1,15 +1,20 @@
 package com.i2soft.http;
 
+import com.i2soft.common.Auth;
 import com.i2soft.util.*;
-import com.sun.istack.internal.Nullable;
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import okhttp3.*;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 import javax.net.ssl.*;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.List;
-import java.util.Objects;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.Timestamp;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -20,6 +25,8 @@ public final class Client {
     private StringMap headers;
     private final OkHttpClient httpClient;
     public final String cc_url;
+
+    private Auth auth;
 
     /**
      * 构建一个默认配置的 HTTP Client 类
@@ -135,18 +142,16 @@ public final class Client {
         httpClient = builder.build();
     }
 
-    public void set_headers(StringMap headers) {
-        this.headers = headers;
+    public void setAuth(Auth auth) {
+        this.auth = auth;
     }
 
     public Response get(String url) throws I2softException {
-        printLog(url);
-        Request.Builder requestBuilder = new Request.Builder().url(url).get();
-        return send(requestBuilder);
+        return get(url, new StringMap());
     }
 
     public Response get(String url, StringMap query) throws I2softException {
-        printLog(url, "GET", query);
+        signAndPrintLog(url, "GET", query);
         if (query.size() != 0) {
             url += query.formString();
         }
@@ -155,32 +160,30 @@ public final class Client {
     }
 
     public Response post(String url, StringMap body) throws I2softException {
-        printLog(url, "POST", body);
+        signAndPrintLog(url, "POST", body);
         Request.Builder requestBuilder = new Request.Builder().url(url).post(body.toJson());
         return send(requestBuilder);
     }
 
     public Response put(String url, StringMap body) throws I2softException {
-        printLog(url, "PUT", body);
+        signAndPrintLog(url, "PUT", body);
         Request.Builder requestBuilder = new Request.Builder().url(url).put(body.toJson());
         return send(requestBuilder);
     }
 
     public Response delete(String url, StringMap body) throws I2softException {
-        printLog(url, "DELETE", body);
+        signAndPrintLog(url, "DELETE", body);
         Request.Builder requestBuilder = new Request.Builder().url(url).delete(body.toJson());
         return send(requestBuilder);
     }
 
-    private void printLog(String url) {
+    // 加签名，打日志
+    private void signAndPrintLog(String url, String method, StringMap args) {
+        addSignToHeader(method, url, args);
         if (Constants.LOG_HTTP) {
-            System.out.println("\nURL: [GET] " + url);
-        }
-    }
-
-    private void printLog(String url, String method, @Nullable StringMap args) {
-        if (Constants.LOG_HTTP) {
-            System.out.println("\nURL: [" + method + "] " + url + "\nARGS: " + Json.encode(args));
+            System.out.println("\nURL: [" + method + "] " + url
+                    + "\nHEADER: " + Json.encode(this.headers)
+                    + "\nARGS: " + Json.encode(args));
         }
     }
 
@@ -229,5 +232,73 @@ public final class Client {
 
     private static class IpTag {
         private String ip = null;
+    }
+
+    private void addSignToHeader(String httpMethod, String url, StringMap args) {
+
+        headers = new StringMap();
+
+        String randomStr = getRandomString(16);
+        String time = String.valueOf(System.currentTimeMillis() / 1000);
+        String uuid = UUID.randomUUID().toString();
+        String api = url.substring(url.indexOf("/api/")); // Eg: /api/node
+        String secret;
+
+        // AK or Token
+        if (this.auth.authType.equals(Auth.AUTH_TYPE_AK_SK)) {
+            headers.put("ACCESS-KEY", this.auth.ak);
+            secret = this.auth.sk;
+        } else {
+            headers.put("Authorization", this.auth.token);
+            secret = this.auth.token;
+        }
+
+        String signData = httpMethod.toUpperCase() + "\n" +
+                api + "\n" +
+                randomStr + "\n" +
+                time + "\n" +
+                uuid;
+
+        try {
+            // 加密生成签名
+            Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+            SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
+            sha256_HMAC.init(secret_key);
+
+            String hash = bytes2HexString(sha256_HMAC.doFinal(signData.getBytes())).toLowerCase();
+
+            headers.put("timestamp", time)
+                    .put("nonce", uuid)
+                    .put("Signature", hash);
+
+            // args
+            args.put("_", randomStr); // 签名必备随机串
+
+        } catch (NoSuchAlgorithmException | InvalidKeyException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static String getRandomString(int length) {
+        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            int number = random.nextInt(62);
+            sb.append(str.charAt(number));
+        }
+        return sb.toString();
+    }
+
+    private static String bytes2HexString(byte[] b) {
+        StringBuilder ret = new StringBuilder();
+        for (byte b1 : b) {
+            String hex = Integer.toHexString(b1 & 0xFF);
+            if (hex.length() == 1) {
+                hex = '0' + hex;
+            }
+            ret.append(hex.toUpperCase());
+        }
+        return ret.toString();
     }
 }

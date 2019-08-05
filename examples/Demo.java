@@ -1,6 +1,6 @@
 
 import com.i2soft.http.I2softException;
-import com.i2soft.resource.v20181217.Node;
+import com.i2soft.resource.v20190805.Node;
 import com.i2soft.util.Configuration;
 import com.i2soft.util.StringMap;
 

@@ -4,7 +4,7 @@ import com.i2soft.common.Auth;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
-import com.i2soft.vp.v20181217.VirtualizationSupport;
+import com.i2soft.vp.v20190805.VirtualizationSupport;
 import com.i2soft.util.Configuration;
 import com.i2soft.util.StringMap;
 import org.junit.Assert;
@@ -695,6 +695,90 @@ public class VirtualizationSupportTest {
         } catch (I2softException e) {
             e.printStackTrace();
             Assert.fail();
+        }
+    }
+
+    // ------------------ File recovery ------------------
+
+    @Test
+    public void T64_describeVpFileRecoveryVmIp() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "816")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            Map rs = virtualizationSupport.describeVpFileRecoveryVmIp(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T65_vpFileRecoveryLivecdPartition() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "807")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            Map rs = virtualizationSupport.vpFileRecoveryLivecdPartition(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T66_createVpFileRecovery() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "808")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            Map rs = virtualizationSupport.createVpFileRecovery(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T67_describeVpFileRecovery(String uuid) {
+        try {
+            Map rs = virtualizationSupport.describeVpFileRecovery(uuid); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T68_listVpFileRecovery() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "811")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            Map rs = virtualizationSupport.listVpFileRecovery(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T69_listVpFileRecoveryStatus() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "812")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            Map rs = virtualizationSupport.listVpFileRecoveryStatus(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T70_deleteVpFileRecovery() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "815")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            Map rs = virtualizationSupport.deleteVpFileRecovery(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
         }
     }
 }

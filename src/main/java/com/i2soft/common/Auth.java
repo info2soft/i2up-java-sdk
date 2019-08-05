@@ -12,30 +12,74 @@ import java.util.Objects;
 
 public final class Auth {
 
+    public static String AUTH_TYPE_TOKEN = "token";
+    public static String AUTH_TYPE_AK_SK = "ak_sk";
+
     public String cc_url;
+
     public String token;
     public String sso_token;
+
+    public String ak;
+    public String sk;
+
+    public String authType;
+
     public String cachePath;
     public Client client;
+
     public Configuration configuration;
 
     private Auth(String cc_url, String token, String sso_token, String cachePath, Client client, Configuration configuration) {
-        client.set_headers(new StringMap().put("Authorization", token));
+        this.authType = AUTH_TYPE_TOKEN;
         this.cc_url = cc_url;
         this.token = token;
         this.sso_token = sso_token;
         this.cachePath = cachePath;
         this.client = client;
         this.configuration = configuration;
+        client.setAuth(this);
+    }
+
+    private Auth(String cc_url, String ak, String sk, Client client, Configuration configuration) {
+        this.authType = AUTH_TYPE_AK_SK;
+        this.cc_url = cc_url;
+        this.ak = ak;
+        this.sk = sk;
+        this.client = client;
+        this.configuration = configuration;
+        client.setAuth(this);
+    }
+
+    /**
+     * 用 ACCESS-KEY，构建 Auth 对象
+     *
+     * @param ip:
+     * @param ak:
+     * @param sk:
+     * @param configuration:
+     * @return Auth:
+     */
+    public static Auth access(String ip, String ak, String sk, Configuration configuration) {
+        if (StringUtils.isNullOrEmpty(ip) || StringUtils.isNullOrEmpty(ak) || StringUtils.isNullOrEmpty(sk)) {
+            throw new IllegalArgumentException("empty key");
+        }
+
+        Client client = new Client(ip, configuration);
+        return new Auth(client.cc_url, ak, sk, client, configuration);
+    }
+
+    public static Auth access(String ip, String ak, String sk) {
+        return access(ip, ak, sk, new Configuration());
     }
 
     /**
      * 获取token，构建 Auth 对象
      *
-     * @param ip: http://192.168.1.1:58080
+     * @param ip:            http://192.168.1.1:58080
      * @param user:
      * @param pwd:
-     * @param cachePath: E:\cache\
+     * @param cachePath:     E:\cache\
      * @param configuration:
      * @return Auth:
      * @throws I2softException :
