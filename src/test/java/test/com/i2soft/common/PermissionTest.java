@@ -1,12 +1,9 @@
 package test.com.i2soft.common;
 
 import com.i2soft.common.Auth;
-import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
-import com.i2soft.http.Response;
-import com.i2soft.common.v20181217.Permission;
+import com.i2soft.common.v20190805.Permission;
 import com.i2soft.util.Configuration;
-import com.i2soft.util.StringMap;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
@@ -44,6 +41,16 @@ public class PermissionTest {
         } catch (I2softException e) {
             e.printStackTrace();
             Assert.fail();
+        }
+    }
+
+    @Test
+    public void T02_listCatPerms() {
+        try {
+            Map rs = permission.listCatPerms(); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
         }
     }
 }

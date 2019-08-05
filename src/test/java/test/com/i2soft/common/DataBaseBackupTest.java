@@ -3,7 +3,7 @@ package test.com.i2soft.common;
 import com.i2soft.common.Auth;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
-import com.i2soft.common.v20181217.DataBaseBackup;
+import com.i2soft.common.v20190805.DataBaseBackup;
 import com.i2soft.util.Configuration;
 import org.junit.Assert;
 import org.junit.BeforeClass;

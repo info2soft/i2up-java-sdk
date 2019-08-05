@@ -3,7 +3,7 @@ package test.com.i2soft.dashboard;
 import com.i2soft.common.Auth;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
-import com.i2soft.dashboard.v20181217.Dashboard;
+import com.i2soft.dashboard.v20190805.Dashboard;
 import com.i2soft.util.Configuration;
 import com.i2soft.util.StringMap;
 import org.junit.Assert;
@@ -109,6 +109,16 @@ public class DashboardTest {
         } catch (I2softException e) {
             e.printStackTrace();
             Assert.fail();
+        }
+    }
+
+    @Test
+    public void T03_upMonitorOverall() {
+        try {
+            Map rs = dashboard.upMonitorOverall(); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
         }
     }
 }

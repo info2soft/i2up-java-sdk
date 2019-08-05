@@ -4,7 +4,7 @@ import com.i2soft.common.Auth;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
-import com.i2soft.common.v20181217.Monitor;
+import com.i2soft.common.v20190805.Monitor;
 import com.i2soft.util.Configuration;
 import com.i2soft.util.StringMap;
 import org.junit.Assert;
@@ -94,6 +94,16 @@ public class MonitorTest {
         } catch (I2softException e) {
             e.printStackTrace();
             Assert.fail();
+        }
+    }
+
+    @Test
+    public void T06_listBkNodeOverall() {
+        try {
+            Map rs = monitor.listBkNodeOverall(); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
         }
     }
 }

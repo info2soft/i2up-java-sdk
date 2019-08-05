@@ -4,7 +4,7 @@ import com.i2soft.common.Auth;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
-import com.i2soft.notifications.v20181217.Notifications;
+import com.i2soft.notifications.v20190805.Notifications;
 import com.i2soft.util.Configuration;
 import com.i2soft.util.StringMap;
 import org.junit.Assert;
@@ -140,6 +140,30 @@ public class NotificationsTest {
         } catch (I2softException e) {
             e.printStackTrace();
             Assert.fail();
+        }
+    }
+
+    @Test
+    public void T09_testNotificationsSms() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1304")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            I2Rs.I2SmpRs rs = notifications.testNotificationsSms(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T10_addNotifications() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1303")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            I2Rs.I2SmpRs rs = notifications.addNotifications(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
         }
     }
 }
