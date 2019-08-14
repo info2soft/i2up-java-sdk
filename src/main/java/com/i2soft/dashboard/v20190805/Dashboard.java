@@ -43,7 +43,7 @@ public final class Dashboard {
     public Map upMonitorOverall() throws I2softException {
         String url = String.format("%s/dashboard/up_monitor_overall", auth.cc_url);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**

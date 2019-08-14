@@ -2,7 +2,6 @@ package com.i2soft.http;
 
 import com.i2soft.common.Auth;
 import com.i2soft.util.*;
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import okhttp3.*;
 
 import javax.crypto.Mac;
@@ -13,7 +12,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Timestamp;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -22,6 +20,7 @@ import java.util.concurrent.TimeUnit;
  */
 public final class Client {
     static final String JsonMime = "application/json";
+    static final String[] NoneAuth = {"/api/auth/token"};
     private StringMap headers;
     private final OkHttpClient httpClient;
     public final String cc_url;
@@ -238,10 +237,19 @@ public final class Client {
 
         headers = new StringMap();
 
+        if (!url.contains("/api/")) {
+            return;
+        }
+
+        String api = url.substring(url.indexOf("/api/")); // Eg: /api/node
+
+        if (Arrays.asList(NoneAuth).contains(api)) {
+            return;
+        }
+
         String randomStr = getRandomString(16);
         String time = String.valueOf(System.currentTimeMillis() / 1000);
         String uuid = UUID.randomUUID().toString();
-        String api = url.substring(url.indexOf("/api/")); // Eg: /api/node
         String secret;
 
         // AK or Token

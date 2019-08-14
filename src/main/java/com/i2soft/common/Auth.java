@@ -182,6 +182,6 @@ public final class Auth {
         }
         String url = String.format("%s/auth/token", this.cc_url);
         Response r = this.client.get(url, new StringMap().put("access_token", this.sso_token));
-        return Objects.requireNonNull(r.jsonToObject(Map.class)).get("username").toString();
+        return Objects.requireNonNull(r.jsonToMap()).get("username").toString();
     }
 }

@@ -1,4 +1,9 @@
 URL: [GET] /permission/category
 RS: {"code":0,"message":"","categories":["system","resource","template","rules","ha","nasSync","fsp","virtualSupport","timing","statistics","tools","notification"]}
 
+URL: [GET] /permission/cat_perms
+HEADER: {"Authorization":"d1d0ef0be45d0cd534766884d655a3bded60d5a7","Signature":"9b5874e1910ebeb8e36eb07585694fa889816262eb2913b4571d5d1447f91590","nonce":"ee16650e-d691-4591-8cb0-66699a7cb332","timestamp":"1565756126"}
+ARGS: {"_":"pf5Gh8YjCrRm81kX"}
+RS: {"code":0,"message":"","categories":["dashboard","system","resource","template","rules","ha","nasSync","fsp","virtualSupport","timing","statistics","tools","notification"],"perms":["dashboard","licenseView","licenseOp","sysSettings","log","group","node","storage","vpPlat","vpBackupTemplate","vpRepTemplate","fspBackupTemplate","fspRestoreTemplate","timingBackupTemplate","repListTemplate","repBackup","repRecovery","ha","nasSync","fspBackup","fspRestore","fspMove","vpBackup","vpMove","vpRecovery","vpRep","timingBackup","timingRecovery","statistics","statisticsTiming","diagnose","compare","notification","notificationSetting"]}
+
 Process finished with exit code 0

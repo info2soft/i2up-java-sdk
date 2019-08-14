@@ -1,10 +1,8 @@
 package com.i2soft.gts.v20190805;
 
-import com.i2soft.http.I2Req;
-import com.i2soft.http.I2Rs;
+import com.i2soft.common.Auth;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
-import com.i2soft.common.Auth;
 import com.i2soft.util.StringMap;
 
 import java.util.Map;
@@ -34,7 +32,7 @@ public final class GTS {
     public Map describeLic(StringMap args) throws I2softException {
         String url = String.format("%s/lic/describe", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -46,7 +44,7 @@ public final class GTS {
     public Map closeService() throws I2softException {
         String url = String.format("%s/gts/service/:uid([0-9] )", auth.cc_url);
         Response r = auth.client.post(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -59,7 +57,7 @@ public final class GTS {
     public Map listService(StringMap args) throws I2softException {
         String url = String.format("%s/gts/service/:uid([0-9] )", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -72,7 +70,7 @@ public final class GTS {
     public Map createServer(StringMap args) throws I2softException {
         String url = String.format("%s/gts/hello", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -84,7 +82,7 @@ public final class GTS {
     public Map describeQuota() throws I2softException {
         String url = String.format("%s/gts/quota", auth.cc_url);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -96,6 +94,6 @@ public final class GTS {
     public Map describeSummary() throws I2softException {
         String url = String.format("%s/gts/summary", auth.cc_url);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

@@ -15,4 +15,9 @@ URL: [GET] /monitor/chart_data/11111111-1111-1111-1111-111111111111
 ARGS: {"start_time":154172680,"last_time":164172680}
 RS: {"code":0,"message":"","cpu":[],"mem":[],"nic":[],"disk":[]}
 
+URL: [GET] /monitor/bk_node_overall
+HEADER: {"Authorization":"d1d0ef0be45d0cd534766884d655a3bded60d5a7","Signature":"cca9965a68bf587dbcbaa55c3256925fe4ed9f77339908857cbbb5e538c98362","nonce":"062b2c12-ba59-470c-b8c5-76bdb8d741e9","timestamp":"1565756165"}
+ARGS: {"_":"QsY5CtmjsN8Zqcz2"}
+RS: {"code":0,"message":"[0] success","phy_info":{"code":10011307,"message":"[10011307] Node monitor is not turned on"},"drivers_info":{"code":0,"message":"[0] success","rpc":"1","sdatad":"1","srepd":"1","log":"1","ha":"1","ha_detector":"1","drivers":[{"name":"C:","total":"63846739968","free":"40342343680"},{"name":"E:","total":"8586784768","free":"5129609216"},{"name":"F:","total":"10734268416","free":"10273517568"}]},"chart_data":{"code":0,"message":"[0] success","cpu":[],"mem":[],"nic":[],"disk":[]}}
+
 Process finished with exit code 0

@@ -1,0 +1,6 @@
+﻿URL: [GET] /role
+HEADER: {"Authorization":"d1d0ef0be45d0cd534766884d655a3bded60d5a7","Signature":"2ca0025830898433b2b783196fbc9702dfbd128d9b2b869f0141f487de1a2eba","nonce":"9f502bed-2470-46f3-85c2-dccce79fe3c8","timestamp":"1565754205"}
+ARGS: {"filter_value":"operator","filter_type":"name","limit":"10","page":"1","_":"6wqp50yRUGYUpXkY"}
+RS: {"code":0,"message":"","roles":[{"id":"3","name":"admin","is_system":"1","allow_new_user":"1","display_name":"Business Administrator","description":"Admin User","dynamic_perms":"0"},{"id":"4","name":"auditor","is_system":"1","allow_new_user":"0","display_name":"Auditor","description":"Business auditor","dynamic_perms":"0"},{"id":"5","name":"operator","is_system":"1","allow_new_user":"1","display_name":"Operator","description":"Operation Clerk","dynamic_perms":"1"},{"id":"2","name":"sysadmin","is_system":"1","allow_new_user":"0","display_name":"Administrator","description":"Super User","dynamic_perms":"0"},{"id":"1","name":"tenant_admin","is_system":"1","allow_new_user":"0","display_name":"Tenant Administrator","description":"Super Administrator","dynamic_perms":"0"}],"total":5}
+
+Process finished with exit code 0

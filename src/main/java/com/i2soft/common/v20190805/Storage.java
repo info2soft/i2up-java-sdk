@@ -60,7 +60,7 @@ public final class Storage {
     public Map describeStorageConfig(String uuid) throws I2softException {
         String url = String.format("%s/storage/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -72,7 +72,7 @@ public final class Storage {
     public Map listStorageConfig() throws I2softException {
         String url = String.format("%s/storage", auth.cc_url);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -98,7 +98,7 @@ public final class Storage {
     public Map listStorageInfo(StringMap args) throws I2softException {
         String url = String.format("%s/ /storage/info", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -110,7 +110,7 @@ public final class Storage {
     public Map listAvailableNode() throws I2softException {
         String url = String.format("%s/storage/node", auth.cc_url);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -123,7 +123,7 @@ public final class Storage {
     public Map listDevice(StringMap args) throws I2softException {
         String url = String.format("%s/storage/dev", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -136,7 +136,7 @@ public final class Storage {
     public Map listAvailableDevice(StringMap args) throws I2softException {
         String url = String.format("%s/storage/available_dev", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -188,7 +188,7 @@ public final class Storage {
     public Map listPool(StringMap args) throws I2softException {
         String url = String.format("%s/storage/pool", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -201,7 +201,7 @@ public final class Storage {
     public Map listPoolInfo(StringMap args) throws I2softException {
         String url = String.format("%s/storage/pool/info", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -240,7 +240,7 @@ public final class Storage {
     public Map listFs(StringMap args) throws I2softException {
         String url = String.format("%s/storage/file_system", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -279,7 +279,7 @@ public final class Storage {
     public Map listFsSnapshot(StringMap args) throws I2softException {
         String url = String.format("%s/storage/file_system/snap", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -318,7 +318,7 @@ public final class Storage {
     public Map listFsCloneSnapshot(StringMap args) throws I2softException {
         String url = String.format("%s/storage/file_system/snap/clone", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -331,7 +331,7 @@ public final class Storage {
     public Map createVolume(StringMap args) throws I2softException {
         String url = String.format("%s/storage/volume", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -357,7 +357,7 @@ public final class Storage {
     public Map listVolume(StringMap args) throws I2softException {
         String url = String.format("%s/storage/volume", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -396,7 +396,7 @@ public final class Storage {
     public Map listVolumeSnapshot(StringMap args) throws I2softException {
         String url = String.format("%s/storage/volume/snap", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -435,7 +435,7 @@ public final class Storage {
     public Map listVolumeCloneSnapshot(StringMap args) throws I2softException {
         String url = String.format("%s/storage/volume/snap/clone", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -498,7 +498,7 @@ public final class Storage {
     public Map listBackStore(StringMap args) throws I2softException {
         String url = String.format("%s/storage/backstore/info", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -524,7 +524,7 @@ public final class Storage {
     public Map listAssignBackStore(StringMap args) throws I2softException {
         String url = String.format("%s/storage/backstore/assign", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -537,7 +537,7 @@ public final class Storage {
     public Map listBackStoreAvailablePath(StringMap args) throws I2softException {
         String url = String.format("%s/storage/backstore/available_path", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -550,7 +550,7 @@ public final class Storage {
     public Map describeIscsiVersion(StringMap args) throws I2softException {
         String url = String.format("%s/storage/iscsi/version", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -563,7 +563,7 @@ public final class Storage {
     public Map describeIscsiAuth(StringMap args) throws I2softException {
         String url = String.format("%s/storage/iscsi/auth", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -628,7 +628,7 @@ public final class Storage {
     public Map describeAutoAddPortal(StringMap args) throws I2softException {
         String url = String.format("%s/storage/iscsi/auto_add_portal", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -641,7 +641,7 @@ public final class Storage {
     public Map describeAutoAddLun(StringMap args) throws I2softException {
         String url = String.format("%s/storage/iscsi/auto_add_luns", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -654,7 +654,7 @@ public final class Storage {
     public Map describeIscsiTargetStatus(StringMap args) throws I2softException {
         String url = String.format("%s/storage/target/status", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -667,7 +667,7 @@ public final class Storage {
     public Map listIscsiTarget(StringMap args) throws I2softException {
         String url = String.format("%s/storage/target/info", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -810,7 +810,7 @@ public final class Storage {
     public Map listIscsiInitiatorPortal(StringMap args) throws I2softException {
         String url = String.format("%s/storage/initiator/portal", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -836,7 +836,7 @@ public final class Storage {
     public Map listTpg(StringMap args) throws I2softException {
         String url = String.format("%s/storage/tpg/info", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -849,7 +849,7 @@ public final class Storage {
     public Map createTpg(StringMap args) throws I2softException {
         String url = String.format("%s/storage/tpg", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -914,7 +914,7 @@ public final class Storage {
     public Map describeTpgConnectAuth(StringMap args) throws I2softException {
         String url = String.format("%s/storage/tpg/auth", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**

@@ -21,4 +21,9 @@ URL: [GET] /dashboard/vp_vm
 ARGS: {"vp_uuid":"F28BA5A6-4FF9-E596-4371-1ED203D45143"}
 RS: {"code":0,"message":"[0] success","vm_protected":0,"vm_total":0,"info_list":[]}
 
+URL: [GET] /dashboard/up_monitor_overall
+HEADER: {"Authorization":"d1d0ef0be45d0cd534766884d655a3bded60d5a7","Signature":"ee1bcab307786ff770158dfec32d35e50f3869a0dab5526de6a8715e2a6cbe4a","nonce":"49a9f687-d8f7-4cd3-8f06-5353d23a9390","timestamp":"1565755759"}
+ARGS: {"_":"JrpMoPkI8hmXVxTV"}
+RS: {"code":0,"message":"[0] success","up":{"ONLINE":0,"OFFLINE":0},"overall":{"code":0,"message":"[0] success","node_num":0,"rep_num":0,"ha_num":0,"node":{"UNKNOWN":0,"OFFLINE":0,"ONLINE":0},"rep":{"UNKNOWN":0,"FINISH":0,"STOP":0,"REPLICATION":0,"MIRROR":0,"EXCEPTION":0,"STALE":0,"SWITCH":0,"WAIT":0,"EXECUTING":0,"IDLE":0,"DEAD":0},"ha":{"master_status":{"HA_UNKNOWN":0,"HA_STOP":0,"HA_START":0,"HA_RUN":0,"HA_MIRROR":0,"HA_READY":0,"HA_WARN":0,"HA_FAIL":0},"master_role":{"HA_UNKNOWN":0,"HA_UNJOIN":0,"HA_MASTER":0,"HA_SLAVE":0,"HA_PREOVER":0,"HA_POSTOVER":0,"HA_PREBACK":0,"HA_POSTBACK":0,"HA_SWITCH":0}}},"vp_vm":{"code":0,"message":"[0] success","vm_total":0,"vm_protected":0},"vp_rule":{"code":0,"message":"[0] success","all_total_num":0,"all_trans_data_num_raw":0,"all_success_num":0,"all_unread_err_num":0,"total_num":0,"trans_data_num_raw":0,"success_num":0,"unread_err_num":0,"all_trans_data_num":"0 Bytes","trans_data_num":"0 Bytes"}}
+
 Process finished with exit code 0

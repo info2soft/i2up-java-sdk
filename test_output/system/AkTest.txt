@@ -1,0 +1,21 @@
+﻿URL: [GET] /ak
+HEADER: {"Authorization":"d1d0ef0be45d0cd534766884d655a3bded60d5a7","Signature":"00fdd2d20ae4169617a52ca15f8549b8417f5ddb87ea0d41fb1efcefd8048f2d","nonce":"fe3aeb24-7f6f-4826-8608-1e57928672ac","timestamp":"1565753847"}
+ARGS: {"_":"9ITroPkKMgUQpyQW"}
+RS: {"code":0,"message":"","info_list":[{"username":"admin","access_key":"pytDWihn3NscXewH8UYLIZq2gE7ufGoQ","secret_key":"u9wQma8pvyXFlZ7CtzTgORsjiBNY4KVL5xDIqGW1","status":1,"created_at":"1554867204"},{"username":"admin","access_key":"oishvmn5YPHJcEDaIjtwd0R9Ug7BN1fk","secret_key":"fkLiyqsG3P1AzB5jWtYbZa7TU8RN9wSVhe6EldOo","status":1,"created_at":"1553758791"}],"total":2,"keys":[{"username":"admin","access_key":"pytDWihn3NscXewH8UYLIZq2gE7ufGoQ","secret_key":"u9wQma8pvyXFlZ7CtzTgORsjiBNY4KVL5xDIqGW1","status":1,"created_at":"1554867204"},{"username":"admin","access_key":"oishvmn5YPHJcEDaIjtwd0R9Ug7BN1fk","secret_key":"fkLiyqsG3P1AzB5jWtYbZa7TU8RN9wSVhe6EldOo","status":1,"created_at":"1553758791"}]}
+
+URL: [POST] /ak
+HEADER: {"Authorization":"d1d0ef0be45d0cd534766884d655a3bded60d5a7","Signature":"9f9ef220345bb2b2b48ed80b6762f9e4860005b4ae4e2421a188f36625d992eb","nonce":"5e256e10-2325-4a51-ab8b-b59132575020","timestamp":"1565754137"}
+ARGS: {"_":"JOeVNaWUvixXowj4"}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [PUT] /ak
+HEADER: {"Authorization":"d1d0ef0be45d0cd534766884d655a3bded60d5a7","Signature":"40274991a1583871f58d0809da72238ef1a19361e1d460ce33a8af4755300bbf","nonce":"0c2bd060-2e2e-461c-a915-3ba10784182d","timestamp":"1565753956"}
+ARGS: {"access_key":"pytDWihn3NscXewH8UYLIZq2gE7ufGoQ","status":0.0,"_":"b4Y5xRMQs43t8feh"}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [DELETE] /ak
+HEADER: {"Authorization":"d1d0ef0be45d0cd534766884d655a3bded60d5a7","Signature":"0d32121ddf2c498d738c559734a086150d405c403818b6c1f05ada36406795c5","nonce":"9180dff5-775d-41ea-8f0c-6bb1bd0084ea","timestamp":"1565754108"}
+ARGS: {"access_key":"pytDWihn3NscXewH8UYLIZq2gE7ufGoQ","_":"zf3dFPBk3otpx5J4"}
+RS: {"code":0,"message":"[0] success"}
+
+Process finished with exit code 0

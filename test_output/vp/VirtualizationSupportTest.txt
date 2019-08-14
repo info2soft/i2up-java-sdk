@@ -18,6 +18,11 @@ URL: [GET] /vp/platform/status
 ARGS: {"vp_uuids":["11111111-1111-1111-1111-111111111111"]}
 RS: {"code":0,"message":"[0] success","status":[{"vp_uuid":"11111111-1111-1111-1111-111111111111","status":"ONLINE"}]}
 
+URL: [POST] /vp/platform/operate
+HEADER: {"Authorization":"d1d0ef0be45d0cd534766884d655a3bded60d5a7","Signature":"596e39507b6f6e76d3a89cefda1135daa11c88f2c3a9952020ee8bd58784abab","nonce":"a4ea624d-8973-441b-9d3c-7217237ee2d5","timestamp":"1565756847"}
+ARGS: {"operate":"update_data_agent","vp_uuids":["B4B60E42-6B6E-82EA-14A3-A40C9B64EDE9"],"_":"HC1WWS0jaMfiPFB3"}
+RS: {"code":0,"message":"[0] success"}
+
 URL: [GET] /vp/platform/11111111-1111-1111-1111-111111111111/vm
 ARGS: {"path":"/","force_rpc":0}
 RS: {"code":0,"message":"[0] success","vm_list":[{"morval":"ha-datacenter","powerState":"0","ExistRuletype":"0","size":"","name":"ha-datacenter","time":"","supportCbt":"1","host_ip":"192.168.88.107","is_dir":"1","tmp_type":"2"}],"create_time":1546933362}

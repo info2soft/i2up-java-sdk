@@ -39,7 +39,7 @@ public class GTSTest {
     public void T01_describeLic() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "891")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = gTS.describeLic(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
@@ -61,7 +61,7 @@ public class GTSTest {
     public void T03_listService() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "852")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = gTS.listService(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
@@ -73,7 +73,7 @@ public class GTSTest {
     public void T04_createServer() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1141")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = gTS.createServer(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {

@@ -11,7 +11,7 @@ println("detected JAVA_HOME=$System.env.JAVA_HOME")
 
 compileJava.options.fork = true
 compileJava.options.compilerArgs << "-XDignore.symbol.file -Xlint:unchecked -Xlint:deprecation"
-compileJava.options.bootClasspath = "$System.env.JAVA_HOME/jre/lib/rt.jar:$System.env.JAVA_HOME/jre/lib/jce.jar"
+//compileJava.options.bootClasspath = "$System.env.JAVA_HOME/jre/lib/rt.jar:$System.env.JAVA_HOME/jre/lib/jce.jar"
 
 repositories {
     mavenCentral()

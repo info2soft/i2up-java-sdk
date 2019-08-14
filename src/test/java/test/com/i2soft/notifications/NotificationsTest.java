@@ -147,7 +147,7 @@ public class NotificationsTest {
     public void T09_testNotificationsSms() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1304")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = notifications.testNotificationsSms(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
@@ -159,7 +159,7 @@ public class NotificationsTest {
     public void T10_addNotifications() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1303")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = notifications.addNotifications(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {

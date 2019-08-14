@@ -1,10 +1,8 @@
 package com.i2soft.upmonitor.v20190805;
 
-import com.i2soft.http.I2Req;
-import com.i2soft.http.I2Rs;
+import com.i2soft.common.Auth;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
-import com.i2soft.common.Auth;
 import com.i2soft.util.StringMap;
 
 import java.util.Map;
@@ -34,7 +32,7 @@ public final class UpMonitor {
     public Map authUpMonitor(StringMap args) throws I2softException {
         String url = String.format("%s/up_monitor/auth", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -47,7 +45,7 @@ public final class UpMonitor {
     public Map describeUpMonitorToken(StringMap args) throws I2softException {
         String url = String.format("%s/up_monitor/token", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -60,7 +58,7 @@ public final class UpMonitor {
     public Map createUpMonitor(StringMap args) throws I2softException {
         String url = String.format("%s/up_monitor", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -74,7 +72,7 @@ public final class UpMonitor {
     public Map modifyUpMonitor(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/up_monitor/%s", auth.cc_url, uuid);
         Response r = auth.client.put(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -87,7 +85,7 @@ public final class UpMonitor {
     public Map describeUpMonitor(String uuid) throws I2softException {
         String url = String.format("%s/up_monitor/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -100,7 +98,7 @@ public final class UpMonitor {
     public Map listUpMonitor(StringMap args) throws I2softException {
         String url = String.format("%s/up_monitor", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -113,7 +111,7 @@ public final class UpMonitor {
     public Map refreshUpMonitor(StringMap args) throws I2softException {
         String url = String.format("%s/up_monitor/operate", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -126,7 +124,7 @@ public final class UpMonitor {
     public Map listUpMonitorStatus(StringMap args) throws I2softException {
         String url = String.format("%s/up_monitor/status", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -139,6 +137,6 @@ public final class UpMonitor {
     public Map deleteUpMonitor(StringMap args) throws I2softException {
         String url = String.format("%s/up_monitor", auth.cc_url);
         Response r = auth.client.delete(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

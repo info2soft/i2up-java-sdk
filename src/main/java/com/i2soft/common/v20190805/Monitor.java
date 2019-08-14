@@ -99,6 +99,6 @@ public final class Monitor {
     public Map listBkNodeOverall() throws I2softException {
         String url = String.format("%s/monitor/bk_node_overall", auth.cc_url);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }
