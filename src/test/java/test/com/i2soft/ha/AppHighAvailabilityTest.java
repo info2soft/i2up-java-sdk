@@ -175,7 +175,7 @@ public class AppHighAvailabilityTest {
     public void T12_haVerifyName() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "814")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToObject(Map.class))); // 填充请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = appHighAvailability.haVerifyName(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {

@@ -42,6 +42,6 @@ public final class Permission {
     public Map listCatPerms() throws I2softException {
         String url = String.format("%s/permission/cat_perms", auth.cc_url);
         Response r = auth.client.get(url);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

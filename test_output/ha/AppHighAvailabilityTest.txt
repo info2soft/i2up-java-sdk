@@ -41,4 +41,9 @@ URL: [DELETE] /ha
 ARGS: {"uuid":["11111111-1111-1111-1111-111111111111"]}
 RS: {"code":0,"message":"[0] success"}
 
+URL: [POST] /ha/verify_name
+HEADER: {"Authorization":"d1d0ef0be45d0cd534766884d655a3bded60d5a7","Signature":"5ddebd9ef32100555de0a4ddaefdd2b5893962b60ecea5053c3b859a37466cf3","nonce":"8498745c-a293-4a51-a0e8-425fa8c4cba3","timestamp":"1565756041"}
+ARGS: {"ha_name":"testfdsa","_":"fub3Mkgv7udTRycO"}
+RS: {"code":0,"message":"[0] success"}
+
 Process finished with exit code 0

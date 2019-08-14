@@ -32,11 +32,7 @@ public class NodeTest {
         if (node != null) {
             return;
         }
-        try {
-            auth = Auth.access(TestConfig.ip, TestConfig.ak, TestConfig.sk);
-        } catch (I2softException e) {
-            e.printStackTrace();
-        }
+        auth = Auth.access(TestConfig.ip, TestConfig.ak, TestConfig.sk);
         node = new Node(auth);
     }
 

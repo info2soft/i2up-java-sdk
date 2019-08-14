@@ -15,4 +15,9 @@ URL: [PUT] /statistics
 ARGS: {"type":"I2VP_BK"}
 RS: {"code":0,"message":""}
 
+URL: [GET] /statistics/chart
+HEADER: {"Authorization":"d1d0ef0be45d0cd534766884d655a3bded60d5a7","Signature":"7a526396e3f46cb0408ed57a7c628e4eb887e13e0ccc9632b0df15fd9b5ec5e4","nonce":"abfc8682-703a-4421-940a-08daf72217d4","timestamp":"1565755314"}
+ARGS: {"start":1,"limit":10,"end":2,"src_type":"0","page":1,"type":"I2BAK_BK","_":"8JJKpnwe61wb1HYB"}
+RS: {"code":0,"message":"","statistics_info":{"result_statistics":{"success":0,"failed":0,"skipped":0},"performance_statistics":{"timeout":0,"over_half_time_spent":0,"less_half_time_spent":0}}}
+
 Process finished with exit code 0

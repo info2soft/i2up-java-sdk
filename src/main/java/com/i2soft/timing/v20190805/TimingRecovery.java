@@ -192,6 +192,6 @@ public final class TimingRecovery {
     public Map listTimingRecoveryDb(StringMap args) throws I2softException {
         String url = String.format("%s/timing/recovery/rc_db2_time", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

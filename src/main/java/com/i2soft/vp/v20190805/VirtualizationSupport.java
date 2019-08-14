@@ -90,6 +90,20 @@ public final class VirtualizationSupport {
     }
 
     /**
+     * 虚拟平台 - 操作：更新数据代理版本
+     *
+     * @param uuids: uuid数组
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs updateDataAgentVp(String[] uuids) throws I2softException {
+        String url = String.format("%s/vp/platform/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("vp_uuids", uuids).put("operate", "update_data_agent");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
      * 删除
      *
      * @param args: 参数详见 API 手册
@@ -751,7 +765,7 @@ public final class VirtualizationSupport {
     public Map describeVpFileRecoveryVmIp(StringMap args) throws I2softException {
         String url = String.format("%s/vp/file_recovery/vm_ip", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -764,7 +778,7 @@ public final class VirtualizationSupport {
     public Map vpFileRecoveryLivecdPartition(StringMap args) throws I2softException {
         String url = String.format("%s/vp/file_recovery/livecd_partition", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -777,7 +791,7 @@ public final class VirtualizationSupport {
     public Map createVpFileRecovery(StringMap args) throws I2softException {
         String url = String.format("%s/vp/file_recovery", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -790,7 +804,7 @@ public final class VirtualizationSupport {
     public Map describeVpFileRecovery(String uuid) throws I2softException {
         String url = String.format("%s/vp/file_recovery/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -803,7 +817,7 @@ public final class VirtualizationSupport {
     public Map listVpFileRecovery(StringMap args) throws I2softException {
         String url = String.format("%s/vp/file_recovery", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -816,7 +830,7 @@ public final class VirtualizationSupport {
     public Map listVpFileRecoveryStatus(StringMap args) throws I2softException {
         String url = String.format("%s/vp/file_recovery/status", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
@@ -829,6 +843,6 @@ public final class VirtualizationSupport {
     public Map deleteVpFileRecovery(StringMap args) throws I2softException {
         String url = String.format("%s/vp/file_recovery", auth.cc_url);
         Response r = auth.client.delete(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 }

@@ -27,6 +27,11 @@ URL: [GET] /notifications/email_test
 ARGS: {"email":"lis@info2soft.com"}
 RS: {"code":0,"message":"[0] success"}
 
+URL: [GET] https://172.20.79.69:58086/api/notifications/sms_test
+HEADER: {"Authorization":"bde047e047b5437f878874d630caf2d791ddcc23","Signature":"76168d57e9022c4f7809a734eeeb7ce5250d0addeba6286d11b75aa35ac83989","nonce":"16bb947d-2491-4632-8282-a3dfa96f6cff","timestamp":"1565688736"}
+ARGS: {"temp_id":"","mobile":"13123456789","_":"wA2sP8irn7Fw7mPr"}
+RS: {"code":0,"message":"[0] success"}
+
 URL: [GET] /notifications/reset_notify_times
 RS: {"code":0,"message":"[0] success"}
 

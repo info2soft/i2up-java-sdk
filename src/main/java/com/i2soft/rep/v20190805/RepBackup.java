@@ -33,7 +33,7 @@ public final class RepBackup {
     public Map listRepBackupCdpZfs(StringMap args) throws I2softException {
         String url = String.format("%s/rep/backup/cdp_zfs", auth.cc_url);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**

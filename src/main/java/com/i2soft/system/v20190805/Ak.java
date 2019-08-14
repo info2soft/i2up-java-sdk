@@ -32,7 +32,7 @@ public final class Ak {
     public Map listAk() throws I2softException {
         String url = String.format("%s/ak", auth.cc_url);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(Map.class);
+        return r.jsonToMap();
     }
 
     /**
