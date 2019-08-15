@@ -92,7 +92,9 @@ Java SDK依赖的第三方库及其版本如下：
 6. 方法返回：如访问正常，会包含请求结果，如此处为 `info_list`（节点列表）。
 7. 异常：I2softException 会在发生 http 错误或方法执行异常时抛出，其中 response 中有错误的详细信息。
 
-如下为获取节点列表：
+如下为获取节点列表
+
+用户名密码鉴权：
 
     import com.i2soft.http.I2softException;
     import com.i2soft.resource.v20190805.Node;
@@ -113,6 +115,41 @@ Java SDK依赖的第三方库及其版本如下：
                 // 鉴权
                 Auth auth = Auth.token(ip, username, password, cachePath);
     
+                // 实例化节点管理类
+                Node node = new Node(auth);
+    
+                // 获取节点列表
+                StringMap listArgs = new StringMap().put("limit", 1).put("direction", "DESC"); // 填充请求数据
+                Map rs = node.listNode(listArgs);
+    
+                // 如访问正常，此处 rs 包含 info_list（节点列表）
+    
+            } catch (I2softException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+AK、SK 鉴权
+
+    import com.i2soft.http.I2softException;
+    import com.i2soft.resource.v20190805.Node;
+    import com.i2soft.util.Configuration;
+    import com.i2soft.util.StringMap;
+    
+    import java.util.Map;
+    
+    public class Demo {
+    
+        public static void main(String[] args) {
+            try {
+                String ip = "http://[ip]:[port]";                        // 英方平台地址
+                String ak = "oishvmn5YPHJcEDaIjtwd0R9Ug7BN1fk";          // 英方平台 Access Key
+                String sk = "fkLiyqsG3P1AzB5jWtYbZa7TU8RN9wSVhe6EldOo";  // 英方平台 Secret Key
+    
+                // 鉴权
+                Auth auth = Auth.access(ip, ak, sk);
+
                 // 实例化节点管理类
                 Node node = new Node(auth);
     
