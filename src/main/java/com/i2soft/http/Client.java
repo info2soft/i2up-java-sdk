@@ -145,6 +145,13 @@ public final class Client {
         this.auth = auth;
     }
 
+    public void setHeader(String key, String value) {
+        if (null == this.headers) {
+            this.headers = new StringMap();
+        }
+        this.headers.put(key, value);
+    }
+
     public Response get(String url) throws I2softException {
         return get(url, new StringMap());
     }
@@ -234,8 +241,9 @@ public final class Client {
     }
 
     private void addSignToHeader(String httpMethod, String url, StringMap args) {
-
-        headers = new StringMap();
+        if (null == headers) {
+            headers = new StringMap();
+        }
 
         if (!url.contains("/api/")) {
             return;
