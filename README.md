@@ -94,7 +94,7 @@ Java SDK依赖的第三方库及其版本如下：
 
 如下为获取节点列表
 
-用户名密码鉴权：
+### 用户名密码鉴权：
 
     import com.i2soft.common.Auth;
     import com.i2soft.http.I2softException;
@@ -134,7 +134,7 @@ Java SDK依赖的第三方库及其版本如下：
         }
     }
     
-AK、SK 鉴权
+### AK、SK 鉴权
 
     import com.i2soft.common.Auth;
     import com.i2soft.http.I2softException;
