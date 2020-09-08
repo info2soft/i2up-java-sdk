@@ -17,6 +17,7 @@ public class Demo {
 
             // 鉴权
             Auth auth = Auth.token(ip, username, password, cachePath);
+            auth.client.setHeader("User-Lang", "zh-CN");
 
             // 实例化节点管理类
             Node node = new Node(auth);
