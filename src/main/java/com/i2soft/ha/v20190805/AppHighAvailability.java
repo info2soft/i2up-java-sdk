@@ -181,4 +181,132 @@ public final class AppHighAvailability {
         Response r = auth.client.get(url);
         return r.jsonToMap();
     }
+
+    /**
+     * 高可用组 - 阶段选项
+     *
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listStageOptions() throws I2softException {
+        String url = String.format("%s/ha/group/stage_options", auth.cc_url);
+        Response r = auth.client.get(url, new StringMap());
+        return r.jsonToMap();
+    }
+
+    /**
+     * 高可用组-新建
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map createHAGroup(StringMap args) throws I2softException {
+        String url = String.format("%s/ha/group", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 高可用组 - 列表
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listHAGroup(StringMap args) throws I2softException {
+        String url = String.format("%s/ha/group", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 高可用组 - 删除
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs deleteHAGroup(StringMap args) throws I2softException {
+        String url = String.format("%s/ha/group", auth.cc_url);
+        Response r = auth.client.delete(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 高可用组 - 修改
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs modifyHAGroup(StringMap args) throws I2softException {
+        String url = String.format("%s/ha/group/:uuid([a-f-0-9] )", auth.cc_url);
+        Response r = auth.client.put(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 高可用组 - 单个详细信息
+     *
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map describeHAGroup() throws I2softException {
+        String url = String.format("%s/ha/group/:uuid([a-f-0-9] )", auth.cc_url);
+        Response r = auth.client.get(url, new StringMap());
+        return r.jsonToMap();
+    }
+
+    /**
+     * 高可用组 - 组强制切换
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map forceSwitchHAGroup(StringMap args) throws I2softException {
+        String url = String.format("%s/ha/group/:uuid([a-f-0-9] )/task", auth.cc_url);
+        Response r = auth.client.put(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 高可用组 - 切换状态
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listHASwitchTaskStatus(StringMap args) throws I2softException {
+        String url = String.format("%s/ha/group/:uuid([a-f-0-9] )/task/status", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 高可用组 - 操作强制切换任务
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs resumeHAGroupSwitch(StringMap args) throws I2softException {
+        String url = String.format("%s/ha/group/:uuid([a-f-0-9] )/task", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 高可用组 - 操作强制切换任务
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs pauseHAGroupSwitch(StringMap args) throws I2softException {
+        String url = String.format("%s/ha/group/:uuid([a-f-0-9] )/task", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
 }

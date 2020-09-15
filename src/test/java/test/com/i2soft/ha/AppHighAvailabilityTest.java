@@ -182,4 +182,121 @@ public class AppHighAvailabilityTest {
             e.printStackTrace();
         }
     }
+
+
+    @Test
+    public void T13_listStageOptions() {
+        try {
+            Map rs = appHighAvailability.listStageOptions(); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T14_createHAGroup() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2244")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = appHighAvailability.createHAGroup(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T15_listHAGroup() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2251")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = appHighAvailability.listHAGroup(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T16_deleteHAGroup() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2250")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            I2Rs.I2SmpRs rs = appHighAvailability.deleteHAGroup(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T17_modifyHAGroup() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2245")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            I2Rs.I2SmpRs rs = appHighAvailability.modifyHAGroup(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T18_describeHAGroup() {
+        try {
+            Map rs = appHighAvailability.describeHAGroup(); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T19_forceSwitchHAGroup() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2247")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = appHighAvailability.forceSwitchHAGroup(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T20_listHASwitchTaskStatus() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2248")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = appHighAvailability.listHASwitchTaskStatus(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T21_resumeHAGroupSwitch() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2249")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            I2Rs.I2SmpRs rs = appHighAvailability.resumeHAGroupSwitch(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T22_pauseHAGroupSwitch() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2249")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            I2Rs.I2SmpRs rs = appHighAvailability.pauseHAGroupSwitch(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
 }
