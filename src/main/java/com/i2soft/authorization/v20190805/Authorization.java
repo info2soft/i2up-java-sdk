@@ -31,7 +31,7 @@ public final class Authorization {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map tempFuncName(StringMap args) throws I2softException {
+    public Map ListAuthorizationUser(StringMap args) throws I2softException {
         String url = String.format("%s/authorization/user", auth.cc_url);
         Response r = auth.client.get(url, args);
         return r.jsonToMap();
