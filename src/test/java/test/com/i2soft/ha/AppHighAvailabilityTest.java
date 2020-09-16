@@ -16,6 +16,7 @@ import test.com.i2soft.util.TestConfig;
 
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AppHighAvailabilityTest {
@@ -230,12 +231,14 @@ public class AppHighAvailabilityTest {
         }
     }
 
+
     @Test
     public void T17_modifyHAGroup() {
         try {
+//            String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2245")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = appHighAvailability.modifyHAGroup(args); // 发送请求
+            I2Rs.I2SmpRs rs = appHighAvailability.modifyHAGroup(uuid, args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -245,7 +248,8 @@ public class AppHighAvailabilityTest {
     @Test
     public void T18_describeHAGroup() {
         try {
-            Map rs = appHighAvailability.describeHAGroup(); // 发送请求
+//            String uuid = UUID.randomUUID().toString();
+            Map rs = appHighAvailability.describeHAGroup(uuid); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -255,9 +259,10 @@ public class AppHighAvailabilityTest {
     @Test
     public void T19_forceSwitchHAGroup() {
         try {
+//            String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2247")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = appHighAvailability.forceSwitchHAGroup(args); // 发送请求
+            Map rs = appHighAvailability.forceSwitchHAGroup(uuid, args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -267,9 +272,10 @@ public class AppHighAvailabilityTest {
     @Test
     public void T20_listHASwitchTaskStatus() {
         try {
+//            String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2248")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = appHighAvailability.listHASwitchTaskStatus(args); // 发送请求
+            Map rs = appHighAvailability.listHASwitchTaskStatus(uuid, args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -279,9 +285,10 @@ public class AppHighAvailabilityTest {
     @Test
     public void T21_resumeHAGroupSwitch() {
         try {
+//            String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2249")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = appHighAvailability.resumeHAGroupSwitch(args); // 发送请求
+            I2Rs.I2SmpRs rs = appHighAvailability.resumeHAGroupSwitch(uuid, args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -291,9 +298,10 @@ public class AppHighAvailabilityTest {
     @Test
     public void T22_pauseHAGroupSwitch() {
         try {
+//            String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2249")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = appHighAvailability.pauseHAGroupSwitch(args); // 发送请求
+            I2Rs.I2SmpRs rs = appHighAvailability.pauseHAGroupSwitch(uuid, args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

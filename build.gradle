@@ -60,3 +60,7 @@ task gen_eclipse(dependsOn: [
         'eclipseProject', 'eclipseClasspath'])
 eclipseProject.mustRunAfter cleanEclipseProject
 eclipseClasspath.mustRunAfter cleanEclipseClasspath
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}

@@ -4,7 +4,7 @@ public final class TestConfig {
 
     public static final String ip = "https://172.20.68.208:58086";
     public static final String user = "admin";
-    public static final String pwd = "info1234";
+    public static final String pwd = "Info1234";
     public static final String cachePath = "E:\\cache\\";
 
     public static final String ak = "oishvmn5YPHJcEDaIjtwd0R9Ug7BN1fk";
@@ -12,7 +12,7 @@ public final class TestConfig {
 
     public static final String rapDataUrl = "https://rap2api.info2soft.com/app/mock/data/%s?scope=request";
 
-    public static final String testUuid = "11111111-1111-1111-1111-111111111111";
+    public static final String testUuid = "4D4965A3-54DE-69D8-3DBB-E85923C93396";
 
     private TestConfig() {
     }

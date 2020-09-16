@@ -47,3 +47,147 @@ ARGS: {"ha_name":"testfdsa","_":"fub3Mkgv7udTRycO"}
 RS: {"code":0,"message":"[0] success"}
 
 Process finished with exit code 0
+
+
+URL: [POST] https://172.20.68.208:58086/api/auth/token
+HEADER: {}
+ARGS: {"pwd":"Info1234","username":"admin"}
+RS: {"code":0,"message":"","token":"863b48acdd113d78b9b3ef5489693ac1457fb768","sso_token":"cfc4f842adf3fd60yOuRit-WmQRKM-ACtWtOUFzQcSRHNs-VRWfxOh6ux2JM8PNhm0KZ3xU1TA8iAqkhNfs6S3mNEv8-r068TfQGuXrBghEBYEcnKJVNP4GlScXjLt5XzaAmgDUtFC7vZ4kv3Cg_dN07MvvL_9T8I7tA1Q","refresh_token":"e9ebce68c9af509aPfounsN5XhonspUp7M2_HlxkW9Ra9gvLo_cojdNbOYRi8viAw071Hgc4qHtPU2jnP7kwHCoqy3uvAG_vPYaaRFP0y0Ayhf-dyFCh_Y2iluxy2oLAFYLwk5uILK6348LR365VPMcqG4WvgPW3XJrB0g"}
+
+URL: [GET] https://172.20.68.208:58086/api/ha/group/stage_options
+HEADER: {"Authorization":"863b48acdd113d78b9b3ef5489693ac1457fb768","Signature":"9ac39ecc2f8c8ad278c4e24d69bbbc030e580a0bd1a3915bbd3735e79cf435e0","nonce":"b5d42753-0bb7-4ccd-872d-8fad60dbc7e0","timestamp":"1600227196"}
+ARGS: {"_":"G3w91RIJ6FHnVkFy"}
+RS: {"code":0,"message":"[0] success","total":40,"list":[{"ha_name":"tst","ha_uuid":"B95DB026-AEDF-737A-0442-B5134660D204"},{"ha_name":"test4","ha_uuid":"128C2F7D-0795-41F3-1274-3FBAA2449BAD"},{"ha_name":"test3","ha_uuid":"214E0B0C-6BFA-B1D7-1AFC-C11E3B5874C0"},{"ha_name":"test2","ha_uuid":"2FD74EEE-CFDB-FB01-8E11-B6560B6D20F8"},{"ha_name":"test1","ha_uuid":"065AA560-4B36-6623-1218-EEAAE0D3EBB3"},{"ha_name":"test-动态6","ha_uuid":"4DF33AE3-5204-9C9A-86B4-8000AFC37C6B"},{"ha_name":"test-动态5","ha_uuid":"0DA05AAB-B821-F801-CADC-186B6F78EE7C"},{"ha_name":"test-动态4","ha_uuid":"66CD2965-3E7E-86BF-E0D7-0531F5747C0A"},{"ha_name":"test-动态3","ha_uuid":"806F070F-EFC0-DE4B-C26E-8EBF79B2C208"},{"ha_name":"test-动态2","ha_uuid":"D102FE34-53A5-C218-9507-67BC8E5DA5D6"},{"ha_name":"test-动态1","ha_uuid":"D238D246-F14F-0D97-3DD6-3CA020591FA5"},{"ha_name":"固定-78.30-3","ha_uuid":"29C369AC-49AE-6F6C-7970-D75886C4865E"},{"ha_name":"固定-78.30-2","ha_uuid":"253F95CF-1361-30A0-E29B-E1FD509FECD9"},{"ha_name":"手动切换","ha_uuid":"ACC9F3B4-7FCB-4F21-FCD1-040B572958AE"},{"ha_name":"动态","ha_uuid":"C74D8BCA-4DDC-B12E-5B30-3A553612FE8F"},{"ha_name":"仲裁宕机","ha_uuid":"488E27E6-194E-5D64-D3E7-96F9C807B759"},{"ha_name":"本机优先接管","ha_uuid":"8B741677-E3B4-BA98-E1BB-74463D12C388"},{"ha_name":"手动切换，动态规则，重启接管，断网重连","ha_uuid":"339242DF-1D9D-5CEC-6D6D-D56409C48FFE"},{"ha_name":"手动切换，不选择重启接管，重启HA服务","ha_uuid":"3BDC3F65-6B71-7B15-90CB-486504E4001C"},{"ha_name":"两次切换","ha_uuid":"C67EE38C-C57B-5DFB-ED75-04469ADAC0DD"},{"ha_name":"bug14374","ha_uuid":"8D09E3A1-0B16-270D-8114-206DA0CE3A70"},{"ha_name":"aaa","ha_uuid":"BBA141C6-80D7-6885-1ED7-3CD04DAD6497"},{"ha_name":"双主节点","ha_uuid":"68F1F4C0-1CA0-A748-E6CA-4A0457FFAED2"},{"ha_name":"test-rep","ha_uuid":"3EFA5EAD-CF27-293D-A72F-B7BD4BF05CB6"},{"ha_name":"固定-78.30-5","ha_uuid":"5C23EEF6-DCC4-E2B3-6335-056748F5CBF7"},{"ha_name":"固定-78.30-4","ha_uuid":"F2744BF0-5116-9255-36DF-4622C67E6CCB"},{"ha_name":"固定-78.30-1","ha_uuid":"40CD9D11-E294-9544-72FC-F1348D24188A"},{"ha_name":"LIN-SUB","ha_uuid":"4AA13675-5A8F-399D-32AA-57E766CEE518"},{"ha_name":"固定-78.30-6","ha_uuid":"BF4ECA82-C803-37CD-22F1-1D30690A101D"},{"ha_name":"贾鑫鑫-固定148","ha_uuid":"25F403C4-994C-AE39-1D8D-5D9BFD22EC4D"},{"ha_name":"数据同步","ha_uuid":"0B571D3C-302B-EAAF-A175-66DC12D7B6C1"},{"ha_name":"zxx_test1","ha_uuid":"23DA80AD-B18A-2EF5-72A8-6A28E1B738F5"},{"ha_name":"79.102-test1","ha_uuid":"FB9A96EA-F8CA-B609-3519-CBB7CCDCF425"},{"ha_name":"固定-zxx_79.102","ha_uuid":"A604D6FC-B381-82B2-2BA4-4F809191D719"},{"ha_name":"testAgain","ha_uuid":"DD31D5C5-C619-89BD-2E04-63325418B485"},{"ha_name":"cluster4","ha_uuid":"CB691934-9323-B1D5-201A-345DFAF4E476"},{"ha_name":"test4","ha_uuid":"23D86E0B-E67A-D383-484D-47A972CB7A80"},{"ha_name":"test3","ha_uuid":"D9061539-6125-B8C2-9361-131A3F95D49C"},{"ha_name":"test2","ha_uuid":"1734F5F0-E49B-C1AE-3C87-FEB0E584F0E3"},{"ha_name":"test1","ha_uuid":"10CA9C05-D157-B008-B84B-E908B8BB19E5"}]}
+
+URL: [GET] https://rap2api.info2soft.com/app/mock/data/2244?scope=request
+HEADER: {}
+ARGS: {}
+RS: {
+  "group_name": "111",
+  "error_confirm": 1,
+  "switch_confirm": 1,
+  "ha_rules": [
+    "B95DB026-AEDF-737A-0442-B5134660D204",
+    "128C2F7D-0795-41F3-1274-3FBAA2449BAD",
+    "214E0B0C-6BFA-B1D7-1AFC-C11E3B5874C0",
+    "2FD74EEE-CFDB-FB01-8E11-B6560B6D20F8"
+  ],
+  "stage": {
+    "step_1": {
+      "ha_rule": [
+        "B95DB026-AEDF-737A-0442-B5134660D204",
+        "128C2F7D-0795-41F3-1274-3FBAA2449BAD"
+      ],
+      "failover_serial": 1,
+      "failback_serial": -1,
+      "haList": [
+        {
+          "ha_name": "tst",
+          "ha_uuid": "B95DB026-AEDF-737A-0442-B5134660D204"
+        },
+        {
+          "ha_name": "test4",
+          "ha_uuid": "128C2F7D-0795-41F3-1274-3FBAA2449BAD"
+        }
+      ]
+    },
+    "step_2": {
+      "ha_rule": [
+        "214E0B0C-6BFA-B1D7-1AFC-C11E3B5874C0",
+        "2FD74EEE-CFDB-FB01-8E11-B6560B6D20F8"
+      ],
+      "failover_serial": 2,
+      "failback_serial": -2,
+      "haList": [
+        {
+          "ha_name": "test3",
+          "ha_uuid": "214E0B0C-6BFA-B1D7-1AFC-C11E3B5874C0",
+          "disabled": true
+        },
+        {
+          "ha_name": "test2",
+          "ha_uuid": "2FD74EEE-CFDB-FB01-8E11-B6560B6D20F8",
+          "disabled": true
+        }
+      ]
+    }
+  }
+}
+
+URL: [POST] https://172.20.68.208:58086/api/ha/group
+HEADER: {"Authorization":"2e2487af6088aa2d3b831847c8e3bddeca48c93f","Signature":"a0b32ec53627319764df6a4b324f30347c61438be2e136e4c0a88edde69b4bf6","nonce":"49c2548f-7757-4bc8-b9e6-35b6647a4bbc","timestamp":"1600241142"}
+ARGS: {"ha_rules":["B95DB026-AEDF-737A-0442-B5134660D204","128C2F7D-0795-41F3-1274-3FBAA2449BAD","214E0B0C-6BFA-B1D7-1AFC-C11E3B5874C0","2FD74EEE-CFDB-FB01-8E11-B6560B6D20F8"],"stage":{"step_1":{"ha_rule":["B95DB026-AEDF-737A-0442-B5134660D204","128C2F7D-0795-41F3-1274-3FBAA2449BAD"],"failover_serial":1,"failback_serial":-1,"haList":[{"ha_name":"tst","ha_uuid":"B95DB026-AEDF-737A-0442-B5134660D204"},{"ha_name":"test4","ha_uuid":"128C2F7D-0795-41F3-1274-3FBAA2449BAD"}]},"step_2":{"ha_rule":["214E0B0C-6BFA-B1D7-1AFC-C11E3B5874C0","2FD74EEE-CFDB-FB01-8E11-B6560B6D20F8"],"failover_serial":2,"failback_serial":-2,"haList":[{"ha_name":"test3","ha_uuid":"214E0B0C-6BFA-B1D7-1AFC-C11E3B5874C0","disabled":true},{"ha_name":"test2","ha_uuid":"2FD74EEE-CFDB-FB01-8E11-B6560B6D20F8","disabled":true}]}},"group_name":"111","switch_confirm":1,"error_confirm":1,"_":"r1nHbXwMxPJftJiN"}
+RS: {"code":0,"message":"[0] success","group_uuid":"4D4965A3-54DE-69D8-3DBB-E85923C93396"}
+
+
+URL: [GET] https://rap2api.info2soft.com/app/mock/data/2251?scope=request
+HEADER: {}
+ARGS: {}
+RS: {
+  "page": 1,
+  "limit": 1,
+  "search_field": "group_name",
+  "search_value": ""
+}
+
+URL: [GET] https://172.20.68.208:58086/api/ha/group
+HEADER: {"Authorization":"2e2487af6088aa2d3b831847c8e3bddeca48c93f","Signature":"9a37e0389171acc206014216635d05a3c973088697d6c6eb221477a562df4003","nonce":"2f564588-377a-425a-bf49-552b8b7e6535","timestamp":"1600245778"}
+ARGS: {"search_value":"","limit":1,"page":1,"search_field":"group_name","_":"HUxqzaHRSL5AEpoM"}
+RS: {"code":0,"message":"[0] success","info_list":[{"username":"admin","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","group_uuid":"4D4965A3-54DE-69D8-3DBB-E85923C93396","group_name":"111","switch_confirm":1,"error_confirm":1,"stage":{"step_1":{"ha_rule":["B95DB026-AEDF-737A-0442-B5134660D204","128C2F7D-0795-41F3-1274-3FBAA2449BAD"],"failover_serial":1,"failback_serial":-1,"haList":[{"ha_name":"tst","ha_uuid":"B95DB026-AEDF-737A-0442-B5134660D204"},{"ha_name":"test4","ha_uuid":"128C2F7D-0795-41F3-1274-3FBAA2449BAD"}]},"step_2":{"ha_rule":["214E0B0C-6BFA-B1D7-1AFC-C11E3B5874C0","2FD74EEE-CFDB-FB01-8E11-B6560B6D20F8"],"failover_serial":2,"failback_serial":-2,"haList":[{"ha_name":"test3","ha_uuid":"214E0B0C-6BFA-B1D7-1AFC-C11E3B5874C0","disabled":true},{"ha_name":"test2","ha_uuid":"2FD74EEE-CFDB-FB01-8E11-B6560B6D20F8","disabled":true}]}},"ha_rules":["B95DB026-AEDF-737A-0442-B5134660D204","128C2F7D-0795-41F3-1274-3FBAA2449BAD","214E0B0C-6BFA-B1D7-1AFC-C11E3B5874C0","2FD74EEE-CFDB-FB01-8E11-B6560B6D20F8"],"created_at":1600241142,"is_biz_admin":1,"can_del":1,"can_op":1,"can_up":1}],"total":3,"ha_list":{"25F403C4-994C-AE39-1D8D-5D9BFD22EC4D":"贾鑫鑫-固定148","29C369AC-49AE-6F6C-7970-D75886C4865E":"固定-78.30-3","FB9A96EA-F8CA-B609-3519-CBB7CCDCF425":"79.102-test1","D102FE34-53A5-C218-9507-67BC8E5DA5D6":"test-动态2","40CD9D11-E294-9544-72FC-F1348D24188A":"固定-78.30-1","A604D6FC-B381-82B2-2BA4-4F809191D719":"固定-zxx_79.102","0B571D3C-302B-EAAF-A175-66DC12D7B6C1":"数据同步","F2744BF0-5116-9255-36DF-4622C67E6CCB":"固定-78.30-4","065AA560-4B36-6623-1218-EEAAE0D3EBB3":"test1","D9061539-6125-B8C2-9361-131A3F95D49C":"test3","806F070F-EFC0-DE4B-C26E-8EBF79B2C208":"test-动态3","C67EE38C-C57B-5DFB-ED75-04469ADAC0DD":"两次切换","DD31D5C5-C619-89BD-2E04-63325418B485":"testAgain","CB691934-9323-B1D5-201A-345DFAF4E476":"cluster4","66CD2965-3E7E-86BF-E0D7-0531F5747C0A":"test-动态4","3BDC3F65-6B71-7B15-90CB-486504E4001C":"手动切换，不选择重启接管，重启HA服务","5C23EEF6-DCC4-E2B3-6335-056748F5CBF7":"固定-78.30-5","8B741677-E3B4-BA98-E1BB-74463D12C388":"本机优先接管","253F95CF-1361-30A0-E29B-E1FD509FECD9":"固定-78.30-2","D238D246-F14F-0D97-3DD6-3CA020591FA5":"test-动态1","B95DB026-AEDF-737A-0442-B5134660D204":"tst","BF4ECA82-C803-37CD-22F1-1D30690A101D":"固定-78.30-6","128C2F7D-0795-41F3-1274-3FBAA2449BAD":"test4","2FD74EEE-CFDB-FB01-8E11-B6560B6D20F8":"test2","23D86E0B-E67A-D383-484D-47A972CB7A80":"test4","0DA05AAB-B821-F801-CADC-186B6F78EE7C":"test-动态5","C74D8BCA-4DDC-B12E-5B30-3A553612FE8F":"动态","10CA9C05-D157-B008-B84B-E908B8BB19E5":"test1","214E0B0C-6BFA-B1D7-1AFC-C11E3B5874C0":"test3","1734F5F0-E49B-C1AE-3C87-FEB0E584F0E3":"test2","8D09E3A1-0B16-270D-8114-206DA0CE3A70":"bug14374","339242DF-1D9D-5CEC-6D6D-D56409C48FFE":"手动切换，动态规则，重启接管，断网重连","488E27E6-194E-5D64-D3E7-96F9C807B759":"仲裁宕机","4AA13675-5A8F-399D-32AA-57E766CEE518":"LIN-SUB","3EFA5EAD-CF27-293D-A72F-B7BD4BF05CB6":"test-rep","BBA141C6-80D7-6885-1ED7-3CD04DAD6497":"aaa","23DA80AD-B18A-2EF5-72A8-6A28E1B738F5":"zxx_test1","ACC9F3B4-7FCB-4F21-FCD1-040B572958AE":"手动切换","68F1F4C0-1CA0-A748-E6CA-4A0457FFAED2":"双主节点","4DF33AE3-5204-9C9A-86B4-8000AFC37C6B":"test-动态6"}}
+
+
+URL: [PUT] https://172.20.68.208:58086/api/ha/group/4D4965A3-54DE-69D8-3DBB-E85923C93396
+HEADER: {"Authorization":"907bce2fc3ce74c7b353d5d5b78d823b722d0809","Signature":"1a19abe806fdf23a2ce79e3ff0a83e9d4ad9f03fc8e4a68bf4c3949048f4b897","nonce":"33652fd6-2276-4918-a7e8-37c8855bd742","timestamp":"1600249614"}
+ARGS: {"ha_rules":["B95DB026-AEDF-737A-0442-B5134660D204","128C2F7D-0795-41F3-1274-3FBAA2449BAD"],"stage":{"step_1":{"ha_rule":["B95DB026-AEDF-737A-0442-B5134660D204","128C2F7D-0795-41F3-1274-3FBAA2449BAD"],"failover_serial":1,"failback_serial":-1,"haList":[{"ha_name":"tst","ha_uuid":"B95DB026-AEDF-737A-0442-B5134660D204"},{"ha_name":"test4","ha_uuid":"128C2F7D-0795-41F3-1274-3FBAA2449BAD"}]}},"group_name":"111","group_uuid":"CFCEDC75-F48E-22B0-8A67-DE1FCA51C4C7","switch_confirm":1,"error_confirm":1,"_":"s7n4rQE0H1q2D1oh"}
+RS: {"code":0,"message":"[0] success"}
+
+
+URL: [GET] https://172.20.68.208:58086/api/ha/group/4D4965A3-54DE-69D8-3DBB-E85923C93396
+HEADER: {"Authorization":"907bce2fc3ce74c7b353d5d5b78d823b722d0809","Signature":"a6b2eaec86ccd3c03819e7639212143229cee81d51b2ad20f038ff19ce67eafa","nonce":"3ad8a9a4-d2ca-4ae1-a284-b65e5b5c9a55","timestamp":"1600249858"}
+ARGS: {"_":"uFwwN9ec06kDo8BH"}
+RS: {"code":0,"message":"","username":"admin","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","group_uuid":"4D4965A3-54DE-69D8-3DBB-E85923C93396","group_name":"111","switch_confirm":1,"error_confirm":1,"stage":{"step_1":{"ha_rule":["B95DB026-AEDF-737A-0442-B5134660D204","128C2F7D-0795-41F3-1274-3FBAA2449BAD"],"failover_serial":1,"failback_serial":-1,"haList":[{"ha_name":"tst","ha_uuid":"B95DB026-AEDF-737A-0442-B5134660D204"},{"ha_name":"test4","ha_uuid":"128C2F7D-0795-41F3-1274-3FBAA2449BAD"}]}},"ha_rules":["B95DB026-AEDF-737A-0442-B5134660D204","128C2F7D-0795-41F3-1274-3FBAA2449BAD"],"created_at":1600241142,"biz_grp_list":[],"biz_grp_name":[]}
+
+URL: [GET] https://rap2api.info2soft.com/app/mock/data/2247?scope=request
+HEADER: {}
+ARGS: {}
+RS: {
+  "ha_uuids": [
+    "B95DB026-AEDF-737A-0442-B5134660D204",
+    "128C2F7D-0795-41F3-1274-3FBAA2449BAD"
+  ]
+}
+
+URL: [PUT] https://172.20.68.208:58086/api/ha/group/4D4965A3-54DE-69D8-3DBB-E85923C93396/task
+HEADER: {"Authorization":"907bce2fc3ce74c7b353d5d5b78d823b722d0809","Signature":"99cc1f79f4e06ade0edb58d20288612561782ac09b0e2f280faa9504b1443aee","nonce":"9fe91af3-d3da-4d58-be67-59793a27dc21","timestamp":"1600249889"}
+ARGS: {"ha_uuids":["B95DB026-AEDF-737A-0442-B5134660D204","128C2F7D-0795-41F3-1274-3FBAA2449BAD"],"_":"5VvqO7iYN5yQy6MI"}
+RS: {"code":0,"message":"","task_uuid":"F696DC12-6727-B799-93D4-8B2213086F5A","group_uuid":"4D4965A3-54DE-69D8-3DBB-E85923C93396","status":1,"task_type":1,"user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","created_at":1600249890,"ha_rules_info":{"B95DB026-AEDF-737A-0442-B5134660D204":{"ha_name":"tst","ha_uuid":"B95DB026-AEDF-737A-0442-B5134660D204","master_uuid":"D0C977EC-1425-72B5-7300-C56826B63512","username":"admin","node":[{"ha_uuid":"B95DB026-AEDF-737A-0442-B5134660D204","ha_name":"tst","name":"78.15","node_uuid":"D0C977EC-1425-72B5-7300-C56826B63512","s_uuid":"B95DB026-AEDF-737A-0442-B5134660D204_D0C977EC-1425-72B5-7300-C56826B63512","rep_uuid":""},{"ha_uuid":"B95DB026-AEDF-737A-0442-B5134660D204","ha_name":"tst","name":"78.16","node_uuid":"54C1047B-8182-22C9-0740-8341B0165774","s_uuid":"B95DB026-AEDF-737A-0442-B5134660D204_54C1047B-8182-22C9-0740-8341B0165774","rep_uuid":""}]},"128C2F7D-0795-41F3-1274-3FBAA2449BAD":{"ha_name":"test4","ha_uuid":"128C2F7D-0795-41F3-1274-3FBAA2449BAD","master_uuid":"967760F1-EFA7-16C6-8822-AA7663AD6D22","username":"admin","node":[{"ha_uuid":"128C2F7D-0795-41F3-1274-3FBAA2449BAD","ha_name":"test4","name":"172.20.79.104","node_uuid":"967760F1-EFA7-16C6-8822-AA7663AD6D22","s_uuid":"128C2F7D-0795-41F3-1274-3FBAA2449BAD_967760F1-EFA7-16C6-8822-AA7663AD6D22","rep_uuid":""},{"ha_uuid":"128C2F7D-0795-41F3-1274-3FBAA2449BAD","ha_name":"test4","name":"172.20.79.105","node_uuid":"B858FEBE-8C91-021B-2129-55387D376757","s_uuid":"128C2F7D-0795-41F3-1274-3FBAA2449BAD_B858FEBE-8C91-021B-2129-55387D376757","rep_uuid":""}]}}}
+
+URL: [GET] https://rap2api.info2soft.com/app/mock/data/2248?scope=request
+HEADER: {}
+ARGS: {}
+RS: {
+  "task_uuid": ""
+}
+
+URL: [GET] https://172.20.68.208:58086/api/ha/group/4D4965A3-54DE-69D8-3DBB-E85923C93396/task/status
+HEADER: {"Authorization":"907bce2fc3ce74c7b353d5d5b78d823b722d0809","Signature":"3050ce7960fa748d989fc96010b2963f6ede69e0afc56a43179049843b4be9ca","nonce":"38dea870-a499-42d6-90e9-c4ac9d437800","timestamp":"1600249971"}
+ARGS: {"task_uuid":"","_":"iBeGoBVpgEMWmLWt"}
+RS: {"code":10001002,"message":"[10001002] Invalid Parameter"}
+
+
+URL: [GET] https://172.20.68.208:58086/api/ha/group/4D4965A3-54DE-69D8-3DBB-E85923C93396/task/status
+HEADER: {"Authorization":"907bce2fc3ce74c7b353d5d5b78d823b722d0809","Signature":"03ff69057e1bda7113ab3d9e2be16b607bbd8017668a2dceca7d19a9d34cf368","nonce":"1cc59cf4-b60c-4f72-80b3-4a52ef7f2545","timestamp":"1600250392"}
+ARGS: {"task_uuid":"F696DC12-6727-B799-93D4-8B2213086F5A","_":"hoecprYMc3eu13GG"}
+RS: {"code":0,"message":"[0] success","progress":{"B95DB026-AEDF-737A-0442-B5134660D204":"ERROR_STOP","128C2F7D-0795-41F3-1274-3FBAA2449BAD":"WAITING"},"status":[],"stage":"step_1","err_step":null}
+
+
+URL: [POST] https://172.20.68.208:58086/api/ha/group/4D4965A3-54DE-69D8-3DBB-E85923C93396/task
+HEADER: {"Authorization":"907bce2fc3ce74c7b353d5d5b78d823b722d0809","Signature":"9b12a06be2d74c2a7e54bab51243e3fb9375c97897ae353b58c650a58975e0d4","nonce":"d5755b3a-86e2-469f-a1c9-2b8dfe17d5e3","timestamp":"1600250839"}
+ARGS: {"operate":"resume","task_uuid":"F696DC12-6727-B799-93D4-8B2213086F5A","_":"loBXcNh3dLTO3i3i"}
+RS: {"code":0,"message":"[0] success"}
+
+
+URL: [POST] https://172.20.68.208:58086/api/ha/group/4D4965A3-54DE-69D8-3DBB-E85923C93396/task
+HEADER: {"Authorization":"907bce2fc3ce74c7b353d5d5b78d823b722d0809","Signature":"d704a48ced7165c43c8846be3bdccf8ae011d13b44427361384ed1227552ef4f","nonce":"76f9cf92-22ea-486c-af1e-7bdb6408f218","timestamp":"1600250894"}
+ARGS: {"operate":"resume","task_uuid":"F696DC12-6727-B799-93D4-8B2213086F5A","_":"Tr3WlbXEWNEAiZFm"}
+RS: {"code":0,"message":"[0] success"}
