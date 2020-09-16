@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
  */
 public final class Client {
     static final String JsonMime = "application/json";
-    static final String[] NoneAuth = {"/api/auth/token"};
+    private static final String[] NoneAuth = {"/api/auth/token"};
     private StringMap headers;
     private final OkHttpClient httpClient;
     public final String cc_url;

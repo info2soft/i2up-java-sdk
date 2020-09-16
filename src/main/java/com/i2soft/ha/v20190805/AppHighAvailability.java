@@ -236,12 +236,13 @@ public final class AppHighAvailability {
     /**
      * 高可用组 - 修改
      *
+     * @param uuid: uuid
      * @param args: 参数详见 API 手册
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs modifyHAGroup(StringMap args) throws I2softException {
-        String url = String.format("%s/ha/group/:uuid([a-f-0-9] )", auth.cc_url);
+    public I2Rs.I2SmpRs modifyHAGroup(String uuid, StringMap args) throws I2softException {
+        String url = String.format("%s/ha/group/%s", auth.cc_url, uuid);
         Response r = auth.client.put(url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
@@ -249,11 +250,12 @@ public final class AppHighAvailability {
     /**
      * 高可用组 - 单个详细信息
      *
+     * @param uuid: uuid
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map describeHAGroup() throws I2softException {
-        String url = String.format("%s/ha/group/:uuid([a-f-0-9] )", auth.cc_url);
+    public Map describeHAGroup(String uuid) throws I2softException {
+        String url = String.format("%s/ha/group/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
         return r.jsonToMap();
     }
@@ -261,12 +263,13 @@ public final class AppHighAvailability {
     /**
      * 高可用组 - 组强制切换
      *
+     * @param uuid: uuid
      * @param args: 参数详见 API 手册
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map forceSwitchHAGroup(StringMap args) throws I2softException {
-        String url = String.format("%s/ha/group/:uuid([a-f-0-9] )/task", auth.cc_url);
+    public Map forceSwitchHAGroup(String uuid, StringMap args) throws I2softException {
+        String url = String.format("%s/ha/group/%s/task", auth.cc_url, uuid);
         Response r = auth.client.put(url, args);
         return r.jsonToMap();
     }
@@ -274,38 +277,44 @@ public final class AppHighAvailability {
     /**
      * 高可用组 - 切换状态
      *
+     * @param uuid: uuid
      * @param args: 参数详见 API 手册
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map listHASwitchTaskStatus(StringMap args) throws I2softException {
-        String url = String.format("%s/ha/group/:uuid([a-f-0-9] )/task/status", auth.cc_url);
+    public Map listHASwitchTaskStatus(String uuid, StringMap args) throws I2softException {
+        String url = String.format("%s/ha/group/%s/task/status", auth.cc_url, uuid);
         Response r = auth.client.get(url, args);
         return r.jsonToMap();
     }
 
+
     /**
      * 高可用组 - 操作强制切换任务
      *
+     * @param uuid: uuid
      * @param args: 参数详见 API 手册
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs resumeHAGroupSwitch(StringMap args) throws I2softException {
-        String url = String.format("%s/ha/group/:uuid([a-f-0-9] )/task", auth.cc_url);
-        Response r = auth.client.post(url, args);
+    public I2Rs.I2SmpRs resumeHAGroupSwitch(String uuid, StringMap args) throws I2softException {
+        String url = String.format("%s/ha/group/%s/task", auth.cc_url, uuid);
+        StringMap newArgs = new StringMap().putNotEmpty("task_uuid", args.get("task_uuid").toString()).put("operate", "resume");
+        Response r = auth.client.post(url, newArgs);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 
     /**
      * 高可用组 - 操作强制切换任务
      *
+     * @param uuid: uuid
      * @param args: 参数详见 API 手册
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs pauseHAGroupSwitch(StringMap args) throws I2softException {
-        String url = String.format("%s/ha/group/:uuid([a-f-0-9] )/task", auth.cc_url);
+    public I2Rs.I2SmpRs pauseHAGroupSwitch(String uuid, StringMap args) throws I2softException {
+        String url = String.format("%s/ha/group/%s/task", auth.cc_url, uuid);
+        StringMap newArgs = new StringMap().putNotEmpty("task_uuid", args.get("task_uuid").toString()).put("operate", "pause");
         Response r = auth.client.post(url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }

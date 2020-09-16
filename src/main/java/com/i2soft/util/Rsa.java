@@ -9,7 +9,7 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-
+import org.apache.commons.codec.binary.Base64;
 import javax.crypto.Cipher;
 
 /**
@@ -160,12 +160,14 @@ public class Rsa {
     /**
      * base64加密
      *
-     * @param bstr:
+     * @param bt:
      * @return :
      */
     @SuppressWarnings("restriction")
-    private String base64encode(byte[] bstr) {
-        String str = new sun.misc.BASE64Encoder().encode(bstr);
+    private String base64encode(byte[] bt) {
+//        String str = new sun.misc.BASE64Encoder().encode(bstr);
+//        Base64.encodeBase64();
+        String str = Base64.encodeBase64String(bt);
         str = str.replaceAll("\r\n", "").replaceAll("\r", "").replaceAll("\n", "");
         return str;
     }
@@ -180,8 +182,9 @@ public class Rsa {
     private byte[] base64decode(String str) {
         byte[] bt = null;
         try {
-            sun.misc.BASE64Decoder decoder = new sun.misc.BASE64Decoder();
-            bt = decoder.decodeBuffer(str);
+//            sun.misc.BASE64Decoder decoder = new sun.misc.BASE64Decoder();
+//            bt = decoder.decodeBuffer(str);
+            bt = Base64.decodeBase64(str.getBytes("UTF-8"));
         } catch (IOException e) {
             e.printStackTrace();
         }

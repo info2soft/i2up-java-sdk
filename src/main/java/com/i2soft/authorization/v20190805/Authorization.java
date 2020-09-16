@@ -1,4 +1,4 @@
-package com.i2soft.authorization;
+package com.i2soft.authorization.v20190805;
 
 import com.i2soft.http.I2Req;
 import com.i2soft.http.I2Rs;
