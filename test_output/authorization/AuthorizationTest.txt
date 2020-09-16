@@ -1,0 +1,52 @@
+ListAuthorizationUser：
+URL: [GET] https://172.20.68.208:58086/api/authorization/user
+HEADER: {"Authorization":"708bcc86de9993049c18467d2c291cb00bc27419","Signature":"5c71ba81e570a5cba3be86a0a8b8683b1eaac57d3c1e67571042c233989665bb","nonce":"48779f4c-2a14-46b1-af3a-fd0b618f4a53","timestamp":"1600272093"}
+ARGS: {"limit":1,"page":1,"_":"2lZ4zHwx3xfx3pA7"}
+RS: {"code":0,"message":"[0] success","info_list":[{"id":"16","user_uuid":"7AE5647A-5413-A7C3-449E-0CB18065E72B","username":"test5","roles":"zxx1, zxx2, zxx3, user_test"}],"total":12}
+
+
+
+getAuthorizationUserBind：
+URL: [GET] https://172.20.68.208:58086/api/authorization/user_bind
+HEADER: {"Authorization":"708bcc86de9993049c18467d2c291cb00bc27419","Signature":"0f4a88a232f122b0b8192d1e81b98f4a96f54f34c8487ffcae7f4c272cd348df","nonce":"fdb962fb-621e-4222-854d-9c2e9fe4f321","timestamp":"1600274181"}
+ARGS: {"user_uuid":"7AE5647A-5413-A7C3-449E-0CB18065E72B","subtype":0,"limit":1,"page":1,"type":1,"_":"Ynwld0Jm6ZingDKs"}
+RS: {"code":0,"message":"[0] success","info_list":[{"username":"admin","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","uuid":"4BE6957A-85B8-D1E0-A273-327867BEDA49","group_uuid":null,"dtrack_group_uuid":"","name":"78.22","wk_uuid":null,"bk_uuid":null,"other":null,"param1":null,"type":1,"subtype":0,"create_time":1596781017,"is_bound":0,"can_op":0,"can_up":0}],"total":112}
+
+
+
+updateAuthorizationUserBind：
+URL: [GET] https://rap2api.info2soft.com/app/mock/data/1565?scope=request
+HEADER: {}
+ARGS: {}
+RS: {
+  "res_list": [
+    {
+      "res_uuid": "11111111-1111-1111-1111-111111111111",
+      "can_up": 1,
+      "can_op": 1,
+      "is_bound": 1
+    }
+  ],
+  "user_uuid": "11111111-1111-1111-1111-111111111111"
+}
+
+URL: [PUT] https://172.20.68.208:58086/api/authorization/user_bind
+HEADER: {"Authorization":"708bcc86de9993049c18467d2c291cb00bc27419","Signature":"a68c91da0199f88111cd2e43b47880d04156e715bf454076c18f1fb3828731dc","nonce":"c647766a-0b3e-48e2-83dd-c636f8fb84c8","timestamp":"1600274618"}
+ARGS: {"user_uuid":"11111111-1111-1111-1111-111111111111","res_list":[{"res_uuid":"11111111-1111-1111-1111-111111111111","can_up":1,"can_op":1,"is_bound":1}],"_":"VxYwgUbNz95T0Q1y"}
+RS: {"code":0,"message":"[0] success"}
+
+
+
+getAuthorizationResBind：
+URL: [GET] https://172.20.68.208:58086/api/authorization/res_bind
+HEADER: {"Authorization":"708bcc86de9993049c18467d2c291cb00bc27419","Signature":"38d2c2d2ae954d76a02306a35e22cbfcd0c6f0dede0a1a8ad8b676b43ab5173f","nonce":"d8c71db3-4cf5-4a1b-b58f-0870d4b1e90f","timestamp":"1600274915"}
+ARGS: {"res_uuid":"11111111-1111-1111-1111-111111111111","limit":20,"page":1,"_":"uTP0dHRhPXJCzAZO"}
+RS: {"code":0,"message":"[0] success","info_list":[{"id":"16","user_uuid":"7AE5647A-5413-A7C3-449E-0CB18065E72B","username":"test5","roles":[{"id":"10","user_id":"16","role_id":"10","name":"zxx1","is_system":"0","allow_new_user":"1","display_name":"test1","description":null,"dynamic_perms":"1","biz_admin_view":"1"},{"id":"11","user_id":"16","role_id":"11","name":"zxx2","is_system":"0","allow_new_user":"1","display_name":"test2","description":null,"dynamic_perms":"1","biz_admin_view":"0"},{"id":"12","user_id":"16","role_id":"12","name":"zxx3","is_system":"0","allow_new_user":"1","display_name":"test3","description":null,"dynamic_perms":"1","biz_admin_view":"0"},{"id":"9","user_id":"16","role_id":"9","name":"user_test","is_system":"0","allow_new_user":"1","display_name":"test","description":null,"dynamic_perms":"1","biz_admin_view":"1"}],"is_bound":0,"can_op":0,"can_up":0},{"id":"15","user_uuid":"719138DB-F25E-8D47-2D8D-86C2F99E71CB","username":"test4","roles":[{"id":"12","user_id":"15","role_id":"12","name":"zxx3","is_system":"0","allow_new_user":"1","display_name":"test3","description":null,"dynamic_perms":"1","biz_admin_view":"0"}],"is_bound":0,"can_op":0,"can_up":0},{"id":"14","user_uuid":"BDAB0188-B7AE-F0C5-DAFA-579B16234CD7","username":"zxx6","roles":[{"id":"12","user_id":"14","role_id":"12","name":"zxx3","is_system":"0","allow_new_user":"1","display_name":"test3","description":null,"dynamic_perms":"1","biz_admin_view":"0"}],"is_bound":0,"can_op":0,"can_up":0},{"id":"13","user_uuid":"526683CE-B1F5-BA89-4E0E-ED58A4D4E655","username":"zxx5","roles":[{"id":"12","user_id":"13","role_id":"12","name":"zxx3","is_system":"0","allow_new_user":"1","display_name":"test3","description":null,"dynamic_perms":"1","biz_admin_view":"0"}],"is_bound":0,"can_op":0,"can_up":0},{"id":"12","user_uuid":"11111111-1111-1111-1111-111111111111","username":"zxx4","roles":[{"id":"12","user_id":"12","role_id":"12","name":"zxx3","is_system":"0","allow_new_user":"1","display_name":"test3","description":null,"dynamic_perms":"1","biz_admin_view":"0"}],"is_bound":1,"can_op":1,"can_up":1},{"id":"11","user_uuid":"B83A4078-EF6C-BB5F-0F86-C51DABB59545","username":"zxx3","roles":[{"id":"12","user_id":"11","role_id":"12","name":"zxx3","is_system":"0","allow_new_user":"1","display_name":"test3","description":null,"dynamic_perms":"1","biz_admin_view":"0"}],"is_bound":0,"can_op":0,"can_up":0},{"id":"10","user_uuid":"E0EE23B8-18F1-38B8-2EF9-40CCD461E530","username":"zxx2","roles":[{"id":"11","user_id":"10","role_id":"11","name":"zxx2","is_system":"0","allow_new_user":"1","display_name":"test2","description":null,"dynamic_perms":"1","biz_admin_view":"0"}],"is_bound":0,"can_op":0,"can_up":0},{"id":"9","user_uuid":"560B7AA0-AC1C-116F-E857-A81A640D1670","username":"zxx1","roles":[{"id":"10","user_id":"9","role_id":"10","name":"zxx1","is_system":"0","allow_new_user":"1","display_name":"test1","description":null,"dynamic_perms":"1","biz_admin_view":"1"}],"is_bound":0,"can_op":0,"can_up":0},{"id":"8","user_uuid":"75F80972-FB12-FE77-48AC-2ADB9E70DDC7","username":"test3","roles":[{"id":"9","user_id":"8","role_id":"9","name":"user_test","is_system":"0","allow_new_user":"1","display_name":"test","description":null,"dynamic_perms":"1","biz_admin_view":"1"}],"is_bound":0,"can_op":0,"can_up":0},{"id":"7","user_uuid":"B0A516D9-8926-988A-7EA0-BFCCA17EEF7F","username":"test2","roles":[{"id":"9","user_id":"7","role_id":"9","name":"user_test","is_system":"0","allow_new_user":"1","display_name":"test","description":null,"dynamic_perms":"1","biz_admin_view":"1"}],"is_bound":0,"can_op":0,"can_up":0},{"id":"6","user_uuid":"B058835F-9875-2A98-8F8F-9E12ACEED325","username":"test1","roles":[{"id":"9","user_id":"6","role_id":"9","name":"user_test","is_system":"0","allow_new_user":"1","display_name":"test","description":null,"dynamic_perms":"1","biz_admin_view":"1"}],"is_bound":0,"can_op":0,"can_up":0},{"id":"4","user_uuid":"EFB53F11-7BA2-2001-3418-85865EA58E47","username":"operator","roles":[{"id":"5","user_id":"4","role_id":"5","name":"operator","is_system":"1","allow_new_user":"1","display_name":"Operator","description":"Operation Clerk","dynamic_perms":"1","biz_admin_view":"0"}],"is_bound":0,"can_op":0,"can_up":0}],"total":12}
+
+
+
+updateAuthorizationResBind：
+URL: [PUT] https://172.20.68.208:58086/api/authorization/res_bind
+HEADER: {"Authorization":"708bcc86de9993049c18467d2c291cb00bc27419","Signature":"808d2db0eeb5d50a42362296eed88dcd5093b7f012cb6bbf748f35e2ba8a3921","nonce":"10c148f7-b565-4db1-abce-e3e36c2f0e29","timestamp":"1600275264"}
+ARGS: {"res_uuid":"11111111-1111-1111-1111-111111111111","user_list":[{"user_uuid":"719138DB-F25E-8D47-2D8D-86C2F99E71CB","can_up":1,"can_op":1}],"_":"M5WpGiYkWH9DzBnh"}
+RS: {"code":0,"message":"[0] success"}
