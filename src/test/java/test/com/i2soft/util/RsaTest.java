@@ -21,7 +21,7 @@ public class RsaTest {
         String crypt = rsa.encryptByPrivateKey(str);
         System.out.println("私钥加密密文:" + crypt);
         String result = rsa.decryptByPublicKey(crypt);
-        System.out.println("原文:" + result);
+        System.out.println("解密明文:" + result);
 
         System.out.println("---");
 
@@ -30,7 +30,7 @@ public class RsaTest {
         crypt = rsa.encryptByPublicKey(str);
         System.out.println("公钥加密密文:" + crypt);
         result = rsa.decryptByPrivateKey(crypt);
-        System.out.println("原文:" + result);
+        System.out.println("解密明文:" + result);
 
         System.out.println("---");
 

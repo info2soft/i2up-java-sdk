@@ -31,7 +31,7 @@ public final class Monitor {
      * @throws I2softException:
      */
     public Map listDriversInfo(String uuid) throws I2softException {
-        String url = String.format("%s/monitor/drivers_info/%s ", auth.cc_url, uuid);
+        String url = String.format("%s/monitor/drivers_info/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url);
         return r.jsonToMap();
     }
@@ -44,7 +44,7 @@ public final class Monitor {
      * @throws I2softException:
      */
     public Map listPhyInfo(String uuid) throws I2softException {
-        String url = String.format("%s/monitor/phy_info/%s ", auth.cc_url, uuid);
+        String url = String.format("%s/monitor/phy_info/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url);
         return r.jsonToMap();
     }
@@ -57,7 +57,7 @@ public final class Monitor {
      * @throws I2softException:
      */
     public Map listChartConfig(String uuid) throws I2softException {
-        String url = String.format("%s/monitor/chart_config/%s ", auth.cc_url, uuid);
+        String url = String.format("%s/monitor/chart_config/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url);
         return r.jsonToMap();
     }
@@ -71,7 +71,7 @@ public final class Monitor {
      * @throws I2softException:
      */
     public I2Rs.I2SmpRs setChartConfig(String uuid, StringMap args) throws I2softException {
-        String url = String.format("%s/monitor/chart_config/%s ", auth.cc_url, uuid);
+        String url = String.format("%s/monitor/chart_config/%s", auth.cc_url, uuid);
         Response r = auth.client.post(url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }

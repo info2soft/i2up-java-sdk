@@ -96,7 +96,7 @@ public final class Storage {
      * @throws I2softException:
      */
     public Map listStorageInfo(StringMap args) throws I2softException {
-        String url = String.format("%s/ /storage/info", auth.cc_url);
+        String url = String.format("%s/storage/info", auth.cc_url);
         Response r = auth.client.get(url, args);
         return r.jsonToMap();
     }
