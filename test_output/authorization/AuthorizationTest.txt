@@ -50,3 +50,29 @@ URL: [PUT] https://172.20.68.208:58086/api/authorization/res_bind
 HEADER: {"Authorization":"708bcc86de9993049c18467d2c291cb00bc27419","Signature":"808d2db0eeb5d50a42362296eed88dcd5093b7f012cb6bbf748f35e2ba8a3921","nonce":"10c148f7-b565-4db1-abce-e3e36c2f0e29","timestamp":"1600275264"}
 ARGS: {"res_uuid":"11111111-1111-1111-1111-111111111111","user_list":[{"user_uuid":"719138DB-F25E-8D47-2D8D-86C2F99E71CB","can_up":1,"can_op":1}],"_":"M5WpGiYkWH9DzBnh"}
 RS: {"code":0,"message":"[0] success"}
+
+
+
+getAuthorizationBind：
+URL: [GET] https://192.168.138.133:58086/api/authorization/bind
+HEADER: {"Authorization":"09f93dc3433996a7ef564a8be9849ae369109a85","Signature":"114f83ed47d12229df59587f764bf95f88ba0c2dd133b41eaf77b6f4ccaa5f8a","nonce":"efd698b1-fcfb-477c-94dd-ea47eec8ffe9","timestamp":"1600839530"}
+ARGS: {"user_uuid":"EFB53F11-7BA2-2001-3418-85865EA58E47","_":"36ZHI1PXYVX8La16"}
+RS: {"code":0,"message":"[0] success","info_list":[{"username":"admin","obj_uuid":"7E36A0B7-7C9A-D310-645A-F9FF7972F13F","obj_name":"141","obj_type":0,"obj_subtype":0,"config_addr":"192.168.138.141","config_port":"26821","proxy_switch":"0","i2id":"","create_time":1600784536,"data_addr":"192.168.138.141","dtrack_switch":"0","phy_type":2,"os_type":0,"npsvr_uuid":null,"user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","is_bound":0}],"total":1}
+
+
+
+updateAuthorizationBind：
+URL: [GET] https://rap2api.info2soft.com/app/mock/data/2324?scope=request
+HEADER: {}
+ARGS: {}
+RS: {
+  "user_uuid": "EFB53F11-7BA2-2001-3418-85865EA58E47",
+  "res_uuids": [
+    "7E36A0B7-7C9A-D310-645A-F9FF7972F13F"
+  ]
+}
+
+URL: [PUT] https://192.168.138.133:58086/api/authorization/bind
+HEADER: {"Authorization":"09f93dc3433996a7ef564a8be9849ae369109a85","Signature":"72e9e2661c1017e74fd27d2f92d40d52152451ed0e5c2a2494b8c2f9b2b95183","nonce":"5bdca0d5-9ca2-4c95-ac4d-8a17326ef267","timestamp":"1600839614"}
+ARGS: {"user_uuid":"EFB53F11-7BA2-2001-3418-85865EA58E47","res_uuids":["7E36A0B7-7C9A-D310-645A-F9FF7972F13F"],"_":"L83oTsBcDeKhhoor"}
+RS: {"code":0,"message":"[0] success"}

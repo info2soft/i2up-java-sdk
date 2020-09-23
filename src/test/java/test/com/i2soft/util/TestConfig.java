@@ -2,9 +2,9 @@ package test.com.i2soft.util;
 
 public final class TestConfig {
 
-    public static final String ip = "https://172.20.68.208:58086";
+    public static final String ip = "https://192.168.138.133:58086";
     public static final String user = "admin";
-    public static final String pwd = "Info1234";
+    public static final String pwd = "info1234";
     public static final String cachePath = "E:\\cache\\";
 
     public static final String ak = "oishvmn5YPHJcEDaIjtwd0R9Ug7BN1fk";
