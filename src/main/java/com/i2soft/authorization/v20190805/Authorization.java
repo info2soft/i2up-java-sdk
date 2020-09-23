@@ -88,4 +88,30 @@ public final class Authorization {
         Response r = auth.client.put(url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
+
+    /**
+     * 资源授权-获取绑定
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map getAuthorizationBind(StringMap args) throws I2softException {
+        String url = String.format("%s/authorization/bind", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 资源授权-更新绑定
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs updateAuthorizationBind(StringMap args) throws I2softException {
+        String url = String.format("%s/authorization/bind", auth.cc_url);
+        Response r = auth.client.put(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
 }
