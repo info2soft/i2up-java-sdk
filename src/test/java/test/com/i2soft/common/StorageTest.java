@@ -96,9 +96,46 @@ public class StorageTest {
     }
 
     @Test
-    public void T6_listStorageInfo() {
+    public void T6_listStorageStatus() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1413")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = storage.listStorageStatus(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T7_describeStorageDeviceInfo() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "210")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = storage.describeStorageDeviceInfo(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T8_describeStorageHistoryData() {
+        try {
+            String uuid = "FBDDEBDE-41CC-175B-9D84-4D9693EEB6C6";
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1414")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = storage.describeStorageHistoryData(uuid, args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T9_listStorageInfo() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1434")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             Map rs = storage.listStorageInfo(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
@@ -108,7 +145,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T7_listAvailableNode() {
+    public void T10_listAvailableNode() {
         try {
             Map rs = storage.listAvailableNode(); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
@@ -118,7 +155,71 @@ public class StorageTest {
     }
 
     @Test
-    public void T8_listDevice() {
+    public void T11_switchStorageQuota() {
+        try {
+            String uuid = "FBDDEBDE-41CC-175B-9D84-4D9693EEB6C6";
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1571")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = storage.switchStorageQuota(uuid, args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T12_createStorageQuota() {
+        try {
+            String uuid = UUID.randomUUID().toString();
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1566")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = storage.createStorageQuota(uuid, args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T13_modifyStorageQuota() {
+        try {
+            String storageUuid = UUID.randomUUID().toString();
+            String quotaUuid = UUID.randomUUID().toString();
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1567")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = storage.modifyStorageQuota(storageUuid, quotaUuid, args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T14_listStorageQuota() {
+        try {
+            String uuid = UUID.randomUUID().toString();
+            Map rs = storage.listStorageQuota(uuid); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T15_deleteStorageQuota() {
+        try {
+            String uuid = UUID.randomUUID().toString();
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1569")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = storage.deleteStorageQuota(uuid, args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T16_listDevice() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1051")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -130,7 +231,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T9_listAvailableDevice() {
+    public void T17_listAvailableDevice() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1055")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -142,7 +243,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T10_createPool() {
+    public void T18_createPool() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "984")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -154,7 +255,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T11_expandPool() {
+    public void T19_expandPool() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "985")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -166,7 +267,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T12_deletePool() {
+    public void T20_deletePool() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "986")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -178,7 +279,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T13_listPool() {
+    public void T21_listPool() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "987")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -190,7 +291,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T14_listPoolInfo() {
+    public void T22_listPoolInfo() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "989")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -202,7 +303,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T15_createFs() {
+    public void T23_createFs() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "991")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -214,7 +315,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T16_deleteFs() {
+    public void T24_deleteFs() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "992")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -226,7 +327,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T17_listFs() {
+    public void T25_listFs() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "993")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -238,7 +339,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T18_createFsSnapshot() {
+    public void T26_createFsSnapshot() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "995")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -250,7 +351,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T19_deleteFsSnapshot() {
+    public void T27_deleteFsSnapshot() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "996")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -262,7 +363,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T20_listFsSnapshot() {
+    public void T28_listFsSnapshot() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "997")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -274,7 +375,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T21_createFsCloneSnapshot() {
+    public void T29_createFsCloneSnapshot() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "999")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -286,7 +387,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T22_deleteFsCloneSnapshot() {
+    public void T30_deleteFsCloneSnapshot() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1000")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -298,7 +399,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T23_listFsCloneSnapshot() {
+    public void T31_listFsCloneSnapshot() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1001")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -310,7 +411,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T24_createVolume() {
+    public void T32_createVolume() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1003")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -322,7 +423,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T25_deleteVolume() {
+    public void T33_deleteVolume() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1004")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -334,7 +435,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T26_listVolume() {
+    public void T34_listVolume() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1005")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -346,7 +447,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T27_createVolumeSnapshot() {
+    public void T35_createVolumeSnapshot() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1007")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -358,7 +459,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T28_deleteVolumeSnapshot() {
+    public void T36_deleteVolumeSnapshot() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1008")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -370,7 +471,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T29_listVolumeSnapshot() {
+    public void T37_listVolumeSnapshot() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1009")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -382,7 +483,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T30_createVolumeCloneSnapshot() {
+    public void T38_createVolumeCloneSnapshot() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1011")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -394,7 +495,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T31_deleteVolumeCloneSnapshot() {
+    public void T39_deleteVolumeCloneSnapshot() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1012")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -406,7 +507,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T32_listVolumeCloneSnapshot() {
+    public void T40_listVolumeCloneSnapshot() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1013")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -418,7 +519,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T33_createVMDK() {
+    public void T41_createVMDK() {
         try {
             I2Rs.I2SmpRs rs = storage.createVMDK(); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
@@ -428,7 +529,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T34_deleteVMDK() {
+    public void T42_deleteVMDK() {
         try {
             I2Rs.I2SmpRs rs = storage.deleteVMDK(); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
@@ -438,7 +539,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T35_createBackStore() {
+    public void T43_createBackStore() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1177")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -450,7 +551,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T36_deleteBackStore() {
+    public void T44_deleteBackStore() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1178")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -462,7 +563,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T37_listBackStore() {
+    public void T45_listBackStore() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1179")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -474,7 +575,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T38_createAssignBackStore() {
+    public void T46_createAssignBackStore() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1180")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -486,7 +587,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T39_listAssignBackStore() {
+    public void T47_listAssignBackStore() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1212")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -498,7 +599,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T40_listBackStoreAvailablePath() {
+    public void T48_listBackStoreAvailablePath() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1213")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -510,7 +611,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T41_describeIscsiVersion() {
+    public void T49_describeIscsiVersion() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1181")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -522,7 +623,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T42_describeIscsiAuth() {
+    public void T50_describeIscsiAuth() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1275")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -534,7 +635,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T43_createIscsiDiscoverAuth() {
+    public void T51_createIscsiDiscoverAuth() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1191")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -546,7 +647,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T44_deleteIscsiDiscoverAuth() {
+    public void T52_deleteIscsiDiscoverAuth() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1192")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -558,7 +659,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T45_createAutoAddPortal() {
+    public void T53_createAutoAddPortal() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1236")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -570,7 +671,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T46_createAutoAddLun() {
+    public void T54_createAutoAddLun() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1238")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -582,7 +683,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T47_describeAutoAddPortal() {
+    public void T55_describeAutoAddPortal() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1273")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -594,7 +695,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T48_describeAutoAddLun() {
+    public void T56_describeAutoAddLun() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1274")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -606,7 +707,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T49_describeIscsiTargetStatus() {
+    public void T57_describeIscsiTargetStatus() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1193")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -618,7 +719,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T50_listIscsiTarget() {
+    public void T58_listIscsiTarget() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1194")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -630,7 +731,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T51_createIscsiTarget() {
+    public void T59_createIscsiTarget() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1195")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -642,7 +743,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T52_deleteIscsiTarget() {
+    public void T60_deleteIscsiTarget() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1196")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -654,7 +755,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T53_createIscsiInitiator() {
+    public void T61_createIscsiInitiator() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1201")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -666,7 +767,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T54_deleteIscsiInitiator() {
+    public void T62_deleteIscsiInitiator() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1202")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -678,7 +779,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T55_createIscsiInitiatorConnectAuth() {
+    public void T63_createIscsiInitiatorConnectAuth() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1203")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -690,7 +791,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T56_createIscsiInitiatorLun() {
+    public void T64_createIscsiInitiatorLun() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1204")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -702,7 +803,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T57_deleteIscsiInitiatorLun() {
+    public void T65_deleteIscsiInitiatorLun() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1205")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -714,7 +815,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T58_createIscsiInitiatorDiscoverTarget() {
+    public void T66_createIscsiInitiatorDiscoverTarget() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1362")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -726,7 +827,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T59_createIscsiInitiatorConnectTarget() {
+    public void T67_createIscsiInitiatorConnectTarget() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1363")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -738,7 +839,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T60_deleteIscsiInitiatorConnectTarget() {
+    public void T68_deleteIscsiInitiatorConnectTarget() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1364")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -750,7 +851,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T61_listIscsiInitiatorPortal() {
+    public void T69_listIscsiInitiatorPortal() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1365")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -762,7 +863,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T62_deleteIscsiInitiatorPortal() {
+    public void T70_deleteIscsiInitiatorPortal() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1366")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -774,7 +875,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T63_listTpg() {
+    public void T71_listTpg() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1220")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -786,7 +887,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T64_createTpg() {
+    public void T72_createTpg() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1197")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -798,7 +899,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T65_deleteTpg() {
+    public void T73_deleteTpg() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1198")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -810,7 +911,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T66_createTpgConnectAuth() {
+    public void T74_createTpgConnectAuth() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1199")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -822,7 +923,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T67_deleteTpgConnectAuth() {
+    public void T75_deleteTpgConnectAuth() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1200")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -834,7 +935,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T68_createTpgLun() {
+    public void T76_createTpgLun() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1371")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -846,7 +947,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T69_describeTpgConnectAuth() {
+    public void T77_describeTpgConnectAuth() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1374")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -858,7 +959,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T70_deleteTpgLun() {
+    public void T78_deleteTpgLun() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1206")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -870,7 +971,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T71_createTpgPortal() {
+    public void T79_createTpgPortal() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1207")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
@@ -882,7 +983,7 @@ public class StorageTest {
     }
 
     @Test
-    public void T72_deleteTpgPortal() {
+    public void T80_deleteTpgPortal() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1208")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
