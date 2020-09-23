@@ -2,4 +2,67 @@ URL: [GET] /storage
 ARGS: {"byte_format":1,"rep_uuid":"F97B3FD5-4D5D-41EE-22A9-740A74E1E13C","node_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F"}
 RS: {"code":0,"message":"","driver_list":{"G:":{"name":"G:","total":"4.0 GB","free":"3.8 GB"}},"total_cdp_size":"0 Bytes","rep_list":{"F97B3FD5-4D5D-41EE-22A9-740A74E1E13C":{"rep_uuid":"F97B3FD5-4D5D-41EE-22A9-740A74E1E13C","repsize":"6 Bytes","cdpsize":"0 Bytes","snapsize":"0 Bytes"}}}
 
-Process finished with exit code 0
+
+
+listStorageStatus:
+URL: [GET] https://rap2api.info2soft.com/app/mock/data/1413?scope=request
+HEADER: {}
+ARGS: {}
+RS: {
+  "uuids": [
+    "FBDDEBDE-41CC-175B-9D84-4D9693EEB6C6",
+    "bcb9eeDc-CbAB-3287-F2c5-527c28eAd64c"
+  ]
+}
+
+URL: [GET] https://192.168.138.133:58086/api/storage/status
+HEADER: {"Authorization":"09f93dc3433996a7ef564a8be9849ae369109a85","Signature":"4df4d9ddbfd47263d14f474ab7edbd68c845cb6dfa37a58065e6b62cbd4436de","nonce":"712e1967-0421-4f31-bd28-4d608a015169","timestamp":"1600842051"}
+ARGS: {"uuids":["FBDDEBDE-41CC-175B-9D84-4D9693EEB6C6","bcb9eeDc-CbAB-3287-F2c5-527c28eAd64c"],"_":"My9e5mGP8goF9U10"}
+RS: {"code":0,"message":"[0] success","status":[{"uuid":"FBDDEBDE-41CC-175B-9D84-4D9693EEB6C6","status":"ONLINE","device_info":[{"dev_used_percent":28,"dev_name":"/dev/mapper/centos-root","dev_mount":"/","dev_total":"36.97 GB","dev_free":"26.72 GB","dev_type":"block","dev_enb_compress":"N","dev_enb_wight":"N","dev_save_rate":"0%","node_name":"MTQx","node_role":"3","dev_used_size":"11012108288"}]}]}
+
+
+describeStorageDeviceInfo:
+URL: [GET] https://rap2api.info2soft.com/app/mock/data/210?scope=request
+HEADER: {}
+ARGS: {}
+RS: {
+  "node_uuid": "7E36A0B7-7C9A-D310-645A-F9FF7972F13F"
+}
+
+URL: [GET] https://192.168.138.133:58086/api/storage/device_info
+HEADER: {"Authorization":"09f93dc3433996a7ef564a8be9849ae369109a85","Signature":"3d5531dfe289e917e4e41ced8bff3c94879dbfe61e50a593f7b9313e02b8a4af","nonce":"a7949a61-9df3-43ae-a594-90a2995974d1","timestamp":"1600842209"}
+ARGS: {"node_uuid":"7E36A0B7-7C9A-D310-645A-F9FF7972F13F","_":"3RoAd5GKuFS2k5mm"}
+RS: {"code":0,"message":"","device_info":{"/":{"dev_used_percent":28,"dev_name":"/dev/mapper/centos-root","dev_mount":"/","dev_total":"36.97 GB","dev_free":"26.72 GB","dev_type":"block","dev_enb_compress":"N","dev_enb_wight":"N","dev_save_rate":"0%","node_name":"MTQx","node_role":"3","dev_used_size":"11012222976"},"/boot":{"dev_used_percent":15,"dev_name":"/dev/sda1","dev_mount":"/boot","dev_total":"0.99 GB","dev_free":"871.58 MB","dev_type":"block","dev_enb_compress":"N","dev_enb_wight":"N","dev_save_rate":"0%","node_name":"MTQx","node_role":"3","dev_used_size":"149336064"}}}
+
+
+
+describeStorageHistoryData:
+URL: [GET] https://rap2api.info2soft.com/app/mock/data/1414?scope=request
+HEADER: {}
+ARGS: {}
+RS: {
+  "start": 1565076908
+}
+
+URL: [GET] https://192.168.138.133:58086/api/storage/FBDDEBDE-41CC-175B-9D84-4D9693EEB6C6/chart
+HEADER: {"Authorization":"09f93dc3433996a7ef564a8be9849ae369109a85","Signature":"0a5df242a874e315619225f26a5bd909bce73af13393a278f3a6ea107663fd43","nonce":"daadc2e5-5fc2-4c7c-aca5-bb41f060ff89","timestamp":"1600842406"}
+ARGS: {"start":1565076908,"_":"ZNIYQYt1VT2MfA5r"}
+RS: {"code":0,"message":"[0] success","info_list":[]}
+
+
+
+switchStorageQuota:
+URL: [GET] https://rap2api.info2soft.com/app/mock/data/1571?scope=request
+HEADER: {}
+ARGS: {}
+RS: {
+  "quota_switch": 1,
+  "random_str": "A5AE270D-B6E5-A3C4-14B4-CAC997B87AB2"
+}
+
+URL: [PUT] https://192.168.138.133:58086/api/storage/FBDDEBDE-41CC-175B-9D84-4D9693EEB6C6/switch
+HEADER: {"Authorization":"09f93dc3433996a7ef564a8be9849ae369109a85","Signature":"3a0ec1ad96718582f5d964bc979083cddbfe9d119f4d40dfc0a4ca78648a5292","nonce":"ebd7eade-7aba-4983-8a95-50cdf54480cf","timestamp":"1600842631"}
+ARGS: {"quota_switch":1,"random_str":"A5AE270D-B6E5-A3C4-14B4-CAC997B87AB2","_":"q93vsqLkR0VCl5I9"}
+RS: {"code":0,"message":"[0] success"}
+
+
