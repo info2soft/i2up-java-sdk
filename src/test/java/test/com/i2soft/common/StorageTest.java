@@ -76,7 +76,9 @@ public class StorageTest {
     @Test
     public void T4_listStorageConfig() {
         try {
-            Map rs = storage.listStorageConfig(); // 发送请求
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1357")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = storage.listStorageConfig(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
