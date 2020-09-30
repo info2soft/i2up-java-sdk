@@ -1,6 +1,24 @@
+listStorageConfig
+
 URL: [GET] /storage
 ARGS: {"byte_format":1,"rep_uuid":"F97B3FD5-4D5D-41EE-22A9-740A74E1E13C","node_uuid":"67E33CDB-D75B-15B3-367D-50C764F5A26F"}
 RS: {"code":0,"message":"","driver_list":{"G:":{"name":"G:","total":"4.0 GB","free":"3.8 GB"}},"total_cdp_size":"0 Bytes","rep_list":{"F97B3FD5-4D5D-41EE-22A9-740A74E1E13C":{"rep_uuid":"F97B3FD5-4D5D-41EE-22A9-740A74E1E13C","repsize":"6 Bytes","cdpsize":"0 Bytes","snapsize":"0 Bytes"}}}
+
+URL: [GET] https://rap2api.info2soft.com/app/mock/data/1357?scope=request
+HEADER: {}
+ARGS: {}
+RS: {
+  "search_value": "118",
+  "search_field": "bk_node_name",
+  "limit": 1,
+  "page": 1,
+  "direction": ""
+}
+
+URL: [GET] https://172.20.68.208:58086/api/storage
+HEADER: {"Authorization":"3a0c757b9f4a2399fc3535fcfd06165e3cec8e07","Signature":"9121165761bd18eb3c401cd8e5625505ff231b55bdf39acc9cd8903ed2192b47","nonce":"054dbc53-ccb5-4558-8953-fc1628cf821a","timestamp":"1601436945"}
+ARGS: {"search_value":"118","limit":1,"page":1,"search_field":"bk_node_name","direction":"","_":"8y2Hy8Tw5gZvz6D6"}
+RS: {"code":0,"message":"[0] success","info_list":[],"total":0}
 
 
 

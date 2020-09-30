@@ -69,9 +69,9 @@ public final class Storage {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map listStorageConfig() throws I2softException {
+    public Map listStorageConfig(StringMap args) throws I2softException {
         String url = String.format("%s/storage", auth.cc_url);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url, args);
         return r.jsonToMap();
     }
 
