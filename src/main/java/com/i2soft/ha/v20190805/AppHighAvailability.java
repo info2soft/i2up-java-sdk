@@ -45,7 +45,7 @@ public final class AppHighAvailability {
      */
     public Map startHA(String[] uuids) throws I2softException {
         String url = String.format("%s/ha/operate", auth.cc_url);
-        StringMap newArgs = new StringMap().putNotEmpty("ha_uuid", uuids).put("operate", "start");
+        StringMap newArgs = new StringMap().putNotEmpty("ha_uuid", uuids).put("type", "start");
         Response r = auth.client.post(url, newArgs);
         return r.jsonToMap();
     }
@@ -59,7 +59,7 @@ public final class AppHighAvailability {
      */
     public Map stopHA(String[] uuids) throws I2softException {
         String url = String.format("%s/ha/operate", auth.cc_url);
-        StringMap newArgs = new StringMap().putNotEmpty("ha_uuid", uuids).put("operate", "stop");
+        StringMap newArgs = new StringMap().putNotEmpty("ha_uuid", uuids).put("type", "stop");
         Response r = auth.client.post(url, newArgs);
         return r.jsonToMap();
     }
@@ -73,7 +73,7 @@ public final class AppHighAvailability {
      */
     public Map forceSwitchHA(String[] uuids) throws I2softException {
         String url = String.format("%s/ha/operate", auth.cc_url);
-        StringMap newArgs = new StringMap().putNotEmpty("ha_uuid", uuids).put("operate", "force_switch");
+        StringMap newArgs = new StringMap().putNotEmpty("ha_uuid", uuids).put("type", "force_switch");
         Response r = auth.client.post(url, newArgs);
         return r.jsonToMap();
     }
