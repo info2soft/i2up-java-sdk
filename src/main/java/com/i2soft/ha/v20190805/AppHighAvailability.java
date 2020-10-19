@@ -51,6 +51,20 @@ public final class AppHighAvailability {
     }
 
     /**
+     * 高可用 - 单个节点操作：启动
+     *
+     * @param uuids: uuid数组
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map startHA(String[] uuids, String nodeUuid) throws I2softException {
+        String url = String.format("%s/ha/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("ha_uuid", uuids).put("type", "start").put("node_uuid", nodeUuid);
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToMap();
+    }
+
+    /**
      * 高可用 - 操作：停止
      *
      * @param uuids: uuid数组
@@ -65,6 +79,20 @@ public final class AppHighAvailability {
     }
 
     /**
+     * 高可用 - 单个节点操作：停止
+     *
+     * @param uuids: uuid数组
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map stopHA(String[] uuids, String nodeUuid) throws I2softException {
+        String url = String.format("%s/ha/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("ha_uuid", uuids).put("type", "stop").put("node_uuid", nodeUuid);
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToMap();
+    }
+
+    /**
      * 高可用 - 操作：强制切换
      *
      * @param uuids: uuid数组
@@ -74,6 +102,20 @@ public final class AppHighAvailability {
     public Map forceSwitchHA(String[] uuids) throws I2softException {
         String url = String.format("%s/ha/operate", auth.cc_url);
         StringMap newArgs = new StringMap().putNotEmpty("ha_uuid", uuids).put("type", "force_switch");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 高可用 - 单个节点操作：强制切换
+     *
+     * @param uuids: uuid数组
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map forceSwitchHA(String[] uuids, String nodeUuid) throws I2softException {
+        String url = String.format("%s/ha/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("ha_uuid", uuids).put("type", "force_switch").put("node_uuid", nodeUuid);
         Response r = auth.client.post(url, newArgs);
         return r.jsonToMap();
     }
