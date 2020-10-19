@@ -22,6 +22,7 @@ import java.util.UUID;
 public class AppHighAvailabilityTest {
 
     private static Auth auth;
+    private static String nodeUuid = TestConfig.nodeUuid;
     private static String uuid = TestConfig.testUuid;
     private static AppHighAvailability appHighAvailability;
 
@@ -135,6 +136,13 @@ public class AppHighAvailabilityTest {
             e.printStackTrace();
             Assert.fail();
         }
+        try {
+            Map rs = appHighAvailability.stopHA(new String[]{uuid}, nodeUuid); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
     }
 
     @Test
@@ -146,12 +154,26 @@ public class AppHighAvailabilityTest {
             e.printStackTrace();
             Assert.fail();
         }
+        try {
+            Map rs = appHighAvailability.startHA(new String[]{uuid}, nodeUuid); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
     }
 
     @Test
     public void T10_forceSwitchHA() {
         try {
             Map rs = appHighAvailability.forceSwitchHA(new String[]{uuid}); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+        try {
+            Map rs = appHighAvailability.forceSwitchHA(new String[]{uuid}, nodeUuid); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

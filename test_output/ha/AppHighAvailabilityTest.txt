@@ -37,6 +37,27 @@ URL: [POST] /ha/operate
 ARGS: {"operate":"force_switch","ha_uuid":["11111111-1111-1111-1111-111111111111"]}
 RS: {"code":0,"message":"[0] success"}
 
+URL: [POST] https://172.20.34.17:58086/api/ha/operate
+HEADER: {"Authorization":"8a1b2b58f9b4a76792731e094ae55bb355c77849","Signature":"0f1a480ac84fde62f21132046a4072b70e253cdf9cd6efaae55bf5146732d162","nonce":"0a346d64-4f11-497a-8749-33f89ba4421c","timestamp":"1603101009"}
+ARGS: {"type":"start","ha_uuid":["5D4965A3-54DE-69D8-3DBB-E85923C93396"],"_":"OoVxzDcs7pqiu4ag"}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [POST] https://172.20.34.17:58086/api/ha/operate
+HEADER: {"Authorization":"8a1b2b58f9b4a76792731e094ae55bb355c77849","Signature":"8a87cf7cef1eb29747e124a171ab30b0ab7031d276c763d0ae080d6055862240","nonce":"55d556a9-b42b-4944-8429-f216f6787894","timestamp":"1603101010"}
+ARGS: {"type":"start","node_uuid":"4D4965A3-54DE-69D8-3DBB-E85923C93396","ha_uuid":["5D4965A3-54DE-69D8-3DBB-E85923C93396"],"_":"mYViozWOmuVobLu4"}
+RS: {"code":10011001,"message":"[10011001] Node does not exist"}
+
+URL: [POST] https://172.20.34.17:58086/api/ha/operate
+HEADER: {"Authorization":"8a1b2b58f9b4a76792731e094ae55bb355c77849","Signature":"f5c8d955c9ff9ef44222443dd596bd1a4032457bf691e2ed50d02e3b74208b00","nonce":"363aecde-9b1f-4211-9a81-6fb16ffba0a9","timestamp":"1603101128"}
+ARGS: {"type":"force_switch","ha_uuid":["5D4965A3-54DE-69D8-3DBB-E85923C93396"],"_":"mzAKDdOL74sXpKMz"}
+RS: {"code":0,"message":"[0] success"}
+
+URL: [POST] https://172.20.34.17:58086/api/ha/operate
+HEADER: {"Authorization":"8a1b2b58f9b4a76792731e094ae55bb355c77849","Signature":"1996b53d4bdaf46aea46a71f2d04ff2d693289ae66cafb53898ceb3ff6d0eff9","nonce":"00c835b6-d590-4313-8e52-19fad21ae76e","timestamp":"1603101129"}
+ARGS: {"type":"force_switch","node_uuid":"4D4965A3-54DE-69D8-3DBB-E85923C93396","ha_uuid":["5D4965A3-54DE-69D8-3DBB-E85923C93396"],"_":"QH9s2Ehl4M3jfjBV"}
+RS: {"code":10011001,"message":"[10011001] Node does not exist"}
+
+
 URL: [DELETE] /ha
 ARGS: {"uuid":["11111111-1111-1111-1111-111111111111"]}
 RS: {"code":0,"message":"[0] success"}
