@@ -63,6 +63,62 @@ URL: [DELETE] /vp/platform
 ARGS: {"vp_uuids":["11111111-1111-1111-1111-111111111111"]}
 RS: {"code":0,"message":"[0] success"}
 
+createDatastore
+URL: [GET] https://rap2api.info2soft.com/app/mock/data/1437?scope=request
+HEADER: {}
+ARGS: {}
+RS: {
+  "host_name": "dev-esxi.6.6.6",
+  "path": "C:\\abc\\"
+}
+
+URL: [POST] https://172.20.76.80:58086/api/vp/platform/A3FE993B-93BF-A5B8-8F6F-426A2A655742/datastore
+HEADER: {"Authorization":"af044b599bb23f37bafc77480efd304bc2fb5ea0","Signature":"fce9165bb27154486e4a26b2b127a32a03c57932e31fd5d0a9e1e647c682acb4","nonce":"156c832c-d8c5-4b1e-93c1-4e7c38364d89","timestamp":"1603182908"}
+ARGS: {"path":"C:\\abc\\","host_name":"dev-esxi.6.6.6","_":"0DixGj6Ct62hqDVg"}
+RS: {"code":"11116121","message":"Please find this code on the manual to grab more info.(6121)"}
+
+
+listVmDisk
+URL: [GET] https://rap2api.info2soft.com/app/mock/data/1427?scope=request
+HEADER: {}
+ARGS: {}
+RS: {
+  "vm_ref": "vm-260"
+}
+
+URL: [GET] https://172.20.76.80:58086/api/vp/platform/3FBF9C42-0030-9BD8-CDFE-67BCE7C90952/vm_disk
+HEADER: {"Authorization":"af044b599bb23f37bafc77480efd304bc2fb5ea0","Signature":"144cc95188c9974b6fd1c97d6dea8de89f5e09054b0aa66b1d9a9952719fc281","nonce":"79b492c8-729d-4b59-bc22-7767673b1419","timestamp":"1603183759"}
+ARGS: {"vm_ref":"vm-260","_":"qUUSW0ucdDnWdOWJ"}
+RS: {"code":11116061,"message":"[11116061] Internal error","list":"1"}
+
+
+URL: [GET] https://rap2api.info2soft.com/app/mock/data/1427?scope=request
+HEADER: {}
+ARGS: {}
+RS: {
+  "vm_ref": "vm-1376"
+}
+
+URL: [GET] https://172.20.76.80:58086/api/vp/platform/3FBF9C42-0030-9BD8-CDFE-67BCE7C90952/vm_disk
+HEADER: {"Authorization":"af044b599bb23f37bafc77480efd304bc2fb5ea0","Signature":"c1e5c7174026272ae6babae9d76e926de65ba711a5e43800124af5fea9d62e5c","nonce":"44d13146-5f0a-4fc4-906d-4c917ea6de77","timestamp":"1603184798"}
+ARGS: {"vm_ref":"vm-1376","_":"90vLwLg3xMmLEW0Z"}
+RS: {"code":0,"message":"[0] success","list":[{"bootIndex":0,"ignored":false,"size":"16.00 GB","file_name":"[DATA_SATA_DISK (1)] 32.83_ha-1015/32.83_ha-1015_0-000001.vmdk","id":"6000C290-1625-8365-6830-ec936a72403d","disk_name":"32.83_ha-1015_0-000001.vmdk"}]}
+
+
+listNetwork
+URL: [GET] https://rap2api.info2soft.com/app/mock/data/1637?scope=request
+HEADER: {}
+ARGS: {}
+RS: {
+  "host_name": ""
+}
+
+URL: [GET] https://172.20.76.80:58086/api/vp/platform/3FBF9C42-0030-9BD8-CDFE-67BCE7C90952/network
+HEADER: {"Authorization":"af044b599bb23f37bafc77480efd304bc2fb5ea0","Signature":"44fe6369c1f5afc498c55fbb3e32f19b5cf882c26acb7ee6b15b1ebfe102a2ac","nonce":"245c0e43-3b7e-4ed8-8c6c-d65514b9b22a","timestamp":"1603183095"}
+ARGS: {"host_name":"","_":"xV77UOTswXx8D9JW"}
+RS: {"code":0,"message":"[0] success","list":[{"network_id":"network-770","network_name":"VM Network"},{"network_id":"network-771","network_name":"I2 Isolated VM Network"},{"network_id":"network-699","network_name":"I2 Isolated VM Network"},{"network_id":"network-886","network_name":"internal ip"},{"network_id":"network-885","network_name":"新建端口组"},{"network_id":"network-698","network_name":"VM Network"},{"network_id":"network-888","network_name":"ip"},{"network_id":"network-49","network_name":"I2 Isolated VM Network"},{"network_id":"network-887","network_name":"VM Network"},{"network_id":"network-557","network_name":"internal ip"},{"network_id":"network-1260","network_name":"vmware_test_3026_a4fa2176-f3d"},{"network_id":"network-48","network_name":"VM Network"}]}
+
+
 "C:\Program Files\Java\jdk1.8.0_151\bin\java.exe" -ea -Didea.test.cyclic.buffer.size=1048576 "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.2\lib\idea_rt.jar=2536:C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.2\bin" -Dfile.encoding=UTF-8 -classpath "C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.2\lib\idea_rt.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.2\plugins\junit\lib\junit-rt.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.2\plugins\junit\lib\junit5-rt.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\rt.jar;C:\Code\i2up-java-sdk\out\test\classes;C:\Code\i2up-java-sdk\out\production\classes;C:\Users\yourf\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.9.1\84b4b7d1c4a238e7899972b7446c250691e65f1f\okhttp-3.9.1.jar;C:\Users\yourf\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.8.2\3edcfe49d2c6053a70a2a47e4e1c2f94998a49cf\gson-2.8.2.jar;C:\Users\yourf\.gradle\caches\modules-2\files-2.1\junit\junit\4.12\2973d150c0dc1fefe998f834810d68f278ea58ec\junit-4.12.jar;C:\Users\yourf\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.13.0\a9283170b7305c8d92d25aff02a6ab7e45d06cbe\okio-1.13.0.jar;C:\Users\yourf\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar" com.intellij.rt.execution.junit.JUnitStarter -ideVersion5 -junit4 test.com.i2soft.vp.VirtualizationSupportTest
 Cache token: 24e7ca1cf2c8daaa13dfbee1f9ea030f25c1e9a2, sso_token: 02237d2caf0a5773cp69spd9HstDvShfCLOdgNM8aVHMzqwpDEjCQ7XD-GLhPo1cqwpWlMfCNBZU8yq1kKnH0W_8ANiPgAnDyTlCl263y4VINcj55_aoFKy0Um-RKxx_8DDkr_jYTWWR9M5a7Cc8Vhrj2Krhl43OzDuB4g
 

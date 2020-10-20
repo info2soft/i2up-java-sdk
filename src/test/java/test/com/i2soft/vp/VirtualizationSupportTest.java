@@ -4,9 +4,9 @@ import com.i2soft.common.Auth;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
-import com.i2soft.vp.v20190805.VirtualizationSupport;
 import com.i2soft.util.Configuration;
 import com.i2soft.util.StringMap;
+import com.i2soft.vp.v20190805.VirtualizationSupport;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
@@ -22,6 +22,7 @@ public class VirtualizationSupportTest {
 
     private static Auth auth;
     private static String uuid = TestConfig.testUuid;
+    private static String vpUuid = TestConfig.vpUuid;
     private static Map obj;
     private static VirtualizationSupport virtualizationSupport;
 
@@ -239,6 +240,126 @@ public class VirtualizationSupportTest {
         } catch (I2softException e) {
             e.printStackTrace();
             Assert.fail();
+        }
+    }
+
+    @Test
+    public void T171_createDatastore() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1437")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = virtualizationSupport.createDatastore(vpUuid, args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T181_listVmDisk() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1427")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = virtualizationSupport.listVmDisk(vpUuid, args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T191_listNetwork() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1637")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = virtualizationSupport.listNetwork(vpUuid, args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T201_drilConfigInfo() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1763")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = virtualizationSupport.drilConfigInfo(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T211_importVmIpMapping() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1871")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            I2Rs.I2SmpRs rs = virtualizationSupport.importVmIpMapping(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T221_listNetworkInfo() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1953")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = virtualizationSupport.listNetworkInfo(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T231_tgtVmStatusInfo() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2090")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = virtualizationSupport.tgtVmStatusInfo(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T241_listPlatformStorage() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2274")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = virtualizationSupport.listPlatformStorage(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T251_platformAuthorize() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2275")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            I2Rs.I2SmpRs rs = virtualizationSupport.platformAuthorize(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T261_listVpStorage() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2276")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = virtualizationSupport.listVpStorage(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
         }
     }
 

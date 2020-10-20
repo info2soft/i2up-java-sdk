@@ -241,6 +241,139 @@ public final class VirtualizationSupport {
     }
 
     /**
+     * 虚拟平台 - 创建存储目录
+     *
+     * @param uuid: uuid
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map createDatastore(String uuid, StringMap args) throws I2softException {
+        String url = String.format("%s/vp/platform/%s/datastore", auth.cc_url, uuid);
+        Response r = auth.client.post(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 虚拟平台 - 查 虚机磁盘
+     *
+     * @param uuid: uuid
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listVmDisk(String uuid, StringMap args) throws I2softException {
+        String url = String.format("%s/vp/platform/%s/vm_disk", auth.cc_url, uuid);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 虚拟平台 - 查 虚机网卡
+     *
+     * @param uuid: uuid
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listNetwork(String uuid, StringMap args) throws I2softException {
+        String url = String.format("%s/vp/platform/%s/network", auth.cc_url, uuid);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 虚拟平台 - 演练配置
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map drilConfigInfo(StringMap args) throws I2softException {
+        String url = String.format("%s/vp/platform/drill_config", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 虚拟平台 - 导入虚机 IP映射
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs importVmIpMapping(StringMap args) throws I2softException {
+        String url = String.format("%s/vp/platform/batch_vm_ip_mapping", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 虚拟平台 - 获取虚机网卡信息列表
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listNetworkInfo(StringMap args) throws I2softException {
+        String url = String.format("%s/vp/platform/network_info_list", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 获取 虚机复制/整机备份 目标机状态信息
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map tgtVmStatusInfo(StringMap args) throws I2softException {
+        String url = String.format("%s/vp/platform/tgt_vm_status", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 单个平台存储列表
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listPlatformStorage(StringMap args) throws I2softException {
+        String url = String.format("%s/vp/storage/platform_storage_list", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 修改存储授权容量、启用状态
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs platformAuthorize(StringMap args) throws I2softException {
+        String url = String.format("%s/vp/storage/platform_authorize", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 存储列表
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listVpStorage(StringMap args) throws I2softException {
+        String url = String.format("%s/vp/storage", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
      * 新建
      *
      * @param args: 参数详见 API 手册

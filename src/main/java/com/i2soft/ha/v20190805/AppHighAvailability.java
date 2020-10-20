@@ -54,6 +54,7 @@ public final class AppHighAvailability {
      * 高可用 - 单个节点操作：启动
      *
      * @param uuids: uuid数组
+     * @param nodeUuid
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
@@ -82,6 +83,7 @@ public final class AppHighAvailability {
      * 高可用 - 单个节点操作：停止
      *
      * @param uuids: uuid数组
+     * @param nodeUuid
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
@@ -110,6 +112,7 @@ public final class AppHighAvailability {
      * 高可用 - 单个节点操作：强制切换
      *
      * @param uuids: uuid数组
+     * @param nodeUuid
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
