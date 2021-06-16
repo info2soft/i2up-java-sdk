@@ -12,6 +12,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -20,6 +21,7 @@ import java.util.concurrent.TimeUnit;
  */
 public final class Client {
     static final String JsonMime = "application/json";
+    public static final MediaType JSONMedia = MediaType.parse("application/json; charset=utf-8");
     private static final String[] NoneAuth = {"/api/auth/token"};
     private StringMap headers;
     private final OkHttpClient httpClient;
@@ -82,14 +84,35 @@ public final class Client {
                     }
                 }
         };
+
+        X509TrustManager x509TrustManager = new X509TrustManager() {
+            @Override
+            public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType)
+                    throws CertificateException {
+            }
+
+            @Override
+            public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType)
+                    throws CertificateException {
+            }
+
+            @Override
+            public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                return new java.security.cert.X509Certificate[]{};
+            }
+        };
+
+        SSLContext sslContext = null;
+
         try {
-            final SSLContext sslContext = SSLContext.getInstance("SSL");
+            sslContext = SSLContext.getInstance("SSL");
             sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
-            final javax.net.ssl.SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
-            builder.sslSocketFactory(sslSocketFactory);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+        builder.sslSocketFactory(sslSocketFactory, x509TrustManager);
 
         builder.hostnameVerifier(new HostnameVerifier() {
             @Override
@@ -205,6 +228,7 @@ public final class Client {
         }
 
         requestBuilder.header("User-Agent", userAgent());
+        requestBuilder.header("Content-Type", JsonMime);
         long start = System.currentTimeMillis();
         okhttp3.Response res;
         Response r;
