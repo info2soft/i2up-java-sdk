@@ -4,7 +4,7 @@ I2UP Java SDK
 简介
 ==
 
-此 SDK 适用于 Java 7 及以上版本。使用此 SDK 构建您的网络应用程序，无论您的网络应用是一个网站程序，还是包括从云端（服务端程序）到终端（手持设备应用）的架构服务或应用，都能让您以非常便捷地方式使用英方统一数据管理平台（下简称“英方平台”）管理您的业务，同时也让您的服务端更加轻盈。
+此 SDK 适用于 Java 8 及以上版本。使用此 SDK 构建您的网络应用程序，无论您的网络应用是一个网站程序，还是包括从云端（服务端程序）到终端（手持设备应用）的架构服务或应用，都能让您以非常便捷地方式使用英方统一数据管理平台（下简称“英方平台”）管理您的业务，同时也让您的服务端更加轻盈。
 
 I2UP Java SDK 属于英方服务端SDK之一，主要用于管理您英方平台上的服务器保护配置。
 
@@ -22,7 +22,7 @@ I2UP Java SDK 属于英方服务端SDK之一，主要用于管理您英方平台
 
 ### Gradle
 
-    compile 'org.info2soft:i2up-java-sdk:7.1.+'
+    compile 'org.info2soft:i2up-java-sdk:7.1.70'
 
 
 ### Maven
@@ -30,7 +30,7 @@ I2UP Java SDK 属于英方服务端SDK之一，主要用于管理您英方平台
     <dependency>
       <groupId>org.info2soft</groupId>
       <artifactId>i2up-java-sdk</artifactId>
-      <version>[7.0.0, 7.1.0]</version>
+      <version>[7.1.55, 7.1.70]</version>
     </dependency>
 
 这里的`version`指定了一个版本范围，每次更新`pom.xml`的时候会尝试去下载`7.1.x`版本中的最新版本，你可以手动指定一个固定的版本。

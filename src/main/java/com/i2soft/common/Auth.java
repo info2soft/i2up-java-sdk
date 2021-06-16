@@ -1,16 +1,23 @@
 package com.i2soft.common;
 
 import com.i2soft.http.Client;
+import com.i2soft.http.I2Req;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
+import com.i2soft.common.Auth;
 import com.i2soft.util.*;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 import java.util.Objects;
 
 public final class Auth {
+    /**
+     * Auth 对象
+     */
+//    private final Auth auth;
 
     public static String AUTH_TYPE_TOKEN = "token";
     public static String AUTH_TYPE_AK_SK = "ak_sk";
@@ -49,6 +56,57 @@ public final class Auth {
         this.client = client;
         this.configuration = configuration;
         client.setAuth(this);
+    }
+
+    /**
+     * 短信-1.时间戳
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs describeTimeStamp(StringMap args) throws I2softException {
+        String url = String.format("%s/auth/t", this.cc_url);
+        Response r = this.client.get(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 短信-2.生成短信、邮件、图片验证码关联信息
+     *
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs authGenerate() throws I2softException {
+        String url = String.format("%s/auth/generate", this.cc_url);
+        Response r = this.client.post(url, new StringMap());
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * auth-获取手机、邮件、图片验证码
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs describeVerificationCode(StringMap args) throws I2softException {
+        String url = String.format("%s/auth/verification_code", this.cc_url);
+        Response r = this.client.post(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * auth-检查用户是否需要验证码
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs checkCaptcha(StringMap args) throws I2softException {
+        String url = String.format("%s/auth/check_captcha", this.cc_url);
+        Response r = this.client.get(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 
     /**
@@ -137,6 +195,13 @@ public final class Auth {
         return new Auth(client.cc_url, token, ssoToken, cachePath, client, configuration);
     }
 
+    /**
+     * auth-获取token
+     *
+     * @param
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
     public static Auth token(String ip, String user, String pwd, String cachePath) throws I2softException {
         return token(ip, user, pwd, cachePath, new Configuration());
     }
@@ -151,7 +216,12 @@ public final class Auth {
         return r.jsonToMap();
     }
 
-    // TODO: 后端没这个接口 2019.1.7
+    /**
+     * auth-注册账号(不开放)
+     *
+     * @return code, message
+     * @throws I2softException:
+     */
     public I2Rs.I2SmpRs regAccount(StringMap args) throws I2softException {
         if (StringUtils.isNullOrEmpty(this.token)) {
             throw new IllegalArgumentException("empty key");
@@ -161,20 +231,25 @@ public final class Auth {
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 
-    // TODO: 后端没这个接口 2019.1.7
+    /**
+     * auth-重置密码
+     *
+     * @return code, message
+     * @throws I2softException:
+     */
     public I2Rs.I2SmpRs resetPwd(StringMap args) throws I2softException {
         if (StringUtils.isNullOrEmpty(this.token)) {
             throw new IllegalArgumentException("empty key");
         }
-        String url = String.format("%s/auth/reset/password", this.cc_url);
+        String url = String.format("%s/auth/reset_password", this.cc_url);
         return this.client.post(url, args).jsonToObject(I2Rs.I2SmpRs.class);
     }
 
     /**
-     * 返回登陆的用户名
+     * auth-check用户登录状态
      *
      * @return username
-     * @throws I2softException :
+     * @throws I2softException:
      */
     public String checkLoginStatus() throws I2softException {
         if (StringUtils.isNullOrEmpty(this.token)) {
@@ -183,5 +258,18 @@ public final class Auth {
         String url = String.format("%s/auth/token", this.cc_url);
         Response r = this.client.get(url, new StringMap().put("access_token", this.sso_token));
         return Objects.requireNonNull(r.jsonToMap()).get("username").toString();
+    }
+
+    /**
+     * auth-是否超时或账号失效
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs heartbeat(StringMap args) throws I2softException {
+        String url = String.format("%s/auth/heartbeat", this.cc_url);
+        Response r = this.client.put(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 }
