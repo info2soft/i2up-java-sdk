@@ -75,8 +75,8 @@ public class SyncRulesTest {
     public void T1248_createSyncRules() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1248")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = syncRules.createSyncRules(args); // 发送请求
+//            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            I2Rs.I2CreateRs rs = syncRules.createSyncRule("oracle", r.bodyString()); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -88,7 +88,7 @@ public class SyncRulesTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2068")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = syncRules.modifySyncRules(args); // 发送请求
+            I2Rs.I2SmpRs rs = syncRules.modifySyncRule((String) args.get("rule_uuid"), r.bodyString()); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -100,7 +100,7 @@ public class SyncRulesTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1416")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = syncRules.listRuleLog(args); // 发送请求
+            Map rs = syncRules.listRuleLog("uuids", args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -160,7 +160,7 @@ public class SyncRulesTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1254")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = syncRules.deleteSyncRules(args); // 发送请求
+            Map rs = syncRules.deleteSyncRule((String) args.get("rule_uuid")); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -172,7 +172,7 @@ public class SyncRulesTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1251")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = syncRules.listSyncRules(args); // 发送请求
+            Map rs = syncRules.listSyncRules("oracle", args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -208,7 +208,7 @@ public class SyncRulesTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1296")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = syncRules.listSyncRulesStatus(args); // 发送请求
+            Map rs = syncRules.listSyncRulesStatus("oracle", args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -303,7 +303,7 @@ public class SyncRulesTest {
             String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1252")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = syncRules.describeSyncRules(uuid, args); // 发送请求
+            Map rs = syncRules.describeSyncRule(uuid); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

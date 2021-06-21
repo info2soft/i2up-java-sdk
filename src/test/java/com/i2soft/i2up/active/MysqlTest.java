@@ -42,7 +42,7 @@ public class MysqlTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1468")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = mysql.createStreamRule(args); // 发送请求
+            I2Rs.I2CreateRs rs = mysql.createMysqlRule(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -54,7 +54,7 @@ public class MysqlTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1470")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = mysql.deleteStreamRule(args); // 发送请求
+            Map rs = mysql.deleteMysqlRules(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -78,7 +78,7 @@ public class MysqlTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1472")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = mysql.listStreamRules(args); // 发送请求
+            Map rs = mysql.listMysqlRules(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -90,7 +90,7 @@ public class MysqlTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1473")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = mysql.listStreamStatus(args); // 发送请求
+            Map rs = mysql.listMysqlStatus(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -102,7 +102,7 @@ public class MysqlTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1533")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = mysql.listStreamLog(args); // 发送请求
+            Map rs = mysql.listMysqlLog(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -163,7 +163,7 @@ public class MysqlTest {
             String uuid = UUID.randomUUID().toString();
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1474")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = mysql.describeStreamRules(uuid, args); // 发送请求
+            Map rs = mysql.describeMysqlRule(uuid); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
