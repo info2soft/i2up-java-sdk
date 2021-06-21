@@ -9,7 +9,7 @@ import com.i2soft.util.StringMap;
 
 import java.util.Map;
 
-public final class Hetero {
+public final class Kafka extends Rule {
     /**
      * Auth 对象
      */
@@ -20,7 +20,8 @@ public final class Hetero {
      *
      * @param auth Auth对象
      */
-    public Hetero(Auth auth) {
+    public Kafka(Auth auth) {
+        super(auth);
         this.auth = auth;
     }
 
@@ -109,10 +110,10 @@ public final class Hetero {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs createConsumerRule(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createConsumerRule(StringMap args) throws I2softException {
         String url = String.format("%s/hetero/consumer/rule", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
@@ -183,13 +184,13 @@ public final class Hetero {
     /**
      * 异构-消费-获取单条规则
      *
-     * @param args: 参数详见 API 手册
+     * @param uuid: 参数详见 API 手册
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map describeConsumerRules(StringMap args) throws I2softException {
-        String url = String.format("%s/hetero/consumer/rule", auth.cc_url);
-        Response r = auth.client.get(url, args);
+    public Map describeConsumerRule(String uuid) throws I2softException {
+        String url = String.format("%s/hetero/consumer/rule/%s", auth.cc_url, uuid);
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 

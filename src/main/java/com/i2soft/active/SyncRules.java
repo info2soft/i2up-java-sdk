@@ -1,19 +1,29 @@
 package com.i2soft.active;
 
-import com.i2soft.http.I2Req;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
 import com.i2soft.common.Auth;
+import com.i2soft.util.Json;
 import com.i2soft.util.StringMap;
 
 import java.util.Map;
+import java.util.Objects;
 
 public final class SyncRules {
+
+    public static final String DB_TYPE_ORACLE = "oracle";
+    public static final String DB_TYPE_MYSQL = "mysql";
+    public static final String DB_TYPE_KAFKA = "kafka";
+
     /**
      * Auth 对象
      */
     private final Auth auth;
+
+    private OracleRule oracleRule;
+    private Mysql mysqlRule;
+    private Kafka kafkaRule;
 
     /**
      * 构建一个新对象
@@ -22,6 +32,45 @@ public final class SyncRules {
      */
     public SyncRules(Auth auth) {
         this.auth = auth;
+        this.oracleRule = new OracleRule(auth);
+        this.mysqlRule = new Mysql(auth);
+        this.kafkaRule = new Kafka(auth);
+    }
+
+    /**
+     * 同步规则 - 规则类型（实例）
+     *
+     * @param uuid: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Rule getRuleInstanceByUUID(String uuid) throws I2softException {
+        String url = String.format("%s/active/rule_type/%s", auth.cc_url, uuid);
+        Response r = auth.client.get(url);
+        Map rs = r.jsonToMap();
+        switch ((String) rs.get("rule_type")) {
+            case DB_TYPE_KAFKA:
+                return kafkaRule;
+            case DB_TYPE_MYSQL:
+                return mysqlRule;
+            case DB_TYPE_ORACLE:
+            default:
+                return oracleRule;
+        }
+    }
+
+    /**
+     * 同步规则 - 规则类型
+     *
+     * @param uuid: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public String getRuleTypeByUUID(String uuid) throws I2softException {
+        String url = String.format("%s/active/rule_type/%s", auth.cc_url, uuid);
+        Response r = auth.client.get(url);
+        Map rs = r.jsonToMap();
+        return (String) rs.get("rule_type");
     }
 
     /**
@@ -65,27 +114,175 @@ public final class SyncRules {
     /**
      * 同步规则 - 新建
      *
-     * @param args: 参数详见 API 手册
+     * @param paramString: 参数详见 API 手册
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map createSyncRules(StringMap args) throws I2softException {
-        String url = String.format("%s/active/rule", auth.cc_url);
-        Response r = auth.client.post(url, args);
-        return r.jsonToMap();
+    public I2Rs.I2CreateRs createSyncRule(String srcType, String paramString) throws I2softException {
+        StringMap args = new StringMap().putAll(Objects.requireNonNull(Json.decode(paramString).map()));
+        switch (srcType) {
+            case DB_TYPE_MYSQL:
+                return mysqlRule.createMysqlRule(args);
+            case DB_TYPE_KAFKA:
+                return kafkaRule.createConsumerRule(args);
+            case DB_TYPE_ORACLE:
+            default:
+                return oracleRule.createOracleRule(args);
+        }
     }
 
     /**
      * 同步规则 - 修改
      *
+     * @param uuid: 规则uuid
+     * @param paramString: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs modifySyncRule(String uuid, String paramString) throws I2softException {
+        String srcType = getRuleTypeByUUID(uuid);
+        StringMap args = new StringMap().putAll(Objects.requireNonNull(Json.decode(paramString).map()));
+        switch (srcType) {
+            case DB_TYPE_MYSQL:
+                return mysqlRule.modifyStreamRule(args);
+            case DB_TYPE_KAFKA:
+                return kafkaRule.modifyConsumerRule(args);
+            case DB_TYPE_ORACLE:
+            default:
+                return oracleRule.modifyOracleRule(args);
+        }
+    }
+
+    /**
+     * 同步规则-获取单个详细信息
+     *
+     * @param uuid: uuid
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map describeSyncRule(String uuid) throws I2softException {
+        String srcType = getRuleTypeByUUID(uuid);
+        switch (srcType) {
+            case DB_TYPE_MYSQL:
+                return mysqlRule.describeMysqlRule(uuid);
+            case DB_TYPE_KAFKA:
+                return kafkaRule.describeConsumerRule(uuid);
+            case DB_TYPE_ORACLE:
+            default:
+                return oracleRule.describeOracleRule(uuid);
+        }
+    }
+
+    /**
+     * 同步规则-删除单个
+     *
+     * @param uuid: 规则uuid
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map deleteSyncRule(String uuid) throws I2softException {
+        String srcType = getRuleTypeByUUID(uuid);
+        switch (srcType) {
+            case DB_TYPE_MYSQL:
+                return mysqlRule.deleteMysqlRules((new StringMap()).put("mysql_uuids", new String[]{uuid}));
+            case DB_TYPE_KAFKA:
+                return kafkaRule.deleteConsumerRules((new StringMap()).put("uuids", new String[]{uuid}));
+            case DB_TYPE_ORACLE:
+            default:
+                return oracleRule.deleteOracleRules((new StringMap()).put("rule_uuids", new String[]{uuid}));
+        }
+    }
+
+    /**
+     * 同步规则-指定规则类型，批量删除
+     *
+     * @param srcType: 规则类型
      * @param args: 参数详见 API 手册
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map modifySyncRules(StringMap args) throws I2softException {
-        String url = String.format("%s/active/rule", auth.cc_url);
-        Response r = auth.client.put(url, args);
-        return r.jsonToMap();
+    public Map deleteSyncRules(String srcType, StringMap args) throws I2softException {
+        switch (srcType) {
+            case DB_TYPE_MYSQL:
+                return mysqlRule.deleteMysqlRules(args);
+            case DB_TYPE_KAFKA:
+                return kafkaRule.deleteConsumerRules(args);
+            case DB_TYPE_ORACLE:
+            default:
+                return oracleRule.deleteOracleRules(args);
+        }
+    }
+
+    /**
+     * 同步规则-指定规则类型的列表
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listSyncRules(String srcType, StringMap args) throws I2softException {
+        switch (srcType) {
+            case DB_TYPE_MYSQL:
+                return mysqlRule.listMysqlRules(args);
+            case DB_TYPE_KAFKA:
+                return kafkaRule.listConsumerRules(args);
+            case DB_TYPE_ORACLE:
+            default:
+                return oracleRule.listOracleRules(args);
+        }
+    }
+
+    /**
+     * 同步规则 - 操作
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+//    public I2Rs.I2SmpRs tempFuncName(StringMap args) throws I2softException {
+//        String url = String.format("%s/active/rule/operate", auth.cc_url);
+//        Response r = auth.client.post(url, args);
+//        return r.jsonToObject(I2Rs.I2SmpRs.class);
+//    }
+
+    /**
+     * 同步规则-单个规则状态
+     *
+     * @param uuid: 规则uuid
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map describeSyncRuleStatus(String uuid) throws I2softException {
+        String srcType = getRuleTypeByUUID(uuid);
+        StringMap uuids = (new StringMap()).put("uuids", new String[]{uuid});
+        switch (srcType) {
+            case DB_TYPE_MYSQL:
+                return mysqlRule.listMysqlStatus(uuids);
+            case DB_TYPE_KAFKA:
+                return kafkaRule.listConsumerStatus(uuids);
+            case DB_TYPE_ORACLE:
+            default:
+                return oracleRule.listOracleRuleStatus(uuids);
+        }
+    }
+
+    /**
+     * 同步规则-指定规则类型，批量获取状态
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listSyncRulesStatus(String srcType, StringMap args) throws I2softException {
+        switch (srcType) {
+            case DB_TYPE_MYSQL:
+                return mysqlRule.listMysqlStatus(args);
+            case DB_TYPE_KAFKA:
+                return kafkaRule.listConsumerStatus(args);
+            case DB_TYPE_ORACLE:
+            default:
+                return oracleRule.listOracleRuleStatus(args);
+        }
     }
 
     /**
@@ -95,10 +292,17 @@ public final class SyncRules {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map listRuleLog(StringMap args) throws I2softException {
-        String url = String.format("%s/active/rule/log", auth.cc_url);
-        Response r = auth.client.post(url, args);
-        return r.jsonToMap();
+    public Map listRuleLog(String uuid, StringMap args) throws I2softException {
+        String srcType = getRuleTypeByUUID(uuid);
+        switch (srcType) {
+            case DB_TYPE_MYSQL:
+                return mysqlRule.listMysqlLog(args);
+            case DB_TYPE_KAFKA:
+                return null;
+            case DB_TYPE_ORACLE:
+            default:
+                return oracleRule.listRuleLog(args);
+        }
     }
 
     /**
@@ -154,32 +358,6 @@ public final class SyncRules {
     }
 
     /**
-     * 同步规则-删除
-     *
-     * @param args: 参数详见 API 手册
-     * @return 参数详见 API 手册
-     * @throws I2softException:
-     */
-    public Map deleteSyncRules(StringMap args) throws I2softException {
-        String url = String.format("%s/active/rule", auth.cc_url);
-        Response r = auth.client.delete(url, args);
-        return r.jsonToMap();
-    }
-
-    /**
-     * 同步规则-列表
-     *
-     * @param args: 参数详见 API 手册
-     * @return 参数详见 API 手册
-     * @throws I2softException:
-     */
-    public Map listSyncRules(StringMap args) throws I2softException {
-        String url = String.format("%s/active/rule", auth.cc_url);
-        Response r = auth.client.get(url, args);
-        return r.jsonToMap();
-    }
-
-    /**
      * 同步规则-已同步表
      *
      * @param args: 参数详见 API 手册
@@ -189,32 +367,6 @@ public final class SyncRules {
     public Map listRuleSyncTable(StringMap args) throws I2softException {
         String url = String.format("%s/active/rule/sync_table", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToMap();
-    }
-
-    /**
-     * 同步规则 - 操作
-     *
-     * @param args: 参数详见 API 手册
-     * @return code, message
-     * @throws I2softException:
-     */
-//    public I2Rs.I2SmpRs tempFuncName(StringMap args) throws I2softException {
-//        String url = String.format("%s/active/rule/operate", auth.cc_url);
-//        Response r = auth.client.post(url, args);
-//        return r.jsonToObject(I2Rs.I2SmpRs.class);
-//    }
-
-    /**
-     * 同步规则-状态
-     *
-     * @param args: 参数详见 API 手册
-     * @return 参数详见 API 手册
-     * @throws I2softException:
-     */
-    public Map listSyncRulesStatus(StringMap args) throws I2softException {
-        String url = String.format("%s/active/rule/status", auth.cc_url);
-        Response r = auth.client.get(url, args);
         return r.jsonToMap();
     }
 
@@ -305,20 +457,6 @@ public final class SyncRules {
     public Map describeRuleSelectUser(StringMap args) throws I2softException {
         String url = String.format("%s/active/rule/select_user", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToMap();
-    }
-
-    /**
-     * 同步规则-获取单个
-     *
-     * @param uuid: uuid
-     * @param args: 参数详见 API 手册
-     * @return 参数详见 API 手册
-     * @throws I2softException:
-     */
-    public Map describeSyncRules(String uuid, StringMap args) throws I2softException {
-        String url = String.format("%s/active/rule/%s", auth.cc_url, uuid);
-        Response r = auth.client.get(url, args);
         return r.jsonToMap();
     }
 

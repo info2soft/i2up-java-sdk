@@ -4,7 +4,7 @@ import com.i2soft.common.Auth;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
-import com.i2soft.active.Hetero;
+import com.i2soft.active.Kafka;
 import com.i2soft.util.Configuration;
 import com.i2soft.util.StringMap;
 import org.junit.Assert;
@@ -16,17 +16,16 @@ import com.i2soft.i2up.util.TestConfig;
 
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class HeteroTest {
+public class KafkaTest {
 
     private static Auth auth;
-    private static Hetero hetero;
+    private static Kafka kafka;
 
     @BeforeClass
     public static void setUp() {
-        if (hetero != null) {
+        if (kafka != null) {
             return;
         }
         try {
@@ -34,7 +33,7 @@ public class HeteroTest {
         } catch (I2softException e) {
             e.printStackTrace();
         }
-        hetero = new Hetero(auth);
+        kafka = new Kafka(auth);
     }
 
     @Test
@@ -42,7 +41,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1589")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = hetero.createHeteroRule(args); // 发送请求
+            I2Rs.I2SmpRs rs = kafka.createHeteroRule(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -54,7 +53,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1590")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = hetero.deleteHeteroRule(args); // 发送请求
+            I2Rs.I2SmpRs rs = kafka.deleteHeteroRule(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -66,7 +65,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1591")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = hetero.listHeteroRule(args); // 发送请求
+            Map rs = kafka.listHeteroRule(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -78,7 +77,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1592")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = hetero.createHeteroTopic(args); // 发送请求
+            Map rs = kafka.createHeteroTopic(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -90,7 +89,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1595")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = hetero.createConsumer(args); // 发送请求
+            Map rs = kafka.createConsumer(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -102,7 +101,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1596")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = hetero.consumer(args); // 发送请求
+            I2Rs.I2SmpRs rs = kafka.consumer(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -114,7 +113,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1598")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = hetero.createConsumerRule(args); // 发送请求
+            I2Rs.I2CreateRs rs = kafka.createConsumerRule(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -126,7 +125,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2069")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = hetero.modifyConsumerRule(args); // 发送请求
+            I2Rs.I2SmpRs rs = kafka.modifyConsumerRule(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -138,7 +137,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1599")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = hetero.deleteConsumerRules(args); // 发送请求
+            Map rs = kafka.deleteConsumerRules(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -150,7 +149,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1600")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = hetero.listConsumerStatus(args); // 发送请求
+            Map rs = kafka.listConsumerStatus(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -162,7 +161,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1601")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = hetero.tempFuncName(args); // 发送请求
+            I2Rs.I2SmpRs rs = kafka.tempFuncName(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -174,7 +173,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1602")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = hetero.listConsumerRules(args); // 发送请求
+            Map rs = kafka.listConsumerRules(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -186,7 +185,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1604")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = hetero.describeConsumerRules(args); // 发送请求
+            Map rs = kafka.describeConsumerRule((String) args.get("uuid")); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -198,7 +197,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1613")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = hetero.createHeteroGraph(args); // 发送请求
+            I2Rs.I2SmpRs rs = kafka.createHeteroGraph(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -210,7 +209,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1614")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = hetero.addHeteroGraph(args); // 发送请求
+            I2Rs.I2SmpRs rs = kafka.addHeteroGraph(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -222,7 +221,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1628")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = hetero.listHeteroGraph(args); // 发送请求
+            Map rs = kafka.listHeteroGraph(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -234,7 +233,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1629")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = hetero.runHeteroGraph(args); // 发送请求
+            I2Rs.I2SmpRs rs = kafka.runHeteroGraph(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -246,7 +245,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1630")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = hetero.stopHeteroGraph(args); // 发送请求
+            I2Rs.I2SmpRs rs = kafka.stopHeteroGraph(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -258,7 +257,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1631")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = hetero.listGraphStatus(args); // 发送请求
+            Map rs = kafka.listGraphStatus(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -270,7 +269,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1632")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = hetero.deleteHeteroGraph(args); // 发送请求
+            I2Rs.I2SmpRs rs = kafka.deleteHeteroGraph(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -282,7 +281,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1635")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = hetero.descriptGraphDetail(args); // 发送请求
+            Map rs = kafka.descriptGraphDetail(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -294,7 +293,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1650")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = hetero.listGraph(args); // 发送请求
+            Map rs = kafka.listGraph(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
