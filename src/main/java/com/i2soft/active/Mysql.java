@@ -52,16 +52,64 @@ public final class Mysql extends Rule {
     }
 
     /**
-     * mysql规则管理-操作
+     * mysql同步规则-操作base
      *
      * @param args: 参数详见 API 手册
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs tempFuncName(StringMap args) throws I2softException {
+    public I2Rs.I2SmpRs operateRule(StringMap args) throws I2softException {
         String url = String.format("%s/stream/rule/operate", auth.cc_url);
         Response r = auth.client.post(url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * mysql同步规则 - 操作base
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs operateRule(String uuid, StringMap args) throws I2softException {
+        args.put("mysql_uuid", uuid);
+        return this.operateRule(args);
+    }
+
+    /**
+     * mysql同步规则 - 操作 - 停止
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs stopMysqlRule(String uuid, StringMap args) throws I2softException {
+        args.put("operate", STOP);
+        return operateRule(uuid, args);
+    }
+
+    /**
+     * mysql同步规则 - 操作 - 继续
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs resumeMysqlRule(String uuid, StringMap args) throws I2softException {
+        args.put("operate", RESUME);
+        return operateRule(uuid, args);
+    }
+
+    /**
+     * mysql同步规则 - 操作 - 重启
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs restartMysqlRule(String uuid, StringMap args) throws I2softException {
+        args.put("operate", RESTART);
+        return operateRule(uuid, args);
     }
 
     /**
@@ -617,9 +665,9 @@ public final class Mysql extends Rule {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs tempFuncName() throws I2softException {
+    public I2Rs.I2SmpRs tempFuncName(StringMap args) throws I2softException {
         String url = String.format("%s/stream/obj_cmp/operate", auth.cc_url);
-        Response r = auth.client.post(url, new StringMap());
+        Response r = auth.client.post(url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 
