@@ -8,7 +8,7 @@ import com.i2soft.util.StringMap;
 
 import java.util.Map;
 
-public final class OracleRule {
+public final class OracleRule extends Rule {
     /**
      * Auth 对象
      */
@@ -20,6 +20,7 @@ public final class OracleRule {
      * @param auth Auth对象
      */
     public OracleRule(Auth auth) {
+        super(auth);
         this.auth = auth;
     }
 
@@ -68,10 +69,10 @@ public final class OracleRule {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map createOracleRule(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createOracleRule(StringMap args) throws I2softException {
         String url = String.format("%s/active/rule", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToMap();
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
@@ -81,10 +82,10 @@ public final class OracleRule {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map modifyOracleRule(StringMap args) throws I2softException {
+    public I2Rs.I2SmpRs modifyOracleRule(StringMap args) throws I2softException {
         String url = String.format("%s/active/rule", auth.cc_url);
         Response r = auth.client.put(url, args);
-        return r.jsonToMap();
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 
     /**
@@ -159,7 +160,7 @@ public final class OracleRule {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map deleteOracleRule(StringMap args) throws I2softException {
+    public Map deleteOracleRules(StringMap args) throws I2softException {
         String url = String.format("%s/active/rule", auth.cc_url);
         Response r = auth.client.delete(url, args);
         return r.jsonToMap();
@@ -172,7 +173,7 @@ public final class OracleRule {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map listOracleRule(StringMap args) throws I2softException {
+    public Map listOracleRules(StringMap args) throws I2softException {
         String url = String.format("%s/active/rule", auth.cc_url);
         Response r = auth.client.get(url, args);
         return r.jsonToMap();
@@ -311,13 +312,12 @@ public final class OracleRule {
      * 同步规则-获取单个
      *
      * @param uuid: uuid
-     * @param args: 参数详见 API 手册
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map describeOracleRule(String uuid, StringMap args) throws I2softException {
+    public Map describeOracleRule(String uuid) throws I2softException {
         String url = String.format("%s/active/rule/%s", auth.cc_url, uuid);
-        Response r = auth.client.get(url, args);
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 

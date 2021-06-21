@@ -9,7 +9,7 @@ import com.i2soft.util.StringMap;
 
 import java.util.Map;
 
-public final class Mysql {
+public final class Mysql extends Rule {
     /**
      * Auth 对象
      */
@@ -21,6 +21,7 @@ public final class Mysql {
      * @param auth Auth对象
      */
     public Mysql(Auth auth) {
+        super(auth);
         this.auth = auth;
     }
 
@@ -31,10 +32,10 @@ public final class Mysql {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map createStreamRule(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createMysqlRule(StringMap args) throws I2softException {
         String url = String.format("%s/stream/rule", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToMap();
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
@@ -44,7 +45,7 @@ public final class Mysql {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map deleteStreamRule(StringMap args) throws I2softException {
+    public Map deleteMysqlRules(StringMap args) throws I2softException {
         String url = String.format("%s/stream/rule", auth.cc_url);
         Response r = auth.client.delete(url, args);
         return r.jsonToMap();
@@ -70,7 +71,7 @@ public final class Mysql {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map listStreamRules(StringMap args) throws I2softException {
+    public Map listMysqlRules(StringMap args) throws I2softException {
         String url = String.format("%s/stream/rule", auth.cc_url);
         Response r = auth.client.get(url, args);
         return r.jsonToMap();
@@ -83,7 +84,7 @@ public final class Mysql {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map listStreamStatus(StringMap args) throws I2softException {
+    public Map listMysqlStatus(StringMap args) throws I2softException {
         String url = String.format("%s/stream/rule/status", auth.cc_url);
         Response r = auth.client.get(url, args);
         return r.jsonToMap();
@@ -96,7 +97,7 @@ public final class Mysql {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map listStreamLog(StringMap args) throws I2softException {
+    public Map listMysqlLog(StringMap args) throws I2softException {
         String url = String.format("%s/stream/rule/log", auth.cc_url);
         Response r = auth.client.post(url, args);
         return r.jsonToMap();
@@ -158,13 +159,12 @@ public final class Mysql {
      * mysql规则管理-获取单个信息
      *
      * @param uuid: uuid
-     * @param args: 参数详见 API 手册
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map describeStreamRules(String uuid, StringMap args) throws I2softException {
+    public Map describeMysqlRule(String uuid) throws I2softException {
         String url = String.format("%s/stream/rule/%s", auth.cc_url, uuid);
-        Response r = auth.client.get(url, args);
+        Response r = auth.client.get(url);
         return r.jsonToMap();
     }
 
