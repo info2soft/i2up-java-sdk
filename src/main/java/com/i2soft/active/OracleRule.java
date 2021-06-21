@@ -193,17 +193,65 @@ public final class OracleRule extends Rule {
     }
 
     /**
-     * 同步规则 - 操作
+     * 同步规则 - 操作base
      *
      * @param args: 参数详见 API 手册
      * @return code, message
      * @throws I2softException:
      */
-//    public I2Rs.I2SmpRs tempFuncName(StringMap args) throws I2softException {
-//        String url = String.format("%s/active/rule/operate", auth.cc_url);
-//        Response r = auth.client.post(url, args);
-//        return r.jsonToObject(I2Rs.I2SmpRs.class);
-//    }
+    public I2Rs.I2SmpRs operateRule(StringMap args) throws I2softException {
+        String url = String.format("%s/active/rule/operate", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 同步规则 - 操作base
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs operateRule(String uuid, StringMap args) throws I2softException {
+        args.put("rule_uuid", uuid);
+        return this.operateRule(args);
+    }
+
+    /**
+     * 同步规则 - 操作 - 停止
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs stopOracleRule(String uuid, StringMap args) throws I2softException {
+        args.put("operate", STOP);
+        return operateRule(uuid, args);
+    }
+
+    /**
+     * 同步规则 - 操作 - 继续
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs resumeOracleRule(String uuid, StringMap args) throws I2softException {
+        args.put("operate", RESUME);
+        return operateRule(uuid, args);
+    }
+
+    /**
+     * 同步规则 - 操作 - 重启
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs restartOracleRule(String uuid, StringMap args) throws I2softException {
+        args.put("operate", RESTART);
+        return operateRule(uuid, args);
+    }
 
     /**
      * 同步规则-状态

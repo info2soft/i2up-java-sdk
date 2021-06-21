@@ -192,11 +192,47 @@ public class SyncRulesTest {
     }
 
     @Test
-    public void T1291_tempFuncName() {
+    public void T1291_operateRule() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1291")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = syncRules.tempFuncName(args); // 发送请求
+            I2Rs.I2SmpRs rs = syncRules.operateRule("uuid", args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T1291_stopSyncRule() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1291")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            I2Rs.I2SmpRs rs = syncRules.stopSyncRule("uuid", args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T1291_resumeOracleRule() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1291")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            I2Rs.I2SmpRs rs = syncRules.resumeOracleRule("uuid", args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T1291_restartOracleRule() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1291")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            I2Rs.I2SmpRs rs = syncRules.restartOracleRule("uuid", args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -393,17 +429,17 @@ public class SyncRulesTest {
         }
     }
 
-    @Test
-    public void T1290_tempFuncName() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1290")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = syncRules.tempFuncName(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-        }
-    }
+//    @Test
+//    public void T1290_tempFuncName() {
+//        try {
+//            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1290")); // 获取请求数据
+//            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+//            I2Rs.I2SmpRs rs = syncRules.tempFuncName(args); // 发送请求
+//            Assert.assertNotNull(rs); // 检查结果
+//        } catch (I2softException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Test
     public void T1335_listObjCmpResultTimeList() {
@@ -514,17 +550,17 @@ public class SyncRulesTest {
         }
     }
 
-    @Test
-    public void T1294_tempFuncName() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1294")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = syncRules.tempFuncName(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-        }
-    }
+//    @Test
+//    public void T1294_tempFuncName() {
+//        try {
+//            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1294")); // 获取请求数据
+//            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+//            I2Rs.I2SmpRs rs = syncRules.tempFuncName(args); // 发送请求
+//            Assert.assertNotNull(rs); // 检查结果
+//        } catch (I2softException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Test
     public void T1283_describeObjFixResult() {
@@ -611,17 +647,17 @@ public class SyncRulesTest {
         }
     }
 
-    @Test
-    public void T1298_tempFuncName() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1298")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = syncRules.tempFuncName(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-        }
-    }
+//    @Test
+//    public void T1298_tempFuncName() {
+//        try {
+//            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1298")); // 获取请求数据
+//            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+//            I2Rs.I2SmpRs rs = syncRules.tempFuncName(args); // 发送请求
+//            Assert.assertNotNull(rs); // 检查结果
+//        } catch (I2softException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Test
     public void T1289_listTbCmpResultTimeList() {
@@ -742,17 +778,17 @@ public class SyncRulesTest {
         }
     }
 
-    @Test
-    public void T1311_tempFuncName() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1311")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = syncRules.tempFuncName(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-        }
-    }
+//    @Test
+//    public void T1311_tempFuncName() {
+//        try {
+//            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1311")); // 获取请求数据
+//            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+//            I2Rs.I2SmpRs rs = syncRules.tempFuncName(args); // 发送请求
+//            Assert.assertNotNull(rs); // 检查结果
+//        } catch (I2softException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Test
     public void T1391_listBkTakeoverStatus() {

@@ -62,11 +62,11 @@ public class MysqlTest {
     }
 
     @Test
-    public void T1471_tempFuncName() {
+    public void T1471_operateRule() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1471")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = mysql.tempFuncName(args); // 发送请求
+            I2Rs.I2SmpRs rs = mysql.operateRule(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -576,15 +576,15 @@ public class MysqlTest {
         }
     }
 
-    @Test
-    public void T2305_tempFuncName() {
-        try {
-            I2Rs.I2SmpRs rs = mysql.tempFuncName(); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-        }
-    }
+//    @Test
+//    public void T2305_tempFuncName() {
+//        try {
+//            I2Rs.I2SmpRs rs = mysql.tempFuncName(); // 发送请求
+//            Assert.assertNotNull(rs); // 检查结果
+//        } catch (I2softException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Test
     public void T2308_listObjCmpStatus() {
