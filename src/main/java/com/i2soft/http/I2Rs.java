@@ -10,6 +10,12 @@ public class I2Rs {
         public String message;
     }
 
+    public class I2CreateRs {
+        public Integer code;
+        public String message;
+        public String uuid;
+    }
+
     /**
      * auth/token
      */
