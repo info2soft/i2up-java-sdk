@@ -1,728 +1,103 @@
-URL: [POST] https://192.168.10.178:58086/api/auth/token
-HEADER: {}
-ARGS: {"pwd":"12345678","username":"admin"}
-RS: {"code":0,"message":"","token":"381b4d4ca6e59e77c64ff5dec6611213606c1424","sso_token":"130595835082c0b849JhCmLk_l29hJzMq2X7jt5_mlcKm78S8a95TdbPvWCRZvFJmbrYT2lUfTnvs_mzuh4LMqCzkptxOBkqBnMYShrLjvfkSlUy-q075x6z-p7eJAAg4mKgr-6MOPhsZ1XlAAZP9YktP9gqo_oaE-PA0g","refresh_token":"ee933486b8a968a3m9wrKgswbtJ1JQ3tU0r6SUxy_zL-b361hriGnMtZS3xPVxwi8OSv4NySMk536zPubFcc38w4F5ciR8Mkpf25WE6PYJHcp4JATg0v7bRF8p9xcBlv7fkNTH4J2CYcYSxtYifyz5L6_yRl6EIizuifKg"}
-
 URL: [GET] https://192.168.10.178:58086/api/active/node/inactive_list
-HEADER: {"Authorization":"381b4d4ca6e59e77c64ff5dec6611213606c1424","Signature":"07657289c745b1ac91ba8f21767f76e6639be657963d92a4298beec10a62adf3","nonce":"2a64c1c7-3fec-4ddd-8a8f-75253781b1e3","timestamp":"1624267549"}
-ARGS: {"_":"jHLnlqf4ta75BgXw"}
+HEADER: {"Authorization":"a9c1cc9c6a7002e4f0c2e29a268807f92eb0aa07","Signature":"7c162ed81e2e116e9724508b248e669b791409a1dacd2baf5f0ec8baed3a6ff2","nonce":"df78bb09-ff03-4cf8-bc79-6883604b08c0","timestamp":"1624361610"}
+ARGS: {"_":"dx56qWyzbpuevXWx"}
 RS: {"code":0,"message":"[0] success","info_list":[],"total":0}
 
-Process finished with exit code 0
-
-URL: [GET] https://rap2api.info2soft.com/app/mock/data/1123?scope=request
-HEADER: {}
-ARGS: {}
-RS: {
-  "node_name": "Robert Rodriguez",
-  "address": "121.120.231.216",
-  "data_port": "26804",
-  "cache_dir": "/var/i2data/cache/",
-  "ipctoken": "3cCdAA89-aD13-38fC-EfB0-c2d4F694CCfC",
-  "log_dir": "/var/i2data/log/",
-  "node_uuid": "E93AA0FB-2aE1-ED7B-CF1d-beFC5Df1FECC",
-  "registered": 0,
-  "relay_node": 0,
-  "source_node": 0,
-  "back_node": 0,
-  "active_flag": "0",
-  "comment": "string",
-  "web_uuid": "0e823310-F79D-fa10-dd8A-D7D0d9d1EfD8",
-  "port": {
-    "iawork": "",
-    "iaback": "",
-    "iarelay": "",
-    "iatrack": "",
-    "iamsk": "",
-    "iaload": "",
-    "iamsg": "",
-    "iagauss": ""
-  },
-  "maintenance": 0
-}
-
 URL: [POST] https://192.168.10.178:58086/api/active/node
-HEADER: {"Authorization":"381b4d4ca6e59e77c64ff5dec6611213606c1424","Signature":"c151a59efa17831e4933075e375e176ae9b4dd6274775fb9ed63ac2d134fa156","nonce":"4b4dcfa0-956f-42bc-b543-7ea904566dc2","timestamp":"1624267944"}
-ARGS: {"address":"121.120.231.216","data_port":"26804","ipctoken":"3cCdAA89-aD13-38fC-EfB0-c2d4F694CCfC","node_name":"Robert Rodriguez","relay_node":0,"back_node":0,"registered":0,"active_flag":"0","web_uuid":"0e823310-F79D-fa10-dd8A-D7D0d9d1EfD8","log_dir":"/var/i2data/log/","cache_dir":"/var/i2data/cache/","port":{"iawork":"","iaback":"","iarelay":"","iatrack":"","iamsk":"","iaload":"","iamsg":"","iagauss":""},"source_node":0,"comment":"string","node_uuid":"E93AA0FB-2aE1-ED7B-CF1d-beFC5Df1FECC","maintenance":0,"_":"FXQe6B3kBdhSrneR"}
-RS: {"code":-2,"message":"[-2]node not found"}
+HEADER: {"Authorization":"bf5e319cc579e01c6abc3b0127bd62f4e53813d6","Signature":"3f431d1e2dd66cc7fbf82316103cb57994643bb5d23f9557cc388f4468337fea","nonce":"a06b9e2f-3dd5-46c6-9509-efccf6e5f790","timestamp":"1624430220"}
+ARGS: {"address":"118.237.195.188","data_port":"26804","ipctoken":"1dD0ADcC-dB44-FEFB-f68A-bBC3FB2fcdc4","node_name":"Ruth Taylor","registered":0,"active_flag":"0","web_uuid":"dF86871F-cAc6-BAFB-B87f-5d6c4Bb5Fd37","phy_type":"","log_dir":"/var/i2data/log/","node_type":"","cache_dir":"/var/i2data/cache/","port":{"iawork":"","iaback":"","iarelay":"","iatrack":"","iamsk":"","iaload":"","iaconsume":"","iagauss":"","sqlserver":"","iascript":""},"comment":"string","node_uuid":"bBae9dCA-f6cc-BA66-bF59-8DFc395eD094","maintenance":0,"_":"fg85Q8jTKy6oy4bP"}
+RS: {"code":0,"message":"[0] success"}
+{code=0, message=[0] success}
 
-URL: [GET] https://rap2api.info2soft.com/app/mock/data/1121?scope=request
-HEADER: {}
-ARGS: {}
-RS: {
-  "uuids": [
-    "476fe0Af-aB8B-eDDd-FE8E-3cDAA56FBC5D",
-    "CF09655f-d745-FDC1-5e6d-cDf8BD2cBf85"
-  ]
-}
 
 URL: [POST] https://192.168.10.178:58086/api/active/node/status
-HEADER: {"Authorization":"381b4d4ca6e59e77c64ff5dec6611213606c1424","Signature":"a5906c6b7c11a3d0a971c17d6d9ad9ce1da13d9183054c5ad9485ef004a5f9c2","nonce":"886a3ae2-e1b2-4adb-8822-ef9626286246","timestamp":"1624268231"}
-ARGS: {"uuids":["476fe0Af-aB8B-eDDd-FE8E-3cDAA56FBC5D","CF09655f-d745-FDC1-5e6d-cDf8BD2cBf85"],"_":"0S78RJDPLHaphBYn"}
-RS: {"code":0,"message":"[0] success","info_list":[{"uuid":"476fe0Af-aB8B-eDDd-FE8E-3cDAA56FBC5D","status":"UNKNOWN","process_status":[],"version":"-","os":"-"},{"uuid":"CF09655f-d745-FDC1-5e6d-cDf8BD2cBf85","status":"UNKNOWN","process_status":[],"version":"-","os":"-"}]}
-
-Process finished with exit code 0
-
-URL: [GET] https://rap2api.info2soft.com/app/mock/data/1119?scope=request
-HEADER: {}
-ARGS: {}
-RS: {
-  "page": 1,
-  "limit": 10,
-  "nodetype": "@pick{\"name\",\"source\",\"backup\"]}",
-  "search_field": "",
-  "order_by": "",
-  "sort": "@pick{'name',address}",
-  "search_value": ""
-}
+HEADER: {"Authorization":"bf5e319cc579e01c6abc3b0127bd62f4e53813d6","Signature":"625b843ee5257de711d8f2020303359bfe18373703902fce75158e414fab482f","nonce":"e5caa714-5721-4ac6-9e2e-82db8c6fcf09","timestamp":"1624430337"}
+ARGS: {"uuids":["A21e6eB2-1FDC-BfA5-A7F2-CdaF7cbe803d","Bc5eBD3e-DFAA-d8A8-fBB2-997f3dAcC2FC"],"_":"OBzehZ5pcRltXrRJ"}
+RS: {"code":0,"message":"[0] success","info_list":[{"uuid":"A21e6eB2-1FDC-BfA5-A7F2-CdaF7cbe803d","status":"UNKNOWN","process_status":[],"version":"-","os":"-"},{"uuid":"Bc5eBD3e-DFAA-d8A8-fBB2-997f3dAcC2FC","status":"UNKNOWN","process_status":[],"version":"-","os":"-"}]}
 
 URL: [GET] https://192.168.10.178:58086/api/active/node
-HEADER: {"Authorization":"381b4d4ca6e59e77c64ff5dec6611213606c1424","Signature":"8cc07d32336dfbc97830d788d6ed8786a4aee4edd0e8802836d9615d7e71b738","nonce":"09defc29-f4cd-4472-af61-9abc2c599601","timestamp":"1624268341"}
-ARGS: {"search_value":"","nodetype":"@pick{\"name\",\"source\",\"backup\"]}","limit":10,"order_by":"","page":1,"sort":"@pick{\u0027name\u0027,address}","search_field":"","_":"ybRYF7S1FkTQxrll"}
-RS: {"code":0,"message":"[0] success","info_list":[{"username":"admin","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","node_uuid":"31424826-A97D-4085-81AE-FD64EC58B6CE","web_uuid":"00000000-0000-0000-0000-000000000000","node_name":"test_c200","address":"192.168.12.200","data_port":26804,"log_dir":"/var/i2data/log/","cache_dir":"/var/i2data/cache/","comment":null,"node_type":"1111010000","ipctoken":"C66F8FA8-1258-4136-97FE-D801A680E83F","sample_interval":2,"phy_type":"2","create_time":1622708981,"port":"{\"iaload\":\"\",\"sqlserver\":\"\",\"iagauss\":\"\",\"iawork\":\"\",\"iatrack\":\"\",\"iaback\":\"\",\"iarelay\":\"\",\"iamask\":\"\",\"iascript\":\"\",\"iaconsume\":\"\"}","os_type":0,"maintenance":0,"is_biz_admin":1,"can_del":1,"can_op":1,"can_up":1},{"username":"admin","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","node_uuid":"778553A7-9A06-4F05-AB40-8BD59F353D62","web_uuid":"00000000-0000-0000-0000-000000000000","node_name":"test_c199","address":"192.168.12.199","data_port":26804,"log_dir":"/var/i2data/log/","cache_dir":"/var/i2data/cache/","comment":null,"node_type":"1110011000","ipctoken":"780B4F1B-6FB9-46C4-98AC-02A8DF4A1C76","sample_interval":2,"phy_type":"2","create_time":1621500402,"port":"{\"iamask\":\"\",\"iascript\":\"\",\"iaload\":\"\",\"iagauss\":\"\",\"iawork\":\"\",\"iatrack\":\"\",\"iaback\":\"\",\"iarelay\":\"\",\"iaconsume\":\"\",\"sqlserver\":\"\"}","os_type":0,"maintenance":0,"is_biz_admin":1,"can_del":1,"can_op":1,"can_up":1}],"total":2}
+HEADER: {"Authorization":"bf5e319cc579e01c6abc3b0127bd62f4e53813d6","Signature":"d0429f17beabd0618222a1323a8fa7140050445cc04aac83fa14bbfe400b19bb","nonce":"1d7b8e14-2b52-4ba5-8cbe-cb799dd48164","timestamp":"1624430651"}
+ARGS: {"search_value":"","nodetype":"@pick{\"name\",\"source\",\"backup\"]}","limit":10,"order_by":"","page":1,"sort":"@pick{\u0027name\u0027,address}","search_field":"","_":"bsFbSytxExEu5X73"}
+RS: {"code":0,"message":"[0] success","info_list":[{"username":"admin","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","node_uuid":"778553A7-9A06-4F05-AB40-8BD59F353D62","web_uuid":"00000000-0000-0000-0000-000000000000","node_name":"test_c199","address":"192.168.12.199","data_port":26804,"log_dir":"/var/i2data/log/","cache_dir":"/var/i2data/cache/","comment":null,"node_type":"1101011000","ipctoken":"780B4F1B-6FB9-46C4-98AC-02A8DF4A1C76","sample_interval":2,"phy_type":"2","create_time":1624430380,"port":"{\"iarelay\":\"\",\"iaload\":\"\",\"iagauss\":\"\",\"iawork\":\"\",\"iatrack\":\"\",\"iaback\":\"\",\"iamask\":\"\",\"iascript\":\"\",\"iaconsume\":\"\",\"sqlserver\":\"\"}","os_type":0,"maintenance":1,"is_biz_admin":1,"can_del":1,"can_op":1,"can_up":1},{"username":"admin","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","node_uuid":"bBae9dCA-f6cc-BA66-bF59-8DFc395eD094","web_uuid":"dF86871F-cAc6-BAFB-B87f-5d6c4Bb5Fd37","node_name":"Ruth Taylor","address":"118.237.195.188","data_port":26804,"log_dir":"/var/i2data/log/","cache_dir":"/var/i2data/cache/","comment":"string","node_type":"","ipctoken":"1dD0ADcC-dB44-FEFB-f68A-bBC3FB2fcdc4","sample_interval":2,"phy_type":"","create_time":1624430226,"port":"{\"iawork\":\"\",\"iaback\":\"\",\"iarelay\":\"\",\"iatrack\":\"\",\"iamsk\":\"\",\"iaload\":\"\",\"iaconsume\":\"\",\"iagauss\":\"\",\"sqlserver\":\"\",\"iascript\":\"\"}","os_type":0,"maintenance":0,"is_biz_admin":1,"can_del":1,"can_op":1,"can_up":1},{"username":"admin","user_uuid":"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC","node_uuid":"31424826-A97D-4085-81AE-FD64EC58B6CE","web_uuid":"00000000-0000-0000-0000-000000000000","node_name":"test_c200","address":"192.168.12.200","data_port":26804,"log_dir":"/var/i2data/log/","cache_dir":"/var/i2data/cache/","comment":null,"node_type":"1111010000","ipctoken":"C66F8FA8-1258-4136-97FE-D801A680E83F","sample_interval":2,"phy_type":"2","create_time":1622708981,"port":"{\"iaload\":\"\",\"sqlserver\":\"\",\"iagauss\":\"\",\"iawork\":\"\",\"iatrack\":\"\",\"iaback\":\"\",\"iarelay\":\"\",\"iamask\":\"\",\"iascript\":\"\",\"iaconsume\":\"\"}","os_type":0,"maintenance":0,"is_biz_admin":1,"can_del":1,"can_op":1,"can_up":1}],"total":3}
 
-Process finished with exit code 0
+//uuid ='31424826-A97D-4085-81AE-FD64EC58B6CE1'
 
-URL: [GET] https://rap2api.info2soft.com/app/mock/data/1122?scope=request
-HEADER: {}
-ARGS: {}
-RS: {
-  "registered": 0,
-  "node_uuid": "E83d5351-9cFD-cD9f-dBCe-aCA6fb9fB8F1"
-}
-
-URL: [GET] https://192.168.10.178:58086/api/active/node/a4cf33cb-c1ab-4856-b037-4d2c3d3e8554
-
-Cache token: 381b4d4ca6e59e77c64ff5dec6611213606c1424, sso_token: 130595835082c0b849JhCmLk_l29hJzMq2X7jt5_mlcKm78S8a95TdbPvWCRZvFJmbrYT2lUfTnvs_mzuh4LMqCzkptxOBkqBnMYShrLjvfkSlUy-q075x6z-p7eJAAg4mKgr-6MOPhsZ1XlAAZP9YktP9gqo_oaE-PA0g
-
-URL: [GET] https://rap2api.info2soft.com/app/mock/data/1126?scope=request
-HEADER: {}
-ARGS: {}
-RS: {
-  "uuid": "41D1C1E8-60AE-4853-9694-5599560EEB0F",
-  "last_time": 1
-}
+URL: [GET] https://192.168.10.178:58086/api/active/node/31424826-A97D-4085-81AE-FD64EC58B6CE1
+HEADER: {"Authorization":"bf5e319cc579e01c6abc3b0127bd62f4e53813d6","Signature":"c68ded6a0d02440209ae89d0ffb57940a277988dded029ee027f3f43c85ed971","nonce":"0070631f-2e76-49d8-a4f3-f320abfa73d9","timestamp":"1624433304"}
+ARGS: {"registered":1,"node_uuid":"31424826-A97D-4085-81AE-FD64EC58B6CE1","_":"p5R0PM3RIBmUMkjS"}
+RS: {"code":0,"message":"[0] success","active_node":null}
 
 URL: [GET] https://192.168.10.178:58086/api/active/node/debug_info
-HEADER: {"Authorization":"381b4d4ca6e59e77c64ff5dec6611213606c1424","Signature":"40a1232629fa6b8e873f206f00a58592c6a6bfdad87d2af9651297c7eccb9e44","nonce":"e8461d79-57c4-4080-9e58-6e8b01a5662c","timestamp":"1624269340"}
-ARGS: {"last_time":1,"uuid":"41D1C1E8-60AE-4853-9694-5599560EEB0F","_":"H0XjobcMItCF5ydh"}
-RS: {"code":0,"message":"[0] success","debug_node":[[]],"process_status":{"iawork":"off","iatrack":"off","iaback":"off","iarelay":"off","iamask":"off","iaconsumer":"off","iamss":"off","iadbmon":"off"},"cpu_useage":[],"cpu_useage_info":[],"memory_useage":[],"memory_useage_info":[],"network_useage_netsend":[],"network_useage_netrecv":[],"network_useage_info":[],"time":[]}
-
-Process finished with exit code 0
-
-
-URL: [GET] https://rap2api.info2soft.com/app/mock/data/1221?scope=request
-HEADER: {}
-ARGS: {}
-RS: {
-  "node_name": "David Rodriguez",
-  "address": "242.248.165.57",
-  "data_port": "26804",
-  "cache_dir": "/var/i2data/cache/",
-  "iptoken": "E51fF4C7-BeFA-E92E-524c-6ABa687F8bFf",
-  "log_dir": "/var/i2data/log/",
-  "node_uuid": "9dEfdC6e-f0E7-4345-f6df-CbF92A68eF3a",
-  "registered": 1,
-  "active_flag": "0",
-  "comment": "string",
-  "web_uuid": "E86A7f26-Df23-0752-A3D3-d4e7eeCf6EfE",
-  "port": {
-    "iawork": "26804",
-    "iaback": "26805",
-    "iarelay": "26806",
-    "iatrack": "26807",
-    "iamask": "26808",
-    "iaload": "26809",
-    "iamsg": "26810",
-    "iaguass": ""
-  },
-  "maintenance": 0,
-  "node_type": "1111010000"
-}
+HEADER: {"Authorization":"bf5e319cc579e01c6abc3b0127bd62f4e53813d6","Signature":"b87cc948f0b94282e5a2ce4a9e5a334d8ee30d5d759f618a9a20e6f069409ee8","nonce":"71d8f074-0730-4c7a-96e0-4e2071f009c2","timestamp":"1624435168"}
+ARGS: {"last_time":1,"uuid":"41D1C1E8-60AE-4853-9694-5599560EEB0F","_":"jqlxiAFjxlZInzu8"}
+RS: {"code":0,"message":"[0] success","debug_node":[[]],"process_status":{"iawork":"off","iatrack":"off","iaback":"off","iarelay":"off","iamask":"off","iaconsumer":"off","iamss":"off","iascript":"off"},"cpu_useage":[],"cpu_useage_info":[],"memory_useage":[],"memory_useage_info":[],"network_useage_netsend":[],"network_useage_netrecv":[],"network_useage_info":[],"time":[]}
 
 URL: [PUT] https://192.168.10.178:58086/api/active/node
-HEADER: {"Authorization":"381b4d4ca6e59e77c64ff5dec6611213606c1424","Signature":"25be9441e29742949dcb13410547edb3f42a3c3382ba900592eea6e6f103855d","nonce":"3ac424c5-0989-48af-9a47-86356ad87333","timestamp":"1624269414"}
-ARGS: {"address":"242.248.165.57","data_port":"26804","node_name":"David Rodriguez","registered":1,"active_flag":"0","web_uuid":"E86A7f26-Df23-0752-A3D3-d4e7eeCf6EfE","iptoken":"E51fF4C7-BeFA-E92E-524c-6ABa687F8bFf","log_dir":"/var/i2data/log/","node_type":"1111010000","cache_dir":"/var/i2data/cache/","port":{"iawork":"26804","iaback":"26805","iarelay":"26806","iatrack":"26807","iamask":"26808","iaload":"26809","iamsg":"26810","iaguass":""},"comment":"string","node_uuid":"9dEfdC6e-f0E7-4345-f6df-CbF92A68eF3a","maintenance":0,"_":"3AOb5YhQ6Xd56QA5"}
-RS: {"code":-1,"message":"[-1]node not found"}
-
-URL: [GET] https://rap2api.info2soft.com/app/mock/data/1124?scope=request
-HEADER: {}
-ARGS: {}
-RS: {
-  "uuids": [
-    "91BADFFF-2AEa-bFf8-Bb8A-cd985dB18d8a",
-    "3A19b731-Ec6D-a8eA-e6fA-B59fF4B002c2"
-  ],
-  "force": 0
-}
+HEADER: {"Authorization":"b4ac25a80b6a60c97ee8efcfdef1052d62e28e57","Signature":"8ebc312e67b428f2a18e8d973dcf0b6be68225936c3d9dc44dbafae2960a274a","nonce":"07a3d3b2-d865-42b9-b79e-95843f9404df","timestamp":"1624436467"}
+ARGS: {"address":"192.168.12.199","data_port":"26804","node_name":"Helen Lewis","registered":1,"active_flag":"0","web_uuid":"E9209e2C-7FC4-2DEF-eFA5-BdF8eEd7C76C","phy_type":"2","iptoken":"780B4F1B-6FB9-46C4-98AC-02A8DF4A1C76","log_dir":"/var/i2data/log/","node_type":"1111010000","cache_dir":"/var/i2data/cache/","port":{"iawork":"26804","iaback":"26805","iarelay":"26806","iatrack":"26807","iamask":"26808","iaload":"26809","iamsg":"26810","iaguass":""},"os_type":"0","comment":"string","node_uuid":"31424826-A97D-4085-81AE-FD64EC58B6CE1","maintenance":0,"_":"ffaz3dROBOqprGiT"}
+RS: {"code":0,"message":"[0] success","node_uuid":"31424826-A97D-4085-81AE-FD64EC58B6CE1"}
 
 URL: [DELETE] https://192.168.10.178:58086/api/active/node
-HEADER: {"Authorization":"381b4d4ca6e59e77c64ff5dec6611213606c1424","Signature":"fa6c449db53598a528f164acc259552f1c5025fc219c8e94e5260f8c4c693e19","nonce":"6ffeba81-aa9f-4561-ab4d-c447fe2ed3ba","timestamp":"1624269482"}
-ARGS: {"force":0,"uuids":["91BADFFF-2AEa-bFf8-Bb8A-cd985dB18d8a","3A19b731-Ec6D-a8eA-e6fA-B59fF4B002c2"],"_":"KLE5JbtXTQSoX42d"}
-RS: {"code":-2,"message":"[-2]node not found","fail_list":[{"code":-2,"message":"[-2]node not found"},{"code":-2,"message":"[-2]node not found"}]}
-
-URL: [GET] https://rap2api.info2soft.com/app/mock/data/2023?scope=request
-HEADER: {}
-ARGS: {}
-RS: {
-  "uuids": []
-}
+HEADER: {"Authorization":"b4ac25a80b6a60c97ee8efcfdef1052d62e28e57","Signature":"284827bb18ec2611893e93c371c125d72019a478b2c87514e751a2dc49b8a6b0","nonce":"6388bb88-d88a-4fe7-a3e3-a28a02dbd221","timestamp":"1624436770"}
+ARGS: {"force":0,"uuids":["9cD1e0Fc-937C-4c81-51B5-fbF32ca56EC7","Acd3A0d8-dE46-B6Ca-CEB7-1eC854FbB9BC"],"_":"rnLg3OIEU9xg3q9m"}
+RS: {"code":0,"message":"[0] success","success_list":[{"code":0,"message":"[0] success"},{"code":0,"message":"[0] success"}]}
 
 URL: [POST] https://192.168.10.178:58086/api/active/node/upgrade
-HEADER: {"Authorization":"381b4d4ca6e59e77c64ff5dec6611213606c1424","Signature":"d2a9ec38960547475c46568086838bc33d79b43eaed765a4654d8aedbeca3387","nonce":"271b18fd-4cfd-4341-bc86-9b7e5c10bbac","timestamp":"1624269545"}
-ARGS: {"uuids":[],"_":"Qhnpxtvh8Iw9yfgW"}
-RS: {"code":10001002,"message":"[10001002] Invalid Parameter"}
-
-Process finished with exit code 0
-
-
-URL: [GET] https://rap2api.info2soft.com/app/mock/data/2560?scope=request
-HEADER: {}
-ARGS: {}
-RS: {
-  "switch": 0,
-  "uuid": ""
-}
-
-URL: [POST] https://192.168.10.178:58086/api/active/node/maintenance
-HEADER: {"Authorization":"381b4d4ca6e59e77c64ff5dec6611213606c1424","Signature":"542cccedbb58b6c9bd53f40bf2da8184de71d26d0aece94b79b77a822536a20c","nonce":"e0bee98a-d5e2-4d43-9041-735dd1ac12a4","timestamp":"1624269802"}
-ARGS: {"uuid":"","switch":0,"_":"qu1jfqkBr1ALIdLn"}
-RS: {"code":10001002,"message":"[10001002] Invalid Parameter  Lost: uuid;\n"}
-
-URL: [GET] https://rap2api.info2soft.com/app/mock/data/1132?scope=request
-HEADER: {}
-ARGS: {}
-RS: {
-  "page": 1,
-  "limit": 10,
-  "search_field": "",
-  "search_value": "",
-  "type": "all",
-  "order_by": "''",
-  "direction": "''"
-}
-
-URL: [GET] https://192.168.10.178:58086/api/active/db
-HEADER: {"Authorization":"381b4d4ca6e59e77c64ff5dec6611213606c1424","Signature":"e1cf51d19a9d2a8b612732ff9b9dd12e071e7c708464a745c2d73c5fdc143b2b","nonce":"c6e499f5-e6b0-40a8-acac-e99161a9e2ee","timestamp":"1624269862"}
-ARGS: {"search_value":"","limit":10,"order_by":"\u0027\u0027","page":1,"type":"all","search_field":"","direction":"\u0027\u0027","_":"la0cpjkj3XwDwZDw"}
-RS: {"code":10001002,"message":"[10001002] Invalid Parameter  The order_by field may only contain alpha-numeric characters, underscores, and dashes \n"}
-
-URL: [GET] https://rap2api.info2soft.com/app/mock/data/1135?scope=request
-HEADER: {}
-ARGS: {}
-RS: {
-  "uuid": "1D12cFec-296F-76DF-1118-Da08b6c12A7c"
-}
-
-URL: [GET] https://192.168.10.178:58086/api/active/db/health_info
-HEADER: {"Authorization":"381b4d4ca6e59e77c64ff5dec6611213606c1424","Signature":"a8de8146d41e8ff28e1433f9f92b5d4f11320c5f6762c347d45ef800095eb9fa","nonce":"db10e6d2-7fc4-4346-932d-ddf9adf7a20a","timestamp":"1624269928"}
-ARGS: {"uuid":"1D12cFec-296F-76DF-1118-Da08b6c12A7c","_":"nNHDuPKBCH35yivL"}
-RS: {"code":0,"message":"[0] success","info":{}}
-
-Process finished with exit code 0
-
-"C:\Program Files\Java\jdk1.8.0_201\bin\java.exe" -ea -Didea.test.cyclic.buffer.size=1048576 "-javaagent:E:\IntelliJ IDEA 2019.1.4\lib\idea_rt.jar=54605:E:\IntelliJ IDEA 2019.1.4\bin" -Dfile.encoding=UTF-8 -classpath "E:\IntelliJ IDEA 2019.1.4\lib\idea_rt.jar;E:\IntelliJ IDEA 2019.1.4\plugins\junit\lib\junit-rt.jar;E:\IntelliJ IDEA 2019.1.4\plugins\junit\lib\junit5-rt.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\rt.jar;E:\temp\java-sdk\out\test\classes;E:\temp\java-sdk\out\production\classes;E:\hgradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\4.3.1\631751fe30a9fd38634cabb28c15deec7ca4aad\okhttp-4.3.1.jar;E:\hgradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.8.2\3edcfe49d2c6053a70a2a47e4e1c2f94998a49cf\gson-2.8.2.jar;E:\hgradle\caches\modules-2\files-2.1\commons-codec\commons-codec\1.14\3cb1181b2141a7e752f5bdc998b7ef1849f726cf\commons-codec-1.14.jar;E:\hgradle\caches\modules-2\files-2.1\junit\junit\4.12\2973d150c0dc1fefe998f834810d68f278ea58ec\junit-4.12.jar;E:\hgradle\caches\modules-2\files-2.1\com.squareup.okio\okio\2.4.1\569165a2a9c1f7af07dffc80ed983013a2209896\okio-2.4.1.jar;E:\hgradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib\1.3.61\4702105e97f7396ae41b113fdbdc180ec1eb1e36\kotlin-stdlib-1.3.61.jar;E:\hgradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar;E:\hgradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib-common\1.3.61\65abb71d5afb850b68be03987b08e2c864ca3110\kotlin-stdlib-common-1.3.61.jar;E:\hgradle\caches\modules-2\files-2.1\org.jetbrains\annotations\13.0\919f0dfe192fb4e063e7dacadee7f8bb9a2672a9\annotations-13.0.jar" com.intellij.rt.execution.junit.JUnitStarter -ideVersion5 -junit4 com.i2soft.i2up.resource.ActiveNodeTest,T1129_checkDbLink
-Cache token: 381b4d4ca6e59e77c64ff5dec6611213606c1424, sso_token: 130595835082c0b849JhCmLk_l29hJzMq2X7jt5_mlcKm78S8a95TdbPvWCRZvFJmbrYT2lUfTnvs_mzuh4LMqCzkptxOBkqBnMYShrLjvfkSlUy-q075x6z-p7eJAAg4mKgr-6MOPhsZ1XlAAZP9YktP9gqo_oaE-PA0g
-
-URL: [GET] https://rap2api.info2soft.com/app/mock/data/1129?scope=request
-HEADER: {}
-ARGS: {}
-RS: {
-  "db_name": "Lisa Davis",
-  "node_uuid": "Dd1f1AF6-F4f3-3EF9-f61B-cccF16C57cfA",
-  "db_type": "oracle",
-  "file_open_type": "DIRECT",
-  "deploy_mode": "single",
-  "log_read_type": "file",
-  "config": {
-    "username": "Edward Jones",
-    "password": "",
-    "server_name": "",
-    "port": 1,
-    "log_read": {
-      "os_auth": 1,
-      "asm_instance": "",
-      "asm_username": "",
-      "asm_port": 1,
-      "asm_password": "12323131"
-    },
-    "filter_session": 1,
-    "relay": {
-      "enable": 1,
-      "relay_node_uuid": ""
-    },
-    "remote_file_agent": {
-      "enable": 1,
-      "port": 1,
-      "compress": "none"
-    },
-    "db_list": [
-      {
-        "ip": "",
-        "thread": "",
-        "disable": ""
-      }
-    ],
-    "broker_server": [
-      {
-        "ip": "24.128.38.82",
-        "port": 1
-      }
-    ],
-    "charset": "",
-    "kafka_auth_type": "none",
-    "kerberos_keytab_path": "",
-    "kerberos_principal": "",
-    "kerberos_service_name": "",
-    "kudu_impala": {
-      "impala_server_ip": "",
-      "impala_server_port": "21050",
-      "impala_auth_type": "",
-      "default_database": "",
-      "impala_client_keytab_path": "",
-      "impala_client_krb_principal": "",
-      "impala_server_krbhost_fqdn": "",
-      "impala_server_krbrealm": "",
-      "impala_server_krbservice_name": ""
-    }
-  },
-  "db_uuid": "B9fc7fEC-3EC8-34D6-6952-1bf0c39fE09b"
-}
-
-URL: [POST] https://192.168.10.178:58086/api/active/db/db_check1
-HEADER: {"Authorization":"381b4d4ca6e59e77c64ff5dec6611213606c1424","Signature":"7d73e71102b544173d550520cf21d2336bad696f2f0eeabcf29304b7f81d1b3d","nonce":"1e58e2e5-8ec0-43a3-80f2-d15f96421fc5","timestamp":"1624269989"}
-ARGS: {"db_type":"oracle","deploy_mode":"single","db_name":"Lisa Davis","db_uuid":"B9fc7fEC-3EC8-34D6-6952-1bf0c39fE09b","file_open_type":"DIRECT","node_uuid":"Dd1f1AF6-F4f3-3EF9-f61B-cccF16C57cfA","log_read_type":"file","config":{"username":"Edward Jones","password":"","server_name":"","port":1,"log_read":{"os_auth":1,"asm_instance":"","asm_username":"","asm_port":1,"asm_password":"12323131"},"filter_session":1,"relay":{"enable":1,"relay_node_uuid":""},"remote_file_agent":{"enable":1,"port":1,"compress":"none"},"db_list":[{"ip":"","thread":"","disable":""}],"broker_server":[{"ip":"24.128.38.82","port":1}],"charset":"","kafka_auth_type":"none","kerberos_keytab_path":"","kerberos_principal":"","kerberos_service_name":"","kudu_impala":{"impala_server_ip":"","impala_server_port":"21050","impala_auth_type":"","default_database":"","impala_client_keytab_path":"","impala_client_krb_principal":"","impala_server_krbhost_fqdn":"","impala_server_krbrealm":"","impala_server_krbservice_name":""}},"_":"E4jJuspABzQYt3dr"}
-Http error code : 404, msg: null
-com.i2soft.http.I2softException: https://192.168.10.178:58086/api/active/db/db_check1
-com.i2soft.http.Response@223f3642
-[]
-	at com.i2soft.http.Client.send(Client.java:249)
-	at com.i2soft.http.Client.post(Client.java:194)
-	at com.i2soft.resource.ActiveNode.checkDbLink(ActiveNode.java:192)
-	at com.i2soft.i2up.resource.ActiveNodeTest.T1129_checkDbLink(ActiveNodeTest.java:188)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
-	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
-	at com.intellij.rt.execution.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:47)
-	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:242)
-	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70)
-
-Process finished with exit code 0
-
-URL: [GET] https://rap2api.info2soft.com/app/mock/data/1134?scope=request
-HEADER: {}
-ARGS: {}
-RS: {
-  "uuids": "6DAb5B7a-46AB-eFBF-1Abc-eB957D1D368E"
-}
-
-URL: [POST] https://192.168.10.178:58086/api/active/db/status
-HEADER: {"Authorization":"381b4d4ca6e59e77c64ff5dec6611213606c1424","Signature":"17c7340c77a0bcb0830485d3c92604e84af0e98e2bd7b37526070444c93d478d","nonce":"6a6ed4e7-883e-40c8-8c6e-82fe1a9b6d71","timestamp":"1624270076"}
-ARGS: {"uuids":"6DAb5B7a-46AB-eFBF-1Abc-eB957D1D368E","_":"vZTpXYwcZe6KdEVL"}
-RS: {"code":0,"message":"[0] success","proxy":"ON","status":[]}
-
-Process finished with exit code 0
-
-URL: [GET] https://rap2api.info2soft.com/app/mock/data/1128?scope=request
-HEADER: {}
-ARGS: {}
-RS: {
-  "db_name": "Jose Jones",
-  "node_uuid": "26BEbf1d-52db-6e7D-fefc-0eADDcfa8DeD",
-  "db_type": "oracle",
-  "file_open_type": "0",
-  "deploy_mode": "0",
-  "log_read_type": "file",
-  "config": {
-    "username": "Nancy Brown",
-    "password": "",
-    "server_name": "",
-    "port": 1,
-    "log_read": {
-      "os_auth": 1,
-      "asm_instance": "",
-      "asm_username": "",
-      "asm_port": 1,
-      "asm_password": "12323131"
-    },
-    "filter_session": 1,
-    "relay": {
-      "enable": 1,
-      "relay_node_uuid": ""
-    },
-    "remote_file_agent": {
-      "enable": 1,
-      "port": 1,
-      "compress": "no"
-    },
-    "db_list": [
-      {
-        "ip": "",
-        "thread": "",
-        "disable": 0
-      }
-    ],
-    "producer_host": "210.252.126.187",
-    "producer_port": 1,
-    "broker_server": [
-      {
-        "ip": "234.240.186.156",
-        "port": 1
-      }
-    ],
-    "authentication": "none",
-    "principal": "",
-    "keytabfile": "",
-    "kafka_auth_type": "",
-    "kerberos_keytab_path": "",
-    "kerberos_principal": "",
-    "kerberos_service_name": "",
-    "sasl_plain_user": "",
-    "sasl_plain_pass": "",
-    "sqlserver": {
-      "ip": "",
-      "port": 1,
-      "usr": "",
-      "pwd": "",
-      "db": "",
-      "dacport": ""
-    },
-    "user_managment": [
-      {
-        "user": "",
-        "passwd": "",
-        "default_db": "",
-        "cred_uuid": "",
-        "cred_login": 1
-      }
-    ],
-    "db_ip": "",
-    "model": 1,
-    "sniff": ""
-  },
-  "db_uuid": "5e45FCca-fCC5-6c37-CDBf-c6A654f1EB13",
-  "db_mode": "",
-  "cdb": "f83B8eFa-75BF-5A1A-23b3-B865E926E67b"
-}
-
-URL: [POST] https://192.168.10.178:58086/api/active/db
-HEADER: {"Authorization":"381b4d4ca6e59e77c64ff5dec6611213606c1424","Signature":"ff81dc9b1c0fc77044e79976978cd2d799f1169d39da9b6643e98102a8c68a69","nonce":"d201d613-5fab-441a-9b43-856f73b69746","timestamp":"1624270129"}
-ARGS: {"db_type":"oracle","cdb":"f83B8eFa-75BF-5A1A-23b3-B865E926E67b","deploy_mode":"0","db_name":"Jose Jones","db_uuid":"5e45FCca-fCC5-6c37-CDBf-c6A654f1EB13","file_open_type":"0","node_uuid":"26BEbf1d-52db-6e7D-fefc-0eADDcfa8DeD","log_read_type":"file","db_mode":"","config":{"username":"Nancy Brown","password":"","server_name":"","port":1,"log_read":{"os_auth":1,"asm_instance":"","asm_username":"","asm_port":1,"asm_password":"12323131"},"filter_session":1,"relay":{"enable":1,"relay_node_uuid":""},"remote_file_agent":{"enable":1,"port":1,"compress":"no"},"db_list":[{"ip":"","thread":"","disable":0}],"producer_host":"210.252.126.187","producer_port":1,"broker_server":[{"ip":"234.240.186.156","port":1}],"authentication":"none","principal":"","keytabfile":"","kafka_auth_type":"","kerberos_keytab_path":"","kerberos_principal":"","kerberos_service_name":"","sasl_plain_user":"","sasl_plain_pass":"","sqlserver":{"ip":"","port":1,"usr":"","pwd":"","db":"","dacport":""},"user_managment":[{"user":"","passwd":"","default_db":"","cred_uuid":"","cred_login":1}],"db_ip":"","model":1,"sniff":""},"_":"fe3DsIZMSiVo71Km"}
+HEADER: {"Authorization":"b4ac25a80b6a60c97ee8efcfdef1052d62e28e57","Signature":"0e87ae4bd205e36217eb992c8e5f4cd73cc76f06ef49b1b6d2965626cd09aada","nonce":"a084d9ad-35f1-4ebf-8357-bdde0a5d611b","timestamp":"1624436877"}
+ARGS: {"uuids":["DDCD448A-FfF5-Cf85-3eCB-E1F0e69042fE"],"_":"mApsAdA591LqP1HQ"}
 RS: {"code":0,"message":"[0] success"}
 
-Process finished with exit code 0
+URL: [POST] https://192.168.10.178:58086/api/active/node/maintenance
+HEADER: {"Authorization":"b4ac25a80b6a60c97ee8efcfdef1052d62e28e57","Signature":"0e6d90b407ec525f961960d59f8beeb5fccca867999c6a5ae03364b38ad124a5","nonce":"cb11ea9d-d0b6-4881-ae45-a20f06b424f6","timestamp":"1624437041"}
+ARGS: {"uuid":"bBae9dCA-f6cc-BA66-bF59-8DFc395eD094","switch":0,"_":"pOcdrGzOxvaPXLZg"}
+RS: {"code":0,"message":"[0] success"}
 
-"C:\Program Files\Java\jdk1.8.0_201\bin\java.exe" -ea -Didea.test.cyclic.buffer.size=1048576 "-javaagent:E:\IntelliJ IDEA 2019.1.4\lib\idea_rt.jar=59057:E:\IntelliJ IDEA 2019.1.4\bin" -Dfile.encoding=UTF-8 -classpath "E:\IntelliJ IDEA 2019.1.4\lib\idea_rt.jar;E:\IntelliJ IDEA 2019.1.4\plugins\junit\lib\junit-rt.jar;E:\IntelliJ IDEA 2019.1.4\plugins\junit\lib\junit5-rt.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\rt.jar;E:\temp\java-sdk\out\test\classes;E:\temp\java-sdk\out\production\classes;E:\hgradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\4.3.1\631751fe30a9fd38634cabb28c15deec7ca4aad\okhttp-4.3.1.jar;E:\hgradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.8.2\3edcfe49d2c6053a70a2a47e4e1c2f94998a49cf\gson-2.8.2.jar;E:\hgradle\caches\modules-2\files-2.1\commons-codec\commons-codec\1.14\3cb1181b2141a7e752f5bdc998b7ef1849f726cf\commons-codec-1.14.jar;E:\hgradle\caches\modules-2\files-2.1\junit\junit\4.12\2973d150c0dc1fefe998f834810d68f278ea58ec\junit-4.12.jar;E:\hgradle\caches\modules-2\files-2.1\com.squareup.okio\okio\2.4.1\569165a2a9c1f7af07dffc80ed983013a2209896\okio-2.4.1.jar;E:\hgradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib\1.3.61\4702105e97f7396ae41b113fdbdc180ec1eb1e36\kotlin-stdlib-1.3.61.jar;E:\hgradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar;E:\hgradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib-common\1.3.61\65abb71d5afb850b68be03987b08e2c864ca3110\kotlin-stdlib-common-1.3.61.jar;E:\hgradle\caches\modules-2\files-2.1\org.jetbrains\annotations\13.0\919f0dfe192fb4e063e7dacadee7f8bb9a2672a9\annotations-13.0.jar" com.intellij.rt.execution.junit.JUnitStarter -ideVersion5 -junit4 com.i2soft.i2up.resource.ActiveNodeTest,T1216_modifyDb
-Cache token: 381b4d4ca6e59e77c64ff5dec6611213606c1424, sso_token: 130595835082c0b849JhCmLk_l29hJzMq2X7jt5_mlcKm78S8a95TdbPvWCRZvFJmbrYT2lUfTnvs_mzuh4LMqCzkptxOBkqBnMYShrLjvfkSlUy-q075x6z-p7eJAAg4mKgr-6MOPhsZ1XlAAZP9YktP9gqo_oaE-PA0g
+URL: [GET] https://192.168.10.178:58086/api/active/db
+HEADER: {"Authorization":"b4ac25a80b6a60c97ee8efcfdef1052d62e28e57","Signature":"d6e5876aba5272fbec12bbf66ae6804f339f6ebfa3cf501d3414068856be73fc","nonce":"6be98f28-d566-472f-aacf-06a3a97cf4bb","timestamp":"1624437395"}
+ARGS: {"search_value":"","limit":10,"page":1,"type":"all","search_field":"db_name","direction":"\u0027\u0027","_":"mBCDl12fIOvzrLtn"}
+RS: {"code":0,"message":"[0] success","info_list":[],"total":0}
 
-URL: [GET] https://rap2api.info2soft.com/app/mock/data/1216?scope=request
-HEADER: {}
-ARGS: {}
-RS: {
-  "db_name": "Kevin Brown",
-  "db_uuid": "A4fe1BC5-F1D1-1BFB-ad41-dF89F9dBa500",
-  "node_uuid": "aE1dC306-41Cf-E17A-E07A-CE0d1eefDdbd",
-  "db_type": "oracle",
-  "file_open_type": "0",
-  "deploy_mode": "0",
-  "log_read_type": "file",
-  "config": {
-    "username": "Angela Perez",
-    "password": "",
-    "server_name": "",
-    "port": 1,
-    "log_read": {
-      "os_auth": 1,
-      "asm_instance": "",
-      "asm_username": "",
-      "asm_port": 1,
-      "asm_password": "12323131"
-    },
-    "filter_session": 1,
-    "relay": {
-      "enable": 1,
-      "relay_node_uuid": ""
-    },
-    "remote_file_agent": {
-      "enable": 1,
-      "port": 1,
-      "compress": "no"
-    },
-    "db_list": [
-      {
-        "ip": "",
-        "thread": ""
-      }
-    ],
-    "broker_server": " "
-  },
-  "random_str": ""
-}
+// uuid:6C4AEF37-6496-6DCD-E085-DD640001E4EC
+URL: [GET] https://192.168.10.178:58086/api/active/db/health_info
+HEADER: {"Authorization":"b4ac25a80b6a60c97ee8efcfdef1052d62e28e57","Signature":"3b42337b80cf90c8f074e9f954c7164c4e61aacdb0d3ec996361d914ad7bee8f","nonce":"964844c2-1e40-4f37-a060-eef94430f104","timestamp":"1624437638"}
+ARGS: {"uuid":"6C4AEF37-6496-6DCD-E085-DD640001E4EC","_":"nECOj5z9WKY1A4CI"}
+RS: {"code":0,"message":"[0] success","info":{"connect":"                           \u003cfont color\u003d\"000000\"\u003e\u003c/font\u003e\n \u003cfont color\u003d\"FF0000\"\u003e192.168.12.199 connect err\u003c/font\u003e\n"}}
 
-URL: [PUT] https://192.168.10.178:58086/api/active/db/4d1f356b-9e6b-489d-b763-eb935a4e809c
-HEADER: {"Authorization":"381b4d4ca6e59e77c64ff5dec6611213606c1424","Signature":"48ea8bad0dbca87487d56a1b5ea42c341b97092c1374d53f6362e7260e3020bb","nonce":"b28c75e0-1e49-44bb-8373-63c37babca9e","timestamp":"1624270186"}
-ARGS: {"db_type":"oracle","deploy_mode":"0","db_name":"Kevin Brown","db_uuid":"A4fe1BC5-F1D1-1BFB-ad41-dF89F9dBa500","file_open_type":"0","node_uuid":"aE1dC306-41Cf-E17A-E07A-CE0d1eefDdbd","log_read_type":"file","random_str":"","config":{"username":"Angela Perez","password":"","server_name":"","port":1,"log_read":{"os_auth":1,"asm_instance":"","asm_username":"","asm_port":1,"asm_password":"12323131"},"filter_session":1,"relay":{"enable":1,"relay_node_uuid":""},"remote_file_agent":{"enable":1,"port":1,"compress":"no"},"db_list":[{"ip":"","thread":""}],"broker_server":" "},"_":"pJPP20g4A2upVfwc"}
-Http error code : 404, msg: null
-com.i2soft.http.I2softException: https://192.168.10.178:58086/api/active/db/4d1f356b-9e6b-489d-b763-eb935a4e809c
-com.i2soft.http.Response@223f3642
-[]
-	at com.i2soft.http.Client.send(Client.java:249)
-	at com.i2soft.http.Client.put(Client.java:200)
-	at com.i2soft.resource.ActiveNode.modifyDb(ActiveNode.java:232)
-	at com.i2soft.i2up.resource.ActiveNodeTest.T1216_modifyDb(ActiveNodeTest.java:225)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
-	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
-	at com.intellij.rt.execution.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:47)
-	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:242)
-	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70)
 
-Process finished with exit code 0
+//数据库测试
+URL: [POST] https://192.168.10.178:58086/api/active/db/db_check1
+HEADER: {"Authorization":"b4ac25a80b6a60c97ee8efcfdef1052d62e28e57","Signature":"35441618ac54efcd556057d9c68a696b395b01da83b9fe555587f948688a7816","nonce":"6d910b8a-1ab5-4891-ba38-be720b4ed0cd","timestamp":"1624441618"}
+ARGS: {"db_type":"oracle","deploy_mode":"single","node_type":"1110001000","db_name":"Cynthia Martin","db_uuid":"6C4AEF37-6496-6DCD-E085-DD640001E4EC","file_open_type":"DIRECT","node_uuid":"778553A7-9A06-4F05-AB40-8BD59F353D62","log_read_type":"file","db_mode":"normal","config":{"username":"Susan Moore","password":"i2","server_name":"orcl","port":1521,"log_read":{"os_auth":1,"asm_instance":"","asm_username":"","asm_port":1521,"asm_password":"12323131"},"filter_session":1,"relay":{"enable":1,"relay_node_uuid":""},"remote_file_agent":{"enable":1,"port":1,"compress":"none"},"db_list":[{"ip":"59.19.84.119","thread":"1","disable":"1"}],"broker_server":[{"ip":"17.165.131.232","port":8080}],"charset":"","kafka_auth_type":"none","kerberos_keytab_path":"","kerberos_principal":"","kerberos_service_name":"","kudu_impala":{"impala_server_ip":"176.180.239.52","impala_server_port":"21050","impala_auth_type":"","default_database":"","impala_client_keytab_path":"","impala_client_krb_principal":"","impala_server_krbhost_fqdn":"","impala_server_krbrealm":"","impala_server_krbservice_name":""},"db_schema":"oracle"},"_":"jbXSQiUTj2O0ZrHv"}
 
-URL: [GET] https://rap2api.info2soft.com/app/mock/data/1142?scope=request
-HEADER: {}
-ARGS: {}
-RS: {
-  "uuid": "afA09f4E-1E4c-BDD1-647a-C81EFABB1E5E"
-}
+URL: [POST] https://192.168.10.178:58086/api/active/db/status
+HEADER: {"Authorization":"b4ac25a80b6a60c97ee8efcfdef1052d62e28e57","Signature":"e636d444f73a841a576a52f8cd20ed0be9694eb648afe34ee5a1aa8fc6d20040","nonce":"9f77ae0e-66f9-4f6a-9b88-8965d33c64a9","timestamp":"1624441723"}
+ARGS: {"uuids":"E6DFbbbb-AE90-76c6-Bc55-FDbfcdABB44c","_":"ixyz6BG2xVcIeuHC"}
+RS: {"code":0,"message":"[0] success","proxy":"ON","status":[]}
+
+URL: [POST] https://192.168.10.178:58086/api/active/db
+HEADER: {"Authorization":"b4ac25a80b6a60c97ee8efcfdef1052d62e28e57","Signature":"0301e085baf22d9b9d3815da5e10b3620a683a37f4daa5eea1422bbec0e789e6","nonce":"d834873a-5766-4871-9c62-24a445dfbfab","timestamp":"1624441780"}
+ARGS: {"db_type":"oracle","cdb":"5D4B71a3-77e1-5Ae6-6D54-343F03CEbeE3","deploy_mode":"0","db_name":"Kevin Martin","db_uuid":"01A3Ad63-6AB2-caDb-FE94-FCcCd6710F4e","file_open_type":"0","node_uuid":"0596a77C-64Fd-cAf2-DB9c-cAaeBD56eD88","log_read_type":"file","db_mode":"","config":{"username":"Christopher Anderson","password":"","server_name":"","port":1,"log_read":{"os_auth":1,"asm_instance":"","asm_username":"","asm_port":1,"asm_password":"12323131"},"filter_session":1,"relay":{"enable":1,"relay_node_uuid":""},"remote_file_agent":{"enable":1,"port":1,"compress":"no"},"db_list":[{"ip":"","thread":"","disable":1}],"producer_host":"30.55.151.13","producer_port":1,"broker_server":[{"ip":"213.12.122.223","port":1}],"authentication":"none","principal":"","keytabfile":"","kafka_auth_type":"","kerberos_keytab_path":"","kerberos_principal":"","kerberos_service_name":"","sasl_plain_user":"","sasl_plain_pass":"","sqlserver":{"ip":"","port":1,"usr":"","pwd":"","db":"","dacport":""},"user_managment":[{"user":"","passwd":"","default_db":"","cred_uuid":"","cred_login":1}],"db_ip":"","model":1,"sniff":""},"_":"ukrFiLU7Qe0AZBVe"}
+RS: {"code":0,"message":"[0] success","uuid":"A0A0526D-6503-5C2A-E3D8-7D85813967F1"}
+
+URL: [PUT] https://192.168.10.178:58086/api/active/db/A0A0526D-6503-5C2A-E3D8-7D85813967F1
+HEADER: {"Authorization":"b4ac25a80b6a60c97ee8efcfdef1052d62e28e57","Signature":"2f70f3f7e55391b8494f0208c3dd0fe095aa88da719af25c3b5425872a168a51","nonce":"b26e7ee4-87c7-4979-aebf-a3e3b881843e","timestamp":"1624442658"}
+ARGS: {"db_type":"oracle","cdb":"d9A1b874-cEc7-eFf8-cA5E-C4943005b9BE","deploy_mode":"0","db_name":"Jeffrey Smith","db_uuid":"A0A0526D-6503-5C2A-E3D8-7D85813967F1","file_open_type":"0","node_uuid":"0596a77C-64Fd-cAf2-DB9c-cAaeBD56eD88","log_read_type":"file","random_str":"","config":{"username":"John Martinez","password":"","server_name":"","port":1,"log_read":{"os_auth":1,"asm_instance":"","asm_username":"","asm_port":1,"asm_password":"12323131"},"filter_session":1,"relay":{"enable":1,"relay_node_uuid":""},"remote_file_agent":{"enable":1,"port":1,"compress":"no"},"db_list":[{"ip":"","thread":""}],"broker_server":" "},"_":"Ezhd4V39WOXTxwWq"}
+RS: {"code":0,"message":"[0] success","uuid":"A0A0526D-6503-5C2A-E3D8-7D85813967F1"}
 
 URL: [GET] https://192.168.10.178:58086/api/active/db/space_query
-HEADER: {"Authorization":"381b4d4ca6e59e77c64ff5dec6611213606c1424","Signature":"d8c31c12db6ca67aaf9fab2b7bf2e725f4b820c8c0d26c0b37adeec0ed1a253f","nonce":"b8fa05c9-b2a2-4f5c-be03-222fd2f815c3","timestamp":"1624270250"}
-ARGS: {"uuid":"afA09f4E-1E4c-BDD1-647a-C81EFABB1E5E","_":"UirxyHS8ftrYeB9P"}
-RS: {"code":0,"message":"[0] success","info":{"result":-1,"msg":"node not found"}}
-
-Process finished with exit code 0
-
-URL: [GET] https://rap2api.info2soft.com/app/mock/data/1133?scope=request
-HEADER: {}
-ARGS: {}
-RS: {
-  "uuids": "bE4eC49f-b72b-E3bc-E1a4-dceFc59F46DC",
-  "force": 0
-}
+HEADER: {"Authorization":"b4ac25a80b6a60c97ee8efcfdef1052d62e28e57","Signature":"ddb91397abddb0d8c09bc59479922b6e18931a69c2388e803a4652e7b4ca73ff","nonce":"f44342fe-f433-423e-9702-d458d534e97e","timestamp":"1624443086"}
+ARGS: {"uuid":"A0A0526D-6503-5C2A-E3D8-7D85813967F1","_":"lYkJk4SS7Qwxsqpm"}
+RS: {"code":0,"message":"[0] success","info":{"result":0,"msg":""}}
 
 URL: [DELETE] https://192.168.10.178:58086/api/active/db
-HEADER: {"Authorization":"381b4d4ca6e59e77c64ff5dec6611213606c1424","Signature":"d9c2dc2b4ebf226d342bb754084792d7034459625568043856f50d40b3c8140a","nonce":"b95a8705-c288-48ce-b2ca-c267a013d470","timestamp":"1624270299"}
-ARGS: {"force":0,"uuids":"bE4eC49f-b72b-E3bc-E1a4-dceFc59F46DC","_":"8Zlegq6vfRTQBNaR"}
-RS: {"code":10001002,"message":"[10001002] Invalid Parameter"}
+HEADER: {"Authorization":"b4ac25a80b6a60c97ee8efcfdef1052d62e28e57","Signature":"84a5af1f30666377d08c595a94c32ed78b5fe5b22f39bfa520a1bc530c36a755","nonce":"1783a8f3-53a3-45cc-b93e-7c6cd04a14c3","timestamp":"1624443250"}
+ARGS: {"force":0,"uuids":["A0A0526D-6503-5C2A-E3D8-7D85813967F1"],"_":"7HuXR19Vm5HLwrpV"}
+RS: {"code":0,"message":"[0] success"}
 
-Process finished with exit code 0
-
-
-URL: [POST] https://192.168.10.178:58086/api/active/db/batch
-HEADER: {"Authorization":"381b4d4ca6e59e77c64ff5dec6611213606c1424","Signature":"b70f698dcf60551d2654b2f4ccb372cf3350ac61ea68908cfd07225cad736cc6","nonce":"da0f98e9-9f5c-4998-8f12-08d12a98af95","timestamp":"1624270357"}
-ARGS: {"_":"Lh1uohlu3hQP4JXK"}
-RS: {"code":10001070,"message":"[10001070] Upload error, please check the log  You did not select a file to upload. "}
-
-Process finished with exit code 0
-
-URL: [GET] https://192.168.10.178:58086/api/active/db/e2b6125c-a547-48d3-8a0d-880eeb4f9588
-HEADER: {"Authorization":"381b4d4ca6e59e77c64ff5dec6611213606c1424","Signature":"8af06295f37309e238a0846d796a3883f2935bb2993aba601127da05ad586fa7","nonce":"aeb95683-6a7d-4b8b-acfb-a8e5e1cb6b91","timestamp":"1624270439"}
-ARGS: {"_":"bpSzpwy5ogARJIhI"}
-Http error code : 404, msg: null
-com.i2soft.http.I2softException: https://192.168.10.178:58086/api/active/db/e2b6125c-a547-48d3-8a0d-880eeb4f9588?_=bpSzpwy5ogARJIhI
-com.i2soft.http.Response@1d082e88
-[]
-	at com.i2soft.http.Client.send(Client.java:249)
-	at com.i2soft.http.Client.get(Client.java:188)
-	at com.i2soft.resource.ActiveNode.describeDb(ActiveNode.java:283)
-	at com.i2soft.i2up.resource.ActiveNodeTest.T1143_describeDb(ActiveNodeTest.java:270)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
-	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
-	at com.intellij.rt.execution.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:47)
-	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:242)
-	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70)
-
-
-URL: [GET] https://rap2api.info2soft.com/app/mock/data/2680?scope=request
-HEADER: {}
-ARGS: {}
-RS: {
-  "uuid": "",
-  "type": "oracle",
-  "conf": [
-    {
-      "id": 1,
-      "name": "kfk",
-      "ip": "172.20.5.116",
-      "port": "1521",
-      "auth": "none",
-      "pass": {
-        "user": "i2",
-        "pass": "i2"
-      },
-      "kerberos": {
-        "principal": "",
-        "keytab": ""
-      },
-      "impala": {
-        "ip": "",
-        "port": "",
-        "name": "",
-        "auth": "kerberos",
-        "kerberos": {
-          "realm": "",
-          "name": "",
-          "host": "",
-          "principal": "",
-          "keytab": ""
-        }
-      },
-      "model": "0",
-      "sniff": "0"
-    },
-    {
-      "id": 2,
-      "name": "oracle",
-      "ip": "172.20.5.116",
-      "port": "1521",
-      "auth": "pass",
-      "pass": {
-        "user": "i2",
-        "pass": "i2"
-      },
-      "kerberos": {
-        "principal": null,
-        "keytab": null
-      },
-      "impala": {
-        "ip": null,
-        "port": null,
-        "name": null,
-        "auth": null,
-        "kerberos": {
-          "realm": null,
-          "name": null,
-          "host": null,
-          "principal": null,
-          "keytab": null
-        }
-      },
-      "model": "1",
-      "sniff": "1"
-    },
-    {
-      "id": 3,
-      "name": "kfk",
-      "ip": "172.20.5.116",
-      "port": "1521",
-      "auth": "kerberos",
-      "pass": {
-        "user": null,
-        "pass": null
-      },
-      "kerberos": {
-        "principal": "",
-        "keytab": ""
-      },
-      "impala": {
-        "ip": null,
-        "port": null,
-        "name": null,
-        "auth": null,
-        "kerberos": {
-          "realm": null,
-          "name": null,
-          "host": null,
-          "principal": null,
-          "keytab": null
-        }
-      },
-      "model": "0",
-      "sniff": "0"
-    },
-    {
-      "id": 4,
-      "name": "kudu",
-      "ip": "172.20.5.116",
-      "port": "1521",
-      "auth": "none",
-      "pass": {
-        "user": null,
-        "pass": null
-      },
-      "kerberos": {
-        "principal": "",
-        "keytab": ""
-      },
-      "impala": {
-        "ip": "",
-        "port": "",
-        "name": "",
-        "auth": "kerberos",
-        "kerberos": {
-          "realm": "",
-          "name": "",
-          "host": "",
-          "principal": "",
-          "keytab": ""
-        }
-      },
-      "model": "1",
-      "sniff": "1"
-    }
-  ]
-}
-
-URL: [POST] https://192.168.10.178:58086/api/active/db/db_check
-HEADER: {"Authorization":"381b4d4ca6e59e77c64ff5dec6611213606c1424","Signature":"96ed2d764e0489f670cccf34487f2cb1dfe8cdd0c0c9b7785036cd713ddaf909","nonce":"85815784-1725-4a95-b9c4-989420b2768a","timestamp":"1624270498"}
-ARGS: {"conf":[{"id":1,"name":"kfk","ip":"172.20.5.116","port":"1521","auth":"none","pass":{"user":"i2","pass":"i2"},"kerberos":{"principal":"","keytab":""},"impala":{"ip":"","port":"","name":"","auth":"kerberos","kerberos":{"realm":"","name":"","host":"","principal":"","keytab":""}},"model":"0","sniff":"0"},{"id":2,"name":"oracle","ip":"172.20.5.116","port":"1521","auth":"pass","pass":{"user":"i2","pass":"i2"},"kerberos":{},"impala":{"kerberos":{}},"model":"1","sniff":"1"},{"id":3,"name":"kfk","ip":"172.20.5.116","port":"1521","auth":"kerberos","pass":{},"kerberos":{"principal":"","keytab":""},"impala":{"kerberos":{}},"model":"0","sniff":"0"},{"id":4,"name":"kudu","ip":"172.20.5.116","port":"1521","auth":"none","pass":{},"kerberos":{"principal":"","keytab":""},"impala":{"ip":"","port":"","name":"","auth":"kerberos","kerberos":{"realm":"","name":"","host":"","principal":"","keytab":""}},"model":"1","sniff":"1"}],"type":"oracle","uuid":"","_":"WhFGSIIHgGtRg6UK"}
-RS: {"code":-1,"message":"[-1]node not found"}
-
-Process finished with exit code 0
-
+URL: [GET] https://192.168.10.178:58086/api/active/db/A0A0526D-6503-5C2A-E3D8-7D85813967F1
+HEADER: {"Authorization":"b4ac25a80b6a60c97ee8efcfdef1052d62e28e57","Signature":"4c28438b855d873a4d736f23ed2bda71d0a6326f0ed524a776c3193d5ff96f38","nonce":"4536ab76-1dd3-42c7-8e2d-abc61b2e4036","timestamp":"1624443434"}
+ARGS: {"_":"6wLqWHGSxOFHz2zQ"}
+RS: {"code":0,"message":"[0] success","active_db":{"bind_lic_list":[]}}
 
 
 
