@@ -233,17 +233,84 @@ public final class SyncRules {
     }
 
     /**
-     * 同步规则 - 操作
+     * 同步规则 - 非通用操作入口
+     * @param uuid 规则uuid
+     * @param args  operate : start_analysis 开始日志解析 , stop_analysis 停止日志解析 , reset_analysis 重新日志解析 , stop_and_stopanalysis 停止规则并停止日志解析
+     * @return
+     * @throws I2softException
+     */
+    public I2Rs.I2SmpRs operateRule(String uuid, StringMap args) throws I2softException {
+        String srcType = getRuleTypeByUUID(uuid);
+        switch (srcType) {
+            case DB_TYPE_MYSQL:
+            case DB_TYPE_KAFKA:
+                return null;
+            case DB_TYPE_ORACLE:
+            default:
+                return oracleRule.operateRule(uuid, args);
+        }
+    }
+
+    /**
+     * 同步规则 - 操作, 停止
      *
      * @param args: 参数详见 API 手册
      * @return code, message
      * @throws I2softException:
      */
-//    public I2Rs.I2SmpRs tempFuncName(StringMap args) throws I2softException {
-//        String url = String.format("%s/active/rule/operate", auth.cc_url);
-//        Response r = auth.client.post(url, args);
-//        return r.jsonToObject(I2Rs.I2SmpRs.class);
-//    }
+    public I2Rs.I2SmpRs stopSyncRule(String uuid, StringMap args) throws I2softException {
+        String srcType = getRuleTypeByUUID(uuid);
+        switch (srcType) {
+            case DB_TYPE_MYSQL:
+                mysqlRule.stopMysqlRule(uuid, args);
+            case DB_TYPE_KAFKA:
+                kafkaRule.stopConsumerRule(uuid, args);
+                return null;
+            case DB_TYPE_ORACLE:
+            default:
+                return oracleRule.stopOracleRule(uuid, args);
+        }
+    }
+
+    /**
+     * 同步规则 - 操作， 继续
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs resumeOracleRule(String uuid, StringMap args) throws I2softException {
+        String srcType = getRuleTypeByUUID(uuid);
+        switch (srcType) {
+            case DB_TYPE_MYSQL:
+                return mysqlRule.resumeMysqlRule(uuid, args);
+            case DB_TYPE_KAFKA:
+                return kafkaRule.resumeConsumerRule(uuid, args);
+            case DB_TYPE_ORACLE:
+            default:
+                return oracleRule.resumeOracleRule(uuid, args);
+        }
+    }
+
+    /**
+     * 同步规则 - 操作， 重启
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs restartOracleRule(String uuid, StringMap args) throws I2softException {
+        String srcType = getRuleTypeByUUID(uuid);
+        switch (srcType) {
+            case DB_TYPE_MYSQL:
+                return mysqlRule.restartMysqlRule(uuid, args);
+            case DB_TYPE_KAFKA:
+                return null;
+            case DB_TYPE_ORACLE:
+            default:
+                return oracleRule.restartOracleRule(uuid, args);
+        }
+    }
 
     /**
      * 同步规则-单个规则状态
@@ -937,11 +1004,11 @@ public final class SyncRules {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs tempFuncName(StringMap args) throws I2softException {
-        String url = String.format("%s/active/bk_takeover/operate", auth.cc_url);
-        Response r = auth.client.post(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
-    }
+//    public I2Rs.I2SmpRs tempFuncName(StringMap args) throws I2softException {
+//        String url = String.format("%s/active/bk_takeover/operate", auth.cc_url);
+//        Response r = auth.client.post(url, args);
+//        return r.jsonToObject(I2Rs.I2SmpRs.class);
+//    }
 
     /**
      * 备端接管-获取状态
