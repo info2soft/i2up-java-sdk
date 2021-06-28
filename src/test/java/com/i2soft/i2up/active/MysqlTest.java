@@ -110,42 +110,6 @@ public class MysqlTest {
     }
 
     @Test
-    public void T1534_listStreamSyncStatus() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1534")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = mysql.listStreamSyncStatus(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void T1535_describeHistory() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1535")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = mysql.describeHistory(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void T1536_describeResource() {
-        try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1536")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = mysql.describeResource(args); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
     public void T1553_modifyStreamRule() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1553")); // 获取请求数据

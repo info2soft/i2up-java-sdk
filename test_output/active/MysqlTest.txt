@@ -24,6 +24,8 @@ ARGS: {"uuids":[],"_":"B1V0r7ILDg8uAy0b"}
 RS: {"code":0,"message":"[0] success","info_list":[]}
 
 URL: [POST] https://192.168.10.178:58086/api/stream/rule/log
-HEADER: {"Authorization":"63d90f4a607c655303d7e72254bd709b9d9af012","Signature":"86475879f27764ee072ed68c9e5dabb8c7be868f9d894db49a1a4e0e06fcc791","nonce":"5e88ac40-8d8f-4347-9f14-597bd120aca9","timestamp":"1624612615"}
-ARGS: {"date_start":"","offset":0,"module_type":1,"limit":10,"date_end":"","mysql_uuid":"Ca73FACb-9017-b77d-DE9d-c8B20B69FAAd","query_type":1,"type":1,"_":"07YK6AwVJxBLElx3"}
-RS: {"code":0,"message":"[0] success","total":0,"info_list":{}
+HEADER: {"Authorization":"b76eb735fbd7b897f52bdbed64e389281d20fa40","Signature":"0761733a56a827266f2dc57cc797e504683a0a016a041397ff2d321aeb35c969","nonce":"b80d1fe2-d455-47a1-bf08-3fcaade56d9e","timestamp":"1624876384"}
+ARGS: {"rule_uuid":"f3F5a129-c9CB-Da55-AcB1-c2EeB5DcBf1a","date_start":"1624876176","offset":1,"module_type":-1,"limit":10,"date_end":"1624876118","mysql_uuid":"7616BBbb-715B-7B1F-cF1A-74e6AF2ebE6a","query_type":1,"type":1,"_":"zpfbcQEictazWA8L"}
+RS: {"code":0,"message":"[0] success","total":0,"info_list":[]}
+
+

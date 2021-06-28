@@ -72,11 +72,12 @@ public class SyncRulesTest {
     }
 
     @Test
+    // 同步规则:1248 mysql:1468 kfk:1598
     public void T1248_createSyncRules() {
         try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1248")); // 获取请求数据
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1598")); // 获取请求数据
 //            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2CreateRs rs = syncRules.createSyncRule("oracle", r.bodyString()); // 发送请求
+            I2Rs.I2CreateRs rs = syncRules.createSyncRule("kafka", r.bodyString()); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -86,8 +87,10 @@ public class SyncRulesTest {
     @Test
     public void T2068_modifySyncRules() {
         try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2068")); // 获取请求数据
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2069")); // 获取请求数据 kafka:2069 mysql: 1553 oracle:2068
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+//            System.out.println(args.get("rule_uuid"));
+//            System.out.println(r.bodyString());
             I2Rs.I2SmpRs rs = syncRules.modifySyncRule((String) args.get("rule_uuid"), r.bodyString()); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
@@ -98,9 +101,9 @@ public class SyncRulesTest {
     @Test
     public void T1416_listRuleLog() {
         try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1416")); // 获取请求数据
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1416")); // 获取请求数据 oracle:1416 mysql:1533
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = syncRules.listRuleLog("uuids", args); // 发送请求
+            Map rs = syncRules.listRuleLog("rule_uuid", args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -158,9 +161,9 @@ public class SyncRulesTest {
     @Test
     public void T1254_deleteSyncRules() {
         try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1254")); // 获取请求数据
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1599")); // 获取请求数据 oracle:1254 mysql:1470 kafka:1599
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = syncRules.deleteSyncRule((String) args.get("rule_uuid")); // 发送请求
+            Map rs = syncRules.deleteSyncRule((String) args.get("rule_uuids")); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -170,9 +173,9 @@ public class SyncRulesTest {
     @Test
     public void T1251_listSyncRules() {
         try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1251")); // 获取请求数据
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1602")); // 获取请求数据  oracle:1251 mysql:1472 kafka:1602
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = syncRules.listSyncRules("oracle", args); // 发送请求
+            Map rs = syncRules.listSyncRules("kafka", args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -194,9 +197,9 @@ public class SyncRulesTest {
     @Test
     public void T1291_operateRule() {
         try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1291")); // 获取请求数据
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1291")); // 获取请求数据 oracle:1291 mysql:1471 kafka:1601
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = syncRules.operateRule("uuid", args); // 发送请求
+            I2Rs.I2SmpRs rs = syncRules.operateRule((String)args.get("uuid"), args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -244,7 +247,7 @@ public class SyncRulesTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1296")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = syncRules.listSyncRulesStatus("oracle", args); // 发送请求
+            Map rs = syncRules.listSyncRulesStatus("kafka", args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
