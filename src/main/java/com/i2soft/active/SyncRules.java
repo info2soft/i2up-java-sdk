@@ -305,7 +305,7 @@ public final class SyncRules {
             case DB_TYPE_MYSQL:
                 return mysqlRule.restartMysqlRule(uuid, args);
             case DB_TYPE_KAFKA:
-                return null;
+                return kafkaRule.resumeConsumerRule(uuid, args);
             case DB_TYPE_ORACLE:
             default:
                 return oracleRule.restartOracleRule(uuid, args);
