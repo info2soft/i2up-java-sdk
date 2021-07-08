@@ -262,10 +262,9 @@ public final class SyncRules {
         String srcType = getRuleTypeByUUID(uuid);
         switch (srcType) {
             case DB_TYPE_MYSQL:
-                mysqlRule.stopMysqlRule(uuid, args);
+                return mysqlRule.stopMysqlRule(uuid, args);
             case DB_TYPE_KAFKA:
-                kafkaRule.stopConsumerRule(uuid, args);
-                return null;
+                return kafkaRule.stopConsumerRule(uuid, args);
             case DB_TYPE_ORACLE:
             default:
                 return oracleRule.stopOracleRule(uuid, args);
@@ -279,7 +278,7 @@ public final class SyncRules {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs resumeOracleRule(String uuid, StringMap args) throws I2softException {
+    public I2Rs.I2SmpRs resumeSyncRule(String uuid, StringMap args) throws I2softException {
         String srcType = getRuleTypeByUUID(uuid);
         switch (srcType) {
             case DB_TYPE_MYSQL:
@@ -299,7 +298,7 @@ public final class SyncRules {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs restartOracleRule(String uuid, StringMap args) throws I2softException {
+    public I2Rs.I2SmpRs restartSyncRule(String uuid, StringMap args) throws I2softException {
         String srcType = getRuleTypeByUUID(uuid);
         switch (srcType) {
             case DB_TYPE_MYSQL:
