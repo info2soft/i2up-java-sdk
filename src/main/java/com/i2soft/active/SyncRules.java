@@ -15,6 +15,9 @@ public final class SyncRules {
     public static final String DB_TYPE_ORACLE = "oracle";
     public static final String DB_TYPE_MYSQL = "mysql";
     public static final String DB_TYPE_KAFKA = "kafka";
+    public static final String DB_TYPE_NONE = "none";
+
+    public static final String RULE_NOT_EXIST = "{\"code\": 10031017,\"message\":\"[10031017]该规则不存在\"}";
 
     /**
      * Auth 对象
@@ -48,7 +51,8 @@ public final class SyncRules {
         String url = String.format("%s/active/rule_type/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url);
         Map rs = r.jsonToMap();
-        switch ((String) rs.get("rule_type")) {
+        String ruleType = rs.get("rule_type") == null ? "none" : rs.get("rule_type").toString();
+        switch (ruleType) {
             case DB_TYPE_KAFKA:
                 return kafkaRule;
             case DB_TYPE_MYSQL:
@@ -70,7 +74,7 @@ public final class SyncRules {
         String url = String.format("%s/active/rule_type/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url);
         Map rs = r.jsonToMap();
-        return (String) rs.get("rule_type");
+        return rs.get("rule_type") == null ? "none" : rs.get("rule_type").toString() ;
     }
 
     /**
@@ -143,6 +147,8 @@ public final class SyncRules {
         String srcType = getRuleTypeByUUID(uuid);
         StringMap args = new StringMap().putAll(Objects.requireNonNull(Json.decode(paramString).map()));
         switch (srcType) {
+            case DB_TYPE_NONE:
+                return getI2SmpRsNotFoundRule();
             case DB_TYPE_MYSQL:
                 return mysqlRule.modifyStreamRule(args);
             case DB_TYPE_KAFKA:
@@ -151,6 +157,14 @@ public final class SyncRules {
             default:
                 return oracleRule.modifyOracleRule(args);
         }
+    }
+
+    private Map getMapNotFoundRule() {
+        return Json.decode(RULE_NOT_EXIST).map();
+    }
+
+    private I2Rs.I2SmpRs getI2SmpRsNotFoundRule() {
+        return Json.decode(RULE_NOT_EXIST, I2Rs.I2SmpRs.class);
     }
 
     /**
@@ -163,6 +177,8 @@ public final class SyncRules {
     public Map describeSyncRule(String uuid) throws I2softException {
         String srcType = getRuleTypeByUUID(uuid);
         switch (srcType) {
+            case DB_TYPE_NONE:
+                return getMapNotFoundRule();
             case DB_TYPE_MYSQL:
                 return mysqlRule.describeMysqlRule(uuid);
             case DB_TYPE_KAFKA:
@@ -183,6 +199,8 @@ public final class SyncRules {
     public Map deleteSyncRule(String uuid) throws I2softException {
         String srcType = getRuleTypeByUUID(uuid);
         switch (srcType) {
+            case DB_TYPE_NONE:
+                return getMapNotFoundRule();
             case DB_TYPE_MYSQL:
                 return mysqlRule.deleteMysqlRules((new StringMap()).put("mysql_uuids", new String[]{uuid}));
             case DB_TYPE_KAFKA:
@@ -203,6 +221,8 @@ public final class SyncRules {
      */
     public Map deleteSyncRules(String srcType, StringMap args) throws I2softException {
         switch (srcType) {
+            case DB_TYPE_NONE:
+                return getMapNotFoundRule();
             case DB_TYPE_MYSQL:
                 return mysqlRule.deleteMysqlRules(args);
             case DB_TYPE_KAFKA:
@@ -222,6 +242,8 @@ public final class SyncRules {
      */
     public Map listSyncRules(String srcType, StringMap args) throws I2softException {
         switch (srcType) {
+            case DB_TYPE_NONE:
+                return getMapNotFoundRule();
             case DB_TYPE_MYSQL:
                 return mysqlRule.listMysqlRules(args);
             case DB_TYPE_KAFKA:
@@ -242,6 +264,8 @@ public final class SyncRules {
     public I2Rs.I2SmpRs operateRule(String uuid, StringMap args) throws I2softException {
         String srcType = getRuleTypeByUUID(uuid);
         switch (srcType) {
+            case DB_TYPE_NONE:
+                return getI2SmpRsNotFoundRule();
             case DB_TYPE_MYSQL:
             case DB_TYPE_KAFKA:
                 return null;
@@ -261,6 +285,8 @@ public final class SyncRules {
     public I2Rs.I2SmpRs stopSyncRule(String uuid, StringMap args) throws I2softException {
         String srcType = getRuleTypeByUUID(uuid);
         switch (srcType) {
+            case DB_TYPE_NONE:
+                return getI2SmpRsNotFoundRule();
             case DB_TYPE_MYSQL:
                 return mysqlRule.stopMysqlRule(uuid, args);
             case DB_TYPE_KAFKA:
@@ -281,6 +307,8 @@ public final class SyncRules {
     public I2Rs.I2SmpRs resumeSyncRule(String uuid, StringMap args) throws I2softException {
         String srcType = getRuleTypeByUUID(uuid);
         switch (srcType) {
+            case DB_TYPE_NONE:
+                return getI2SmpRsNotFoundRule();
             case DB_TYPE_MYSQL:
                 return mysqlRule.resumeMysqlRule(uuid, args);
             case DB_TYPE_KAFKA:
@@ -301,6 +329,8 @@ public final class SyncRules {
     public I2Rs.I2SmpRs restartSyncRule(String uuid, StringMap args) throws I2softException {
         String srcType = getRuleTypeByUUID(uuid);
         switch (srcType) {
+            case DB_TYPE_NONE:
+                return getI2SmpRsNotFoundRule();
             case DB_TYPE_MYSQL:
                 return mysqlRule.restartMysqlRule(uuid, args);
             case DB_TYPE_KAFKA:
@@ -322,6 +352,8 @@ public final class SyncRules {
         String srcType = getRuleTypeByUUID(uuid);
         StringMap uuids = (new StringMap()).put("uuids", new String[]{uuid});
         switch (srcType) {
+            case DB_TYPE_NONE:
+                return getMapNotFoundRule();
             case DB_TYPE_MYSQL:
                 return mysqlRule.listMysqlStatus(uuids);
             case DB_TYPE_KAFKA:
@@ -361,6 +393,8 @@ public final class SyncRules {
     public Map listRuleLog(String uuid, StringMap args) throws I2softException {
         String srcType = getRuleTypeByUUID(uuid);
         switch (srcType) {
+            case DB_TYPE_NONE:
+                return getMapNotFoundRule();
             case DB_TYPE_MYSQL:
                 return mysqlRule.listMysqlLog(args);
             case DB_TYPE_KAFKA:
