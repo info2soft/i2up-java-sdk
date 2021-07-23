@@ -91,7 +91,13 @@ public class SyncRulesTest {
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
 //            System.out.println(args.get("rule_uuid"));
 //            System.out.println(r.bodyString());
-            I2Rs.I2SmpRs rs = syncRules.modifySyncRule((String) args.get("rule_uuid"), r.bodyString()); // 发送请求
+
+
+            //region 参数字符串
+            String paramsString = "{\"rule_uuid\":\"3E14A9BF-0A7F-CEE4-66D7-7AC96B2C489C\",\"src_db_uuid\":\"B8A129C4-EA11-415A-A816-1E882A626269\",\"tgt_db_uuid\":\"FA4A7EF2-B944-6B0C-5B20-FD9C3680A9D5\",\"rule_type\":0,\"rule_name\":\"test2\",\"user_uuid\":\"1BCFCAA3-E3C8-3E28-BDC5-BE36FDC2B5DC\",\"node_uuid\":\"\",\"tgt_type\":\"kafka\",\"db_user_map\":\"{\\\"TEST2\\\":\\\"test2\\\"}\",\"row_map_mode\":\"rowid\",\"map_type\":\"user\",\"table_map\":\"\",\"dbmap_topic\":\"\",\"sync_mode\":1,\"start_scn\":0,\"storage_settings\":{\"tgt_extern_table\":\"\",\"src_max_mem\":\"512\",\"src_max_disk\":\"5000\",\"txn_max_mem\":\"10000\",\"tf_max_size\":\"100\",\"max_ld_mem\":\"512\"},\"table_space_map\":{\"tgt_table_space\":\"\",\"table_mapping_way\":\"ptop\",\"table_path_map\":{},\"table_space_name\":{}},\"other_settings\":{\"dly_constraint_load\":0,\"keep_usr_pwd\":0,\"ignore_foreign_key\":0,\"keep_dyn_data\":0,\"dyn_thread\":1,\"ddl_cv\":0,\"keep_bad_act\":0,\"fill_lob_column\":0,\"keep_seq_sync\":0,\"convert_urp_of_key\":0,\"gen_txn\":0,\"zip_level\":0},\"error_handling\":{\"irp\":\"irpafterdel\",\"urp\":\"toirp\",\"drp\":\"ignore\",\"load_err_set\":\"continue\",\"report_failed_dml\":0},\"bw_settings\":{\"bw_limit\":\"\"},\"strate\":null,\"full_sync_settings\":{\"load_mode\":\"direct\",\"ld_dir_opt\":0,\"dump_thd\":1,\"load_thd\":1,\"try_split_part_table\":1,\"clean_user_before_dump\":0,\"existing_table\":\"drop_to_recycle\",\"concurrent_table\":\"[]\",\"sync_mode\":1,\"start_scn\":0},\"full_sync_obj_filter\":{\"full_sync_obj_data\":[\"INDEX\",\"VIEW\",\"FUNCTION\",\"PROCEDURE\",\"PACKAGE\",\"PACKAGE BODY\",\"SYNONYM\",\"TRIGGER\",\"SEQUENCE\",\"JAVA CLASS\",\"TYPE\",\"TYPE BODY\",\"MATERIALIZED VIEW\",\"DATABASE LINK\",\"OLD JOB\",\"JOB\",\"PRIVS\",\"CONSTRAINT\",\"JAVA RESOURCE\",\"JAVA SOURCE\"]},\"inc_sync_ddl_filter\":{\"inc_sync_ddl_data\":[\"CREATE TABLE\",\"DROP TABLE\",\"ALTER TABLE\",\"TABLE ADD\",\"TABLE DROP\",\"TABLE MODIFY\",\"TABLE RENAME\",\"TRUNCATE TABLE\",\"MOVE TABLE\",\"CREATE COMMENT\",\"ADD PARTITION\",\"DROP PARTITION\",\"ADD SUBPARTITION\",\"DROP SUBPARTITION\",\"SPLIT PARTITION\",\"SPLIT SUBPARTITION\",\"MERGE SUBPARTITION\",\"MERGE PARTITION\",\"SWAP\",\"ALTER LVAL\",\"SET TEMPLATE\",\"CREATE INDEX\",\"DROP INDEX\",\"ALTER INDEX\",\"RENAME INDEX\",\"CREATE TYPE\",\"DROP TYPE\",\"CREATE VIEW\",\"DROP VIEW\",\"CREATE SYN\",\"DROP SYN\",\"ADD CONSTRAINT\",\"DROP CONSTRAINT\",\"ALTER CONSTRAINT\",\"CREATE SEQUENCE\",\"DROP SEQUENCE\",\"ALTER SEQUENCE\",\"CREATE ROLE\",\"DROP ROLE\",\"ALTER ROLE\",\"GRANT SYS\",\"GRANT OBJ\",\"REVOKE SYS\",\"REVOKE OBJ\",\"CREATE MVIEW LOG\",\"DROP MVIEW LOG\",\"CREATE MVIEW\",\"DROP MVIEW\",\"CREATE JAVA\",\"DROP JAVA\",\"CREATE CLASS\",\"DROP CLASS\",\"CREATE RESOURCE\",\"DROP RESOURCE\",\"CREATE PROFILE\",\"DROP PROFILE\",\"ALTER PROFILE\",\"CREATE PROC\",\"DROP PROC\",\"ALTER PROC\",\"CREATE DROP DBLINK\",\"CREATE QUEUE\",\"DROP QUEUE\",\"ALTER QUEUE\",\"CREATE TABLESPACE\",\"DROP TABLESPACE\",\"ALTER TABLESPACE\",\"RENAME TABLESPACE\",\"ADD HASH PARTITION\",\"SWAPS\",\"ADD CONSTRAINTS\"]},\"filter_table_settings\":{\"exclude_table\":\"[]\"},\"etl_settings\":{\"etl_table\":[]},\"create_time\":1626849310,\"start_rule_now\":1,\"kafka_time_out\":\"2400000\",\"part_load_balance\":\"by_table\",\"kafka_message_encoding\":\"UTF-8\",\"db_map_uuid\":\"\",\"dml_track\":{\"enable\":0,\"urp\":0,\"drp\":0,\"tmcol\":\"\",\"delcol\":\"\"},\"kafka\":{\"binary_code\":\"hex\"},\"kafkaTimeout\":\"12000\",\"partLoadBalance\":\"by_key\",\"registered\":1,\"active_flag\":\"modify\",\"_\":\"44353ff251021\"}";
+
+            I2Rs.I2SmpRs rs = syncRules.modifySyncRule("3E14A9BF-0A7F-CEE4-66D7-7AC96B2C489C", paramsString); // 发送请求
+
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -211,7 +217,7 @@ public class SyncRulesTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1291")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = syncRules.stopSyncRule("A40C1509-CAB6-BB30-98E9-49AE238B0B9A", args); // 发送请求
+            I2Rs.I2SmpRs rs = syncRules.stopSyncRule("CADE1309-6751-CA40-B93B-D58C8580E069", args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -223,7 +229,7 @@ public class SyncRulesTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1291")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = syncRules.resumeSyncRule("uuid", args); // 发送请求
+            I2Rs.I2SmpRs rs = syncRules.resumeSyncRule("CADE1309-6751-CA40-B93B-D58C8580E069", args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

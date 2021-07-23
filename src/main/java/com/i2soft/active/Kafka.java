@@ -176,7 +176,7 @@ public final class Kafka extends Rule {
      * @throws I2softException:
      */
     public I2Rs.I2SmpRs operateRule(String uuid, StringMap args) throws I2softException {
-        args.put("mysql_uuid", uuid);
+        args.put("uuid", uuid);
         return this.operateRule(args);
     }
 
