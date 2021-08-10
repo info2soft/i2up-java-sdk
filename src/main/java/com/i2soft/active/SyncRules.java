@@ -384,6 +384,18 @@ public final class SyncRules {
     }
 
     /**
+     * 同步规则 - 批量获取规则状态
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listSyncRulesGeneralStatus(StringMap args) throws I2softException {
+        String url = String.format("%s/active/rule/general_status", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
      * 同步规则-日志
      *
      * @param args: 参数详见 API 手册
@@ -396,9 +408,9 @@ public final class SyncRules {
             case DB_TYPE_NONE:
                 return getMapNotFoundRule();
             case DB_TYPE_MYSQL:
-                return mysqlRule.listMysqlLog(args);
+//                return mysqlRule.listMysqlLog(args);
             case DB_TYPE_KAFKA:
-                return null;
+//                return null;
             case DB_TYPE_ORACLE:
             default:
                 return oracleRule.listRuleLog(args);
