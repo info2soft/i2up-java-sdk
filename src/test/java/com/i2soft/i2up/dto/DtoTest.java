@@ -110,11 +110,35 @@ public class DtoTest {
     }
 
     @Test
+    public void T1089_startDtoRule() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1089")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            I2Rs.I2SmpRs rs = dto.startDtoRule(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T1089_stopDtoRule() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1089")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            I2Rs.I2SmpRs rs = dto.stopDtoRule(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     public void T1089_tempFuncName() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1089")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = dto.tempFuncName(args); // 发送请求
+            I2Rs.I2SmpRs rs = dto.resumeDtoRule(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

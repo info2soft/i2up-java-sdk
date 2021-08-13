@@ -10,6 +10,10 @@ import com.i2soft.util.StringMap;
 import java.util.Map;
 
 public final class Dto {
+    public static final String START = "start";
+    private static final String STOP = "stop";
+    public static final String RESUME = "resume";
+
     /**
      * Auth 对象
      */
@@ -110,10 +114,45 @@ public final class Dto {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs tempFuncName(StringMap args) throws I2softException {
+    public I2Rs.I2SmpRs operateRule(StringMap args) throws I2softException {
         String url = String.format("%s/dto/rule/operate", auth.cc_url);
         Response r = auth.client.post(url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 规则 - 操作 启动规则
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs startDtoRule(StringMap args) throws I2softException {
+        args.put("operate", START);
+        return operateRule(args);
+    }
+
+    /**
+     * 规则 - 操作 停止规则
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs stopDtoRule(StringMap args) throws I2softException {
+        args.put("operate", STOP);
+        return operateRule(args);
+    }
+    /**
+     * 规则 - 操作
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs resumeDtoRule(StringMap args) throws I2softException {
+        args.put("operate", RESUME);
+        return operateRule(args);
     }
 
     /**
