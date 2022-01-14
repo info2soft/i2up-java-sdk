@@ -9,7 +9,7 @@ public final class Constants {
     /**
      * 版本号
      */
-    public static final String VERSION = "7.1.70.6";
+    public static final String VERSION = "7.1.70.7";
     /**
      * 打印 http log
      */
@@ -21,7 +21,7 @@ public final class Constants {
     /**
      * 连接超时时间 单位秒(默认10s)
      */
-    public static final int CONNECT_TIMEOUT = 120;
+    public static final int CONNECT_TIMEOUT = 20;
     /**
      * 写超时时间 单位秒(默认 0 , 不超时)
      */
@@ -29,7 +29,7 @@ public final class Constants {
     /**
      * 回复超时时间 单位秒(默认30s)
      */
-    public static final int READ_TIMEOUT = 30;
+    public static final int READ_TIMEOUT = 65;
     /**
      * 底层HTTP库所有的并发执行的请求数量
      */

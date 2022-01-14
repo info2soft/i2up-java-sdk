@@ -9,7 +9,9 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.net.ssl.*;
 import java.io.IOException;
 import java.net.InetAddress;
+import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
@@ -238,7 +240,15 @@ public final class Client {
             res = httpClient.newCall(requestBuilder.tag(tag).build()).execute();
         } catch (IOException e) {
             e.printStackTrace();
-            throw new I2softException(e);
+            if (e instanceof SocketTimeoutException) {
+                String str = "{" +
+                        "\"code\":11110001," +
+                        "\"message\":\"Socket Timeout Exception\"" +
+                        "}";
+                return new Response(null, 500, tag.ip, duration, "timeout", str.getBytes(StandardCharsets.UTF_8), 500, "execute timeout");
+            } else {
+                throw new I2softException(e, e.getMessage());
+            }
         }
         r = Response.create(res, tag.ip, duration);
         // err

@@ -42,7 +42,7 @@ public final class Response {
     private byte[] body;
     private okhttp3.Response response;
 
-    private Response(okhttp3.Response response, int ret, String address, double duration, String msg, byte[] body, int code, String message) {
+    Response(okhttp3.Response response, int ret, String address, double duration, String msg, byte[] body, int code, String message) {
         this.response = response;
         this.duration = duration;
         this.address = address;
@@ -91,10 +91,14 @@ public final class Response {
     }
 
     public Map jsonToMap() throws I2softException {
-        if (isNotJson()) {
-            return null;
+        String b;
+        if (isNotJson() && bodyString().isEmpty()) {
+            b = "{" +
+                    "\"code\":11110000," +
+                    "\"message\":\"API Call Failed\"" +
+                    "}";
         }
-        String b = bodyString();
+        b = bodyString();
         if (Constants.LOG_HTTP) {
             StringUtils.printLog("RS: " + b);
         }
@@ -102,10 +106,14 @@ public final class Response {
     }
 
     public <T> T jsonToObject(Class<T> classOfT) throws I2softException {
-        if (isNotJson()) {
-            return null;
+        String b;
+        if (isNotJson() && bodyString().isEmpty()) {
+            b = "{" +
+                    "\"code\":11110000," +
+                    "\"message\":\"API Call Failed\"" +
+                    "}";
         }
-        String b = bodyString();
+        b = bodyString();
         if (Constants.LOG_HTTP) {
             StringUtils.printLog("RS: " + b);
         }
@@ -121,7 +129,7 @@ public final class Response {
             return body;
         }
         try {
-            this.body = response.body() != null ? response.body().bytes() : new byte[0];
+            this.body = (response != null && response.body() != null) ? response.body().bytes() : new byte[0];
         } catch (IOException e) {
             throw new I2softException(e);
         }
@@ -137,6 +145,9 @@ public final class Response {
     }
 
     private static String ctype(okhttp3.Response response) {
+        if (response == null) {
+            return "";
+        }
         MediaType mediaType = response.body() != null ? response.body().contentType() : null;
         if (mediaType == null) {
             return "";

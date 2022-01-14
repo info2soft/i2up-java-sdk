@@ -181,7 +181,7 @@ public class SyncRulesTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1602")); // 获取请求数据  oracle:1251 mysql:1472 kafka:1602
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = syncRules.listSyncRules("kafka", args); // 发送请求
+            Map rs = syncRules.listSyncRules("oracle", args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
