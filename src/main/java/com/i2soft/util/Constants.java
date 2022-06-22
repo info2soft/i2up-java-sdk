@@ -1,6 +1,7 @@
 package com.i2soft.util;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 /**
  * SDK相关配置常量
@@ -17,7 +18,7 @@ public final class Constants {
     /**
      * 所有都是UTF-8编码
      */
-    public static final Charset UTF_8 = Charset.forName("UTF-8");
+    public static final Charset UTF_8 = StandardCharsets.UTF_8;
     /**
      * 连接超时时间 单位秒(默认10s)
      */
