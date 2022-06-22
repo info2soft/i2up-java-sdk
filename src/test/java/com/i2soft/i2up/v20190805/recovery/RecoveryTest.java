@@ -11,7 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import com.i2soft.i2up.v20190805.util.TestConfig;
+import com.i2soft.i2up.util.TestConfig;
 
 import java.util.Map;
 import java.util.Objects;
