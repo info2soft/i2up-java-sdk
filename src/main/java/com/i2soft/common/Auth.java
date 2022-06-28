@@ -25,7 +25,7 @@ public final class Auth {
     public String cc_url;
 
     public String token;
-    public String sso_token;
+    public String refresh_token;
 
     public String ak;
     public String sk;
@@ -41,7 +41,7 @@ public final class Auth {
         this.authType = AUTH_TYPE_TOKEN;
         this.cc_url = cc_url;
         this.token = token;
-        this.sso_token = sso_token;
+        this.refresh_token = sso_token;
         this.cachePath = cachePath;
         this.client = client;
         this.configuration = configuration;
@@ -147,10 +147,10 @@ public final class Auth {
             throw new IllegalArgumentException("empty key");
         }
 
-        Client client = new Client(ip, configuration);
+        Client client = new Client(ip, configuration, cachePath);
 
         String token;
-        String ssoToken;
+        String refreshToken;
         StringMap cache = new StringMap();
         long timeStamp = System.currentTimeMillis() / 1000;
         File cacheFile = new File(cachePath + "i2up-java-sdk-cache.json");
@@ -166,7 +166,7 @@ public final class Auth {
                 || (long) cache.get("time") < timeStamp - 3600 * 2
                 || !cache.get("ip").equals(ip)
                 || cache.get("token") == null
-                || cache.get("sso_token") == null
+                || cache.get("refresh_token") == null
         ) {
             // http获取最新
             String url = String.format("%s/auth/token", client.cc_url); // 地址
@@ -175,24 +175,24 @@ public final class Auth {
             I2Rs.AuthRs authRs = Objects.requireNonNull(r.jsonToObject(I2Rs.AuthRs.class)); // 响应
 
             token = authRs.token;
-            ssoToken = authRs.sso_token;
+            refreshToken = authRs.refresh_token;
 
             // 更新缓存
             try {
-                cache.put("time", timeStamp).put("ip", ip).put("token", token).put("sso_token", ssoToken);
+                cache.put("time", timeStamp).put("ip", ip).put("token", token).put("refresh_token", refreshToken);
                 IOHelper.saveJsonFile(cacheFile, cache);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
             token = (String) cache.get("token");
-            ssoToken = (String) cache.get("sso_token");
+            refreshToken = (String) cache.get("refresh_token");
             if (Constants.LOG_HTTP) {
-                StringUtils.printLog("Cache token: " + token + ", sso_token: " + ssoToken);
+                StringUtils.printLog("Cache token: " + token + ", refresh_token: " + refreshToken);
             }
         }
 
-        return new Auth(client.cc_url, token, ssoToken, cachePath, client, configuration);
+        return new Auth(client.cc_url, token, refreshToken, cachePath, client, configuration);
     }
 
     /**
@@ -256,8 +256,8 @@ public final class Auth {
             throw new IllegalArgumentException("empty key");
         }
         String url = String.format("%s/auth/token", this.cc_url);
-        Response r = this.client.get(url, new StringMap().put("access_token", this.sso_token));
-        return Objects.requireNonNull(r.jsonToMap()).get("username").toString();
+        Response r = this.client.get(url, new StringMap().put("refresh_token", this.refresh_token));
+        return Objects.requireNonNull(r.jsonToMap()).toString();
     }
 
     /**

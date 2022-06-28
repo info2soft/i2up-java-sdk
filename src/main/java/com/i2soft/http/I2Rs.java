@@ -28,5 +28,6 @@ public class I2Rs {
          * sso_token
          */
         public String sso_token;
+        public String refresh_token;
     }
 }

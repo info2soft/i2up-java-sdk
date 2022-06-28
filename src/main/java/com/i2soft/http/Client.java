@@ -3,10 +3,12 @@ package com.i2soft.http;
 import com.i2soft.common.Auth;
 import com.i2soft.util.*;
 import okhttp3.*;
+import org.jetbrains.annotations.NotNull;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import javax.net.ssl.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.SocketTimeoutException;
@@ -28,7 +30,7 @@ public final class Client {
     private StringMap headers;
     private final OkHttpClient httpClient;
     public final String cc_url;
-
+    protected String cachePath;
     private Auth auth;
 
     /**
@@ -51,15 +53,30 @@ public final class Client {
                 cfg.connectionPoolMaxIdleCount, cfg.connectionPoolMaxIdleMinutes);
     }
 
+    public Client(String ip, Configuration cfg, String cachePath) {
+        this(ip, cfg.dns, cfg.useDnsHostFirst, cfg.proxy,
+                cfg.connectTimeout, cfg.readTimeout, cfg.writeTimeout,
+                cfg.dispatcherMaxRequests, cfg.dispatcherMaxRequestsPerHost,
+                cfg.connectionPoolMaxIdleCount, cfg.connectionPoolMaxIdleMinutes, cachePath);
+    }
+
+    public Client(final String ip, final Dns dns, final boolean hostFirst, final ProxyConfiguration proxy,
+                  int connTimeout, int readTimeout, int writeTimeout, int dispatcherMaxRequests,
+                  int dispatcherMaxRequestsPerHost, int connectionPoolMaxIdleCount,
+                  int connectionPoolMaxIdleMinutes) {
+        this(ip, dns,hostFirst,proxy, connTimeout, readTimeout, writeTimeout,dispatcherMaxRequests,
+                dispatcherMaxRequestsPerHost, connectionPoolMaxIdleCount, connectionPoolMaxIdleMinutes, "");
+    }
     /**
      * 构建一个自定义配置的 HTTP Client 类
      */
     public Client(final String ip, final Dns dns, final boolean hostFirst, final ProxyConfiguration proxy,
                   int connTimeout, int readTimeout, int writeTimeout, int dispatcherMaxRequests,
                   int dispatcherMaxRequestsPerHost, int connectionPoolMaxIdleCount,
-                  int connectionPoolMaxIdleMinutes) {
+                  int connectionPoolMaxIdleMinutes, String cachePath) {
 
         this.cc_url = String.format("%s/api", ip); // 控制机地址
+        this.cachePath = cachePath;
 
         Dispatcher dispatcher = new Dispatcher();
         dispatcher.setMaxRequests(dispatcherMaxRequests);
@@ -182,30 +199,75 @@ public final class Client {
     }
 
     public Response get(String url, StringMap query) throws I2softException {
+        String tempUrl = url;
         signAndPrintLog(url, "GET", query);
         if (query.size() != 0) {
             url += query.formString();
         }
         Request.Builder requestBuilder = new Request.Builder().url(url).get();
-        return send(requestBuilder);
+        Response r = send(requestBuilder);
+        // 如果返回403则重新刷新token并再次请求一次
+        if (r.ret == 403) {
+            r = resend(tempUrl, "GET", query);
+        }
+        return r;
     }
 
     public Response post(String url, StringMap body) throws I2softException {
         signAndPrintLog(url, "POST", body);
         Request.Builder requestBuilder = new Request.Builder().url(url).post(body.toJson());
-        return send(requestBuilder);
+        Response r = send(requestBuilder);
+        if (r.ret == 403) {
+            r = resend(url, "POST", body);
+        }
+        return r;
     }
 
     public Response put(String url, StringMap body) throws I2softException {
         signAndPrintLog(url, "PUT", body);
         Request.Builder requestBuilder = new Request.Builder().url(url).put(body.toJson());
-        return send(requestBuilder);
+        Response r = send(requestBuilder);
+        if (r.ret == 403) {
+            r = resend(url, "PUT", body);
+        }
+        return r;
     }
 
     public Response delete(String url, StringMap body) throws I2softException {
         signAndPrintLog(url, "DELETE", body);
         Request.Builder requestBuilder = new Request.Builder().url(url).delete(body.toJson());
-        return send(requestBuilder);
+        Response r = send(requestBuilder);
+        if (r.ret == 403) {
+            r = resend(url,"DELETE", body);
+        }
+        return r;
+    }
+
+    @NotNull
+    private Response resend(String url, String method, StringMap body) throws I2softException {
+        Request.Builder requestBuilder;
+        Response r;
+        signAndPrintLog(url, method, body);
+        if (body.size() != 0) {
+            url += body.formString();
+        }
+        switch (method) {
+            case "POST" :
+                requestBuilder = new Request.Builder().url(url).post(body.toJson());
+                break;
+            case "PUT" :
+                requestBuilder = new Request.Builder().url(url).put(body.toJson());
+                break;
+            case "DELETE" :
+                requestBuilder = new Request.Builder().url(url).delete(body.toJson());
+                break;
+            case "GET" :
+            default:
+                requestBuilder = new Request.Builder().url(url).get();
+                break;
+        }
+        r = send(requestBuilder);
+        return r;
     }
 
     // 加签名，打日志
@@ -251,6 +313,13 @@ public final class Client {
             }
         }
         r = Response.create(res, tag.ip, duration);
+
+        if (r.ret == 403) {
+            StringUtils.printLog("Refresh token.");
+            this.refreshToken();
+            return r;
+        }
+
         // err
         if (r.ret >= 300) {
             if (Constants.LOG_HTTP) {
@@ -350,5 +419,46 @@ public final class Client {
             ret.append(hex.toUpperCase());
         }
         return ret.toString();
+    }
+
+    // 自动刷新token
+    public void refreshToken() throws I2softException {
+        // http获取最新
+        String url = String.format("%s/auth/refresh_token", this.cc_url); // 地址
+        StringMap cache = new StringMap();
+        String ip = this.cc_url.substring(0, this.cc_url.lastIndexOf("/api"));
+        String token;
+        String refreshToken;
+
+        // 暂存缓存文件路径
+        File cacheFile = new File(this.cachePath + "i2up-java-sdk-cache.json");
+
+        try {
+            cache = IOHelper.readJsonFile(cacheFile); // 读取token缓存文件
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        long timeStamp = System.currentTimeMillis() / 1000;
+
+        // 请求refresh token接口并回写至缓存内
+        StringMap body = new StringMap().put("refresh_token", (String)cache.get("refresh_token")); // 参数
+        Response r = this.put(url, body);
+
+        I2Rs.AuthRs authRs = Objects.requireNonNull(r.jsonToObject(I2Rs.AuthRs.class)); // 响应
+
+        token = authRs.token;
+
+        refreshToken = authRs.refresh_token;
+        cache.put("time", timeStamp).put("ip", ip).put("token", token).put("refresh_token", refreshToken);
+        this.auth.token = token;
+        // 更新缓存
+        try {
+            cache.put("time", timeStamp).put("ip", ip).put("token", token).put("refresh_token", refreshToken);
+            IOHelper.saveJsonFile(cacheFile, cache);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return;
     }
 }
