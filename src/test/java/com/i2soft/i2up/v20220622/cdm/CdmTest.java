@@ -38,11 +38,11 @@ public class CdmTest {
     }
 
     @Test
-    public void T3181_createVpDrill() {
+    public void T3181_createCdmDrill() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "3181")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = cdm.createVpDrill(args); // 发送请求
+            Map rs = cdm.createCdmDrill(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -50,9 +50,21 @@ public class CdmTest {
     }
 
     @Test
-    public void T3187_describeVpDrill() {
+    public void T3187_describeCdmDrill() {
         try {
-            Map rs = cdm.describeVpDrill(); // 发送请求
+            String uuid = UUID.randomUUID().toString().toUpperCase();
+            Map rs = cdm.describeCdmDrill(uuid); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T3182_describeCdmDrillGroup() {
+        try {
+            String uuid = UUID.randomUUID().toString().toUpperCase();
+            Map rs = cdm.describeCdmDrillGroup(uuid); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

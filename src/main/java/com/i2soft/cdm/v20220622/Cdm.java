@@ -31,7 +31,7 @@ public final class Cdm {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map createVpDrill(StringMap args) throws I2softException {
+    public Map createCdmDrill(StringMap args) throws I2softException {
         String url = String.format("%s/cdm_drill", auth.cc_url);
         Response r = auth.client.post(url, args);
         return r.jsonToMap();
@@ -43,8 +43,20 @@ public final class Cdm {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map describeVpDrill() throws I2softException {
-        String url = String.format("%s/cdm_drill/group/", auth.cc_url);
+    public Map describeCdmDrill(String uuid) throws I2softException {
+        String url = String.format("%s/cdm_drill/%s", auth.cc_url, uuid);
+        Response r = auth.client.get(url, new StringMap());
+        return r.jsonToMap();
+    }
+
+    /**
+     * 自动演练规则 - 获取组
+     *
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map describeCdmDrillGroup(String uuid) throws I2softException {
+        String url = String.format("%s/vp/drill/group/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
         return r.jsonToMap();
     }
