@@ -840,7 +840,21 @@ public final class OracleRule extends Rule {
      * @throws I2softException:
      */
     public Map describeTbCmpCmpResult(String uuid, StringMap args) throws I2softException {
-        String url = String.format("%s/active/tb_cmp/cmp_result/%s", auth.cc_url, uuid);
+        String url = String.format("%s/active/tb_cmp/%s/cmp_result", auth.cc_url, uuid);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+
+    /**
+     * 表比较-比较结果
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map describeTbCmpStart(String uuid, StringMap args) throws I2softException {
+        String url = String.format("%s/active/tb_cmp/%s/start", auth.cc_url, uuid);
         Response r = auth.client.get(url, args);
         return r.jsonToMap();
     }

@@ -173,6 +173,18 @@ public class DataChkTest {
             e.printStackTrace();
         }
     }
+    @Test
+    public void T3811_describeTbCmpStart() {
+        try {
+            String uuid = UUID.randomUUID().toString().toUpperCase();
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "3811")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = dataChk.describeTbCmpStart(uuid, args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
     public void T3227_describeTbCmpCmpDesc() {
