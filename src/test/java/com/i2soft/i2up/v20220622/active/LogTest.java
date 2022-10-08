@@ -60,4 +60,15 @@ public class LogTest {
             e.printStackTrace();
         }
     }
+    @Test
+    public void T3849_getActiveLogAlarm() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "3849")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = log.getActiveLogAlarm(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
 }
