@@ -49,4 +49,16 @@ public final class Log {
         Response r = auth.client.post(url, args);
         return r.jsonToMap();
     }
+    /**
+     * Mysql-错误日志查询
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map getActiveLogAlarm(StringMap args) throws I2softException {
+        String url = String.format("%s/active/rule/log_alarm", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
 }
