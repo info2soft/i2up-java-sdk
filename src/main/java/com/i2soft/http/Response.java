@@ -97,11 +97,10 @@ public final class Response {
                     "\"code\":11110000," +
                     "\"message\":\"API Call Failed\"" +
                     "}";
+        } else {
+            b = bodyString();
         }
-        b = bodyString();
-        if (Constants.LOG_HTTP) {
-            StringUtils.printLog("RS: " + b);
-        }
+        StringUtils.printLog("RS: " + b);
         return Json.decode(b).map();
     }
 
@@ -112,11 +111,10 @@ public final class Response {
                     "\"code\":11110000," +
                     "\"message\":\"API Call Failed\"" +
                     "}";
+        } else {
+            b = bodyString();
         }
-        b = bodyString();
-        if (Constants.LOG_HTTP) {
-            StringUtils.printLog("RS: " + b);
-        }
+        StringUtils.printLog("RS: " + b);
         return Json.decode(b, classOfT);
     }
 

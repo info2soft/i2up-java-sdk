@@ -187,9 +187,7 @@ public final class Auth {
         } else {
             token = (String) cache.get("token");
             refreshToken = (String) cache.get("refresh_token");
-            if (Constants.LOG_HTTP) {
-                StringUtils.printLog("Cache token: " + token + ", refresh_token: " + refreshToken);
-            }
+            StringUtils.printLog("Cache token: " + token + ", refresh_token: " + refreshToken);
         }
 
         return new Auth(client.cc_url, token, refreshToken, cachePath, client, configuration);

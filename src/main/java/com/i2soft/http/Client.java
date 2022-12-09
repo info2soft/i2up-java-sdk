@@ -273,11 +273,9 @@ public final class Client {
     // 加签名，打日志
     private void signAndPrintLog(String url, String method, StringMap args) {
         addSignToHeader(method, url, args);
-        if (Constants.LOG_HTTP) {
-            System.out.println("\nURL: [" + method + "] " + url
+        StringUtils.printLog("\nURL: [" + method + "] " + url
                     + "\nHEADER: " + Json.encode(this.headers)
                     + "\nARGS: " + Json.encode(args));
-        }
     }
 
     private Response send(final Request.Builder requestBuilder) throws I2softException {
@@ -322,9 +320,7 @@ public final class Client {
 
         // err
         if (r.ret >= 300) {
-            if (Constants.LOG_HTTP) {
-                StringUtils.printLog("Http error code : " + r.ret + ", msg: " + r.msg);
-            }
+            StringUtils.printLog("Http error code : " + r.ret + ", msg: " + r.msg);
             throw new I2softException(r);
         }
 
