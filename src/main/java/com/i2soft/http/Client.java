@@ -3,6 +3,7 @@ package com.i2soft.http;
 import com.i2soft.common.Auth;
 import com.i2soft.util.*;
 import okhttp3.*;
+import org.apache.commons.codec.binary.Base64;
 import org.jetbrains.annotations.NotNull;
 
 import javax.crypto.Mac;
@@ -10,9 +11,13 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.net.ssl.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.net.InetAddress;
 import java.net.SocketTimeoutException;
+import java.net.URLDecoder;
 import java.net.UnknownHostException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -358,7 +363,7 @@ public final class Client {
         String time = String.valueOf(System.currentTimeMillis() / 1000);
         String uuid = UUID.randomUUID().toString();
         String secret;
-
+        String enhance;
         // AK or Token
         if (this.auth.authType.equals(Auth.AUTH_TYPE_AK_SK)) {
             headers.put("ACCESS-KEY", this.auth.ak);
@@ -388,9 +393,36 @@ public final class Client {
 
             // args
             args.put("_", randomStr); // 签名必备随机串
-
+            StringBuilder signField = new StringBuilder();
+            if (httpMethod.equals("GET")) {
+                StringMap newArgs = args.removeEmptyValue();// 去除空值
+                newArgs = new StringMap(ksort(newArgs));// 重新排序
+                String temp = newArgs.formString();// 构建url参数
+                signField.append(URLDecoder.decode(temp, "UTF-8"));
+                signField.deleteCharAt(0);//删除url自动补全的问号
+            } else {
+                Map<String, Object> map = ksort(args);
+                map.forEach((o, o2) -> {
+                    if (!(o2 instanceof String)) {
+                        o2 = Json.encode(o2);
+                        o2 = ((String) o2).replaceAll("\\\\\\\\", "\\\\");//属性内的\\\\改为\\
+                        o2 = ((String) o2).replaceAll("\\{}", "[]");//属性内的{}改为[]
+                    }
+                    if (o2.toString().length() == 0) {
+                        return;
+                    }
+                    signField.append(o).append("=").append(o2).append("&");
+                });
+                signField.deleteCharAt(signField.length()-1);
+            }
+            String enhanceStr = signField.toString();
+            enhanceStr = enhanceStr.replaceAll("\"", "");
+            enhance = bytes2HexString(sha256_HMAC.doFinal(enhanceStr.getBytes(StandardCharsets.UTF_8))).toLowerCase();
+            headers.put("enhanceStr", enhance);
         } catch (NoSuchAlgorithmException | InvalidKeyException e) {
             e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -456,5 +488,21 @@ public final class Client {
             e.printStackTrace();
         }
         return;
+    }
+
+    // 实现php的ksort方法
+    public static Map<String, Object> ksort(StringMap args)
+    {
+        Map<String, Object> sortMap = new TreeMap<>(new MapKeyComparator());
+        sortMap.putAll(args.map());
+        return sortMap;
+    }
+
+    private static class MapKeyComparator implements Comparator<String>{
+
+        @Override
+        public int compare(String o1, String o2) {
+            return o1.compareTo(o2);
+        }
     }
 }

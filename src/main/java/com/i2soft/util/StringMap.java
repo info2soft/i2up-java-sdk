@@ -300,4 +300,20 @@ public final class StringMap {
             }
         }
     }
+
+    public StringMap removeEmptyValue() {
+        StringMap temp = new StringMap();
+        for (String key : this.map.keySet()) {
+            Object value = this.map.get(key);
+            if (value.toString().length() != 0 && !value.toString().equals("[]")) {
+                // 纯字符串的值需要去掉其中的空格
+                if (value instanceof String) {
+                    temp.put(key, value.toString().replaceAll(" ", ""));
+                } else {
+                    temp.put(key, value.toString());
+                }
+            }
+        }
+        return temp;
+    }
 }
