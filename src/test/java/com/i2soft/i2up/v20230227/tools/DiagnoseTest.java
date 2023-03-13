@@ -1,4 +1,4 @@
-package com.i2soft.i2up.v20190805.common;
+package com.i2soft.i2up.v20230227.tools;
 
 import com.i2soft.common.Auth;
 import com.i2soft.http.I2Rs;
@@ -16,6 +16,7 @@ import com.i2soft.i2up.util.TestConfig;
 
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DiagnoseTest {
@@ -66,6 +67,16 @@ public class DiagnoseTest {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "652")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
             I2Rs.I2SmpRs rs = diagnose.deleteDiagnose(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T3450_listVpRules() {
+        try {
+            Map rs = diagnose.listVpRules(); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

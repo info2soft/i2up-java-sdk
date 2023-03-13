@@ -1,10 +1,10 @@
-package com.i2soft.i2up.v20190805.common;
+package com.i2soft.i2up.v20230227.common;
 
 import com.i2soft.common.Auth;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
-import com.i2soft.common.v20230227.Diagnose;
+import com.i2soft.common.v20230227.OpLogs;
 import com.i2soft.util.Configuration;
 import com.i2soft.util.StringMap;
 import org.junit.Assert;
@@ -16,16 +16,17 @@ import com.i2soft.i2up.util.TestConfig;
 
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class DiagnoseTest {
+public class OpLogsTest {
 
     private static Auth auth;
-    private static Diagnose diagnose;
+    private static OpLogs opLogs;
 
     @BeforeClass
     public static void setUp() {
-        if (diagnose != null) {
+        if (opLogs != null) {
             return;
         }
         try {
@@ -33,15 +34,15 @@ public class DiagnoseTest {
         } catch (I2softException e) {
             e.printStackTrace();
         }
-        diagnose = new Diagnose(auth);
+        opLogs = new OpLogs(auth);
     }
 
     @Test
-    public void T651_createDiagnose() {
+    public void T464_listOpLog() {
         try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "651")); // 获取请求数据
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "464")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = diagnose.createDiagnose(args); // 发送请求
+            Map rs = opLogs.listOpLog(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -49,11 +50,9 @@ public class DiagnoseTest {
     }
 
     @Test
-    public void T654_listDiagnose() {
+    public void T2387_importOpLog() {
         try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "654")); // 获取请求数据
-            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = diagnose.listDiagnose(args); // 发送请求
+            I2Rs.I2SmpRs rs = opLogs.importOpLog(); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -61,11 +60,35 @@ public class DiagnoseTest {
     }
 
     @Test
-    public void T652_deleteDiagnose() {
+    public void T466_downloadOpLog() {
         try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "652")); // 获取请求数据
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "466")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = diagnose.deleteDiagnose(args); // 发送请求
+            I2Rs.I2SmpRs rs = opLogs.downloadOpLog(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T465_deleteOpLog() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "465")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            I2Rs.I2SmpRs rs = opLogs.deleteOpLog(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T2391_listUserLog() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2391")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = opLogs.listUserLog(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

@@ -1,10 +1,10 @@
-package com.i2soft.i2up.v20190805.common;
+package com.i2soft.i2up.v20230227.resource;
 
 import com.i2soft.common.Auth;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
-import com.i2soft.common.v20230227.Diagnose;
+import com.i2soft.resource.v20230227.ReCyle;
 import com.i2soft.util.Configuration;
 import com.i2soft.util.StringMap;
 import org.junit.Assert;
@@ -16,16 +16,17 @@ import com.i2soft.i2up.util.TestConfig;
 
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class DiagnoseTest {
+public class ReCyleTest {
 
     private static Auth auth;
-    private static Diagnose diagnose;
+    private static ReCyle reCyle;
 
     @BeforeClass
     public static void setUp() {
-        if (diagnose != null) {
+        if (reCyle != null) {
             return;
         }
         try {
@@ -33,15 +34,15 @@ public class DiagnoseTest {
         } catch (I2softException e) {
             e.printStackTrace();
         }
-        diagnose = new Diagnose(auth);
+        reCyle = new ReCyle(auth);
     }
 
     @Test
-    public void T651_createDiagnose() {
+    public void T3238_listRecycle() {
         try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "651")); // 获取请求数据
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "3238")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = diagnose.createDiagnose(args); // 发送请求
+            Map rs = reCyle.listRecycle(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -49,11 +50,11 @@ public class DiagnoseTest {
     }
 
     @Test
-    public void T654_listDiagnose() {
+    public void T3241_deleteRecycle() {
         try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "654")); // 获取请求数据
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "3241")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = diagnose.listDiagnose(args); // 发送请求
+            Map rs = reCyle.deleteRecycle(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -61,11 +62,11 @@ public class DiagnoseTest {
     }
 
     @Test
-    public void T652_deleteDiagnose() {
+    public void T3242_listRecycleStatus() {
         try {
-            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "652")); // 获取请求数据
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "3242")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = diagnose.deleteDiagnose(args); // 发送请求
+            Map rs = reCyle.listRecycleStatus(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

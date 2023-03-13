@@ -1,4 +1,4 @@
-package com.i2soft.common;
+package com.i2soft.common.v20230227;
 
 import com.i2soft.http.I2Req;
 import com.i2soft.http.I2Rs;
@@ -9,7 +9,7 @@ import com.i2soft.util.StringMap;
 
 import java.util.Map;
 
-public final class Diagnose {
+public final class DbConvert {
     /**
      * Auth 对象
      */
@@ -20,46 +20,45 @@ public final class Diagnose {
      *
      * @param auth Auth对象
      */
-    public Diagnose(Auth auth) {
+    public DbConvert(Auth auth) {
         this.auth = auth;
     }
 
     /**
-     * 诊断 - 新建
+     * 上传备份数据
      *
-     * @param args: 参数详见 API 手册
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs createDiagnose(StringMap args) throws I2softException {
-        String url = String.format("%s/diagnose", auth.cc_url);
-        Response r = auth.client.post(url, args);
+    public I2Rs.I2SmpRs dbConvertImport() throws I2softException {
+        String url = String.format("%s/db_convert/import", auth.cc_url);
+        Response r = auth.client.post(url, new StringMap());
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 
     /**
-     * 诊断 - 获取列表
+     * 获取convert列表
      *
      * @param args: 参数详见 API 手册
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map listDiagnose(StringMap args) throws I2softException {
-        String url = String.format("%s/diagnose", auth.cc_url);
+    public Map dbConvertListConverts(StringMap args) throws I2softException {
+        String url = String.format("%s/db_convert/convert_list", auth.cc_url);
         Response r = auth.client.get(url, args);
         return r.jsonToMap();
     }
 
     /**
-     * 诊断 - 删除
+     * 执行迁移
      *
      * @param args: 参数详见 API 手册
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs deleteDiagnose(StringMap args) throws I2softException {
-        String url = String.format("%s/diagnose", auth.cc_url);
-        Response r = auth.client.delete(url, args);
+    public I2Rs.I2SmpRs dbConvertMigrate(StringMap args) throws I2softException {
+        String url = String.format("%s/db_convert/migrate", auth.cc_url);
+        Response r = auth.client.post(url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 }
