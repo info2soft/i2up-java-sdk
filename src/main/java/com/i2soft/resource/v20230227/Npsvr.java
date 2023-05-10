@@ -110,8 +110,8 @@ public final class Npsvr {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs switchNpsvrMaintenance(StringMap args) throws I2softException {
-        String url = String.format("%s/vp/npsvr/maintenance", auth.cc_url);
+    public I2Rs.I2SmpRs npsvrOperate(StringMap args) throws I2softException {
+        String url = String.format("%s/vp/npsvr/operate", auth.cc_url);
         Response r = auth.client.post(url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }

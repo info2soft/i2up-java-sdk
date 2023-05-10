@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import com.i2soft.i2up.util.TestConfig;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
@@ -111,11 +112,11 @@ public class NpsvrTest {
     }
 
     @Test
-    public void T4087_switchNpsvrMaintenance() {
+    public void T4087_npsvrOperate() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "4087")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = npsvr.switchNpsvrMaintenance(args); // 发送请求
+            I2Rs.I2SmpRs rs = npsvr.npsvrOperate(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
