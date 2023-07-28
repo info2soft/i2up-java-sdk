@@ -365,7 +365,10 @@ public final class Client {
         String secret;
         String enhance;
         // AK or Token
-        if (this.auth.authType.equals(Auth.AUTH_TYPE_AK_SK)) {
+        // skip sign for public_settings
+        if (url.contains("sys/public_settings")) {
+            return;
+        } else if (this.auth.authType.equals(Auth.AUTH_TYPE_AK_SK)) {
             headers.put("ACCESS-KEY", this.auth.ak);
             secret = this.auth.sk;
         } else {

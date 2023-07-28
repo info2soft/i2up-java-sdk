@@ -168,10 +168,24 @@ public final class Auth {
                 || cache.get("token") == null
                 || cache.get("refresh_token") == null
         ) {
+            // 先获取公钥保存在文件/public_key.pem内
+            String url = String.format("%s/sys/public_settings", client.cc_url); // 地址
+            StringMap body = new StringMap(); // 参数
+            Response r = client.get(url, body);
+            Map publicKey = r.jsonToMap();
+            Rsa rsa = new Rsa();
+            String keyTrimmed = publicKey.get("pubKey").toString().trim()
+                    .replaceAll(System.lineSeparator(), "")
+                    .replace("\\\\n", "")
+                    .replace("-----BEGIN PUBLIC KEY-----", "")
+                    .replace("-----END PUBLIC KEY-----", "")
+                    .replace("\\u003d", "=");
+            rsa.writeStringToFile("public_key.pem", keyTrimmed);
             // http获取最新
-            String url = String.format("%s/auth/token", client.cc_url); // 地址
-            StringMap body = new StringMap().put("username", user).put("pwd", pwd); // 参数
-            Response r = client.post(url, body);
+            url = String.format("%s/auth/token", client.cc_url); // 地址
+            pwd = rsa.encryptByPublicKey(pwd); // 加密
+            body = new StringMap().put("username", user).put("pwd", pwd); // 参数
+            r = client.post(url, body);
             I2Rs.AuthRs authRs = Objects.requireNonNull(r.jsonToObject(I2Rs.AuthRs.class)); // 响应
 
             token = authRs.token;
