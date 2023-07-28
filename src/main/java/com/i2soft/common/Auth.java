@@ -21,6 +21,9 @@ public final class Auth {
 
     public static String AUTH_TYPE_TOKEN = "token";
     public static String AUTH_TYPE_AK_SK = "ak_sk";
+    public static String cachePathDefault = "";
+    public static String ccUrlDefault = "";
+    public static Client clientDefault = null;
 
     public String cc_url;
 
@@ -45,6 +48,9 @@ public final class Auth {
         this.cachePath = cachePath;
         this.client = client;
         this.configuration = configuration;
+        cachePathDefault = cachePath;
+        ccUrlDefault = cc_url;
+        clientDefault = client;
         client.setAuth(this);
     }
 
@@ -55,6 +61,8 @@ public final class Auth {
         this.sk = sk;
         this.client = client;
         this.configuration = configuration;
+        ccUrlDefault = cc_url;
+        clientDefault = client;
         client.setAuth(this);
     }
 
@@ -168,29 +176,14 @@ public final class Auth {
                 || cache.get("token") == null
                 || cache.get("refresh_token") == null
         ) {
-            // 先获取公钥保存在文件/public_key.pem内
-            String url = String.format("%s/sys/public_settings", client.cc_url); // 地址
-            StringMap body = new StringMap(); // 参数
-            Response r = client.get(url, body);
-            Map publicKey = r.jsonToMap();
-            Rsa rsa = new Rsa();
-            String keyTrimmed = publicKey.get("pubKey").toString().trim()
-                    .replaceAll(System.lineSeparator(), "")
-                    .replace("\\\\n", "")
-                    .replace("-----BEGIN PUBLIC KEY-----", "")
-                    .replace("-----END PUBLIC KEY-----", "")
-                    .replace("\\u003d", "=");
-            rsa.writeStringToFile("public_key.pem", keyTrimmed);
             // http获取最新
-            url = String.format("%s/auth/token", client.cc_url); // 地址
-            pwd = rsa.encryptByPublicKey(pwd); // 加密
-            body = new StringMap().put("username", user).put("pwd", pwd); // 参数
-            r = client.post(url, body);
+            String url = String.format("%s/auth/token", client.cc_url); // 地址
+            StringMap body = new StringMap().put("username", user).put("pwd", pwd); // 参数
+            Response r = client.post(url, body);
             I2Rs.AuthRs authRs = Objects.requireNonNull(r.jsonToObject(I2Rs.AuthRs.class)); // 响应
 
             token = authRs.token;
             refreshToken = authRs.refresh_token;
-
             // 更新缓存
             try {
                 cache.put("time", timeStamp).put("ip", ip).put("token", token).put("refresh_token", refreshToken);
@@ -283,5 +276,17 @@ public final class Auth {
         String url = String.format("%s/auth/heartbeat", this.cc_url);
         Response r = this.client.put(url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    public static String getCachePath() {
+        return cachePathDefault;
+    }
+
+    public static String getCcUrlDefault() {
+        return ccUrlDefault;
+    }
+
+    public static Client getClientDefault() {
+        return clientDefault;
     }
 }
