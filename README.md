@@ -4,14 +4,15 @@ I2UP Java SDK
 简介
 ==
 
-此 SDK 适用于 Java 8 及以上版本。使用此 SDK 构建您的网络应用程序，无论您的网络应用是一个网站程序，还是包括从云端（服务端程序）到终端（手持设备应用）的架构服务或应用，都能让您以非常便捷地方式使用英方统一数据管理平台（下简称“英方平台”）管理您的业务，同时也让您的服务端更加轻盈。
+此 SDK 适用于 Java 8 。使用此 SDK 构建您的网络应用程序，无论您的网络应用是一个网站程序，还是包括从云端（服务端程序）到终端（手持设备应用）的架构服务或应用，都能让您以非常便捷地方式使用英方统一数据管理平台（下简称“英方平台”）管理您的业务，同时也让您的服务端更加轻盈。
 
 I2UP Java SDK 属于英方服务端SDK之一，主要用于管理您英方平台上的服务器保护配置。
 
 开源
 ==
 
-*   [Java SDK 发布地址](https://github.com/info2soft/i2up-java-sdk)
+*   [Java SDK 发布地址](https://gitee.com/i2soft/i2up-java-sdk)
+*   [Java SDK 备用地址](https://github.com/info2soft/i2up-java-sdk)
 
 安装
 ==
@@ -22,7 +23,7 @@ I2UP Java SDK 属于英方服务端SDK之一，主要用于管理您英方平台
 
 ### Gradle
 
-    compile 'org.info2soft:i2up-java-sdk:7.1.70'
+    compile 'org.info2soft:i2up-java-sdk:7.1.76.0'
 
 
 ### Maven
@@ -30,10 +31,10 @@ I2UP Java SDK 属于英方服务端SDK之一，主要用于管理您英方平台
     <dependency>
       <groupId>org.info2soft</groupId>
       <artifactId>i2up-java-sdk</artifactId>
-      <version>[7.1.55, 7.1.70]</version>
+      <version>[7.1.74.6, 7.1.76.0]</version>
     </dependency>
 
-这里的`version`指定了一个版本范围，每次更新`pom.xml`的时候会尝试去下载`7.1.x`版本中的最新版本，你可以手动指定一个固定的版本。
+这里的`version`指定了一个版本范围，每次更新`pom.xml`的时候会尝试去下载`7.1.x`版本中的最新版本，你可以手动指定一个**固定的版本**。
 
 ### 手动安装
 
@@ -51,13 +52,13 @@ Java SDK依赖的第三方库及其版本如下：
         <dependency>
           <groupId>com.squareup.okhttp3</groupId>
           <artifactId>okhttp</artifactId>
-          <version>3.3.1</version>
+          <version>4.9.3</version>
           <scope>compile</scope>
         </dependency>
         <dependency>
           <groupId>com.google.code.gson</groupId>
           <artifactId>gson</artifactId>
-          <version>2.6.2</version>
+          <version>2.9.0</version>
           <scope>compile</scope>
         </dependency>
         <dependency>
@@ -93,6 +94,45 @@ Java SDK依赖的第三方库及其版本如下：
 7. 异常：I2softException 会在发生 http 错误或方法执行异常时抛出，其中 response 中有错误的详细信息。
 
 如下为获取节点列表
+
+### AK、SK 鉴权
+
+    import com.i2soft.common.Auth;
+    import com.i2soft.http.I2softException;
+    import com.i2soft.resource.v20190805.Node;
+    import com.i2soft.util.Configuration;
+    import com.i2soft.util.StringMap;
+
+    import java.util.Map;
+
+    public class Demo {
+
+        public static void main(String[] args) {
+            try {
+                String ip = "http://[ip]:[port]";                        // 英方平台地址
+                String ak = "oishvmn5YPHJcEDaIjtwd0R9Ug7BN1fk";          // 英方平台 Access Key
+                String sk = "fkLiyqsG3P1AzB5jWtYbZa7TU8RN9wSVhe6EldOo";  // 英方平台 Secret Key
+    
+                // 鉴权
+                Auth auth = Auth.access(ip, ak, sk);
+
+                // 设置语言
+                auth.client.setHeader("User-Lang", "zh-CN");
+
+                // 实例化节点管理类
+                Node node = new Node(auth);
+
+                // 获取节点列表
+                StringMap listArgs = new StringMap().put("limit", 1).put("direction", "DESC"); // 填充请求数据
+                Map rs = node.listNode(listArgs);
+
+                // 如访问正常，此处 rs 包含 info_list（节点列表）
+                System.out.println(rs);
+            } catch (I2softException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 ### 用户名密码鉴权：
 
@@ -133,50 +173,11 @@ Java SDK依赖的第三方库及其版本如下：
             }
         }
     }
-    
-### AK、SK 鉴权
-
-    import com.i2soft.common.Auth;
-    import com.i2soft.http.I2softException;
-    import com.i2soft.resource.v20190805.Node;
-    import com.i2soft.util.Configuration;
-    import com.i2soft.util.StringMap;
-
-    import java.util.Map;
-
-    public class Demo {
-
-        public static void main(String[] args) {
-            try {
-                String ip = "http://[ip]:[port]";                        // 英方平台地址
-                String ak = "oishvmn5YPHJcEDaIjtwd0R9Ug7BN1fk";          // 英方平台 Access Key
-                String sk = "fkLiyqsG3P1AzB5jWtYbZa7TU8RN9wSVhe6EldOo";  // 英方平台 Secret Key
-    
-                // 鉴权
-                Auth auth = Auth.access(ip, ak, sk);
-
-                // 设置语言
-                auth.client.setHeader("User-Lang", "zh-CN");
-
-                // 实例化节点管理类
-                Node node = new Node(auth);
-
-                // 获取节点列表
-                StringMap listArgs = new StringMap().put("limit", 1).put("direction", "DESC"); // 填充请求数据
-                Map rs = node.listNode(listArgs);
-
-                // 如访问正常，此处 rs 包含 info_list（节点列表）
-                System.out.println(rs);
-            } catch (I2softException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
 API 参考
 ======
 
-*   SDK具体方法的详细参数请参照 [API 参考](https://i2up-api-doc.info2soft.com/apiref/)。
+*   SDK方法的详细参数请参照 [API 参考](https://docs.i2yun.com/i2up-docs/)。
 
 常见问题
 ====
