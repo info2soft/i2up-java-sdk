@@ -411,7 +411,7 @@ public final class Client {
                         o2 = ((String) o2).replaceAll("\\\\\\\\", "\\\\");//属性内的\\\\改为\\
                         o2 = ((String) o2).replaceAll("\\{}", "[]");//属性内的{}改为[]
                     }
-                    if (o2.toString().length() == 0) {
+                    if (o2.toString().isEmpty()) {
                         return;
                     }
                     signField.append(o).append("=").append(o2).append("&");

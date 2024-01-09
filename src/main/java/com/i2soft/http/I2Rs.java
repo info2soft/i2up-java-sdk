@@ -30,4 +30,10 @@ public class I2Rs {
         public String sso_token;
         public String refresh_token;
     }
+
+    public class I2PublicRs {
+        public Integer code;
+        public String message;
+        public String pubKey;
+    }
 }
