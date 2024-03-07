@@ -1,5 +1,5 @@
 package com.i2soft.resource.v20190805;
-
+// CHECKSTYLE:OFF
 /**
  * 这里定义了请求相关回复的封装类
  */

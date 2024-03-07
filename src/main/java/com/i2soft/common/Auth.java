@@ -1,12 +1,13 @@
 package com.i2soft.common;
 
 import com.i2soft.http.Client;
-import com.i2soft.http.I2Req;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
-import com.i2soft.common.Auth;
-import com.i2soft.util.*;
+import com.i2soft.util.Configuration;
+import com.i2soft.util.IOHelper;
+import com.i2soft.util.StringMap;
+import com.i2soft.util.StringUtils;
 
 import java.io.File;
 import java.io.IOException;

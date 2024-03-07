@@ -1,9 +1,9 @@
 package com.i2soft.i2up.v20190805.gts;
 
 import com.i2soft.common.Auth;
+import com.i2soft.gts.v20190805.GTS;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
-import com.i2soft.gts.v20190805.GTS;
 import com.i2soft.i2up.util.TestConfig;
 import com.i2soft.util.Configuration;
 import com.i2soft.util.StringMap;

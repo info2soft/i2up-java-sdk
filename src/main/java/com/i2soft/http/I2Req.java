@@ -4,6 +4,7 @@ import com.i2soft.util.StringMap;
 
 import java.util.Map;
 
+// CHECKSTYLE:OFF
 /**
  * 这里定义了请求参数的封装类
  */

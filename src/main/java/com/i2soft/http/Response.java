@@ -1,6 +1,5 @@
 package com.i2soft.http;
 
-import com.i2soft.util.Constants;
 import com.i2soft.util.Json;
 import com.i2soft.util.StringUtils;
 import okhttp3.MediaType;
@@ -93,10 +92,10 @@ public final class Response {
     public Map jsonToMap() throws I2softException {
         String b;
         if (isNotJson() && bodyString().isEmpty()) {
-            b = "{" +
-                    "\"code\":11110000," +
-                    "\"message\":\"API Call Failed\"" +
-                    "}";
+            b = "{"
+                    + "\"code\":11110000,"
+                    + "\"message\":\"API Call Failed\""
+                    + "}";
         } else {
             b = bodyString();
         }
@@ -107,10 +106,10 @@ public final class Response {
     public <T> T jsonToObject(Class<T> classOfT) throws I2softException {
         String b;
         if (isNotJson() && bodyString().isEmpty()) {
-            b = "{" +
-                    "\"code\":11110000," +
-                    "\"message\":\"API Call Failed\"" +
-                    "}";
+            b = "{"
+                    + "\"code\":11110000,"
+                    + "\"message\":\"API Call Failed\""
+                    + "}";
         } else {
             b = bodyString();
         }

@@ -1,12 +1,10 @@
 package com.i2soft.i2up.v20220622.util;
 
 import com.i2soft.common.Auth;
-import com.i2soft.util.Configuration;
-import com.i2soft.util.Constants;
-import com.i2soft.http.I2softException;
 import com.i2soft.http.Client;
-import com.i2soft.http.ProxyConfiguration;
+import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
+import com.i2soft.util.Configuration;
 import com.i2soft.util.StringMap;
 import org.junit.Assert;
 import org.junit.Before;

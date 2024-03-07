@@ -3,7 +3,6 @@ package com.i2soft.http;
 import com.i2soft.common.Auth;
 import com.i2soft.util.*;
 import okhttp3.*;
-import org.apache.commons.codec.binary.Base64;
 import org.jetbrains.annotations.NotNull;
 
 import javax.crypto.Mac;
@@ -12,12 +11,10 @@ import javax.net.ssl.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Array;
 import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 import java.net.URLDecoder;
 import java.net.UnknownHostException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -69,9 +66,10 @@ public final class Client {
                   int connTimeout, int readTimeout, int writeTimeout, int dispatcherMaxRequests,
                   int dispatcherMaxRequestsPerHost, int connectionPoolMaxIdleCount,
                   int connectionPoolMaxIdleMinutes) {
-        this(ip, dns,hostFirst,proxy, connTimeout, readTimeout, writeTimeout,dispatcherMaxRequests,
+        this(ip, dns, hostFirst, proxy, connTimeout, readTimeout, writeTimeout, dispatcherMaxRequests,
                 dispatcherMaxRequestsPerHost, connectionPoolMaxIdleCount, connectionPoolMaxIdleMinutes, "");
     }
+
     /**
      * 构建一个自定义配置的 HTTP Client 类
      */
@@ -243,7 +241,7 @@ public final class Client {
         Request.Builder requestBuilder = new Request.Builder().url(url).delete(body.toJson());
         Response r = send(requestBuilder);
         if (r.ret == 403) {
-            r = resend(url,"DELETE", body);
+            r = resend(url, "DELETE", body);
         }
         return r;
     }
@@ -257,16 +255,16 @@ public final class Client {
             url += body.formString();
         }
         switch (method) {
-            case "POST" :
+            case "POST":
                 requestBuilder = new Request.Builder().url(url).post(body.toJson());
                 break;
-            case "PUT" :
+            case "PUT":
                 requestBuilder = new Request.Builder().url(url).put(body.toJson());
                 break;
-            case "DELETE" :
+            case "DELETE":
                 requestBuilder = new Request.Builder().url(url).delete(body.toJson());
                 break;
-            case "GET" :
+            case "GET":
             default:
                 requestBuilder = new Request.Builder().url(url).get();
                 break;
@@ -279,8 +277,8 @@ public final class Client {
     private void signAndPrintLog(String url, String method, StringMap args) {
         addSignToHeader(method, url, args);
         StringUtils.printLog("\nURL: [" + method + "] " + url
-                    + "\nHEADER: " + Json.encode(this.headers)
-                    + "\nARGS: " + Json.encode(args));
+                + "\nHEADER: " + Json.encode(this.headers)
+                + "\nARGS: " + Json.encode(args));
     }
 
     private Response send(final Request.Builder requestBuilder) throws I2softException {
@@ -416,7 +414,7 @@ public final class Client {
                     }
                     signField.append(o).append("=").append(o2).append("&");
                 });
-                signField.deleteCharAt(signField.length()-1);
+                signField.deleteCharAt(signField.length() - 1);
             }
             String enhanceStr = signField.toString();
             enhanceStr = enhanceStr.replaceAll("\"", "");
@@ -473,7 +471,7 @@ public final class Client {
         long timeStamp = System.currentTimeMillis() / 1000;
 
         // 请求refresh token接口并回写至缓存内
-        StringMap body = new StringMap().put("refresh_token", (String)cache.get("refresh_token")); // 参数
+        StringMap body = new StringMap().put("refresh_token", (String) cache.get("refresh_token")); // 参数
         Response r = this.put(url, body);
 
         I2Rs.AuthRs authRs = Objects.requireNonNull(r.jsonToObject(I2Rs.AuthRs.class)); // 响应
@@ -494,14 +492,13 @@ public final class Client {
     }
 
     // 实现php的ksort方法
-    public static Map<String, Object> ksort(StringMap args)
-    {
+    public static Map<String, Object> ksort(StringMap args) {
         Map<String, Object> sortMap = new TreeMap<>(new MapKeyComparator());
         sortMap.putAll(args.map());
         return sortMap;
     }
 
-    private static class MapKeyComparator implements Comparator<String>{
+    private static class MapKeyComparator implements Comparator<String> {
 
         @Override
         public int compare(String o1, String o2) {

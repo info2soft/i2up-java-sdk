@@ -5,6 +5,7 @@ import com.i2soft.dtrack.v20220622.Dtrack;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
+import com.i2soft.i2up.util.TestConfig;
 import com.i2soft.util.Configuration;
 import com.i2soft.util.StringMap;
 import org.junit.Assert;
@@ -12,7 +13,6 @@ import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import com.i2soft.i2up.util.TestConfig;
 
 import java.util.Map;
 import java.util.Objects;

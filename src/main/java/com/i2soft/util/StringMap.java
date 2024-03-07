@@ -5,7 +5,10 @@ import okhttp3.RequestBody;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 封装 http 请求参数，query/body 的参数转换（json/url args）

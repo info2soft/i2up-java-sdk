@@ -5,6 +5,7 @@ import com.i2soft.http.I2Req;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
+import com.i2soft.i2up.util.TestConfig;
 import com.i2soft.resource.v20190805.Node;
 import com.i2soft.resource.v20190805.ResRs;
 import com.i2soft.util.StringMap;
@@ -13,7 +14,6 @@ import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import com.i2soft.i2up.util.TestConfig;
 
 import java.util.Map;
 import java.util.Objects;
@@ -32,7 +32,7 @@ public class NodeTest {
         if (node != null) {
             return;
         }
-        auth = Auth.access(TestConfig.ip, TestConfig.ak, TestConfig.sk);
+        auth = Auth.access(TestConfig.ip, TestConfig.ak, TestConfig.sk, TestConfig.cachePath);
         node = new Node(auth);
     }
 

@@ -27,10 +27,10 @@ public class IOHelper {
             return;
         }
         File fileParent = file.getParentFile();
-        if (!fileParent.exists()) {
+        if (fileParent != null && !fileParent.exists()) {
             fileParent.mkdirs();
-            file.createNewFile();
         }
+        file.createNewFile();
         Writer writer = new FileWriter(file);
         writer.write(content);
         writer.close();

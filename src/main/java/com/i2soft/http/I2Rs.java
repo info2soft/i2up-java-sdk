@@ -16,6 +16,7 @@ public class I2Rs {
         public String uuid;
     }
 
+    // CHECKSTYLE:OFF
     /**
      * auth/token
      */

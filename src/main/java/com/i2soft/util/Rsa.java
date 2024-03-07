@@ -24,7 +24,8 @@ public class Rsa {
     private String priKey = "";
     private String pubKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5fU404fG3lxBsT5xzY9DKj71SKR89T0/vXMgXaVNxUzOZWMj7jk97gqgcl+KghWNs0WtDLSVfSZTpIUEZDd8lAwMNUJ3rgLSeYEFxiYyA1C2jzt1pGxFQLuPtyMrRtkz1T/WmVjvgxnxrupYofh0blJIrcQdn86UMClxcD7+tPklTORjd24WVNrCt/x3zjR1oX68RYhhE1uBcVcFxjC0AXDjCiMonN31C981+9lmxr5sXRqFgrp0SmVURjoGnAIq00fqsd3VS5U6SZfNbzj9kvjOsyZDMTSusd33J7sz7ClrZs/2rYVW4FIrTOtAPqnbLBbsgZB2l0fAzCyzSOlTawIDAQAB";
     private String encryptMethod = "Rsa/ECB/PKCS1Padding"; // 默认Padding
-    public Rsa(){
+
+    public Rsa() {
         // 读取缓存公钥文件
         String FilePath = Auth.getCachePath() + File.separator + "pub_key.json";
         File pubKeyFile = new File(FilePath);
