@@ -2,13 +2,13 @@ package com.i2soft.i2up.util;
 
 public final class TestConfig {
 
-    public static final String ip = "https://172.20.2.221:58086";
+    public static final String ip = "https://172.20.68.251:58086";
     public static final String user = "admin";
-    public static final String pwd = "info1234";
+    public static final String pwd = "Info@12345";
     public static final String cachePath = "D:\\cache\\";
 
-    public static final String ak = "72NMXZirnLbxKtkuPRI1AcGWpqHVvSJo";
-    public static final String sk = "brmxdLKzXScohiPGvMwCy30lVWHa62Q8ufjE4AOn";
+    public static final String ak = "RkIfboCzhin48STxs3DP0p6HXGmYML5a";
+    public static final String sk = "dxols5TNDrF31g2OtQaLz0JWpwEYRhyPHbuA87Kn";
 
     public static final String rapDataUrl = "https://rap2api.info2soft.com/app/mock/data/%s?scope=request";
 

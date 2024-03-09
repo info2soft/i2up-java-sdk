@@ -20,7 +20,7 @@ public class I2Rs {
     /**
      * auth/token
      */
-    public class AuthRs {
+    public class AuthRs extends I2SmpRs {
         /**
          * token
          */

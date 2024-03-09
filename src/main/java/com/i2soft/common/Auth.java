@@ -55,13 +55,15 @@ public final class Auth {
         client.setAuth(this);
     }
 
-    private Auth(String cc_url, String ak, String sk, Client client, Configuration configuration) {
+    private Auth(String cc_url, String ak, String sk, Client client, String cachePath, Configuration configuration) {
         this.authType = AUTH_TYPE_AK_SK;
         this.cc_url = cc_url;
         this.ak = ak;
         this.sk = sk;
+        this.cachePath = cachePath;
         this.client = client;
         this.configuration = configuration;
+        cachePathDefault = cachePath;
         ccUrlDefault = cc_url;
         clientDefault = client;
         client.setAuth(this);
@@ -127,17 +129,43 @@ public final class Auth {
      * @param configuration:
      * @return Auth:
      */
+    @Deprecated
     public static Auth access(String ip, String ak, String sk, Configuration configuration) {
+        return access(ip, ak, sk, "", configuration);
+    }
+
+    /**
+     * 用 ACCESS-KEY，构建 Auth 对象
+     *
+     * @param ip:
+     * @param ak:
+     * @param sk:
+     * @param configuration:
+     * @return Auth:
+     */
+    public static Auth access(String ip, String ak, String sk, String cachePath, Configuration configuration) {
         if (StringUtils.isNullOrEmpty(ip) || StringUtils.isNullOrEmpty(ak) || StringUtils.isNullOrEmpty(sk)) {
             throw new IllegalArgumentException("empty key");
         }
 
         Client client = new Client(ip, configuration);
-        return new Auth(client.cc_url, ak, sk, client, configuration);
+        return new Auth(client.cc_url, ak, sk, client, cachePath, configuration);
     }
 
+    /**
+     * Deprecated: Use Auth access(String ip, String ak, String sk, String cachePath) instead
+     * @param ip
+     * @param ak
+     * @param sk
+     * @return
+     */
+    @Deprecated
     public static Auth access(String ip, String ak, String sk) {
         return access(ip, ak, sk, new Configuration());
+    }
+
+    public static Auth access(String ip, String ak, String sk, String cachePath) {
+        return access(ip, ak, sk, cachePath, new Configuration());
     }
 
     /**
@@ -172,17 +200,21 @@ public final class Auth {
 
         // 没缓存，或缓存过期，就http获取最新的，并更新（创建）这个文件；有有效缓存，用缓存
         if (cache.size() == 0
-                || (long) cache.get("time") < timeStamp - 3600 * 2
+                || (long) cache.get("time") < timeStamp - 60 * 10
                 || !cache.get("ip").equals(ip)
                 || cache.get("token") == null
                 || cache.get("refresh_token") == null
         ) {
             // http获取最新
             String url = String.format("%s/auth/token", client.cc_url); // 地址
-            StringMap body = new StringMap().put("username", user).put("pwd", pwd); // 参数
+            StringMap body = new StringMap().put("username", user).put("password", pwd).put("pwd", pwd); // 参数
             Response r = client.post(url, body);
             I2Rs.AuthRs authRs = Objects.requireNonNull(r.jsonToObject(I2Rs.AuthRs.class)); // 响应
 
+            Integer code = authRs.code;
+            if (code != 0) {
+                throw new IllegalArgumentException("token generate failed" + authRs.code + " - " + authRs.message);
+            }
             token = authRs.token;
             refreshToken = authRs.refresh_token;
             // 更新缓存

@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 public final class Client {
     static final String JsonMime = "application/json";
     public static final MediaType JSONMedia = MediaType.parse("application/json; charset=utf-8");
-    private static final String[] NoneAuth = {"/api/auth/token"};
+    private static final String[] NoneAuth = {"/api/auth/token", "/api/sys/public_settings"};
     private StringMap headers;
     private final OkHttpClient httpClient;
     public final String cc_url;
@@ -363,10 +363,7 @@ public final class Client {
         String secret;
         String enhance;
         // AK or Token
-        // skip sign for public_settings
-        if (url.contains("sys/public_settings")) {
-            return;
-        } else if (this.auth.authType.equals(Auth.AUTH_TYPE_AK_SK)) {
+        if (this.auth.authType.equals(Auth.AUTH_TYPE_AK_SK)) {
             headers.put("ACCESS-KEY", this.auth.ak);
             secret = this.auth.sk;
         } else {
