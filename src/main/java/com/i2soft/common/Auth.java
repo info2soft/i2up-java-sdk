@@ -244,16 +244,6 @@ public final class Auth {
         return token(ip, user, pwd, cachePath, new Configuration());
     }
 
-    // TODO: 后端没这个接口 2019.1.7
-    public Map describePhoneCode(StringMap args) throws I2softException {
-        if (StringUtils.isNullOrEmpty(this.token)) {
-            throw new IllegalArgumentException("empty key");
-        }
-        String url = String.format("%s/auth/getPhoneCode", this.cc_url);
-        Response r = this.client.post(url, args);
-        return r.jsonToMap();
-    }
-
     /**
      * auth-注册账号(不开放)
      *

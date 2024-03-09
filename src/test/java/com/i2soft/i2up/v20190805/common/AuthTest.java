@@ -33,17 +33,6 @@ public class AuthTest {
     }
 
     @Test
-    public void T01_describePhoneCode() {
-        try {
-            Map rs = auth.describePhoneCode(new StringMap()); // 发送请求
-            Assert.assertNotNull(rs); // 检查结果
-        } catch (I2softException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
     public void T02_regAccount() {
         try {
             I2Rs.I2SmpRs rs = auth.regAccount(new StringMap()); // 发送请求
