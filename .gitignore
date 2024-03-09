@@ -31,3 +31,4 @@ out/
 
 # For vim:
 *.swp
+examples/mavenTest/target/
