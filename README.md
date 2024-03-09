@@ -6,7 +6,7 @@ I2UP Java SDK
 
 此 SDK 适用于 Java 8 。使用此 SDK 构建您的网络应用程序，无论您的网络应用是一个网站程序，还是包括从云端（服务端程序）到终端（手持设备应用）的架构服务或应用，都能让您以非常便捷地方式使用英方统一数据管理平台（下简称“英方平台”）管理您的业务，同时也让您的服务端更加轻盈。
 
-I2UP Java SDK 属于英方服务端SDK之一，主要用于管理您英方平台上的服务器保护配置。
+I2UP Java SDK 属于英方服务端SDK之一，主要用于对接英方控制台，跳过页面进行管理。
 
 开源
 ==
@@ -23,18 +23,23 @@ I2UP Java SDK 属于英方服务端SDK之一，主要用于管理您英方平台
 
 ### Gradle
 
-    compile 'org.info2soft:i2up-java-sdk:7.1.76.0'
+    compile 'org.info2soft:i2up-java-sdk:7.1.76.1'
 
+* [gradleProject Demo](examples/gradleTest)
+* [gradleProject Demo.zip](examples/gradleTest.zip)
 
 ### Maven
 
     <dependency>
       <groupId>org.info2soft</groupId>
       <artifactId>i2up-java-sdk</artifactId>
-      <version>[7.1.74.6, 7.1.76.0]</version>
+      <version>7.1.76.1</version>
     </dependency>
 
 这里的`version`指定了一个版本范围，每次更新`pom.xml`的时候会尝试去下载`7.1.x`版本中的最新版本，你可以手动指定一个**固定的版本**。
+
+ * [mavenProject Demo](examples/mavenTest)
+ * [mavenProject Demo.zip](examples/mavenTest.zip)
 
 ### 手动安装
 
@@ -111,10 +116,11 @@ Java SDK依赖的第三方库及其版本如下：
             try {
                 String ip = "http://[ip]:[port]";                        // 英方平台地址
                 String ak = "oishvmn5YPHJcEDaIjtwd0R9Ug7BN1fk";          // 英方平台 Access Key
-                String sk = "fkLiyqsG3P1AzB5jWtYbZa7TU8RN9wSVhe6EldOo";  // 英方平台 Secret Key
+                String sk = "****";  // 英方平台 Secret Key
+                String cachePath = "D:\cache\";     // token 缓存地址
     
                 // 鉴权
-                Auth auth = Auth.access(ip, ak, sk);
+                Auth auth = Auth.access(ip, ak, sk, cachePath);
 
                 // 设置语言
                 auth.client.setHeader("User-Lang", "zh-CN");
@@ -177,7 +183,7 @@ Java SDK依赖的第三方库及其版本如下：
 API 参考
 ======
 
-*   SDK方法的详细参数请参照 [API 参考](https://docs.i2yun.com/i2up-docs/)。
+*   SDK方法 详细参数请参照 [API 参考](https://docs.i2yun.com/i2up-docs/)。
 
 常见问题
 ====
