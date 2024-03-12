@@ -32,7 +32,7 @@ public final class Client {
     private StringMap headers;
     private final OkHttpClient httpClient;
     public final String cc_url;
-    protected String cachePath;
+    private final String cachePath;
     private Auth auth;
 
     /**
