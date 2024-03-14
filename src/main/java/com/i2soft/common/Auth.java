@@ -9,10 +9,13 @@ import com.i2soft.util.IOHelper;
 import com.i2soft.util.StringMap;
 import com.i2soft.util.StringUtils;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 import java.util.Objects;
+
+import static com.i2soft.http.Client.bytes2HexString;
 
 public final class Auth {
     /**
@@ -190,7 +193,17 @@ public final class Auth {
         String refreshToken;
         StringMap cache = new StringMap();
         long timeStamp = System.currentTimeMillis() / 1000;
-        File cacheFile = new File(cachePath + "i2up-java-sdk-cache.json");
+        // 通过ip生成hash作为路径
+        String hash = "temp";
+        try {
+            Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+            SecretKeySpec secret_key = new SecretKeySpec(ip.getBytes(), "HmacSHA256");
+            sha256_HMAC.init(secret_key);
+            hash = bytes2HexString(sha256_HMAC.doFinal(ip.getBytes())).toLowerCase();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        File cacheFile = new File(cachePath + "/" + hash + "/i2up-java-sdk-cache.json");
 
         try {
             cache = IOHelper.readJsonFile(cacheFile); // 读取token缓存文件
