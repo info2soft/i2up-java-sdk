@@ -402,9 +402,15 @@ public final class Client {
                 Map<String, Object> map = ksort(args);
                 map.forEach((o, o2) -> {
                     if (!(o2 instanceof String)) {
+                        if (o2 == null) {
+                            return;
+                        }
                         o2 = Json.encode(o2);
-                        o2 = ((String) o2).replaceAll("\\\\\\\\", "\\\\");//属性内的\\\\改为\\
-                        o2 = ((String) o2).replaceAll("\\{}", "[]");//属性内的{}改为[]
+                        //属性内的{}改为[]
+                        o2 = o2.toString().replaceAll(":\\{}", ":[]");
+                        if (o2.equals("{}")) {
+                            o2 = "[]";
+                        }
                     }
                     if (o2.toString().isEmpty()) {
                         return;

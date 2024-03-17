@@ -304,15 +304,43 @@ public final class StringMap {
         }
     }
 
-    public StringMap removeEmptyValue() {
+    public StringMap removeEmptyValue() throws UnsupportedEncodingException {
         StringMap temp = new StringMap();
         for (String key : this.map.keySet()) {
             Object value = this.map.get(key);
-            if (value.toString().length() != 0 && !value.toString().equals("[]")) {
-                if (value instanceof String) {
-                    temp.put(key, value.toString());
-                } else {
+            // 移除空值（rap上定义的类似like_args[task_name]=""会被错误移除，但是实际调用不允许使用这种key值所以可以暂时忽略）
+            if (value.toString().length() == 0 || value.toString().equals("[]")) {
+                continue;
+            }
+            if (value instanceof String) {
+                temp.put(key, value.toString());
+            } else {
+                if (value instanceof ArrayList && !(value.toString().contains("{") && value.toString().contains("}"))){
+                    // 处理纯uuid数组，直接toString会多出空格
+//                     {
+//                         "uuids": [
+//                            "C88159F0-6FEc-34FF-9d8f-DABEeAB5bD68",
+//                            "F40Bc9d2-ccf7-6FFC-a5bF-888d6Dd4ACCc"
+//                        ]
+//                     }
+//                     转为uuids=[C88159F0-6FEc-34FF-9d8f-DABEeAB5bD68,F40Bc9d2-ccf7-6FFC-a5bF-888d6Dd4ACCc]
                     temp.put(key, Json.encode(value));
+                } else {
+                    // 处理对象，转为带等号的json格式并且逗号前需要有空格
+//                    {
+//                        "search_value": "''",
+//                        "limit": 15,
+//                        "type": 1,
+//                        "page": 1,
+//                        "search_field": "",
+//                        "status": "",
+//                        "where_args": {
+//                            "rule_uuid": "xxxxx",
+//                            "status": "replication"
+//                        }
+//                    }
+//                    转为_=oqyDB3CuNkuQHHrp&limit=15&page=1&search_value=''&type=1&where_args={rule_uuid=xxxxx, status=replication}
+                    temp.put(key, value.toString());
                 }
             }
         }
