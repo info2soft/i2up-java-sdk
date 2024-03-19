@@ -32,7 +32,7 @@ public final class Client {
     private StringMap headers;
     private final OkHttpClient httpClient;
     public final String cc_url;
-    protected String cachePath;
+    private final String cachePath;
     private Auth auth;
 
     /**
@@ -402,9 +402,15 @@ public final class Client {
                 Map<String, Object> map = ksort(args);
                 map.forEach((o, o2) -> {
                     if (!(o2 instanceof String)) {
+                        if (o2 == null) {
+                            return;
+                        }
                         o2 = Json.encode(o2);
-                        o2 = ((String) o2).replaceAll("\\\\\\\\", "\\\\");//属性内的\\\\改为\\
-                        o2 = ((String) o2).replaceAll("\\{}", "[]");//属性内的{}改为[]
+                        //属性内的{}改为[]
+                        o2 = o2.toString().replaceAll(":\\{}", ":[]");
+                        if (o2.equals("{}")) {
+                            o2 = "[]";
+                        }
                     }
                     if (o2.toString().isEmpty()) {
                         return;
@@ -435,7 +441,7 @@ public final class Client {
         return sb.toString();
     }
 
-    private static String bytes2HexString(byte[] b) {
+    public static String bytes2HexString(byte[] b) {
         StringBuilder ret = new StringBuilder();
         for (byte b1 : b) {
             String hex = Integer.toHexString(b1 & 0xFF);
@@ -457,7 +463,16 @@ public final class Client {
         String refreshToken;
 
         // 暂存缓存文件路径
-        File cacheFile = new File(this.cachePath + "i2up-java-sdk-cache.json");
+        String hash = "temp";
+        try {
+            Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+            SecretKeySpec secret_key = new SecretKeySpec(ip.getBytes(), "HmacSHA256");
+            sha256_HMAC.init(secret_key);
+            hash = bytes2HexString(sha256_HMAC.doFinal(ip.getBytes())).toLowerCase();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        File cacheFile = new File(cachePath + "/" + hash + "/i2up-java-sdk-cache.json");
 
         try {
             cache = IOHelper.readJsonFile(cacheFile); // 读取token缓存文件

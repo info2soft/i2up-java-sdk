@@ -16,7 +16,7 @@ public final class Json {
     }
 
     public static String encode(Object obj) {
-        return new GsonBuilder().serializeNulls().create().toJson(obj);
+        return new GsonBuilder().serializeNulls().disableHtmlEscaping().create().toJson(obj);
     }
 
     public static <T> T decode(String json, Class<T> classOfT) {
