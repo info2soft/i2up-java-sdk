@@ -70,10 +70,10 @@ public final class RepBackup {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map createRepBackup(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createRepBackup(StringMap args) throws I2softException {
         String url = String.format("%s/rep/backup", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToMap();
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
@@ -97,10 +97,10 @@ public final class RepBackup {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map modifyRepBackup(String uuid, StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs modifyRepBackup(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/rep/backup/%s", auth.cc_url, uuid);
         Response r = auth.client.put(url, args);
-        return r.jsonToMap();
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**

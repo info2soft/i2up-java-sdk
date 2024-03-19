@@ -31,10 +31,10 @@ public final class Infomix {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs createInformixRule(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createInformixRule(StringMap args) throws I2softException {
         String url = String.format("%s/informix/rule", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**

@@ -31,10 +31,10 @@ public final class MongoDB {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs createMongoRule(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createMongoRule(StringMap args) throws I2softException {
         String url = String.format("%s/mongo/rule", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
@@ -45,10 +45,10 @@ public final class MongoDB {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs modifyMongoRule(String uuid, StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs modifyMongoRule(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/mongo/rule/%s", auth.cc_url, uuid);
         Response r = auth.client.put(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**

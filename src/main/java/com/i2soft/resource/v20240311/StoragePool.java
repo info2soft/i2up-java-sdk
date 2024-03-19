@@ -44,10 +44,10 @@ public final class StoragePool {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map createStoragePool(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createStoragePool(StringMap args) throws I2softException {
         String url = String.format("%s/storage_pool", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToMap();
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
@@ -58,10 +58,10 @@ public final class StoragePool {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map modifyStoragePool(String uuid, StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs modifyStoragePool(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/storage_pool/%s", auth.cc_url, uuid);
         Response r = auth.client.put(url, args);
-        return r.jsonToMap();
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**

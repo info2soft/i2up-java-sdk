@@ -1,6 +1,5 @@
 package com.i2soft.active.v20240311;
 
-import com.i2soft.http.I2Req;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
@@ -44,10 +43,10 @@ public final class DataChk {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map createDatacheckObjCmp(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createDatacheckObjCmp(StringMap args) throws I2softException {
         String url = String.format("%s/datacheck/obj_cmp", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToMap();
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
@@ -218,10 +217,10 @@ public final class DataChk {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs createTbCmp(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createTbCmp(StringMap args) throws I2softException {
         String url = String.format("%s/datacheck/tb_cmp", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**

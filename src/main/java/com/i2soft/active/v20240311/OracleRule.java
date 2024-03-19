@@ -1,6 +1,5 @@
 package com.i2soft.active.v20240311;
 
-import com.i2soft.http.I2Req;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
@@ -44,10 +43,10 @@ public final class OracleRule {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map createOracleRule(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createOracleRule(StringMap args) throws I2softException {
         String url = String.format("%s/active/rule", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToMap();
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
@@ -70,10 +69,10 @@ public final class OracleRule {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map modifyOracleRule(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs modifyOracleRule(StringMap args) throws I2softException {
         String url = String.format("%s/active/rule", auth.cc_url);
         Response r = auth.client.put(url, args);
-        return r.jsonToMap();
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
@@ -340,10 +339,10 @@ public final class OracleRule {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map createTbCmp(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createTbCmp(StringMap args) throws I2softException {
         String url = String.format("%s/active/tb_cmp", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToMap();
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
@@ -525,10 +524,10 @@ public final class OracleRule {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map createObjCmp(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createObjCmp(StringMap args) throws I2softException {
         String url = String.format("%s/active/obj_cmp", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToMap();
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
@@ -655,10 +654,10 @@ public final class OracleRule {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map createObjFix(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createObjFix(StringMap args) throws I2softException {
         String url = String.format("%s/active/obj_fix", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToMap();
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
@@ -788,10 +787,10 @@ public final class OracleRule {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map createBkTakeover(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createBkTakeover(StringMap args) throws I2softException {
         String url = String.format("%s/active/bk_takeover", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToMap();
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
@@ -893,10 +892,10 @@ public final class OracleRule {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map createReverse(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createReverse(StringMap args) throws I2softException {
         String url = String.format("%s/active/reverse", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToMap();
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
