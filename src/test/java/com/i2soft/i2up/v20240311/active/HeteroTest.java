@@ -42,7 +42,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1598")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = hetero.createConsumerRule(args); // 发送请求
+            I2Rs.I2CreateRs rs = hetero.createConsumerRule(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -54,7 +54,7 @@ public class HeteroTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2069")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = hetero.modifyConsumerRule(args); // 发送请求
+            I2Rs.I2CreateRs rs = hetero.modifyConsumerRule(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

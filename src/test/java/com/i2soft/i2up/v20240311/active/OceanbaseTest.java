@@ -52,7 +52,7 @@ public class OceanbaseTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "3147")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = oceanbase.createOceanRule(args); // 发送请求
+            I2Rs.I2CreateRs rs = oceanbase.createOceanRule(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -74,7 +74,7 @@ public class OceanbaseTest {
     @Test
     public void T3148_modifyOceanRule() {
         try {
-            I2Rs.I2SmpRs rs = oceanbase.modifyOceanRule(); // 发送请求
+            I2Rs.I2CreateRs rs = oceanbase.modifyOceanRule(); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

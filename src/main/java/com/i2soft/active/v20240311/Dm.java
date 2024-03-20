@@ -43,10 +43,10 @@ public final class Dm {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs createDmRule(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createDmRule(StringMap args) throws I2softException {
         String url = String.format("%s/dm/rule", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
@@ -55,10 +55,10 @@ public final class Dm {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs modifyDmRule() throws I2softException {
+    public I2Rs.I2CreateRs modifyDmRule() throws I2softException {
         String url = String.format("%s/dm/rule", auth.cc_url);
         Response r = auth.client.put(url, new StringMap());
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**

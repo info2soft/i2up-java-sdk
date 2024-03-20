@@ -31,10 +31,10 @@ public final class RepRecovery {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map createRepRecovery(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createRepRecovery(StringMap args) throws I2softException {
         String url = String.format("%s/rep/recovery", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToMap();
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
@@ -58,10 +58,10 @@ public final class RepRecovery {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map updateRepRecovery(String uuid, StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs updateRepRecovery(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/rep/recovery/%s", auth.cc_url, uuid);
         Response r = auth.client.put(url, args);
-        return r.jsonToMap();
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**

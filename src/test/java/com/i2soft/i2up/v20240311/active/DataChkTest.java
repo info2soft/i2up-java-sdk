@@ -54,7 +54,7 @@ public class DataChkTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "4024")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = dataChk.createDatacheckObjCmp(args); // 发送请求
+            I2Rs.I2CreateRs rs = dataChk.createDatacheckObjCmp(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -161,7 +161,7 @@ public class DataChkTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2638")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = dataChk.createTbCmp(args); // 发送请求
+            I2Rs.I2CreateRs rs = dataChk.createTbCmp(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
