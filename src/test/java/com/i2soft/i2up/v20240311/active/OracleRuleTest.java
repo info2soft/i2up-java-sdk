@@ -54,7 +54,7 @@ public class OracleRuleTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1248")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = oracleRule.createOracleRule(args); // 发送请求
+            I2Rs.I2CreateRs rs = oracleRule.createOracleRule(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -78,7 +78,7 @@ public class OracleRuleTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "2068")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = oracleRule.modifyOracleRule(args); // 发送请求
+            I2Rs.I2CreateRs rs = oracleRule.modifyOracleRule(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -199,7 +199,7 @@ public class OracleRuleTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1285")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = oracleRule.createTbCmp(args); // 发送请求
+            I2Rs.I2CreateRs rs = oracleRule.createTbCmp(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -370,7 +370,7 @@ public class OracleRuleTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1256")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = oracleRule.createObjCmp(args); // 发送请求
+            I2Rs.I2CreateRs rs = oracleRule.createObjCmp(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -489,7 +489,7 @@ public class OracleRuleTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1278")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = oracleRule.createObjFix(args); // 发送请求
+            I2Rs.I2CreateRs rs = oracleRule.createObjFix(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -586,7 +586,7 @@ public class OracleRuleTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1306")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = oracleRule.createBkTakeover(args); // 发送请求
+            I2Rs.I2CreateRs rs = oracleRule.createBkTakeover(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -667,7 +667,7 @@ public class OracleRuleTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1313")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = oracleRule.createReverse(args); // 发送请求
+            I2Rs.I2CreateRs rs = oracleRule.createReverse(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
