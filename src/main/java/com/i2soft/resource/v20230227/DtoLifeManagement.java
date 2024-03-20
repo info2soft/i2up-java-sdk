@@ -30,10 +30,10 @@ public final class DtoLifeManagement {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs createDtoLm(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createDtoLm(StringMap args) throws I2softException {
         String url = String.format("%s/dto/lm", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**

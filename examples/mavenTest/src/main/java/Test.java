@@ -2,8 +2,8 @@
 import com.i2soft.common.Auth;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
-import com.i2soft.rep.v20190805.RepBackup;
-import com.i2soft.resource.v20190805.Node;
+import com.i2soft.rep.v20230227.RepBackup;
+import com.i2soft.resource.v20230227.Node;
 import com.i2soft.util.StringMap;
 
 import java.util.List;
@@ -193,7 +193,7 @@ public class Test {
 
             RepBackup rep1 = new RepBackup(auth);
             StringMap repBackup = new StringMap().put("rep_backup", createRepArg);
-            I2Rs.I2SmpRs createRs = rep1.createRepBackup(repBackup);
+            I2Rs.I2CreateRs createRs = rep1.createRepBackup(repBackup);
             System.out.println("Create coopy response code=" + createRs.code);
             System.out.println("Create coopy response message=" + createRs.message);
 

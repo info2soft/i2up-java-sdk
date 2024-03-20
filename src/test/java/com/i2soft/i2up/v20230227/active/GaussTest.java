@@ -42,7 +42,7 @@ public class GaussTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1893")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = gauss.createGaussRule(args); // 发送请求
+            I2Rs.I2CreateRs rs = gauss.createGaussRule(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

@@ -30,10 +30,10 @@ public final class Compare {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs createCompare(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createCompare(StringMap args) throws I2softException {
         String url = String.format("%s/compare", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
@@ -69,10 +69,10 @@ public final class Compare {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs listCompareLogs() throws I2softException {
+    public Map listCompareLogs() throws I2softException {
         String url = String.format("%s/logs", auth.cc_url);
         Response r = auth.client.get(url, new StringMap());
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToMap();
     }
 
     /**
