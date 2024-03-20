@@ -55,10 +55,10 @@ public final class BackupMigrate {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs createCcMove(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createCcMove(StringMap args) throws I2softException {
         String url = String.format("%s/cc_move/", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**

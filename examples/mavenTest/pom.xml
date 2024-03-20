@@ -12,7 +12,7 @@
         <dependency>
             <groupId>org.info2soft</groupId>
             <artifactId>i2up-java-sdk</artifactId>
-            <version>7.1.76.1</version>
+            <version>7.1.76.3</version>
         </dependency>
     </dependencies>
     <properties>

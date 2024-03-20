@@ -69,10 +69,10 @@ public final class RepBackup {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs createRepBackup(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createRepBackup(StringMap args) throws I2softException {
         String url = String.format("%s/rep/backup", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
@@ -125,6 +125,34 @@ public final class RepBackup {
     public I2Rs.I2SmpRs tempFuncName(StringMap args) throws I2softException {
         String url = String.format("%s/rep/backup/operate", auth.cc_url);
         Response r = auth.client.post(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 复制规则 - 操作：启动
+     *
+     * @param uuids: uuid数组
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs startRepBackup(String[] uuids) throws I2softException {
+        String url = String.format("%s/rep/backup/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("rep_uuids", uuids).put("operate", "start");
+        Response r = auth.client.post(url, newArgs);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 复制规则 - 操作：停止
+     *
+     * @param uuids: uuid数组
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs stopRepBackup(String[] uuids) throws I2softException {
+        String url = String.format("%s/rep/backup/operate", auth.cc_url);
+        StringMap newArgs = new StringMap().putNotEmpty("rep_uuids", uuids).put("operate", "stop");
+        Response r = auth.client.post(url, newArgs);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
 
@@ -217,10 +245,10 @@ public final class RepBackup {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs downloadRepBackupOrphan(String uuid, StringMap args) throws I2softException {
+    public String downloadRepBackupOrphan(String uuid, StringMap args) throws I2softException {
         String url = String.format("%s/rep/backup/%s/orphan_download", auth.cc_url, uuid);
         Response r = auth.client.get(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.toString();
     }
 
     /**

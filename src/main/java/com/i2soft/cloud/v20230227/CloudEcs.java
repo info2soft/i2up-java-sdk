@@ -30,10 +30,10 @@ public final class CloudEcs {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs createEcs(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createEcs(StringMap args) throws I2softException {
         String url = String.format("%s/cloud/ecs", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
@@ -173,10 +173,10 @@ public final class CloudEcs {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs createRehearseGroup(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createRehearseGroup(StringMap args) throws I2softException {
         String url = String.format("%s/cloud/ecs/rehearse_group", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**

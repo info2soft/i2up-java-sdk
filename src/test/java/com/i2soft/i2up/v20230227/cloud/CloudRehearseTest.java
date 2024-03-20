@@ -136,7 +136,7 @@ public class CloudRehearseTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1496")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = cloudRehearse.createRehearse(args); // 发送请求
+            I2Rs.I2CreateRs rs = cloudRehearse.createRehearse(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -325,7 +325,7 @@ public class CloudRehearseTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1736")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = cloudRehearse.createGroup(args); // 发送请求
+            I2Rs.I2CreateRs rs = cloudRehearse.createGroup(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
@@ -370,7 +370,7 @@ public class CloudRehearseTest {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "1740")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            I2Rs.I2SmpRs rs = cloudRehearse.createEvacuateGroup(args); // 发送请求
+            I2Rs.I2CreateRs rs = cloudRehearse.createEvacuateGroup(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

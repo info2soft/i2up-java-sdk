@@ -133,10 +133,10 @@ public final class CloudRehearse {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs createRehearse(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createRehearse(StringMap args) throws I2softException {
         String url = String.format("%s/cloud/rehearse", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
@@ -341,10 +341,10 @@ public final class CloudRehearse {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs createGroup(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createGroup(StringMap args) throws I2softException {
         String url = String.format("%s/cloud/rehearse/group", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
@@ -392,10 +392,10 @@ public final class CloudRehearse {
      * @return code, message
      * @throws I2softException:
      */
-    public I2Rs.I2SmpRs createEvacuateGroup(StringMap args) throws I2softException {
+    public I2Rs.I2CreateRs createEvacuateGroup(StringMap args) throws I2softException {
         String url = String.format("%s/cloud/rehearse/group_evacuate", auth.cc_url);
         Response r = auth.client.post(url, args);
-        return r.jsonToObject(I2Rs.I2SmpRs.class);
+        return r.jsonToObject(I2Rs.I2CreateRs.class);
     }
 
     /**
