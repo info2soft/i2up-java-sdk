@@ -1,4 +1,6 @@
 
+import com.i2soft.active.v20240311.DataChk;
+import com.i2soft.active.v20240311.OracleRule;
 import com.i2soft.common.Auth;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
@@ -30,6 +32,19 @@ public class Test {
              Auth auth = Auth.access(ip, ak, sk, cachePath);
 
             auth.client.setHeader("User-Lang", "zh-CN");
+
+
+            OracleRule oracleRule = new OracleRule(auth);
+
+            Map statusRs = oracleRule.listTbCmpStatus( new StringMap().put("uuids", new String[]{"5099477C-82A5-4275-B9BE-FEF7D9CE133E"}));
+
+            System.out.println(statusRs);
+
+            Map result1 = oracleRule.describeTbCmpResult(new StringMap().put("uuid", "5099477C-82A5-4275-B9BE-FEF7D9CE133E"));
+            Map result2 = (new DataChk(auth)).describeTbCmpResult(new StringMap().put("uuid", "5099477C-82A5-4275-B9BE-FEF7D9CE133E"));
+
+            System.out.println(result1);
+            System.out.println(result2);
 
             // 实例化节点管理类
             Node node = new Node(auth);

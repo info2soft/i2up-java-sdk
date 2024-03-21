@@ -190,7 +190,7 @@ public final class StringMap {
     // StringMap 转 json 串 body
     public RequestBody toJson() {
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-        return RequestBody.create(Json.encode(map), JSON);
+        return RequestBody.create(JSON, Json.encode(map));
     }
 
     /**
