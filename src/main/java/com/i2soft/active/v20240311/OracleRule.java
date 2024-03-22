@@ -399,6 +399,19 @@ public final class OracleRule {
     }
 
     /**
+     * 同步规则-日志
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listRuleLog(StringMap args) throws I2softException {
+        String url = String.format("%s/active/rule/log", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
      * 表比较-操作
      *
      * @param args: 参数详见 API 手册

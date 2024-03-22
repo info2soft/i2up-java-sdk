@@ -1,6 +1,8 @@
 
+import com.i2soft.active.SyncRules;
 import com.i2soft.active.v20240311.DataChk;
 import com.i2soft.active.v20240311.OracleRule;
+import com.i2soft.active.v20240311.Tidb;
 import com.i2soft.common.Auth;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
@@ -33,17 +35,39 @@ public class Test {
 
             auth.client.setHeader("User-Lang", "zh-CN");
 
+            // 查数据库同步相关规则日志1
+            SyncRules syncRules = new SyncRules(auth);
+            Map logRs = syncRules.listRuleLog("7374A0FB-BE2F-0019-8B0D-8910085212DA", new StringMap()
+                    .put("rule_uuid", "7374A0FB-BE2F-0019-8B0D-8910085212DA")
+                    .put("date_start", 1709222400)
+                    .put("date_end", 1711123200)
+                    .put("type", 0)
+            );
+            System.out.println(logRs);
 
+            // 查数据库同步相关规则日志2
+            Tidb tidb = new Tidb(auth);
+            Map logRs2 = tidb.listRuleLog(new StringMap()
+                    .put("rule_uuid", "7374A0FB-BE2F-0019-8B0D-8910085212DA")
+                    .put("date_start", 1709222400)
+                    .put("date_end", 1711123200)
+                    .put("type", 0));
+            System.out.println(logRs2);
+
+
+            // 表比较状态
             OracleRule oracleRule = new OracleRule(auth);
-
-            Map statusRs = oracleRule.listTbCmpStatus( new StringMap().put("uuids", new String[]{"5099477C-82A5-4275-B9BE-FEF7D9CE133E"}));
-
+            Map statusRs = oracleRule.listTbCmpStatus( new StringMap().put("uuids", new String[]{"3FE81511-BA94-DD88-A26A-0844AAB1A925"}));
             System.out.println(statusRs);
 
-            Map result1 = oracleRule.describeTbCmpResult(new StringMap().put("uuid", "5099477C-82A5-4275-B9BE-FEF7D9CE133E"));
-            Map result2 = (new DataChk(auth)).describeTbCmpResult(new StringMap().put("uuid", "5099477C-82A5-4275-B9BE-FEF7D9CE133E"));
-
+            /***
+             * 表比较结果
+             */
+            // 结果1
+            Map result1 = oracleRule.describeTbCmpResult(new StringMap().put("uuid", "3FE81511-BA94-DD88-A26A-0844AAB1A925"));
             System.out.println(result1);
+            // 结果2
+            Map result2 = (new DataChk(auth)).describeTbCmpResult(new StringMap().put("uuid", "3FE81511-BA94-DD88-A26A-0844AAB1A925"));
             System.out.println(result2);
 
             // 实例化节点管理类
