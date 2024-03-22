@@ -762,7 +762,7 @@ public final class OracleRule extends Rule {
      */
     public Map listTbCmpStatus(StringMap args) throws I2softException {
         String url = String.format("%s/active/tb_cmp/status", auth.cc_url);
-        Response r = auth.client.get(url, args);
+        Response r = auth.client.post(url, args);
         return r.jsonToMap();
     }
 
