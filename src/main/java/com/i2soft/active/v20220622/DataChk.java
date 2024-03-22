@@ -77,6 +77,19 @@ public final class DataChk {
     }
 
     /**
+     * 表比较 - 状态接口
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listTbCmpStatus(StringMap args) throws I2softException {
+        String url = String.format("%s/datacheck/tb_cmp/status", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
      * 表比较 历史结果（查看表比较时间结果集）
      *
      * @param args: 参数详见 API 手册
