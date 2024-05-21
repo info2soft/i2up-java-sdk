@@ -23,7 +23,7 @@ I2UP Java SDK 属于英方服务端SDK之一，主要用于对接英方控制台
 
 ### Gradle
 
-    compile 'org.info2soft:i2up-java-sdk:8.1.0'
+    compile 'org.info2soft:i2up-java-sdk:8.1.4'
 
 * [gradleProject Demo](examples/gradleTest)
 * [gradleProject Demo.zip](examples/gradleTest.zip)
@@ -33,10 +33,10 @@ I2UP Java SDK 属于英方服务端SDK之一，主要用于对接英方控制台
     <dependency>
       <groupId>org.info2soft</groupId>
       <artifactId>i2up-java-sdk</artifactId>
-      <version>8.1.0</version>
+      <version>8.1.4</version>
     </dependency>
 
-这里的`version`指定了一个版本范围，每次更新`pom.xml`的时候会尝试去下载`7.1.x`版本中的最新版本，你可以手动指定一个**固定的版本**。
+建议手动指定一个**固定的版本**。
 
  * [mavenProject Demo](examples/mavenTest)
  * [mavenProject Demo.zip](examples/mavenTest.zip)
@@ -66,12 +66,6 @@ Java SDK依赖的第三方库及其版本如下：
           <version>2.9.0</version>
           <scope>compile</scope>
         </dependency>
-        <dependency>
-          <groupId>junit</groupId>
-          <artifactId>junit</artifactId>
-          <version>4.12</version>
-          <scope>test</scope>
-        </dependency>
       </dependencies>
 
 
@@ -79,9 +73,7 @@ Java SDK依赖的第三方库及其版本如下：
  | ----- | --------- | --------- | 
  | i2up-java-sdk |  [链接🔗](https://github.com/info2soft/i2up-java-sdk)  | [链接🔗](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22i2up-java-sdk%22) | 
  | okhttp3 | [链接🔗](https://github.com/square/okhttp) | [链接🔗](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.squareup.okhttp3%22) | 
- | okio | [链接🔗](https://github.com/square/okio) | [链接🔗](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.squareup.okio%22) | 
  | gson | [链接🔗](https://github.com/google/gson) | [链接🔗](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.google.code.gson%22) | 
- | junit | [链接🔗](http://junit.org/junit4/) | [链接🔗](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22junit%22) | 
 
 可以点击每个库的下载链接，然后选择对应的jar进行下载，然后引入到项目中。
 
@@ -199,7 +191,6 @@ API 参考
 
 *   [服务与支持](https://www.info2soft.com/support) \- 在这里您可以获得直接的一对一支持。
 *   [提交工单](http://support.info2soft.com/welcome/) \- 如果您的问题不适合在论坛讨论或希望及时解决，您也可以提交一个工单，我们的技术支持人员会第一时间回复您。
-*   [微博](https://weibo.com/info2soft)
 *   [常见问题FAQ](http://support.info2soft.com/service/public.pl)
 
 贡献代码
