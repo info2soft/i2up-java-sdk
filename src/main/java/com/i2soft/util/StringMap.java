@@ -45,6 +45,11 @@ public final class StringMap {
         return this;
     }
 
+    public StringMap put(String key, Boolean value) {
+        map.put(key, value);
+        return this;
+    }
+
     public StringMap put(String key, Double value) {
         map.put(key, value);
         return this;

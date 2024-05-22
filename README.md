@@ -23,7 +23,7 @@ I2UP Java SDK 属于英方服务端SDK之一，主要用于对接英方控制台
 
 ### Gradle
 
-    compile 'org.info2soft:i2up-java-sdk:8.1.4'
+    compile 'org.info2soft:i2up-java-sdk:8.1.5'
 
 * [gradleProject Demo](examples/gradleTest)
 * [gradleProject Demo.zip](examples/gradleTest.zip)
@@ -33,7 +33,7 @@ I2UP Java SDK 属于英方服务端SDK之一，主要用于对接英方控制台
     <dependency>
       <groupId>org.info2soft</groupId>
       <artifactId>i2up-java-sdk</artifactId>
-      <version>8.1.4</version>
+      <version>8.1.5</version>
     </dependency>
 
 建议手动指定一个**固定的版本**。
