@@ -340,4 +340,30 @@ public final class Node {
         Response r = auth.client.delete(url, args);
         return r.jsonToMap();
     }
+
+    /**
+     * 查询节点进程
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listNodeProcess(StringMap args) throws I2softException {
+        String url = String.format("%s/node/process_list", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 操作节点进程
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map operateNodeProcess(StringMap args) throws I2softException {
+        String url = String.format("%s/node/process_operate", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToMap();
+    }
 }
