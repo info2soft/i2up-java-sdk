@@ -287,4 +287,29 @@ public class NodeTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void T5229_listNodeProcess() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "5229")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = node.listNodeProcess(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T5230_operateNodeProcess() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "5230")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = node.operateNodeProcess(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
