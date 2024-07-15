@@ -366,4 +366,17 @@ public final class Node {
         Response r = auth.client.post(url, args);
         return r.jsonToMap();
     }
+
+    /**
+     * 获取节点关联规则列表
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listRules(StringMap args) throws I2softException {
+        String url = String.format("%s/node/rules", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
 }
