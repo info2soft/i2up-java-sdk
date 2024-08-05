@@ -1,10 +1,10 @@
-package com.i2soft.i2up.cfs;
+package com.i2soft.i2up.v20240311.cfs;
 
 import com.i2soft.common.Auth;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
-import com.i2soft.cfs.CfsBackup;
+import com.i2soft.cfs.v20240311.CfsBackup;
 import com.i2soft.util.Configuration;
 import com.i2soft.util.StringMap;
 import org.junit.Assert;
@@ -98,11 +98,59 @@ public class CfsBackupTest {
     }
 
     @Test
-    public void T6609_operateCfsBackup() {
+    public void T6609_startCfsBackup() {
         try {
             Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "6609")); // 获取请求数据
             StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
-            Map rs = cfsBackup.operateCfsBackup(args); // 发送请求
+            Map rs = cfsBackup.startCfsBackup(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T6609_stopCfsBackup() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "6609")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = cfsBackup.stopCfsBackup(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T6609_startSyncCfsBackup() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "6609")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = cfsBackup.startSyncCfsBackup(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T6609_stopSyncCfsBackup() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "6609")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = cfsBackup.stopSyncCfsBackup(args); // 发送请求
+            Assert.assertNotNull(rs); // 检查结果
+        } catch (I2softException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void T6609_moveCfsBackup() {
+        try {
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "6609")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = cfsBackup.moveCfsBackup(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();
