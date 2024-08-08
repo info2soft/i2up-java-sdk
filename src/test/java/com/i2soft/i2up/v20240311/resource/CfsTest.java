@@ -76,7 +76,9 @@ public class CfsTest {
     @Test
     public void T6595_listCfs() {
         try {
-            Map rs = cfs.listCfs(); // 发送请求
+            Response r = auth.client.get(String.format(TestConfig.rapDataUrl, "6595")); // 获取请求数据
+            StringMap args = new StringMap().putAll(Objects.requireNonNull(r.jsonToMap())); // 填充请求数据
+            Map rs = cfs.listCfs(args); // 发送请求
             Assert.assertNotNull(rs); // 检查结果
         } catch (I2softException e) {
             e.printStackTrace();

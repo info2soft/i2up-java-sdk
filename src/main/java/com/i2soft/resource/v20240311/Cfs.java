@@ -70,9 +70,9 @@ public final class Cfs {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public Map listCfs() throws I2softException {
+    public Map listCfs(StringMap args) throws I2softException {
         String url = String.format("%s/cfs", auth.cc_url);
-        Response r = auth.client.get(url, new StringMap());
+        Response r = auth.client.get(url, args);
         return r.jsonToMap();
     }
 
