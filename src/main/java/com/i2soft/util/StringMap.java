@@ -1,5 +1,6 @@
 package com.i2soft.util;
 
+import com.google.gson.internal.LinkedTreeMap;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
@@ -246,24 +247,24 @@ public final class StringMap {
                             notStart = true;
                         }
 
-                    } else if (valueType == HashMap.class) { // String -> HashMap<String, Object>
-
-                        HashMap newMap = (HashMap) value; // 判断后强转，且put时有类型限定
-
-                        for (Object o : newMap.entrySet()) {
-                            Map.Entry entry = (Map.Entry) o;
-
-                            b.append(notStart ? "&" : "?");
-                            try {
-                                b.append(URLEncoder.encode(key, "UTF-8"));
-                                b.append("[").append(URLEncoder.encode(entry.getKey().toString(), "UTF-8")).append("]");
-                                b.append('=');
-                                b.append(URLEncoder.encode(entry.getValue().toString(), "UTF-8"));
-                            } catch (UnsupportedEncodingException e) {
-                                e.printStackTrace();
-                            }
-                            notStart = true;
-                        }
+//                    } else if (valueType == HashMap.class) { // String -> HashMap<String, Object>
+//
+//                        HashMap newMap = (HashMap) value; // 判断后强转，且put时有类型限定
+//
+//                        for (Object o : newMap.entrySet()) {
+//                            Map.Entry entry = (Map.Entry) o;
+//
+//                            b.append(notStart ? "&" : "?");
+//                            try {
+//                                b.append(URLEncoder.encode(key, "UTF-8"));
+//                                b.append("[").append(URLEncoder.encode(entry.getKey().toString(), "UTF-8")).append("]");
+//                                b.append('=');
+//                                b.append(URLEncoder.encode(entry.getValue().toString(), "UTF-8"));
+//                            } catch (UnsupportedEncodingException e) {
+//                                e.printStackTrace();
+//                            }
+//                            notStart = true;
+//                        }
 
                     } else {
                         b.append(notStart ? "&" : "?");
