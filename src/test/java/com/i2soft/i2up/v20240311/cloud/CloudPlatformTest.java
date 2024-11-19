@@ -1,4 +1,4 @@
-package com.i2soft.i2up.cloud;
+package com.i2soft.i2up.v20240311.cloud;
 
 import com.i2soft.common.Auth;
 import com.i2soft.http.I2Rs;
@@ -16,7 +16,6 @@ import com.i2soft.i2up.util.TestConfig;
 
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CloudPlatformTest {
@@ -30,7 +29,7 @@ public class CloudPlatformTest {
             return;
         }
         try {
-            auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
+            auth = Auth.token(TestConfig.addr, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
         } catch (I2softException e) {
             e.printStackTrace();
         }

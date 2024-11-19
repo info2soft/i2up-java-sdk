@@ -19,7 +19,7 @@ public class HttpTest {
 
     @Before
     public void setUp() throws I2softException {
-        Auth auth = Auth.token(com.i2soft.i2up.util.TestConfig.ip, com.i2soft.i2up.util.TestConfig.user, com.i2soft.i2up.util.TestConfig.pwd, com.i2soft.i2up.util.TestConfig.cachePath, new Configuration());
+        Auth auth = Auth.token(com.i2soft.i2up.util.TestConfig.addr, com.i2soft.i2up.util.TestConfig.user, com.i2soft.i2up.util.TestConfig.pwd, com.i2soft.i2up.util.TestConfig.cachePath, new Configuration());
         this.client = auth.client;
     }
 

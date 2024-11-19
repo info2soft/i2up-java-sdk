@@ -14,10 +14,8 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import com.i2soft.i2up.util.TestConfig;
 
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class GeneralInterfaceTest {
@@ -31,7 +29,7 @@ public class GeneralInterfaceTest {
             return;
         }
         try {
-            auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
+            auth = Auth.token(TestConfig.addr, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
         } catch (I2softException e) {
             e.printStackTrace();
         }

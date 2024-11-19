@@ -32,7 +32,7 @@ public class NodeTest {
         if (node != null) {
             return;
         }
-        auth = Auth.access(TestConfig.ip, TestConfig.ak, TestConfig.sk, TestConfig.cachePath);
+        auth = Auth.access(TestConfig.addr, TestConfig.ak, TestConfig.sk, TestConfig.cachePath);
         node = new Node(auth);
     }
 

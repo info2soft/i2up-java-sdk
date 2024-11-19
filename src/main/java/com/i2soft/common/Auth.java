@@ -126,55 +126,55 @@ public final class Auth {
     /**
      * 用 ACCESS-KEY，构建 Auth 对象
      *
-     * @param ip:
+     * @param addr:
      * @param ak:
      * @param sk:
      * @param configuration:
      * @return Auth:
      */
     @Deprecated
-    public static Auth access(String ip, String ak, String sk, Configuration configuration) {
-        return access(ip, ak, sk, "", configuration);
+    public static Auth access(String addr, String ak, String sk, Configuration configuration) {
+        return access(addr, ak, sk, "", configuration);
     }
 
     /**
      * 用 ACCESS-KEY，构建 Auth 对象
      *
-     * @param ip:
+     * @param addr:
      * @param ak:
      * @param sk:
      * @param configuration:
      * @return Auth:
      */
-    public static Auth access(String ip, String ak, String sk, String cachePath, Configuration configuration) {
-        if (StringUtils.isNullOrEmpty(ip) || StringUtils.isNullOrEmpty(ak) || StringUtils.isNullOrEmpty(sk)) {
-            throw new IllegalArgumentException("empty key");
+    public static Auth access(String addr, String ak, String sk, String cachePath, Configuration configuration) {
+        if (StringUtils.isNullOrEmpty(addr) || StringUtils.isNullOrEmpty(ak) || StringUtils.isNullOrEmpty(sk)) {
+            throw new IllegalArgumentException("empty ip or ak/sk key");
         }
 
-        Client client = new Client(ip, configuration);
+        Client client = new Client(addr, configuration);
         return new Auth(client.cc_url, ak, sk, client, cachePath, configuration);
     }
 
     /**
-     * Deprecated: Use Auth access(String ip, String ak, String sk, String cachePath) instead
-     * @param ip
+     * Deprecated: Use Auth access(String addr, String ak, String sk, String cachePath) instead
+     * @param addr
      * @param ak
      * @param sk
      * @return
      */
     @Deprecated
-    public static Auth access(String ip, String ak, String sk) {
-        return access(ip, ak, sk, new Configuration());
+    public static Auth access(String addr, String ak, String sk) {
+        return access(addr, ak, sk, new Configuration());
     }
 
-    public static Auth access(String ip, String ak, String sk, String cachePath) {
-        return access(ip, ak, sk, cachePath, new Configuration());
+    public static Auth access(String addr, String ak, String sk, String cachePath) {
+        return access(addr, ak, sk, cachePath, new Configuration());
     }
 
     /**
      * 获取token，构建 Auth 对象
      *
-     * @param ip:            http://192.168.1.1:58080
+     * @param addr:            https://192.168.1.1:58086
      * @param user:
      * @param pwd:
      * @param cachePath:     E:\cache\
@@ -182,12 +182,12 @@ public final class Auth {
      * @return Auth:
      * @throws I2softException :
      */
-    public static Auth token(String ip, String user, String pwd, String cachePath, Configuration configuration) throws I2softException {
-        if (StringUtils.isNullOrEmpty(ip) || StringUtils.isNullOrEmpty(user) || StringUtils.isNullOrEmpty(pwd)) {
+    public static Auth token(String addr, String user, String pwd, String cachePath, Configuration configuration) throws I2softException {
+        if (StringUtils.isNullOrEmpty(addr) || StringUtils.isNullOrEmpty(user) || StringUtils.isNullOrEmpty(pwd)) {
             throw new IllegalArgumentException("empty key");
         }
 
-        Client client = new Client(ip, configuration, cachePath);
+        Client client = new Client(addr, configuration, cachePath);
 
         String token;
         String refreshToken;
@@ -197,13 +197,13 @@ public final class Auth {
         String hash = "temp";
         try {
             Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
-            SecretKeySpec secret_key = new SecretKeySpec(ip.getBytes(), "HmacSHA256");
+            SecretKeySpec secret_key = new SecretKeySpec(addr.getBytes(), "HmacSHA256");
             sha256_HMAC.init(secret_key);
-            hash = bytes2HexString(sha256_HMAC.doFinal(ip.getBytes())).toLowerCase();
+            hash = bytes2HexString(sha256_HMAC.doFinal(addr.getBytes())).toLowerCase();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        File cacheFile = new File(cachePath + "/" + hash + "/i2up-java-sdk-cache.json");
+        File cacheFile = new File(cachePath + "/" + hash + "/up-java-sdk-cache.json");
 
         try {
             cache = IOHelper.readJsonFile(cacheFile); // 读取token缓存文件
@@ -214,7 +214,7 @@ public final class Auth {
         // 没缓存，或缓存过期，就http获取最新的，并更新（创建）这个文件；有有效缓存，用缓存
         if (cache.size() == 0
                 || (long) cache.get("time") < timeStamp - 60 * 10
-                || !cache.get("ip").equals(ip)
+                || !cache.get("ip").equals(addr)
                 || cache.get("token") == null
                 || cache.get("refresh_token") == null
         ) {
@@ -232,7 +232,7 @@ public final class Auth {
             refreshToken = authRs.refresh_token;
             // 更新缓存
             try {
-                cache.put("time", timeStamp).put("ip", ip).put("token", token).put("refresh_token", refreshToken);
+                cache.put("time", timeStamp).put("ip", addr).put("token", token).put("refresh_token", refreshToken);
                 IOHelper.saveJsonFile(cacheFile, cache);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -253,8 +253,8 @@ public final class Auth {
      * @return 参数详见 API 手册
      * @throws I2softException:
      */
-    public static Auth token(String ip, String user, String pwd, String cachePath) throws I2softException {
-        return token(ip, user, pwd, cachePath, new Configuration());
+    public static Auth token(String addr, String user, String pwd, String cachePath) throws I2softException {
+        return token(addr, user, pwd, cachePath, new Configuration());
     }
 
     /**

@@ -30,7 +30,7 @@ public class WebhookTest {
             return;
         }
         try {
-            auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
+            auth = Auth.token(TestConfig.addr, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
         } catch (I2softException e) {
             e.printStackTrace();
         }

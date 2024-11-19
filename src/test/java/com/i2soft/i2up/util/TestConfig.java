@@ -2,7 +2,7 @@ package com.i2soft.i2up.util;
 
 public final class TestConfig {
 
-    public static final String ip = "https://172.20.2.19:58086";
+    public static final String addr = "https://172.20.2.19:58086";
     public static final String user = "admin";
     public static final String pwd = "Info@123";
     public static final String cachePath = "D:\\cache\\";

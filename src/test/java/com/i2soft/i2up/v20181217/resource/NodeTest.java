@@ -33,7 +33,7 @@ public class NodeTest {
             return;
         }
         try {
-            auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath);
+            auth = Auth.token(TestConfig.addr, TestConfig.user, TestConfig.pwd, TestConfig.cachePath);
         } catch (I2softException e) {
             e.printStackTrace();
         }

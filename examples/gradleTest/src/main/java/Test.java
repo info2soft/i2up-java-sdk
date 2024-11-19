@@ -24,7 +24,7 @@ public class Test {
 //            String password = "info1234";
 
             // 鉴权
-//            Auth auth = Auth.token(ip, username, password, cachePath);
+            Auth auth = Auth.token(ip, username, password, cachePath);
 
             /**
              * AK认证

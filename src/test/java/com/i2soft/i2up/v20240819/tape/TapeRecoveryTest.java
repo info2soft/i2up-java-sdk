@@ -1,7 +1,6 @@
 package com.i2soft.i2up.v20240819.tape;
 
 import com.i2soft.common.Auth;
-import com.i2soft.http.I2Rs;
 import com.i2soft.http.I2softException;
 import com.i2soft.http.Response;
 import com.i2soft.tape.v20240819.TapeRecovery;
@@ -30,7 +29,7 @@ public class TapeRecoveryTest {
             return;
         }
         try {
-            auth = Auth.token(TestConfig.ip, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
+            auth = Auth.token(TestConfig.addr, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
         } catch (I2softException e) {
             e.printStackTrace();
         }
