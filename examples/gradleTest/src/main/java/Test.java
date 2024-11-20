@@ -33,7 +33,7 @@ public class Test {
             String ak = "Sq6ICJvA30cWHQBPn92YUusgelVGopiN";
             String sk = "eb5OFnB1sKcwjxq6dYh0umLNpRfXoCTQAkGZ7VtJ";
             // 鉴权
-            Auth auth = Auth.access(ip, ak, sk, cachePath);
+            Auth auth = Auth.ak(ip, ak, sk, cachePath);
 
             auth.client.setHeader("User-Lang", "zh-CN");
 

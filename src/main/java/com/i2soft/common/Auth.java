@@ -8,6 +8,7 @@ import com.i2soft.util.Configuration;
 import com.i2soft.util.IOHelper;
 import com.i2soft.util.StringMap;
 import com.i2soft.util.StringUtils;
+import org.jetbrains.annotations.NotNull;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -172,6 +173,28 @@ public final class Auth {
     }
 
     /**
+     * AK/SK 构建 Auth 对象
+     *
+     * @param addr:          https://192.168.1.1:58086
+     * @param ak:
+     * @param sk:
+     * @param cachePath:     E:\cache\
+     * @return Auth:
+     * @throws I2softException :
+     */
+    public static Auth ak(String addr, String ak, String sk, String cachePath) throws I2softException {
+        return ak(addr, ak, sk, cachePath, new Configuration());
+    }
+
+    public static Auth ak(String addr, String ak, String sk, String cachePath, Configuration configuration) throws I2softException {
+        if (StringUtils.isNullOrEmpty(addr) || StringUtils.isNullOrEmpty(ak) || StringUtils.isNullOrEmpty(sk)) {
+            throw new IllegalArgumentException("empty key");
+        }
+
+        return getAuth(addr, ak, sk, AUTH_TYPE_AK_SK, cachePath, configuration);
+    }
+
+    /**
      * 获取token，构建 Auth 对象
      *
      * @param addr:            https://192.168.1.1:58086
@@ -187,6 +210,11 @@ public final class Auth {
             throw new IllegalArgumentException("empty key");
         }
 
+        return getAuth(addr, user, pwd, AUTH_TYPE_TOKEN, cachePath, configuration);
+    }
+
+    @NotNull
+    private static Auth getAuth(String addr,  String user, String pwd, String authType, String cachePath, Configuration configuration) throws I2softException {
         Client client = new Client(addr, configuration, cachePath);
 
         String token;
@@ -218,10 +246,20 @@ public final class Auth {
                 || cache.get("token") == null
                 || cache.get("refresh_token") == null
         ) {
+            Response r;
             // http获取最新
             String url = String.format("%s/auth/token", client.cc_url); // 地址
-            StringMap body = new StringMap().put("username", user).put("password", pwd).put("pwd", pwd); // 参数
-            Response r = client.post(url, body);
+
+            if (Objects.equals(authType, AUTH_TYPE_AK_SK)) {
+                String apiPath = url.substring(url.indexOf("/api/"));
+                StringMap args = new StringMap();
+                client.setAuthHeader("ACCESS-KEY", user);
+                client.doSign("POST", args, apiPath, pwd);
+                r = client.post(url, args);
+            } else {
+                StringMap body = new StringMap().put("username", user).put("password", pwd).put("pwd", pwd); // 参数
+                r = client.post(url, body);
+            }
             I2Rs.AuthRs authRs = Objects.requireNonNull(r.jsonToObject(I2Rs.AuthRs.class)); // 响应
 
             Integer code = authRs.code;

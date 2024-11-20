@@ -357,22 +357,41 @@ public final class Client {
             return;
         }
 
+        String secret, authHeaderName, authHeaderVal;
+        if (this.auth.authType.equals(Auth.AUTH_TYPE_AK_SK)) {
+            authHeaderName = "ACCESS-KEY";
+            authHeaderVal = this.auth.ak;
+            secret = this.auth.sk;
+        } else {
+            authHeaderName = "Authorization";
+            authHeaderVal = this.auth.token;
+            secret = this.auth.token;
+        }
+        setAuthHeader(authHeaderName, authHeaderVal);
+
+        doSign(httpMethod, args, api, secret);
+    }
+
+    public void setAuthHeader(String headerName, String headerValue) {
+        if (null == headers) {
+            headers = new StringMap();
+        }
+        headers.put(headerName, headerValue);
+    }
+
+    public void doSign(String httpMethod, StringMap args, String apiPath, String secret) {
+        if (null == headers) {
+            headers = new StringMap();
+        }
+
+        String enhance;
+
         String randomStr = getRandomString(16);
         String time = String.valueOf(System.currentTimeMillis() / 1000);
         String uuid = UUID.randomUUID().toString();
-        String secret;
-        String enhance;
-        // AK or Token
-        if (this.auth.authType.equals(Auth.AUTH_TYPE_AK_SK)) {
-            headers.put("ACCESS-KEY", this.auth.ak);
-            secret = this.auth.sk;
-        } else {
-            headers.put("Authorization", this.auth.token);
-            secret = this.auth.token;
-        }
 
         String signData = httpMethod.toUpperCase() + "\n" +
-                api + "\n" +
+                apiPath + "\n" +
                 randomStr + "\n" +
                 time + "\n" +
                 uuid;

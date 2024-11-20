@@ -30,7 +30,7 @@ public class BigdataBackupRuleTest {
             return;
         }
         try {
-            auth = Auth.token(TestConfig.addr, TestConfig.user, TestConfig.pwd, TestConfig.cachePath, new Configuration());
+            auth = Auth.ak(TestConfig.addr, TestConfig.ak, TestConfig.sk, TestConfig.cachePath);
         } catch (I2softException e) {
             e.printStackTrace();
         }
