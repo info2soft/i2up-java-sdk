@@ -102,4 +102,17 @@ public final class LicQuota {
         Response r = auth.client.put(url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
+
+    /**
+     * 许可配额 - 获取绑定情况
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map getLicQuotaBindList(StringMap args) throws I2softException {
+        String url = String.format("%s/lic_quota/lic_bind", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
 }
