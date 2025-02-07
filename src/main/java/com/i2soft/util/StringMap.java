@@ -321,8 +321,7 @@ public final class StringMap {
             if (value instanceof String) {
                 temp.put(key, value.toString());
             } else {
-                if (value instanceof ArrayList && !(value.toString().contains("{") && value.toString().contains("}"))){
-                    // 处理纯uuid数组，直接toString会多出空格
+                if ((value instanceof ArrayList || value instanceof String[]) && !(value.toString().contains("{") && value.toString().contains("}"))){                    // 处理纯uuid数组，直接toString会多出空格
 //                     {
 //                         "uuids": [
 //                            "C88159F0-6FEc-34FF-9d8f-DABEeAB5bD68",
