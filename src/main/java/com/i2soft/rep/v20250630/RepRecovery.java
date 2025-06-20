@@ -1,0 +1,210 @@
+package com.i2soft.rep.v20250630;
+
+import com.i2soft.http.I2Req;
+import com.i2soft.http.I2Rs;
+import com.i2soft.http.I2softException;
+import com.i2soft.http.Response;
+import com.i2soft.common.Auth;
+import com.i2soft.util.StringMap;
+
+import java.util.Map;
+
+public final class RepRecovery {
+    /**
+     * Auth 对象
+     */
+    private final Auth auth;
+
+    /**
+     * 构建一个新对象
+     *
+     * @param auth Auth对象
+     */
+    public RepRecovery(Auth auth) {
+        this.auth = auth;
+    }
+
+    /**
+     * 恢复-1 新建任务
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map createRepRecovery(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/rep/recovery", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 恢复-1 获取单个任务
+     *
+     * @param uuid: uuid
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map describeRepRecovery(String uuid) throws I2softException {
+        String url = String.format("%s/vers/v3/rep/recovery/%s", auth.cc_url, uuid);
+        Response r = auth.client.get(url, new StringMap());
+        return r.jsonToMap();
+    }
+
+    /**
+     * 恢复-1 修改任务
+     *
+     * @param uuid: uuid
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map updateRepRecovery(String uuid, StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/rep/recovery/%s", auth.cc_url, uuid);
+        Response r = auth.client.put(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 恢复-2 删除任务
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map deleteRepRecovery(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/rep/recovery", auth.cc_url);
+        Response r = auth.client.delete(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 恢复-2 获取任务列表（基本信息）
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listRepRecovery(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/rep/recovery", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 恢复-2 任务操作
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs startRepRecovery(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/rep/recovery/operate", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 恢复-2 任务操作
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs stopRepRecovery(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/rep/recovery/operate", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 恢复-2 任务操作
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs clearFinishRepRecovery(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/rep/recovery/operate", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 恢复-2 任务状态
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listRepRecoveryStatus(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/rep/recovery/status", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * CDP 恢复-1 获取CDP时间范围
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listRepRecoveryCdpRange(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/rep/recovery/cdp_range", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * CDP 恢复-1 获取CDP日志列表
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listRepRecoveryCdpLog(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/rep/recovery/cdp_log", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 恢复 - CDP在线查看任意时间点数据
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map viewRepRecoveryData(StringMap args) throws I2softException {
+        String url = String.format("%s/rep/recovery/rc_data_view", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 恢复-状态 在线查看任意时间点数据专用
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listRcpRecoveryDataViewStatus(StringMap args) throws I2softException {
+        String url = String.format("%s/rep/recovery/rc_data_view_status", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 恢复 - 孤儿文件列表-CDP时间点数据
+     *
+     * @param uuid: uuid
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listCDPRcData(String uuid, StringMap args) throws I2softException {
+        String url = String.format("%s/rep/recovery/%s/orphan_list", auth.cc_url, uuid);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+}
