@@ -205,7 +205,7 @@ public final class Client {
         String tempUrl = url;
         signAndPrintLog(url, "GET", query);
         if (query.size() != 0) {
-            url += query.formString();
+            url += query.formStringNew();
         }
         Request.Builder requestBuilder = new Request.Builder().url(url).get();
         Response r = send(requestBuilder);
@@ -252,7 +252,7 @@ public final class Client {
         Response r;
         signAndPrintLog(url, method, body);
         if (body.size() != 0) {
-            url += body.formString();
+            url += body.formStringNew();
         }
         switch (method) {
             case "POST":
@@ -411,41 +411,37 @@ public final class Client {
             // args
             args.put("_", randomStr); // 签名必备随机串
             StringBuilder signField = new StringBuilder();
+
+            // 如果是GET请求，需要将空数组和空对象都删除，不管是否嵌套，确保和php server端处理一致
             if (httpMethod.equals("GET")) {
-                StringMap newArgs = args.removeEmptyValue();// 去除空值
-                newArgs = new StringMap(ksort(newArgs));// 重新排序
-                String temp = newArgs.formString();// 构建url参数
-                signField.append(URLDecoder.decode(temp, "UTF-8"));
-                signField.deleteCharAt(0);//删除url自动补全的问号
-            } else {
-                Map<String, Object> map = ksort(args);
-                map.forEach((o, o2) -> {
-                    if (!(o2 instanceof String)) {
-                        if (o2 == null) {
-                            return;
-                        }
-                        o2 = Json.encode(o2);
-                        //属性内的{}改为[]
-                        o2 = o2.toString().replaceAll(":\\{}", ":[]");
-                        if (o2.equals("{}")) {
-                            o2 = "[]";
-                        }
-                    }
-                    if (o2.toString().isEmpty()) {
+                args = args.filterEmpty();
+            }
+            Map<String, Object> map = ksort(args);
+            map.forEach((o, o2) -> {
+                if (!(o2 instanceof String)) {
+                    if (o2 == null) {
                         return;
                     }
-                    signField.append(o).append("=").append(o2).append("&");
-                });
-                signField.deleteCharAt(signField.length() - 1);
-            }
+                    o2 = Json.encode(o2);
+                    //属性内的{}改为[]
+                    o2 = o2.toString().replaceAll(":\\{}", ":[]");
+                    if (o2.equals("{}")) {
+                        o2 = "[]";
+                    }
+                }
+                if (o2.toString().isEmpty()) {
+                    return;
+                }
+                signField.append(o).append("=").append(o2).append("&");
+            });
+            signField.deleteCharAt(signField.length() - 1);
+
             String enhanceStr = signField.toString();
             enhanceStr = enhanceStr.replaceAll("\"", "");
             enhance = bytes2HexString(sha256_HMAC.doFinal(enhanceStr.getBytes(StandardCharsets.UTF_8))).toLowerCase();
             headers.put("enhanceStr", enhance);
         } catch (NoSuchAlgorithmException | InvalidKeyException e) {
             e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
         }
     }
 
