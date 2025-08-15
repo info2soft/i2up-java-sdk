@@ -71,7 +71,7 @@ Java SDK依赖的第三方库及其版本如下：
 
  | 库名称 | 库项目地址 | 库下载地址 | 
  | ----- | --------- | --------- | 
- | i2up-java-sdk |  [链接🔗](https://github.com/info2soft/i2up-java-sdk)  | [链接🔗](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22i2up-java-sdk%22) | 
+ | i2up-java-sdk |  [链接🔗](https://gitee.com/i2soft/i2up-java-sdk)  | [链接🔗](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22i2up-java-sdk%22) | 
  | okhttp3 | [链接🔗](https://github.com/square/okhttp) | [链接🔗](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.squareup.okhttp3%22) | 
  | gson | [链接🔗](https://github.com/google/gson) | [链接🔗](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.google.code.gson%22) | 
 
@@ -132,7 +132,7 @@ Java SDK依赖的第三方库及其版本如下：
         }
     }
 
-### 用户名密码鉴权：
+### 用户名密码鉴权
 
     import com.i2soft.common.Auth;
     import com.i2soft.http.I2softException;
@@ -172,6 +172,22 @@ Java SDK依赖的第三方库及其版本如下：
         }
     }
 
+### 常见入参举例
+
+    StringMap args = new StringMap(); // 填充请求数据
+    StringMap queryArgs = new StringMap();
+    queryArgs.put("rule_name", "test");
+    queryArgs.put("rule_type", 1);
+    args.put("where_args", queryArgs);
+    Map rs = dto.listDtoRule(args); // 发送请求
+
+### 编译运行
+1. 准备好Java环境，确保使用 JDK 8+
+2. 将 Demo.java 编译成 class 文件
+3. 进入 .class 文件所在的目录
+4. 执行命令：java -cp ".;lib/*" Demo （确保依赖的jar包在lib目录下。分隔符：Windows用 ; Linux 用 :）
+5. 查看输出结果
+
 API 参考
 ======
 
@@ -181,7 +197,7 @@ API 参考
 ====
 
 *   I2softException 保留了请求响应的信息，失败情况下会抛出此异常，可以提交给我们排查问题。
-*   API 的使用，demo 可以参考[单元测试](https://github.com/info2soft/i2up-java-sdk/tree/develop/src/test/java/test/com/i2soft)。
+*   API 的使用，demo 可以参考[单元测试](https://gitee.com/i2soft/i2up-java-sdk/tree/develop/src/test/java/com/i2soft/i2up)。
 *   多语言: `auth.client.setHeader("User-Lang", "zh-CN");` `en-US 英文`， `zh-TW 繁体中文`，`zh-CN 简体`
 
 相关资源
