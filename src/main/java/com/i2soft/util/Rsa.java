@@ -4,9 +4,13 @@ import com.i2soft.common.Auth;
 import com.i2soft.http.Client;
 import com.i2soft.http.I2Rs;
 import com.i2soft.http.Response;
+
+import static com.i2soft.http.Client.bytes2HexString;
 import org.apache.commons.codec.binary.Base64;
 
 import javax.crypto.Cipher;
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyFactory;
@@ -26,8 +30,27 @@ public class Rsa {
     private String encryptMethod = "Rsa/ECB/PKCS1Padding"; // 默认Padding
 
     public Rsa() {
-        // 读取缓存公钥文件
-        String FilePath = Auth.getCachePath() + File.separator + "pub_key.json";
+        // 通过ip生成hash作为路径（与Auth.getAuth中的逻辑一致）
+        String ccUrl = Auth.getCcUrlDefault();
+        String cachePath = Auth.getCachePath();
+        String hash = "temp";
+        
+        // 当 ccUrl 不为空时，生成 hash 作为子目录
+        // 注意：cc_url = addr + "/api"，需要去掉 "/api" 后缀以保持与 Auth.getAuth 中 hash 计算方式一致
+        if (ccUrl != null && !ccUrl.isEmpty()) {
+            try {
+                String addr = ccUrl.endsWith("/api") ? ccUrl.substring(0, ccUrl.length() - 4) : ccUrl;
+                Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+                SecretKeySpec secret_key = new SecretKeySpec(addr.getBytes(), "HmacSHA256");
+                sha256_HMAC.init(secret_key);
+                hash = bytes2HexString(sha256_HMAC.doFinal(addr.getBytes())).toLowerCase();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        // 读取缓存公钥文件（按IP增加一层路径）
+        String FilePath = (cachePath != null ? cachePath : "") + File.separator + hash + File.separator + "pub_key.json";
         File pubKeyFile = new File(FilePath);
 //        long timeStamp = System.currentTimeMillis() / 1000;
         StringMap pubKeyJson = null;
@@ -44,7 +67,7 @@ public class Rsa {
             }
         } else {
             // 获取公钥失败则使用内置默认公钥，接口存在公钥返回则使用RSA/ECB/OAEPPadding，否则为ECB/PKCS1Padding
-            String url = String.format("%s/sys/public_settings", Auth.getCcUrlDefault());
+            String url = String.format("%s/sys/public_settings", ccUrl);
             Client client = Auth.getClientDefault();
             try {
                 pubKeyJson = new StringMap();
