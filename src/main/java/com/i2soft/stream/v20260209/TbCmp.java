@@ -1,0 +1,312 @@
+package com.i2soft.stream.v20260209;
+
+import com.i2soft.http.I2Req;
+import com.i2soft.http.I2Rs;
+import com.i2soft.http.I2softException;
+import com.i2soft.http.Response;
+import com.i2soft.common.Auth;
+import com.i2soft.util.StringMap;
+
+import java.util.Map;
+
+public final class TbCmp {
+    /**
+     * Auth 对象
+     */
+    private final Auth auth;
+
+    /**
+     * 构建一个新对象
+     *
+     * @param auth Auth对象
+     */
+    public TbCmp(Auth auth) {
+        this.auth = auth;
+    }
+
+    /**
+     * 表比较 - 新建
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs createTbCmp(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 表比较 - 状态
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listSyncTbCmpStatus(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp/status", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 表比较 - 操作
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map stopTbCmp(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp/operate", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 表比较 - 操作
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map restartTbCmp(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp/operate", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 表比较 - 操作
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map cmpStopTime(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp/operate", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 表比较 - 操作
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map cmpResumeTime(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp/operate", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 表比较 - 操作
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map cmpImmediate(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp/operate", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 表比较 - 比较结果
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map describeSyncTbCmpResult(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp/result", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 表比较 - 比较结果用户备选项
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map describeSyncTbCmpResultUsers(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp/result_user", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 表比较 - 比较结果表备选项
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map describeSyncTbCmpResultTables(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp/result_table", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 表比较 - 详细信息
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map describeTbCmpErrorMsg(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp/error_msg", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 表比较 - 差异数据
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map describeTbCmpDiffMap(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp/diff_map", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 表比较 - 历史结果（查看表比较时间结果集）
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listSyncTbCmpResultTimeList(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp/result_time_list", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 表比较 - 历史修复结果
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listSyncTbCmpFixResultTimeList(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp/fix_result_time_list", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 表比较 - 修复结果
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map describeSyncTbCmpFixResult(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp/fix_result", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 表比较 - 导出
+     *
+     * @param args: 参数详见 API 手册
+     * @return 二进制文件
+     * @throws I2softException:
+     */
+    public byte[] exportSyncTbCmp(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp/export", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.body();
+    }
+
+    /**
+     * 表比较 - 导出副本
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs importSyncTbCmp(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp/import", auth.cc_url);
+        Response r = auth.client.post(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 表比较 - 列表
+     *
+     * @param args: 参数详见 API 手册
+     * @return 参数详见 API 手册
+     * @throws I2softException:
+     */
+    public Map listSyncTbCmp(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.jsonToMap();
+    }
+
+    /**
+     * 表比较 - 比较结果导出
+     *
+     * @param args: 参数详见 API 手册
+     * @return 二进制文件
+     * @throws I2softException:
+     */
+    public byte[] exportSyncTbCmpResult(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp/result_export", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.body();
+    }
+
+    /**
+     * 表比较 - 修复结果导出
+     *
+     * @param args: 参数详见 API 手册
+     * @return 二进制文件
+     * @throws I2softException:
+     */
+    public byte[] exportSyncTbCmpFixResult(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp/fix_result_export", auth.cc_url);
+        Response r = auth.client.get(url, args);
+        return r.body();
+    }
+
+    /**
+     * 表比较 - 删除比较结果
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs describeSyncTbCmpResultTimeList(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp/result_time_list", auth.cc_url);
+        Response r = auth.client.delete(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+
+    /**
+     * 表比较 - 删除修复结果
+     *
+     * @param args: 参数详见 API 手册
+     * @return code, message
+     * @throws I2softException:
+     */
+    public I2Rs.I2SmpRs describeSyncTbCmpFixResultTimeList(StringMap args) throws I2softException {
+        String url = String.format("%s/vers/v3/sync_tb_cmp/fix_result_time_list", auth.cc_url);
+        Response r = auth.client.delete(url, args);
+        return r.jsonToObject(I2Rs.I2SmpRs.class);
+    }
+}
