@@ -97,7 +97,7 @@ public final class ContainerCluster {
      * @throws I2softException:
      */
     public Map listBackupDestinationStatus(StringMap args) throws I2softException {
-        String url = String.format("%s/v3/backup_destination/status", auth.cc_url);
+        String url = String.format("%s/vers/v3/backup_destination/status", auth.cc_url);
         Response r = auth.client.get(url, args);
         return r.jsonToMap();
     }
@@ -110,7 +110,7 @@ public final class ContainerCluster {
      * @throws I2softException:
      */
     public Map listContainerClusterInfo(StringMap args) throws I2softException {
-        String url = String.format("%s/v3/container_cluster/cls_info", auth.cc_url);
+        String url = String.format("%s/vers/v3/container_cluster/cls_info", auth.cc_url);
         Response r = auth.client.post(url, args);
         return r.jsonToMap();
     }
@@ -123,7 +123,7 @@ public final class ContainerCluster {
      * @throws I2softException:
      */
     public I2Rs.I2SmpRs syncContainerClusterInfo(StringMap args) throws I2softException {
-        String url = String.format("%s/v3/container_cluster/sync_info", auth.cc_url);
+        String url = String.format("%s/vers/v3/container_cluster/sync_info", auth.cc_url);
         Response r = auth.client.post(url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
@@ -162,7 +162,7 @@ public final class ContainerCluster {
      * @throws I2softException:
      */
     public Map containerClusterMonitoringOverview(StringMap args) throws I2softException {
-        String url = String.format("%s/v3/container_cluster/monitoring/overview", auth.cc_url);
+        String url = String.format("%s/vers/v3/container_cluster/monitoring/overview", auth.cc_url);
         Response r = auth.client.get(url, args);
         return r.jsonToMap();
     }
@@ -174,7 +174,7 @@ public final class ContainerCluster {
      * @throws I2softException:
      */
     public byte[] containerClusterMonitoringNode() throws I2softException {
-        String url = String.format("%s/v3/container_cluster/monitoring/node", auth.cc_url);
+        String url = String.format("%s/vers/v3/container_cluster/monitoring/node", auth.cc_url);
         Response r = auth.client.get(url, new StringMap());
         return r.body();
     }
@@ -187,7 +187,7 @@ public final class ContainerCluster {
      * @throws I2softException:
      */
     public I2Rs.I2SmpRs createContainerCluster(StringMap args) throws I2softException {
-        String url = String.format("%s/v3/container_cluster", auth.cc_url);
+        String url = String.format("%s/vers/v3/container_cluster", auth.cc_url);
         Response r = auth.client.post(url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
@@ -199,7 +199,7 @@ public final class ContainerCluster {
      * @throws I2softException:
      */
     public Map listContainerCluster() throws I2softException {
-        String url = String.format("%s/v3/container_cluster", auth.cc_url);
+        String url = String.format("%s/vers/v3/container_cluster", auth.cc_url);
         Response r = auth.client.get(url, new StringMap());
         return r.jsonToMap();
     }
@@ -212,7 +212,7 @@ public final class ContainerCluster {
      * @throws I2softException:
      */
     public Map describeContainerCluster(String uuid) throws I2softException {
-        String url = String.format("%s/v3/container_cluster/%s", auth.cc_url, uuid);
+        String url = String.format("%s/vers/v3/container_cluster/%s", auth.cc_url, uuid);
         Response r = auth.client.get(url, new StringMap());
         return r.jsonToMap();
     }
@@ -226,7 +226,7 @@ public final class ContainerCluster {
      * @throws I2softException:
      */
     public byte[] modifyContainerCluster(String uuid, StringMap args) throws I2softException {
-        String url = String.format("%s/v3/container_cluster/%s", auth.cc_url, uuid);
+        String url = String.format("%s/vers/v3/container_cluster/%s", auth.cc_url, uuid);
         Response r = auth.client.put(url, args);
         return r.body();
     }
@@ -239,7 +239,7 @@ public final class ContainerCluster {
      * @throws I2softException:
      */
     public I2Rs.I2SmpRs deleteContainerCluster(StringMap args) throws I2softException {
-        String url = String.format("%s/v3/container_cluster", auth.cc_url);
+        String url = String.format("%s/vers/v3/container_cluster", auth.cc_url);
         Response r = auth.client.delete(url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
@@ -317,7 +317,7 @@ public final class ContainerCluster {
      * @throws I2softException:
      */
     public I2Rs.I2SmpRs cloneCallbackSettings(StringMap args) throws I2softException {
-        String url = String.format("%s/v3/callback_settings/operate", auth.cc_url);
+        String url = String.format("%s/vers/v3/callback_settings/operate", auth.cc_url);
         Response r = auth.client.post(url, args);
         return r.jsonToObject(I2Rs.I2SmpRs.class);
     }
@@ -330,7 +330,7 @@ public final class ContainerCluster {
      * @throws I2softException:
      */
     public Map verifyCallbackSettingsPod(StringMap args) throws I2softException {
-        String url = String.format("%s/v3/callback_settings/pod_verify", auth.cc_url);
+        String url = String.format("%s/vers/v3/callback_settings/pod_verify", auth.cc_url);
         Response r = auth.client.post(url, args);
         return r.jsonToMap();
     }
