@@ -31,7 +31,8 @@ public class Test {
 
             // 鉴权
 //            Auth auth = Auth.token(ip, username, password, cachePath);
-             Auth auth = Auth.access(ip, ak, sk, cachePath);
+//             Auth auth = Auth.access(ip, ak, sk, cachePath);
+             Auth auth = Auth.ak(ip, ak, sk, cachePath);
 
             auth.client.setHeader("User-Lang", "zh-CN");
 

@@ -1,91 +1,45 @@
-/*
- * Copyright 2013 Chris Banes
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
 def isReleaseBuild() {
-    return VERSION_NAME.contains("SNAPSHOT") == false
+    return !VERSION_NAME.contains("SNAPSHOT")
 }
 
-def getReleaseRepositoryUrl() {
-    return hasProperty('RELEASE_REPOSITORY_URL') ? RELEASE_REPOSITORY_URL
-            : "https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/"
-}
-
-def getSnapshotRepositoryUrl() {
-    return hasProperty('SNAPSHOT_REPOSITORY_URL') ? SNAPSHOT_REPOSITORY_URL
-            : "https://central.sonatype.com/repository/maven-snapshots/"
-}
-
-def getRepositoryUsername() {
-    return hasProperty('NEXUS_USERNAME') ? NEXUS_USERNAME : ""
-}
-
-def getRepositoryPassword() {
-    return hasProperty('NEXUS_PASSWORD') ? NEXUS_PASSWORD : ""
-}
-
-task srcJar(type: Jar) {
+task sourceJar(type: Jar) {
+    classifier = 'sources'
     from sourceSets.main.allJava
 }
 
-task javadocs(type: Javadoc) {
-    failOnError = false
-    source = sourceSets.main.java.srcDirs
-}
-
-task docJar(type: Jar, dependsOn: javadocs) {
+task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
-    from javadocs.destinationDir
+    from javadoc.destinationDir
 }
 
-task triggerDeployment(type: Exec) {
-//    dependsOn publishing
-    commandLine 'curl', '-k', '-v', '-X POST', '-u', "${getRepositoryUsername()}:${getRepositoryPassword()}",
-            "https://ossrh-staging-api.central.sonatype.com/manual/upload/defaultRepository/${GROUP}"
+javadoc {
+    failOnError = false
+    options.addStringOption('Xdoclint:none', '-quiet')
 }
 
 publishing {
-    publications{
-        mavenJava(MavenPublication){
-
+    publications {
+        mavenJava(MavenPublication) {
             groupId = GROUP
             artifactId = POM_ARTIFACT_ID
             version = VERSION_NAME
             from components.java
-
-            artifact srcJar {
-                classifier "sources"
-            }
-
-            artifact docJar {
-                classifier "javadoc"
-            }
+            artifact sourceJar
+            artifact javadocJar
 
             pom {
                 name = POM_NAME
                 description = POM_DESCRIPTION
                 url = POM_URL
                 inceptionYear = POM_INCEPTION_YEAR
-
                 licenses {
                     license {
                         name = POM_LICENCE_NAME
                         url = POM_LICENCE_URL
+                        distribution = 'repo'
                     }
                 }
                 developers {
@@ -96,26 +50,63 @@ publishing {
                     }
                 }
                 scm {
-                    connection= POM_SCM_CONNECTION
-                    developerConnection=POM_SCM_DEV_CONNECTION
-                    url=POM_SCM_URL
+                    connection = POM_SCM_CONNECTION
+                    developerConnection = POM_SCM_DEV_CONNECTION
+                    url = POM_SCM_URL
                 }
             }
         }
     }
-
     repositories {
-        maven {
-            name = POM_NAME
-            url = getReleaseRepositoryUrl()
-            credentials {
-                username = getRepositoryUsername()
-                password = getRepositoryPassword()
-            }
-        }
+        mavenLocal()
     }
 }
 
 signing {
+    required = { isReleaseBuild() }
     sign publishing.publications.mavenJava
+}
+
+// 打包上传变量
+def bundleDir = file("${buildDir}/central-bundle")
+def uploadZip = file("${bundleDir}/${POM_ARTIFACT_ID}-${VERSION_NAME}.zip")
+def userM2Repo = file(System.getProperty("user.home") + "/.m2/repository")
+def groupPath = GROUP.replace(".", "/")
+
+// 修复后打包任务（无类型转换报错）
+task buildBundle(type: Zip, dependsOn: publishMavenJavaPublicationToMavenLocal) {
+    destinationDirectory = bundleDir
+    archiveName = uploadZip.name
+
+    def artifactDir = new File(userM2Repo, "${groupPath}/${POM_ARTIFACT_ID}/${VERSION_NAME}")
+    from(artifactDir) {
+        into "${groupPath}/${POM_ARTIFACT_ID}/${VERSION_NAME}"
+        // 包含所有文件：jar pom asc md5 sha1 sha256 sha512 module
+        include "*"
+    }
+
+    doLast {
+        println("生成上传压缩包：" + uploadZip.absolutePath)
+    }
+}
+
+
+task uploadToCentral(type: Exec, dependsOn: buildBundle) {
+    doFirst {
+        def tokenUser = project.hasProperty("CENTRAL_TOKEN_USER") ? project.property("CENTRAL_TOKEN_USER") : ""
+        def tokenPwd = project.hasProperty("CENTRAL_TOKEN_PASS") ? project.property("CENTRAL_TOKEN_PASS") : ""
+        if (tokenUser.isEmpty() || tokenPwd.isEmpty()) {
+            throw new GradleException("缺少 CENTRAL_TOKEN_USER / CENTRAL_TOKEN_PASS 参数")
+        }
+        if (!uploadZip.exists()) {
+            throw new GradleException("打包文件不存在：" + uploadZip.absolutePath)
+        }
+    }
+    commandLine(
+            'curl', '--fail', '-s', '-X', 'POST',
+            '-u', "${CENTRAL_TOKEN_USER}:${CENTRAL_TOKEN_PASS}",
+            '-F', "bundle=@${uploadZip.absolutePath}",
+            '-F', "publishingType=${isReleaseBuild() ? 'USER_MANAGED' : 'AUTOMATIC'}",
+            'https://central.sonatype.com/api/v1/publisher/upload'
+    )
 }

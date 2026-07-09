@@ -1,7 +1,13 @@
 import java.util.regex.Matcher
 
-apply plugin: 'java'
-apply plugin: 'jacoco'
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'checkstyle'
+    id 'eclipse'
+    // 仅声明版本，不在根项目启用，交给mvn_push.gradle加载
+//    id 'com.vanniktech.maven.publish' version '0.25.0' apply false
+}
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -45,7 +51,6 @@ task getHomeDir {
     }
 }
 
-apply plugin: 'checkstyle'
 
 task apiJavadocs(type: Javadoc) {
     source = sourceSets.main.allJava
@@ -79,8 +84,6 @@ setProperty('VERSION_NAME', version)
 setProperty('VERSION_CODE', code)
 
 apply from: 'mvn_push.gradle'
-
-apply plugin: 'eclipse'
 
 task gen_eclipse(dependsOn: [
         'cleanEclipseProject', 'cleanEclipseClasspath',
